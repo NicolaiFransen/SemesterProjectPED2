@@ -13,3 +13,5 @@ In order to have a well organized git folder:
 	- Try to maintain the root as clean as possible.
 
 	- Delete document "init.txt" when something is added to a folder.
+
+	- ALWAYS add a meaninigfull summary when commiting, description is also recomended. The Nicos will be watching...
