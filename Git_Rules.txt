@@ -1,0 +1,19 @@
+
+In order to have a well organized git folder:
+
+	- All documents should be named as: YYYY_MM_DD_NameOfDocument.zzz
+
+	- The names of the documents must be significant.
+
+	- All documents need to have a clear location such that anybody would find it months from the moment it was saved.
+
+	- When a second version of an document is created, it can have the same name with a different date or,
+	in the case two are created the same day, it should be named: YYYY_MM_DD_NameOfDocument_V2.zzz
+
+	- General documents like papers, books or instructions for things (this document for instance) do not necesarily need the date.
+
+	- Try to maintain the root as clean as possible.
+
+	- Delete document "init.txt" when something is added to a folder.
+
+	- ALWAYS add a meaninigfull summary when commiting, description is also recomended. The Nicos will be watching...
