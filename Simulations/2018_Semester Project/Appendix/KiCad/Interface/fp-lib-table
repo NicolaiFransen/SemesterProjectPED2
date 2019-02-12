@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Kart_interface)(type KiCad)(uri "$(KIPRJMOD)/Kart_interface.pretty")(options "")(descr ""))
+)

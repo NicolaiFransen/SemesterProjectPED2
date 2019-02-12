@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>D:/Jesper/Documents/Dropbox/Go_Kart/03_Electronics/02_KiCad/Final/Gate_drive/Gate_drive.sch</source>
+    <date>20-05-2018 17:37:05</date>
+    <tool>Eeschema 4.0.7</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Gate driver</title>
+        <company>Appendix B2</company>
+        <rev>1.0</rev>
+        <date>2018-05-20</date>
+        <source>Gate_drive.sch</source>
+        <comment number="1" value="Half bridge gate driver designed for the Modular Inverter Phase board"/>
+        <comment number="2" value="Isolated outputs of +15, -8.7V relative to either high or low VSS."/>
+        <comment number="3" value="Peak source/sink currents of 15A."/>
+        <comment number="4" value="Internal signal inverter for PWM and programmed deadtime of 1µs"/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C12">
+      <value>2.2n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE5A7</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE5AE</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE5C1</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE5CF</tstamp>
+    </comp>
+    <comp ref="Q4">
+      <value>PHPT60415NY</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-669_LFPAK</footprint>
+      <libsource lib="Jespers_library" part="PHPT60415NY"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE602</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>1</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE625</tstamp>
+    </comp>
+    <comp ref="Q5">
+      <value>PHPT60415PY</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-669_LFPAK</footprint>
+      <libsource lib="Jespers_library" part="PHPT60415PY"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE63A</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>4.7u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE641</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE648</tstamp>
+    </comp>
+    <comp ref="C16">
+      <value>4.7u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE64F</tstamp>
+    </comp>
+    <comp ref="C17">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE656</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>10u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE65D</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>UCC20520</value>
+      <footprint>Housings_SOIC:SOIC-16W_7.5x10.3mm_Pitch1.27mm</footprint>
+      <libsource lib="Jespers_library" part="UCC20520"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE6A5</tstamp>
+    </comp>
+    <comp ref="C18">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE6CE</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>L78L15ABUTR</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-89-3</footprint>
+      <libsource lib="regul" part="L78L15_SOT89"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE6EB</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE6F2</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>330n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE6F9</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>10u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE706</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>Inputs</value>
+      <footprint>Connectors_Molex:Molex_KK-6410-04_04x2.54mm_Straight</footprint>
+      <libsource lib="conn" part="Conn_01x04"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE71F</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>47</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE726</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>33p</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE72D</tstamp>
+    </comp>
+    <comp ref="Q3">
+      <value>BC846A</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <libsource lib="Jespers_library" part="BC846B"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE824</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>5k6</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACAE833</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>Gate:B</value>
+      <footprint>Wire_Pads:SolderWirePad_2x_1-2mmDrill</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC9F3C8</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>VSS:B</value>
+      <footprint>Wire_Pads:SolderWirePad_single_1-2mmDrill</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC9F3CE</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBB2B0</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>PHPT60415NY</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-669_LFPAK</footprint>
+      <libsource lib="Jespers_library" part="PHPT60415NY"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD514</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>1</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD51A</tstamp>
+    </comp>
+    <comp ref="Q2">
+      <value>PHPT60415PY</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-669_LFPAK</footprint>
+      <libsource lib="Jespers_library" part="PHPT60415PY"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD520</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>4.7u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD526</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD52C</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>4.7u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD532</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD538</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>10u</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD53E</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>Gate:A</value>
+      <footprint>Wire_Pads:SolderWirePad_2x_1-2mmDrill</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD546</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>VSS:A</value>
+      <footprint>Wire_Pads:SolderWirePad_single_1-2mmDrill</footprint>
+      <libsource lib="conn" part="Conn_01x01"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACBD54C</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>MGJ2D241509SC</value>
+      <footprint>Jespers_footprints:SIL_MGJ2</footprint>
+      <libsource lib="Jespers_library" part="MGJ2D241509SC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACC63D4</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>MGJ2D241509SC</value>
+      <footprint>Jespers_footprints:SIL_MGJ2</footprint>
+      <libsource lib="Jespers_library" part="MGJ2D241509SC"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACC645E</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Jespers_library" part="BC846B">
+      <aliases>
+        <alias>BC546</alias>
+        <alias>BC548</alias>
+        <alias>BC549</alias>
+        <alias>BC550</alias>
+      </aliases>
+      <footprints>
+        <fp>TO-92*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">BC846B</field>
+      </fields>
+      <pins>
+        <pin num="1" name="B" type="input"/>
+        <pin num="2" name="E" type="passive"/>
+        <pin num="3" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x01">
+      <description>Generic connector, single row, 01x01</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x01</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x04">
+      <description>Generic connector, single row, 01x04</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x04</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="regul" part="MC78L05_SOT89">
+      <aliases>
+        <alias>MC78L08_SOT89</alias>
+        <alias>MC78L12_SOT89</alias>
+        <alias>L78L33_SOT89</alias>
+        <alias>L78L05_SOT89</alias>
+        <alias>L78L06_SOT89</alias>
+        <alias>L78L08_SOT89</alias>
+        <alias>L78L09_SOT89</alias>
+        <alias>L78L10_SOT89</alias>
+        <alias>L78L12_SOT89</alias>
+        <alias>L78L15_SOT89</alias>
+        <alias>L78L18_SOT89</alias>
+        <alias>L78L24_SOT89</alias>
+      </aliases>
+      <description>Positive 100mA 30V Linear Regulator, Fixed Output 5V, SOT-89</description>
+      <docs>http://www.fairchildsemi.com/ds/LM/LM78L05A.pdf</docs>
+      <footprints>
+        <fp>SOT?89*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MC78L05_SOT89</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT89-3_Housing</field>
+      </fields>
+      <pins>
+        <pin num="1" name="OUT" type="power_out"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="IN" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="MGJ2D241509SC">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MGJ2D241509SC</field>
+        <field name="Footprint">Jespers_footprints:SIL_MGJ2</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+Vin" type="input"/>
+        <pin num="2" name="-Vin" type="input"/>
+        <pin num="5" name="-Vout" type="input"/>
+        <pin num="6" name="0V" type="input"/>
+        <pin num="7" name="+Vout" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="PHPT60415NY">
+      <description>40 V, 15 A NPN high power bipolar transistor</description>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">PHPT60415NY</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-669_LFPAK</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+        <pin num="5" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="PHPT60415PY">
+      <description>40 V, 15 A PNP high power bipolar transistor</description>
+      <footprints>
+        <fp>TO-92*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">PHPT60415PY</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-669_LFPAK</field>
+      </fields>
+      <pins>
+        <pin num="1" name="E" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="B" type="input"/>
+        <pin num="5" name="C" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="UCC20520">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">UCC20520</field>
+        <field name="Footprint">Housings_SOIC:SOIC-16W_7.5x10.3mm_Pitch1.27mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="PWM" type="output"/>
+        <pin num="2" name="NC" type="NotConnected"/>
+        <pin num="3" name="VCCI" type="input"/>
+        <pin num="4" name="GND" type="input"/>
+        <pin num="5" name="DISABLE" type="input"/>
+        <pin num="6" name="DT" type="input"/>
+        <pin num="7" name="NC" type="NotConnected"/>
+        <pin num="8" name="VCCI" type="input"/>
+        <pin num="9" name="VSSB" type="output"/>
+        <pin num="10" name="OUTB" type="output"/>
+        <pin num="11" name="VDDB" type="input"/>
+        <pin num="12" name="NC" type="NotConnected"/>
+        <pin num="13" name="NC" type="NotConnected"/>
+        <pin num="14" name="VSSA" type="output"/>
+        <pin num="15" name="OUTA" type="output"/>
+        <pin num="16" name="VDDA" type="output"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="conn">
+      <uri>C:\Program Files\KiCad\share\kicad\library\conn.lib</uri>
+    </library>
+    <library logical="regul">
+      <uri>C:\Program Files\KiCad\share\kicad\library\regul.lib</uri>
+    </library>
+    <library logical="Jespers_library">
+      <uri>D:\Jesper\Documents\Dropbox\Go_Kart\03_Electronics\02_KiCad\Jespers_library.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="GND">
+      <node ref="R5" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="U2" pin="2"/>
+      <node ref="U4" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="U1" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="U3" pin="4"/>
+      <node ref="C18" pin="2"/>
+      <node ref="Q3" pin="2"/>
+      <node ref="J1" pin="4"/>
+    </net>
+    <net code="2" name="/PWM">
+      <node ref="J1" pin="2"/>
+      <node ref="R1" pin="2"/>
+    </net>
+    <net code="3" name="/DT">
+      <node ref="C12" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="4" name="Net-(Q3-Pad3)">
+      <node ref="Q3" pin="3"/>
+      <node ref="U3" pin="5"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="5" name="/ENABLE">
+      <node ref="J1" pin="1"/>
+      <node ref="R4" pin="2"/>
+    </net>
+    <net code="6" name="Net-(Q3-Pad1)">
+      <node ref="Q3" pin="1"/>
+      <node ref="R4" pin="1"/>
+    </net>
+    <net code="7" name="Net-(C8-Pad1)">
+      <node ref="U3" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="8" name="+24V">
+      <node ref="C1" pin="1"/>
+      <node ref="C18" pin="1"/>
+      <node ref="J1" pin="3"/>
+      <node ref="U2" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="U1" pin="3"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="9" name="Net-(Q4-Pad4)">
+      <node ref="R6" pin="1"/>
+      <node ref="Q4" pin="4"/>
+      <node ref="Q5" pin="4"/>
+    </net>
+    <net code="10" name="Net-(R6-Pad2)">
+      <node ref="U3" pin="10"/>
+      <node ref="R6" pin="2"/>
+    </net>
+    <net code="11" name="+15V">
+      <node ref="U3" pin="3"/>
+      <node ref="C3" pin="1"/>
+      <node ref="U3" pin="8"/>
+      <node ref="C11" pin="1"/>
+      <node ref="R3" pin="1"/>
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="12" name="Net-(R2-Pad2)">
+      <node ref="R2" pin="2"/>
+      <node ref="U3" pin="15"/>
+    </net>
+    <net code="13" name="Net-(Q1-Pad4)">
+      <node ref="R2" pin="1"/>
+      <node ref="Q2" pin="4"/>
+      <node ref="Q1" pin="4"/>
+    </net>
+    <net code="14" name="Net-(U3-Pad13)">
+      <node ref="U3" pin="13"/>
+    </net>
+    <net code="15" name="Net-(U3-Pad12)">
+      <node ref="U3" pin="12"/>
+    </net>
+    <net code="16" name="Net-(U3-Pad7)">
+      <node ref="U3" pin="7"/>
+    </net>
+    <net code="17" name="Net-(U3-Pad2)">
+      <node ref="U3" pin="2"/>
+    </net>
+    <net code="18" name="/-8.7V:B">
+      <node ref="C16" pin="2"/>
+      <node ref="U4" pin="5"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C17" pin="2"/>
+      <node ref="Q5" pin="5"/>
+      <node ref="U3" pin="9"/>
+    </net>
+    <net code="19" name="/+15V:B">
+      <node ref="U3" pin="11"/>
+      <node ref="U4" pin="7"/>
+      <node ref="Q4" pin="5"/>
+      <node ref="C15" pin="1"/>
+      <node ref="C13" pin="1"/>
+      <node ref="C14" pin="1"/>
+    </net>
+    <net code="20" name="/VSS:A">
+      <node ref="C10" pin="1"/>
+      <node ref="J3" pin="1"/>
+      <node ref="U2" pin="6"/>
+      <node ref="C9" pin="1"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C6" pin="2"/>
+    </net>
+    <net code="21" name="/Gate:A">
+      <node ref="Q1" pin="3"/>
+      <node ref="Q2" pin="1"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="J2" pin="1"/>
+      <node ref="Q1" pin="1"/>
+    </net>
+    <net code="22" name="/-8.7V:A">
+      <node ref="U2" pin="5"/>
+      <node ref="U3" pin="14"/>
+      <node ref="C5" pin="2"/>
+      <node ref="Q2" pin="5"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C10" pin="2"/>
+    </net>
+    <net code="23" name="/+15V:A">
+      <node ref="Q1" pin="5"/>
+      <node ref="U2" pin="7"/>
+      <node ref="C7" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="U3" pin="16"/>
+    </net>
+    <net code="24" name="/VSS:B">
+      <node ref="C17" pin="1"/>
+      <node ref="C16" pin="1"/>
+      <node ref="C15" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="J5" pin="1"/>
+      <node ref="U4" pin="6"/>
+    </net>
+    <net code="25" name="/Gate:B">
+      <node ref="J4" pin="1"/>
+      <node ref="Q4" pin="1"/>
+      <node ref="Q5" pin="1"/>
+      <node ref="Q5" pin="2"/>
+      <node ref="Q5" pin="3"/>
+      <node ref="Q4" pin="3"/>
+      <node ref="Q4" pin="2"/>
+    </net>
+  </nets>
+</export>

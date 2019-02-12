@@ -1,0 +1,8 @@
+355 A Peak
+
+la 200-p: 200A RMS, 	(-300 to 300) A which is the one we have it.
+HO 150-/SP30 : 		(-375 to 375) Pris:111 kr , 	http://dk.farnell.com/lem/ho-150-sp30/current-sensor-150a-voltage-o/dp/2664229?st=current%20transducer
+HAIS 150-P : 		(-450 to 450) Pris:137 kr , 	http://dk.farnell.com/lem/hais-150-p/current-transducer/dp/1617430?st=current%20transducer
+LF 205-S : 200 RMS 	(-420 +420)   Pris:kr 522,00 ,	http://dk.farnell.com/lem/lf-205-s/current-transducer-200a-panel/dp/2146855?st=LF205-S
+LF 310-S : 300 RMs 	(-500 to 500) Pris:kr:400 , 	http://dk.farnell.com/lem/lf-310-s/current-sensor-300a-current-o/dp/2664244?st=current%20transducer
+CSLA2EL 		(-550 to 550) Pris:283  	http://dk.farnell.com/honeywell/csla2el/current-sensor-transducer/dp/1703966?st=current%20transducer

@@ -1,0 +1,139 @@
+Cmp-Mod V01 Created by PcbNew   date = 11-05-2018 15:22:51
+
+BeginCmp
+TimeStamp = 5AF44625
+Path = /5AF437CF
+Reference = C1;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4462B
+Path = /5AF435ED
+Reference = C2;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44631
+Path = /5AF4378C
+Reference = C3;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44637
+Path = /5AF44040
+Reference = C4;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4463D
+Path = /5AF442F4
+Reference = C5;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44643
+Path = /5AF442D5
+Reference = C6;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44649
+Path = /5AF442EE
+Reference = C7;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4464F
+Path = /5AF44309
+Reference = C8;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44655
+Path = /5AF44406
+Reference = C9;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4465B
+Path = /5AF443E7
+Reference = C10;
+ValeurCmp = 1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44661
+Path = /5AF44400
+Reference = C11;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44667
+Path = /5AF4441B
+Reference = C12;
+ValeurCmp = 0.1u;
+IdModule  = Capacitors_SMD:C_1206_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4466E
+Path = /5AF41F40
+Reference = J1;
+ValeurCmp = Conn_01x03;
+IdModule  = Connectors_Molex:Molex_KK-6410-03_03x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44675
+Path = /5AF41FAB
+Reference = J2;
+ValeurCmp = Conn_01x03;
+IdModule  = Connectors_Molex:Molex_KK-6410-03_03x2.54mm_Straight;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF4468D
+Path = /5AF442BA
+Reference = T2;
+ValeurCmp = LEM_LA_200_P;
+IdModule  = Jespers_footprints:LEM_200;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44699
+Path = /5AF443CC
+Reference = T3;
+ValeurCmp = LEM_LA_200_P;
+IdModule  = Jespers_footprints:LEM_200;
+EndCmp
+
+BeginCmp
+TimeStamp = 5AF44681
+Path = /5AF3F7B8
+Reference = T1;
+ValeurCmp = LEM_LA_200_P;
+IdModule  = Jespers_footprints:LEM_200;
+EndCmp
+
+EndListe

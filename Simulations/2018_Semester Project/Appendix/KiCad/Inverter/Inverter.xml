@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>D:/Jesper/Documents/Dropbox/Go_Kart/03_Electronics/02_KiCad/Final/Inverter/Inverter.sch</source>
+    <date>20-05-2018 15:37:53</date>
+    <tool>Eeschema 4.0.7</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Modular Inverter Phase</title>
+        <company>Appendix XXXX</company>
+        <rev>1.0</rev>
+        <date>2018-04-13</date>
+        <source>Inverter.sch</source>
+        <comment number="1" value="Two level inverter with DC-Link capacitor bank"/>
+        <comment number="2" value="Designed for &lt;45VDC input, and up to 355A peak output current"/>
+        <comment number="3" value="A custom gate driver board designed for this application is used"/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="Q2">
+      <value>IPT012N08N5</value>
+      <footprint>TO_SOT_Packages_SMD:Infineon_PG-HSOF-8-1</footprint>
+      <libsource lib="Jespers_library" part="IPT012N08N5"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5CF7F</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>FDLL4148</value>
+      <footprint>Diodes_SMD:D_MiniMELF</footprint>
+      <libsource lib="device" part="D_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5CF86</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5CF8D</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>ZMY10-GS08</value>
+      <footprint>Diodes_SMD:D_MELF</footprint>
+      <libsource lib="device" part="D_Zener"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5CF94</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>IPT012N08N5</value>
+      <footprint>TO_SOT_Packages_SMD:Infineon_PG-HSOF-8-1</footprint>
+      <libsource lib="Jespers_library" part="IPT012N08N5"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5E92E</tstamp>
+    </comp>
+    <comp ref="D3">
+      <value>FDLL4148</value>
+      <footprint>Diodes_SMD:D_MiniMELF</footprint>
+      <libsource lib="device" part="D_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5E934</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5E93A</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>ZMY10-GS08</value>
+      <footprint>Diodes_SMD:D_MELF</footprint>
+      <libsource lib="device" part="D_Zener"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5E940</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>+DC_link</value>
+      <footprint>Jespers_footprints:cu_bar_long</footprint>
+      <libsource lib="Jespers_library" part="cu_bar"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC5FE5B</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>Phase_A</value>
+      <footprint>Jespers_footprints:cu_bar</footprint>
+      <libsource lib="Jespers_library" part="cu_bar"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC60712</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>-DC_link</value>
+      <footprint>Jespers_footprints:cu_bar_long</footprint>
+      <libsource lib="Jespers_library" part="cu_bar"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC60797</tstamp>
+    </comp>
+    <comp ref="Q4">
+      <value>IPT012N08N5</value>
+      <footprint>TO_SOT_Packages_SMD:Infineon_PG-HSOF-8-1</footprint>
+      <libsource lib="Jespers_library" part="IPT012N08N5"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68B96</tstamp>
+    </comp>
+    <comp ref="D8">
+      <value>FDLL4148</value>
+      <footprint>Diodes_SMD:D_MiniMELF</footprint>
+      <libsource lib="device" part="D_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68B9C</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BA2</tstamp>
+    </comp>
+    <comp ref="D6">
+      <value>ZMY10-GS08</value>
+      <footprint>Diodes_SMD:D_MELF</footprint>
+      <libsource lib="device" part="D_Zener"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BA8</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>2.7</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BAE</tstamp>
+    </comp>
+    <comp ref="Q3">
+      <value>IPT012N08N5</value>
+      <footprint>TO_SOT_Packages_SMD:Infineon_PG-HSOF-8-1</footprint>
+      <libsource lib="Jespers_library" part="IPT012N08N5"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BB5</tstamp>
+    </comp>
+    <comp ref="D7">
+      <value>FDLL4148</value>
+      <footprint>Diodes_SMD:D_MiniMELF</footprint>
+      <libsource lib="device" part="D_Small"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BBB</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BC1</tstamp>
+    </comp>
+    <comp ref="D5">
+      <value>ZMY10-GS08</value>
+      <footprint>Diodes_SMD:D_MELF</footprint>
+      <libsource lib="device" part="D_Zener"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BC7</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>2.7</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC68BCF</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>Gate_drive_board</value>
+      <footprint>Jespers_footprints:Gate_driver_example</footprint>
+      <libsource lib="Jespers_library" part="Gate_drive_board"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC78158</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>2.7</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC79955</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>2.7</value>
+      <footprint>Resistors_SMD:R_1206</footprint>
+      <libsource lib="device" part="R"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC79A54</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7CCD5</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7DBDC</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7DC40</tstamp>
+    </comp>
+    <comp ref="C4">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7DC4A</tstamp>
+    </comp>
+    <comp ref="C5">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7DC94</tstamp>
+    </comp>
+    <comp ref="C6">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7DC9E</tstamp>
+    </comp>
+    <comp ref="C7">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E032</tstamp>
+    </comp>
+    <comp ref="C8">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E03C</tstamp>
+    </comp>
+    <comp ref="C9">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E046</tstamp>
+    </comp>
+    <comp ref="C10">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E050</tstamp>
+    </comp>
+    <comp ref="C11">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E05A</tstamp>
+    </comp>
+    <comp ref="C12">
+      <value>56u</value>
+      <footprint>Capacitors_SMD:CP_Elec_10x10.5</footprint>
+      <libsource lib="device" part="CP"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AC7E064</tstamp>
+    </comp>
+    <comp ref="C13">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBC08</tstamp>
+    </comp>
+    <comp ref="C14">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBD28</tstamp>
+    </comp>
+    <comp ref="C15">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBDB0</tstamp>
+    </comp>
+    <comp ref="C16">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBDB6</tstamp>
+    </comp>
+    <comp ref="C17">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBE1C</tstamp>
+    </comp>
+    <comp ref="C18">
+      <value>100n</value>
+      <footprint>Capacitors_SMD:C_1206</footprint>
+      <libsource lib="device" part="C"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5ACCBE22</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="CP">
+      <description>Polarised capacitor</description>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">CP</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D_Small">
+      <description>Diode, small symbol</description>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="D_Zener">
+      <description>Zener Diode</description>
+      <docs>https://en.wikipedia.org/wiki/Zener_diode</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*SingleDiode</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Zener</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="Gate_drive_board">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">Gate_drive_board</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Gate:A" type="input"/>
+        <pin num="2" name="Gate:A" type="input"/>
+        <pin num="3" name="VSS:A" type="input"/>
+        <pin num="4" name="Gate:B" type="input"/>
+        <pin num="5" name="Gate:B" type="input"/>
+        <pin num="6" name="VSS:B" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="IPT007N06N">
+      <aliases>
+        <alias>IPT012N08N5</alias>
+      </aliases>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">IPT007N06N</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:Infineon_PG-HSOF-8-1</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Jespers_library" part="cu_bar">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">cu_bar</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Jespers_library">
+      <uri>D:\Jesper\Documents\Dropbox\Go_Kart\03_Electronics\02_KiCad\Jespers_library.lib</uri>
+    </library>
+    <library logical="device">
+      <uri>C:\Program Files\KiCad\share\kicad\library\device.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="G_L1A">
+      <node ref="R5" pin="2"/>
+      <node ref="U4" pin="4"/>
+    </net>
+    <net code="2" name="G_L2A">
+      <node ref="R6" pin="2"/>
+      <node ref="U4" pin="5"/>
+    </net>
+    <net code="3" name="G_H1A">
+      <node ref="R1" pin="2"/>
+      <node ref="U4" pin="1"/>
+    </net>
+    <net code="4" name="G_H2A">
+      <node ref="U4" pin="2"/>
+      <node ref="R2" pin="2"/>
+    </net>
+    <net code="5" name="/Phase_A">
+      <node ref="U4" pin="3"/>
+      <node ref="Q4" pin="3"/>
+      <node ref="R3" pin="1"/>
+      <node ref="D3" pin="2"/>
+      <node ref="Q1" pin="2"/>
+      <node ref="R4" pin="1"/>
+      <node ref="D4" pin="2"/>
+      <node ref="Q2" pin="2"/>
+      <node ref="Q3" pin="3"/>
+      <node ref="U2" pin="1"/>
+    </net>
+    <net code="6" name="/+DC_link">
+      <node ref="C11" pin="1"/>
+      <node ref="C12" pin="1"/>
+      <node ref="C13" pin="1"/>
+      <node ref="C14" pin="1"/>
+      <node ref="Q2" pin="3"/>
+      <node ref="C17" pin="1"/>
+      <node ref="C16" pin="1"/>
+      <node ref="C18" pin="1"/>
+      <node ref="U1" pin="1"/>
+      <node ref="C15" pin="1"/>
+      <node ref="Q1" pin="3"/>
+      <node ref="C10" pin="1"/>
+      <node ref="C1" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C3" pin="1"/>
+      <node ref="C4" pin="1"/>
+      <node ref="C5" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="C7" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="C9" pin="1"/>
+    </net>
+    <net code="7" name="Net-(D6-Pad1)">
+      <node ref="D6" pin="1"/>
+      <node ref="D8" pin="1"/>
+    </net>
+    <net code="8" name="Net-(D6-Pad2)">
+      <node ref="D6" pin="2"/>
+      <node ref="R6" pin="1"/>
+      <node ref="R8" pin="2"/>
+      <node ref="Q4" pin="1"/>
+    </net>
+    <net code="9" name="Net-(D5-Pad1)">
+      <node ref="D5" pin="1"/>
+      <node ref="D7" pin="1"/>
+    </net>
+    <net code="10" name="Net-(D5-Pad2)">
+      <node ref="Q3" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="R7" pin="2"/>
+      <node ref="D5" pin="2"/>
+    </net>
+    <net code="11" name="/-DC_link">
+      <node ref="C8" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C15" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C13" pin="2"/>
+      <node ref="R8" pin="1"/>
+      <node ref="D8" pin="2"/>
+      <node ref="Q4" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C17" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C18" pin="2"/>
+      <node ref="Q3" pin="2"/>
+      <node ref="D7" pin="2"/>
+      <node ref="U3" pin="1"/>
+      <node ref="R7" pin="1"/>
+      <node ref="U4" pin="6"/>
+    </net>
+    <net code="12" name="Net-(D2-Pad1)">
+      <node ref="D2" pin="1"/>
+      <node ref="D4" pin="1"/>
+    </net>
+    <net code="13" name="Net-(D2-Pad2)">
+      <node ref="R2" pin="1"/>
+      <node ref="D2" pin="2"/>
+      <node ref="Q2" pin="1"/>
+      <node ref="R4" pin="2"/>
+    </net>
+    <net code="14" name="Net-(D1-Pad2)">
+      <node ref="D1" pin="2"/>
+      <node ref="Q1" pin="1"/>
+      <node ref="R3" pin="2"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="15" name="Net-(D1-Pad1)">
+      <node ref="D3" pin="1"/>
+      <node ref="D1" pin="1"/>
+    </net>
+  </nets>
+</export>
