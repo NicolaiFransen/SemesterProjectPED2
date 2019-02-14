@@ -23,6 +23,7 @@ fn = 58;                                % nominal frequency [Hz]
 PF = 0.76;                              % nominal power factor [pu]
 nn = 1685;                              % nominal shaft speed
 Omegae = 2*pi*fn;                       % nominal electrical angular speed [rad]
+T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 
 % ____________________________________________________________________________________________
 
