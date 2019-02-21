@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="semesterproject" version="4">
+  <OBJECT>
+    <ID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
+    <PID name="SemesterProject" mc="Standard.Project" uid="7d07a5f7-004d-4eea-bb2c-4a8eaf7d7b6c"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[semesterproject]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="signal" mc="Standard.Class" uid="29fb42a8-f67e-4139-ada4-ebb8fb236157"/>
+        <COMPID name="analogAcquisitionManager" mc="Standard.Class" uid="7c048575-df8b-4663-b6c7-9d10b6f3d0ae"/>
+        <COMPID name="digitalInputManager" mc="Standard.Class" uid="d2808d8f-cf02-49c4-8b78-7fd2f90e8b46"/>
+        <COMPID name="digitalInput" mc="Standard.Class" uid="ff23498d-8c80-4f87-864b-ea5dd989b50a"/>
+        <COMPID name="SystemManager" mc="Standard.Class" uid="42982070-e574-43a7-af6d-a15f02e1789f"/>
+        <COMPID name="openLoopController" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
+        <COMPID name="referenceHandler" mc="Standard.Class" uid="addaf1f3-15bd-42bf-bf3f-d80a58a7ecd4"/>
+        <COMPID name="communicationManager" mc="Standard.Class" uid="2114c32b-a7f2-4420-8b9a-225e706eb341"/>
+        <COMPID name="dutyCycle" mc="Standard.Class" uid="8829ea43-22b3-4c3c-97d9-a04f87d4d7cc"/>
+        <COMPID name="enum" mc="Standard.Class" uid="68dc60e5-b23a-4c40-94c9-cecb956bbc08"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="semesterproject Class diagram" mc="Standard.ClassDiagram" uid="25b8655f-52b2-4808-b579-2d2b0b116dd0"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
