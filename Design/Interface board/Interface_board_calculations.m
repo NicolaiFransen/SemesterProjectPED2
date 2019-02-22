@@ -3,13 +3,22 @@ clc
 clear
 close all
 
+%% Voltage divider for 24V measuring
+Vin = 5;
+Vout = 0.75;
+R1 = 61.9e3;
+
+syms R2
+eq = Vout == (R2/(R1+R2))*Vin;
+solve(eq, R2)
+
 %% Current amplifier transfer function
 
 R1 = 10e3;
 R2 = R1;
-R3 = (62e3 + 330);
-R4 = 11e3;
-Rin = 5;
+R3 = (61.9e3);
+R4 = 12.1e3;
+Rin = 12;
 
 Iin = -300:1:300;
 Vref = 5;
@@ -42,13 +51,13 @@ ylabel('Output voltage')
 clear
 close all
 
-R1 = 20e3;
+R1 = 21.5e3;
 R2 = 1e3;
 
 R1_1 = 10e3;
-R3 = 16e3;
+R3 = 16.2e3;
 
-Vdc = 40;
+Vdc = 45;
 Vin = (R2/(R1+R2)) * Vdc;
 
 Vout = R3/R1_1 * Vin
@@ -57,9 +66,9 @@ Vout = R3/R1_1 * Vin
 
 %% Voltage sensor filtering
 
-f = 1000;
-
-c = 1/(2*pi*f*R1)
+c = 100e-9;
+R1 = 2.61e3;
+f = 1/(2*pi*R1*c)
 
 
 %%
@@ -69,3 +78,23 @@ R1 = 1e3;
 syms R
 eq = V1 == (R1/(R+R1)) * Vdc;
 solve(eq, R)
+
+%% Voltage divider for 24V measuring
+Vin = 30;
+Vout = 3.3;
+R2 = 10e3;
+
+syms R1
+eq = Vout == (R2/(R1+R2))*Vin;
+solve(eq, R1)
+
+R1 = 82.5e3;
+(R2/(R1+R2))*Vin
+
+%% Encoder calculations
+Vin = 5;
+
+R1 = 1e3;
+R2 = 1.78e3;
+
+(R2/(R1+R2))*Vin
