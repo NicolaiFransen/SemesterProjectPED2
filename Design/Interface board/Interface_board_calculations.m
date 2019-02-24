@@ -98,3 +98,13 @@ R1 = 1e3;
 R2 = 1.78e3;
 
 (R2/(R1+R2))*Vin
+
+%% LEDs
+Iled = 20e-3;
+
+R_33V = (3.3-2)/Iled;                   % Resistor for 3.3V signals
+R_5v = (5-2)/Iled;                      % Resistor for 5V signals
+R_15V = (15-2)/Iled;                    % Resistor for 15V signals
+R_24V = (24-2)/Iled;                    % Resistor for 24V signals
+R_36V = (36-2)/Iled;                    % Resistor for 36V signals
+
