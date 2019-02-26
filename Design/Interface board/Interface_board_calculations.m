@@ -66,8 +66,8 @@ Vout = R3/R1_1 * Vin
 
 %% Voltage sensor filtering
 
-c = 100e-9;
-R1 = 2.61e3;
+c = 10e-9;
+R1 = 21.5e3;
 f = 1/(2*pi*R1*c)
 
 
@@ -104,6 +104,7 @@ Iled = 20e-3;
 
 R_33V = (3.3-2)/Iled;                   % Resistor for 3.3V signals
 R_5v = (5-2)/Iled;                      % Resistor for 5V signals
+R_12v = (12-2)/Iled;                    % Resistor for 12V signals
 R_15V = (15-2)/Iled;                    % Resistor for 15V signals
 R_24V = (24-2)/Iled;                    % Resistor for 24V signals
 R_36V = (36-2)/Iled;                    % Resistor for 36V signals
