@@ -18,7 +18,7 @@ R1 = 10e3;
 R2 = R1;
 R3 = (61.9e3);
 R4 = 12.1e3;
-Rin = 12;
+Rin = 9.09;
 
 Iin = -300:1:300;
 Vref = 5;
@@ -82,13 +82,13 @@ solve(eq, R)
 %% Voltage divider for 24V measuring
 Vin = 30;
 Vout = 3.3;
-R2 = 10e3;
+R2 = 1e3;
 
 syms R1
 eq = Vout == (R2/(R1+R2))*Vin;
 solve(eq, R1)
 
-R1 = 82.5e3;
+R1 = 8.25e3;
 (R2/(R1+R2))*Vin
 
 %% Encoder calculations
@@ -102,10 +102,9 @@ R2 = 1.78e3;
 %% LEDs
 Iled = 20e-3;
 
-R_33V = (3.3-2)/Iled;                   % Resistor for 3.3V signals
-R_5v = (5-2)/Iled;                      % Resistor for 5V signals
-R_12v = (12-2)/Iled;                    % Resistor for 12V signals
-R_15V = (15-2)/Iled;                    % Resistor for 15V signals
-R_24V = (24-2)/Iled;                    % Resistor for 24V signals
-R_36V = (36-2)/Iled;                    % Resistor for 36V signals
+Vin = [3.3 5 12 15 24 36];
+
+R_led = (Vin-2)/Iled;
+
+led = [Vin;R_led];
 
