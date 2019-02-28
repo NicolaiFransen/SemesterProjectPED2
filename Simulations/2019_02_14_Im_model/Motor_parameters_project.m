@@ -3,8 +3,8 @@
 
 clear
 
-% Induction motor constant parameters
-
+% % Induction motor constant parameters
+% 
 Lm = 0.38e-3;                           % magnetizing inductivity [H]%
 Lds = 31.16e-6;                         % stator leakage inductivity [H]%
 Ldr = 31.16e-6;                         % rotor leakage inductivity [H]%
@@ -28,7 +28,9 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 % ____________________________________________________________________________________________
 
 Udc=36;  % DC-link voltage
-fs               = 5e3;
+fs               = 5000;
 Ts=1/fs;
+
+
 
 
