@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="openLoopControlManager" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="controller" version="4">
   <OBJECT>
-    <ID name="openLoopControlManager" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
+    <ID name="controller" mc="Standard.Class" uid="b7dd88a2-320e-43ba-95f9-98437b3b4b9a"/>
     <PID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[openLoopControlManager]]></ATT>
+      <ATT name="Name"><![CDATA[controller]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="calculateDutyCycle" mc="Standard.Operation" uid="0e73a492-9ca4-4b72-9263-d9559d3202dd"/>
+          <ID name="calculateCurrentReference" mc="Standard.Operation" uid="fd0c72cb-23bb-4193-9aa5-35e7d99ba376"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -25,13 +25,13 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[calculateDutyCycle]]></ATT>
+            <ATT name="Name"><![CDATA[calculateCurrentReference]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="setDutyCycles" mc="Standard.Operation" uid="265ae7f2-357d-45b9-bf25-7ab8fbbc86f2"/>
+          <ID name="calculateVoltageReference" mc="Standard.Operation" uid="7751f88d-0eb1-463c-ba72-417a4e5790bd"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -39,7 +39,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[setDutyCycles]]></ATT>
+            <ATT name="Name"><![CDATA[calculateVoltageReference]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
@@ -47,14 +47,26 @@
       </COMP>
       <COMP relation="DependsOnDependency">
         <OBJECT>
-          <ID name="" mc="Standard.Usage" uid="94105932-32f2-48a8-8e4a-61079ee0fb9a"/>
+          <ID name="" mc="Standard.Usage" uid="9f717cbc-023e-4fbc-8ebb-1d61f0d29a9a"/>
           <ATTRIBUTES>
             <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="DependsOn">
-              <ID name="dutyCycle" mc="Standard.Class" uid="8829ea43-22b3-4c3c-97d9-a04f87d4d7cc"/>
+              <ID name="PI" mc="Standard.Class" uid="b35ad50b-7192-4a15-8a6b-ddb55c737622"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="" mc="Standard.Usage" uid="1f6d2853-62ec-456e-8819-601dd51b57b5"/>
+          <ATTRIBUTES>
+            <ATT name="Name"></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="DependsOn">
+              <ID name="epsilonArray" mc="Standard.Class" uid="218bc769-75de-489a-83f2-6171a1a6069f"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>

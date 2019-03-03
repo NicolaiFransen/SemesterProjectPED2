@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="openLoopControlManager" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="watchdogTimer" version="4">
   <OBJECT>
-    <ID name="openLoopControlManager" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
+    <ID name="watchdogTimer" mc="Standard.Class" uid="f2267711-f85e-48e3-8b08-afc397370e37"/>
     <PID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[openLoopControlManager]]></ATT>
+      <ATT name="Name"><![CDATA[watchdogTimer]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="calculateDutyCycle" mc="Standard.Operation" uid="0e73a492-9ca4-4b72-9263-d9559d3202dd"/>
+          <ID name="init" mc="Standard.Operation" uid="f48f8d4d-c647-47cd-97e9-21f7ff465245"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -25,13 +25,13 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[calculateDutyCycle]]></ATT>
+            <ATT name="Name"><![CDATA[init]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="setDutyCycles" mc="Standard.Operation" uid="265ae7f2-357d-45b9-bf25-7ab8fbbc86f2"/>
+          <ID name="periodicFunction" mc="Standard.Operation" uid="ed64f352-3e39-4a3c-b990-bf75c229f7fb"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -39,24 +39,10 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[setDutyCycles]]></ATT>
+            <ATT name="Name"><![CDATA[periodicFunction]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
-        </OBJECT>
-      </COMP>
-      <COMP relation="DependsOnDependency">
-        <OBJECT>
-          <ID name="" mc="Standard.Usage" uid="94105932-32f2-48a8-8e4a-61079ee0fb9a"/>
-          <ATTRIBUTES>
-            <ATT name="Name"></ATT>
-            <ATT name="status">1970354901745664</ATT>
-          </ATTRIBUTES>
-          <DEPENDENCIES>
-            <LINK relation="DependsOn">
-              <ID name="dutyCycle" mc="Standard.Class" uid="8829ea43-22b3-4c3c-97d9-a04f87d4d7cc"/>
-            </LINK>
-          </DEPENDENCIES>
         </OBJECT>
       </COMP>
     </DEPENDENCIES>

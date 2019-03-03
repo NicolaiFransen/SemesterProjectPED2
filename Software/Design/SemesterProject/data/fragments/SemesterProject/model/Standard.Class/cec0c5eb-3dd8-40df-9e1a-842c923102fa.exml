@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="communicationManager" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="scheduler" version="4">
   <OBJECT>
-    <ID name="communicationManager" mc="Standard.Class" uid="2114c32b-a7f2-4420-8b9a-225e706eb341"/>
+    <ID name="scheduler" mc="Standard.Class" uid="cec0c5eb-3dd8-40df-9e1a-842c923102fa"/>
     <PID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[communicationManager]]></ATT>
+      <ATT name="Name"><![CDATA[scheduler]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="TBD" mc="Standard.Operation" uid="39f7f682-e3d8-4019-85ae-3f747b9403fc"/>
+          <ID name="TBD" mc="Standard.Operation" uid="5d2f4b7d-8ce6-4423-a548-d114fca090a3"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>

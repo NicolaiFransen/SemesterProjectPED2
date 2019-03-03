@@ -139,7 +139,7 @@
       </COMP>
       <COMP relation="OwnedAttribute">
         <OBJECT>
-          <ID name="type" mc="Standard.Attribute" uid="d013a1e7-30bf-4cab-8c61-325e90984e9e"/>
+          <ID name="filterType" mc="Standard.Attribute" uid="d013a1e7-30bf-4cab-8c61-325e90984e9e"/>
           <ATTRIBUTES>
             <ATT name="TypeConstraint"></ATT>
             <ATT name="Value"></ATT>
@@ -153,7 +153,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[type]]></ATT>
+            <ATT name="Name"><![CDATA[filterType]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -179,7 +179,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="order" mc="Standard.Attribute" uid="b5d5c1cc-a018-445c-9eed-95369eb06ca7"/>
+          <ID name="filterOrder" mc="Standard.Attribute" uid="b5d5c1cc-a018-445c-9eed-95369eb06ca7"/>
           <ATTRIBUTES>
             <ATT name="TypeConstraint"></ATT>
             <ATT name="Value"></ATT>
@@ -193,7 +193,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[order]]></ATT>
+            <ATT name="Name"><![CDATA[filterOrder]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -323,7 +323,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="cutoffFreq" mc="Standard.Attribute" uid="74448679-dda7-4d67-8bb0-1f790d3f0868"/>
+          <ID name="filterCutoffFreq" mc="Standard.Attribute" uid="74448679-dda7-4d67-8bb0-1f790d3f0868"/>
           <ATTRIBUTES>
             <ATT name="TypeConstraint"></ATT>
             <ATT name="Value"></ATT>
@@ -337,7 +337,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[cutoffFreq]]></ATT>
+            <ATT name="Name"><![CDATA[filterCutoffFreq]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -392,6 +392,46 @@
             <LINK relation="Type">
               <FOREIGNID name="integer" mc="Standard.DataType" uid="00000004-0000-0009-0000-000000000000"/>
             </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="threshold" mc="Standard.Attribute" uid="6e67ee2a-2c4c-4491-8354-661cbbf7e931"/>
+          <ATTRIBUTES>
+            <ATT name="TypeConstraint"></ATT>
+            <ATT name="Value"></ATT>
+            <ATT name="TargetIsClass">false</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[2]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[2]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[threshold]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Type">
+              <FOREIGNID name="double" mc="Standard.DataType" uid="00000004-0000-0010-0000-000000000000"/>
+            </LINK>
+            <COMP relation="Descriptor">
+              <OBJECT>
+                <ID name="" mc="Infrastructure.Note" uid="a00db865-84cd-4672-9258-09dcedeaea9b"/>
+                <ATTRIBUTES>
+                  <ATT name="Content"><![CDATA[Every ADC signal has a threshold in which the signal is expected to be under normal conditions. If the signal is contained outside this threshold, the AdcMonitor from ErrorManager will trigger an error.]]></ATT>
+                  <ATT name="MimeType"><![CDATA[text/plain]]></ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <LINK relation="Model">
+                    <FOREIGNID name="description" mc="Infrastructure.NoteType" uid="00000000-0000-3e81-0000-000000000000"/>
+                  </LINK>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="openLoopControlManager" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SVModulator" version="4">
   <OBJECT>
-    <ID name="openLoopControlManager" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
+    <ID name="SVModulator" mc="Standard.Class" uid="222c4570-a8e4-4fd2-a250-4b680c96ef01"/>
     <PID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[openLoopControlManager]]></ATT>
+      <ATT name="Name"><![CDATA[SVModulator]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="calculateDutyCycle" mc="Standard.Operation" uid="0e73a492-9ca4-4b72-9263-d9559d3202dd"/>
+          <ID name="calculateDutyCycles" mc="Standard.Operation" uid="8f7b2357-d3eb-4769-a9c8-14ac71352d7d"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -25,13 +25,13 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[calculateDutyCycle]]></ATT>
+            <ATT name="Name"><![CDATA[calculateDutyCycles]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="setDutyCycles" mc="Standard.Operation" uid="265ae7f2-357d-45b9-bf25-7ab8fbbc86f2"/>
+          <ID name="setDutyCycles" mc="Standard.Operation" uid="c54c490e-7d44-4e57-aea2-207918ebadb4"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -47,7 +47,7 @@
       </COMP>
       <COMP relation="DependsOnDependency">
         <OBJECT>
-          <ID name="" mc="Standard.Usage" uid="94105932-32f2-48a8-8e4a-61079ee0fb9a"/>
+          <ID name="" mc="Standard.Usage" uid="fda8b1e7-6b4f-4746-87f3-9890f8a3685a"/>
           <ATTRIBUTES>
             <ATT name="Name"></ATT>
             <ATT name="status">1970354901745664</ATT>

@@ -13,17 +13,44 @@
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
+      <COMP relation="OwnedBehavior">
+        <COMPID name="State Machine" mc="Standard.StateMachine" uid="75549698-ae8b-41d9-957d-2db17d0e4c36"/>
+      </COMP>
       <COMP relation="OwnedElement">
         <COMPID name="signal" mc="Standard.Class" uid="29fb42a8-f67e-4139-ada4-ebb8fb236157"/>
         <COMPID name="analogAcquisitionManager" mc="Standard.Class" uid="7c048575-df8b-4663-b6c7-9d10b6f3d0ae"/>
         <COMPID name="digitalInputManager" mc="Standard.Class" uid="d2808d8f-cf02-49c4-8b78-7fd2f90e8b46"/>
         <COMPID name="digitalInput" mc="Standard.Class" uid="ff23498d-8c80-4f87-864b-ea5dd989b50a"/>
         <COMPID name="SystemManager" mc="Standard.Class" uid="42982070-e574-43a7-af6d-a15f02e1789f"/>
-        <COMPID name="openLoopController" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
+        <COMPID name="openLoopControlManager" mc="Standard.Class" uid="de004ea2-2e35-48b8-ac40-a421e91fc264"/>
         <COMPID name="referenceHandler" mc="Standard.Class" uid="addaf1f3-15bd-42bf-bf3f-d80a58a7ecd4"/>
         <COMPID name="communicationManager" mc="Standard.Class" uid="2114c32b-a7f2-4420-8b9a-225e706eb341"/>
         <COMPID name="dutyCycle" mc="Standard.Class" uid="8829ea43-22b3-4c3c-97d9-a04f87d4d7cc"/>
         <COMPID name="enum" mc="Standard.Class" uid="68dc60e5-b23a-4c40-94c9-cecb956bbc08"/>
+        <COMPID name="abc2dqConverter" mc="Standard.Class" uid="41b7fc1e-63b5-4070-80f6-ce214b381573"/>
+        <COMPID name="dq2abcConverter" mc="Standard.Class" uid="e08219c4-0b82-4cb0-bbb7-80b28344460c"/>
+        <COMPID name="SVModulator" mc="Standard.Class" uid="222c4570-a8e4-4fd2-a250-4b680c96ef01"/>
+        <COMPID name="encoderManager" mc="Standard.Class" uid="bb06ae9f-ed25-4850-8688-a9c7581f4556"/>
+        <COMPID name="controlTask" mc="Standard.Class" uid="19b9ed4e-5d09-49da-afec-3d479559c6e0"/>
+        <COMPID name="closedLoopControlManager" mc="Standard.Class" uid="ce09aff9-ac64-4a0b-a0e6-0bde2ea2c7c4"/>
+        <COMPID name="controller" mc="Standard.Class" uid="b7dd88a2-320e-43ba-95f9-98437b3b4b9a"/>
+        <COMPID name="dqSignal" mc="Standard.Class" uid="04d43fb4-84b8-4602-81a4-579b1a956c55"/>
+        <COMPID name="PI" mc="Standard.Class" uid="b35ad50b-7192-4a15-8a6b-ddb55c737622"/>
+        <COMPID name="positionCalculator" mc="Standard.Class" uid="ff746bc9-ef2e-40f4-8481-c8a520b50507"/>
+        <COMPID name="slipAngleCalculator" mc="Standard.Class" uid="89c3421e-633f-41fa-9879-cb45c3faba66"/>
+        <COMPID name="epsilonArray" mc="Standard.Class" uid="218bc769-75de-489a-83f2-6171a1a6069f"/>
+        <COMPID name="errorManager" mc="Standard.Class" uid="989af665-5b1b-4e1e-8875-c70ba5765874"/>
+        <COMPID name="batteryMonitor" mc="Standard.Class" uid="25d93ab8-eac6-4960-949e-b4326d2b0e34"/>
+        <COMPID name="watchdogTimer" mc="Standard.Class" uid="f2267711-f85e-48e3-8b08-afc397370e37"/>
+        <COMPID name="overcurrentMonitor" mc="Standard.Class" uid="ae863128-ee08-4d4e-a23f-1f913a0cab59"/>
+        <COMPID name="controlPipelineMonitor" mc="Standard.Class" uid="236bdbb4-336e-4610-a4c3-77dc1fffb10d"/>
+        <COMPID name="battery" mc="Standard.Class" uid="56e2c5f7-14d5-4f68-8118-5b292cd13fb2"/>
+        <COMPID name="adcMonitor" mc="Standard.Class" uid="16b69eb3-20a3-4f14-a852-63ebfb969bd1"/>
+        <COMPID name="errorEnum" mc="Standard.Class" uid="b01e70d7-c574-4606-8bd3-7dafc25b2f9f"/>
+        <COMPID name="scheduler" mc="Standard.Class" uid="cec0c5eb-3dd8-40df-9e1a-842c923102fa"/>
+        <COMPID name="digitalOutput" mc="Standard.Class" uid="4847d931-fe50-4879-926a-006c8926db67"/>
+        <COMPID name="LEDStatus" mc="Standard.Class" uid="33e919c1-3ca0-4dd4-8d18-f3d51b2ece52"/>
+        <COMPID name="SystemStateEnum" mc="Standard.Class" uid="f81b43b1-cbba-420b-a098-56156d8fc36d"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="semesterproject Class diagram" mc="Standard.ClassDiagram" uid="25b8655f-52b2-4808-b579-2d2b0b116dd0"/>
