@@ -28,8 +28,23 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 % ____________________________________________________________________________________________
 
 Udc=36;  % DC-link voltage
-fs               = 5000;
+fs               = 20000;
 Ts=1/fs;
+
+% PI current controllers id, iq 
+
+Kp_q= 0;
+Ki_q= 0;
+
+
+Kp_d=0.7;
+Ki_d= 1;
+
+
+Kp_speed = 2; 
+Ki_speed=2; 
+
+flux_rotor = 0.5;
 
 
 
