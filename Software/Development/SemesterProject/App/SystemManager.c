@@ -1,22 +1,67 @@
 //###########################################################################
-//FILE: main.c
+//FILE: systemManager.c
 //
 //Project: Electric Go-kart
 //
-//Author: PED-841 AAU, February 2019 - May 2019.
+//Author: Nicolas Murguizur, 3/3/19
 //
 //Notes:
-//    The system initialization has been performed using TI's blinking LED example.
-//    TI Data:  $TI Release: F2806x Support Library v2.04.00.00 $
-//              $Release Date: Thu Oct 18 15:47:20 CDT 2018 $
-//
-//!  This example configures CPU Timer0 for a 500 msec period, and toggles the 
-//!  GPIO34 LED once per interrupt. For testing purposes, this example
-//!  also increments a counter each time the timer asserts an interrupt.
-//!
-//!  \b Watch \b Variables \n
-//!  - CpuTimer0.InterruptCount
-//!
+//      System's state FSM is included in this file. More details about
+//      might be found in the detailed class description:
+//      SemesterProjectPED2\Software\Design\SystemArchitectureDescription.pdf
 //
 //###########################################################################
+
+//###########################################################################
+
+//
+// Included Files
+//
+
+#include "Include/systemManager.h"
+
+//
+// Quasi-global variables definition
+//
+
+static SysMgrState SystemState = STARTUP;
+
+
+void systemManager(void)
+{
+
+    switch (SystemState)
+    {
+        case STARTUP:
+        {
+            if(startupSequenceFinished()) SystemState = STANDBY;
+        }break;
+
+        case STANDBY:
+        {
+            for(;;);
+        }break;
+//
+//        case RUNNING:
+//        {
+//
+//        }break;
+//
+//        case ERROR:
+//        {
+//
+//        }break;
+    }
+
+}
+
+SysMgrState readSystemState(void)
+{
+    return SystemState;
+}
+
+
+//
+// End of File
+//
 
