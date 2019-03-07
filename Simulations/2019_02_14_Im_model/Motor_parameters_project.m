@@ -3,6 +3,8 @@
 
 clear
 
+s = tf('s');
+
 % % Induction motor constant parameters
 % 
 Lm = 0.38e-3;                           % magnetizing inductivity [H]%
@@ -28,24 +30,40 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 % ____________________________________________________________________________________________
 
 Udc=36;  % DC-link voltage
-fs               = 20000;
+fs               = 10000;
 Ts=1/fs;
 
 % PI current controllers id, iq 
 
-Kp_q= 0;
-Ki_q= 0;
+Kp_q= 2.5834;
+Ki_q= 15.708;
 
 
-Kp_d=0.7;
-Ki_d= 1;
+Kp_d= 2.5834; %0.8223;
+Ki_d= 15.708;  %6.0804;
 
 
 Kp_speed = 2; 
 Ki_speed=2; 
 
-flux_rotor = 0.5;
+landa_r = 0.0567;  %need to be checked
+ids=(1/Lm)*landa_r;
 
+G = 1/(Ls*s+Rs);  %Plant's transfer function
+figure(1)
+margin(G)
 
+Gc = ((Kp_d*Ki_d)*(1+s/Ki_d))/s
+G_PI= Kp_d + Ki_d/s
 
+G_total = G_PI*G
+G_series = Gc*G
 
+figure(2)
+margin(G_total)
+
+figure(3)
+margin(G_series)
+
+tau_r=Lr/Rr;
+TF_speed= (tau_r)*ids/(1+s*tau_r)
