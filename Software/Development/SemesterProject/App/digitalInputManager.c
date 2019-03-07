@@ -16,7 +16,6 @@
 //
 // Includes
 //
-
 #include "Include/digitalInputManager.h"
 #include "digitalInput.h"
 
@@ -29,19 +28,52 @@ static struct
 {
     DigitalInput switch_1;
     DigitalInput switch_2;
+    DigitalInput powerSwitch;
 
 }DigitalInputList;
 
+/*
+ * The goal of this function is to initialize the DigitalInput objects
+ * to the desired GPIO pin and TBD if also to set the GPIO configuration
+ * for digitalInput (basically following the procedure described in GPIOconfig.c)
+ *
+ */
 void initInputs(void)
 {
-    DigitalInput_Constructor(&DigitalInputList.switch_1, 4); // the second argument is the pin,
+    DigitalInput_Constructor(&DigitalInputList.switch_1, 4);
+    DigitalInput_Constructor(&DigitalInputList.switch_2, 5);
+    DigitalInput_Constructor(&DigitalInputList.powerSwitch, 87);
 }
 
-void readDigitalInputs(void)//
+/*
+ * This function performs the read of all the elements inside DigitalInputList struct.
+ * It starts by initializing the structPointer to the memory position of DigitalInputList,
+ * then it determines the final position of the struct (where the struct object is finished)
+ * and iterates over every DigitalInput object. In every loop, the pointer is pointing to a
+ * different element in the list, and the read function is called. The pointer to every
+ * DigitalInput object is used as an argument for reading the state.
+ */
+void readDigitalInputs(void)
 {
-    DigitalInput_ReadState(&DigitalInputList.switch_1);
+
+    DigitalInput *structPointer;
+    int initialMemoryPosition = &DigitalInputList;
+    int finalMemoryPosition = initialMemoryPosition + sizeof(DigitalInputList);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+    {
+        DigitalInput_ReadState(structPointer);
+    }
 }
 
+/*
+ * Abstraction functions
+ */
+
+int isPowerSwitchEnabled(void)
+{
+    return DigitalInputList.powerSwitch.state;
+}
 
 //
 // End of File

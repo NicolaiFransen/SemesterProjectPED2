@@ -19,6 +19,8 @@
 //
 
 #include "Include/systemManager.h"
+#include "Include/digitalInputManager.h"
+
 
 //
 // Quasi-global variables definition
@@ -27,7 +29,7 @@
 static SysMgrState SystemState = STARTUP;
 
 
-void systemManager(void)
+void manageSystem(void)
 {
 
     switch (SystemState)
@@ -39,17 +41,18 @@ void systemManager(void)
 
         case STANDBY:
         {
-            for(;;);
+            if(isPowerSwitchEnabled()) SystemState = RUNNING;
         }break;
-//
-//        case RUNNING:
-//        {
-//
-//        }break;
-//
+
+        case RUNNING:
+        {
+            if(!isPowerSwitchEnabled()) SystemState = STANDBY;
+           // if(errorDetected()) SystemState = ERROR;
+        }break;
+
 //        case ERROR:
 //        {
-//
+//            if(errorIsAcknowledged()) SystemState = STANDBY;
 //        }break;
     }
 

@@ -17,5 +17,6 @@
 // Function prototyping
 //
 void readDigitalInputs(void);
+int isPowerSwitchEnabled(void);
 
 #endif /* APP_INCLUDE_DIGITALINPUTMANAGER_H_ */

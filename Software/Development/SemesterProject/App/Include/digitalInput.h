@@ -22,7 +22,10 @@ typedef struct DigitalInputTag
 //
 void DigitalInput_Constructor(DigitalInput *input, int pin);
 int DigitalInput_ReadState(DigitalInput *input);
-int DigitalInput_UpdateState(DigitalInput *input);
+int pinIsInPortA(int pin);
+int pinIsInPortB(int pin);
+
+
 
 
 #endif /* APP_INCLUDE_DIGITALINPUT_H_ */

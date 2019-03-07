@@ -22,7 +22,7 @@ typedef enum
 //
 // Function Prototypes statements for functions found within this file.
 //
-void systemManager();
+void manageSystem();
 SysMgrState readSystemState();
 
 #endif /* APP_INCLUDE_SYSTEMMANAGER_H_ */
