@@ -18,45 +18,49 @@
 
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "AnalogSignal.h"
+#include "math.h"
+
 
 //
 // Quasi-global variables definition
 //
-
+#define ANALOG_EXECUTION_FREQ 20000;
 
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
                        int cutoffFreq, int adcChannel, int threshold[2])
 {
-    // Setting filter type to HP-filter if that is selected, otherwise setting it as LP.
-    if (filterType == "HP")
-        analogSignal->filterType = filterType;
-    else
-        analogSignal->filterType = "LP";
 
-    // Setting the wanted filter order, with a maximum of maxFilterOrder
-    int maxFilterOrder = 3;
+    analogSignal->filterType = filterType;
 
-    if (filterOrder >= maxFilterOrder)
-        analogSignal->filterOrder = maxFilterOrder;
-    else
-        analogSignal->filterOrder = filterOrder;
+    analogSignal->filterOrder = filterOrder;
 
-    // Setting the wanted cut-off frequency of the filter
-    // if its inside the maximum and minimum boundaries
-    int maxCutoffFreq = 10000;
-    int minCutoffFreq = 1;
-    if (cutoffFreq >= maxCutoffFreq)
-        analogSignal->cutoffFreq = maxCutoffFreq;
-    else if (cutoffFreq <= minCutoffFreq)
-        analogSignal->cutoffFreq = minCutoffFreq;
-    else
-        analogSignal->cutoffFreq = cutoffFreq;
-
+    analogSignal->cutoffFreq = cutoffFreq;
 
     analogSignal->adcChannel = adcChannel;
     analogSignal->threshold[0] = threshold[0];
     analogSignal->threshold[1] = threshold[1];
+
+    filterParameters(&analogSignal, filterType, filterOrder, cutoffFreq);
 }
+
+void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
+{
+    float parameterA, pi = 3.14;
+    float parameterB, tau;
+
+    tau = 1/(2*pi*cutoffFreq);
+//    printf("Tau: %f \n", tau);
+
+    parameterB = exp(-1/(20000*tau));
+//    printf("Parameter B: %f \n", parameterB);
+//    printf("Parameter : %f \n", 20000*tau);
+
+    parameterA = 1 - parameterB;
+
+    analogSignal->filterParamA = parameterA;
+    analogSignal->filterParamB = parameterB;
+}
+
 
 
 

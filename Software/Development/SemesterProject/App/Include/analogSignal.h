@@ -32,6 +32,7 @@ typedef struct AnalogSignalTag
 
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
                        int cutoffFreq, int adcChannel, int threshold[2]);
+void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq);
 void setFilteredValue(AnalogSignal *analogSignal);
 float readFilteredValue(AnalogSignal *analogSignal);
 
