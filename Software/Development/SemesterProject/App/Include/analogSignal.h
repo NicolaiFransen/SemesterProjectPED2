@@ -22,7 +22,7 @@ typedef struct AnalogSignalTag
     float filteredValue;
     int cutoffFreq;
     float lastObtainedValue;
-    int adcChannel;
+    Uint16 adcChannel;
     int threshold[2];
 } AnalogSignal;
 

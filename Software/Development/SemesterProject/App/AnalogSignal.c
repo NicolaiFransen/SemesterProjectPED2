@@ -24,10 +24,10 @@
 //
 // Quasi-global variables definition
 //
-#define ANALOG_EXECUTION_FREQ 20000;
+#define ANALOG_EXECUTION_FREQ 20000
 
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, int adcChannel, int threshold[2])
+                       int cutoffFreq, Uint16 adcChannel, int threshold[2])
 {
 
     analogSignal->filterType = filterType;
@@ -40,7 +40,7 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
     analogSignal->threshold[0] = threshold[0];
     analogSignal->threshold[1] = threshold[1];
 
-    filterParameters(&analogSignal, filterType, filterOrder, cutoffFreq);
+    filterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
 }
 
 void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
@@ -49,16 +49,21 @@ void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrd
     float parameterB, tau;
 
     tau = 1/(2*pi*cutoffFreq);
-//    printf("Tau: %f \n", tau);
 
-    parameterB = exp(-1/(20000*tau));
-//    printf("Parameter B: %f \n", parameterB);
-//    printf("Parameter : %f \n", 20000*tau);
+    parameterB = exp(-1/(ANALOG_EXECUTION_FREQ*tau));
 
     parameterA = 1 - parameterB;
 
     analogSignal->filterParamA = parameterA;
     analogSignal->filterParamB = parameterB;
+}
+
+float readFilteredValue(AnalogSignal *analogSignal)
+{
+    Uint16 *initialADCMemoryPosition = &AdcResult.ADC_RESULT_REGS;
+    Uint16 ADCvalue = initialADCMemoryPosition + analogSignal->adcChannel*sizeof(Uint16);
+
+
 }
 
 
