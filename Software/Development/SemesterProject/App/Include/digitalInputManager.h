@@ -18,5 +18,6 @@
 //
 void readDigitalInputs(void);
 int isPowerSwitchEnabled(void);
+void initInputs(void);
 
 #endif /* APP_INCLUDE_DIGITALINPUTMANAGER_H_ */

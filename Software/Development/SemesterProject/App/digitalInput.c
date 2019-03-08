@@ -52,7 +52,6 @@ int DigitalInput_ReadState(DigitalInput *input)
     {
         input->state = (GpioDataRegs.GPADAT.all & (1 << input->pin)) >> input->pin;
     }
-
     if(pinIsInPortB(input->pin))
     {
         int pinReferredToPortB = input->pin - 32;
@@ -68,5 +67,5 @@ int pinIsInPortA(int pin)
 
 int pinIsInPortB(int pin)
 {
-    return (pin > 32 && pin < 58);
+    return (pin > 31 && pin < 58);
 }

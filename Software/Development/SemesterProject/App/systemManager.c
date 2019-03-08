@@ -36,6 +36,7 @@ void manageSystem(void)
     {
         case STARTUP:
         {
+            initInputs();
             if(startupSequenceFinished()) SystemState = STANDBY;
         }break;
 
@@ -55,7 +56,7 @@ void manageSystem(void)
 //            if(errorIsAcknowledged()) SystemState = STANDBY;
 //        }break;
     }
-
+    readDigitalInputs();
 }
 
 SysMgrState readSystemState(void)

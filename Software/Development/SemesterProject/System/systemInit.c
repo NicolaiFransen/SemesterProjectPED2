@@ -22,14 +22,7 @@
 // Included Files
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
-
-//
-// Function Prototypes statements for functions found within this file.
-//
-void systemInit(void);
-int startupSequenceFinished(void);
-__interrupt void cpu_timer0_isr(void);
-void configureGPIO(void);
+#include "Include/systemInit.h"
 
 //
 // Quasi-global variables definition

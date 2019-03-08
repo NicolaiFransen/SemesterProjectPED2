@@ -26,10 +26,12 @@
 // initialization of all digital inputs {pin, state}
 static struct
 {
-    DigitalInput switch_1;
-    DigitalInput switch_2;
+    DigitalInput regenBrakingPushbutton;
+    DigitalInput torqueReferencePushbutton;
+    DigitalInput openClosedLoopSelectionSwitch;
     DigitalInput powerSwitch;
-
+    DigitalInput cruiseControlPushbutton;
+    DigitalInput antiSlipPushbutton;
 }DigitalInputList;
 
 /*
@@ -40,9 +42,12 @@ static struct
  */
 void initInputs(void)
 {
-    DigitalInput_Constructor(&DigitalInputList.switch_1, 4);
-    DigitalInput_Constructor(&DigitalInputList.switch_2, 5);
-    DigitalInput_Constructor(&DigitalInputList.powerSwitch, 87);
+    DigitalInput_Constructor(&DigitalInputList.regenBrakingPushbutton, 32);
+    DigitalInput_Constructor(&DigitalInputList.torqueReferencePushbutton, 19);
+    DigitalInput_Constructor(&DigitalInputList.openClosedLoopSelectionSwitch, 3);
+    DigitalInput_Constructor(&DigitalInputList.powerSwitch, 1);
+    DigitalInput_Constructor(&DigitalInputList.cruiseControlPushbutton, 14);
+    DigitalInput_Constructor(&DigitalInputList.antiSlipPushbutton, 54);
 }
 
 /*
@@ -55,10 +60,9 @@ void initInputs(void)
  */
 void readDigitalInputs(void)
 {
-
     DigitalInput *structPointer;
-    int initialMemoryPosition = &DigitalInputList;
-    int finalMemoryPosition = initialMemoryPosition + sizeof(DigitalInputList);
+    DigitalInput *initialMemoryPosition = &DigitalInputList;
+    DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(DigitalInputList);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
