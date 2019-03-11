@@ -1,0 +1,5 @@
+DRC Rules Export File for PCB: C:\Users\aitor\Documents\GitHub\SemesterProjectPED2\Interface board\2019_02_25_PCB\V2_PCB.PcbDoc
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=15.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
