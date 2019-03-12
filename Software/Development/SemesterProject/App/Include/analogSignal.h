@@ -21,7 +21,7 @@ typedef struct AnalogSignalTag
     float filterParamB;
     float filteredValue;
     int cutoffFreq;
-    float lastObtainedValue;
+    Uint16 lastObtainedValue;
     Uint16 adcChannel;
     int threshold[2];
 } AnalogSignal;
@@ -31,9 +31,9 @@ typedef struct AnalogSignalTag
 //
 
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, int adcChannel, int threshold[2]);
-void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq);
+                       int cutoffFreq, Uint16 adcChannel, int threshold[2]);
+void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq);
 void setFilteredValue(AnalogSignal *analogSignal);
-float readFilteredValue(AnalogSignal *analogSignal);
+Uint16 readFilteredValue(AnalogSignal *analogSignal);
 
 #endif /* APP_INCLUDE_ANALOGSIGNAL_H_ */
