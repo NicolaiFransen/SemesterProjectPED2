@@ -19,7 +19,6 @@
 //
 
 #include "Include/systemManager.h"
-#include "Include/digitalInputManager.h"
 
 
 //
@@ -36,7 +35,7 @@ void manageSystem(void)
     {
         case STARTUP:
         {
-            initInputs();
+            initDigitalInputs();
             if(startupSequenceFinished()) SystemState = STANDBY;
         }break;
 

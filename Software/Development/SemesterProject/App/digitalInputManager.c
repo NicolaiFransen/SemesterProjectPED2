@@ -42,7 +42,7 @@ static struct digitalInputListTag
  * physical element is linked to a GPIO pin.
  *
  */
-void initInputs(void)
+void initDigitalInputs(void)
 {
     DigitalInput_Constructor(&DigitalInputList.regenBrakingPushbutton, B2);
     DigitalInput_Constructor(&DigitalInputList.torqueReferencePushbutton, B1);

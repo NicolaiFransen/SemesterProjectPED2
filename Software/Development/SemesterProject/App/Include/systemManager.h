@@ -8,6 +8,9 @@
 #ifndef APP_INCLUDE_SYSTEMMANAGER_H_
 #define APP_INCLUDE_SYSTEMMANAGER_H_
 
+#include "digitalInputManager.h"
+#include "../../System/Include/systemInit.h"
+
 //
 // Objects declaration
 //
