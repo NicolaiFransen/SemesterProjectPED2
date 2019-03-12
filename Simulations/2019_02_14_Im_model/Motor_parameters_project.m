@@ -30,7 +30,7 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 % ____________________________________________________________________________________________
 
 Udc=36;          % DC-link voltage
-fs = 15000;
+fs = 10000;
 Ts=1/fs;
 
 % PI current controllers id, iq 
@@ -40,14 +40,14 @@ Ts=1/fs;
 % Kp_d= 2.5834; 
 % Ki_d= 15.708;  
 % 
-Kp_q= 0.8;
-Ki_q= 6;
+Kp_q= 2.5834;  %0.1033; %0.2587;
+Ki_q=  15.7;  %0.6283; %1.5708;
  
-Kp_d= 0.8; 
-Ki_d= 6; 
+Kp_d=  2.5834; %0.2583; 
+Ki_d= 15.7; 
 
-Kp_speed = 0; 
-Ki_speed=0; 
+Kp_speed = 4.2; 
+Ki_speed=30; 
 
 G_p = 1/(Ls*s+Rs);  %Plant's transfer function
 figure(1)
