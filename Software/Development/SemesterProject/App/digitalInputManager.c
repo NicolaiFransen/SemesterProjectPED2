@@ -18,13 +18,15 @@
 //
 #include "Include/digitalInputManager.h"
 #include "digitalInput.h"
+#include "../System/Include/GPIOConfig.h"
+
 
 //
 // Quasi-global variables definition
 //
 
 // initialization of all digital inputs {pin, state}
-static struct
+static struct digitalInputListTag
 {
     DigitalInput regenBrakingPushbutton;
     DigitalInput torqueReferencePushbutton;
@@ -36,18 +38,18 @@ static struct
 
 /*
  * The goal of this function is to initialize the DigitalInput objects
- * to the desired GPIO pin and TBD if also to set the GPIO configuration
- * for digitalInput (basically following the procedure described in GPIOconfig.c)
+ * to the desired GPIO pin. For that, GPIOConfig.h is used, where every
+ * physical element is linked to a GPIO pin.
  *
  */
 void initInputs(void)
 {
-    DigitalInput_Constructor(&DigitalInputList.regenBrakingPushbutton, 32);
-    DigitalInput_Constructor(&DigitalInputList.torqueReferencePushbutton, 19);
-    DigitalInput_Constructor(&DigitalInputList.openClosedLoopSelectionSwitch, 3);
-    DigitalInput_Constructor(&DigitalInputList.powerSwitch, 1);
-    DigitalInput_Constructor(&DigitalInputList.cruiseControlPushbutton, 14);
-    DigitalInput_Constructor(&DigitalInputList.antiSlipPushbutton, 54);
+    DigitalInput_Constructor(&DigitalInputList.regenBrakingPushbutton, B2);
+    DigitalInput_Constructor(&DigitalInputList.torqueReferencePushbutton, B1);
+    DigitalInput_Constructor(&DigitalInputList.openClosedLoopSelectionSwitch, S2);
+    DigitalInput_Constructor(&DigitalInputList.powerSwitch, S1);
+    DigitalInput_Constructor(&DigitalInputList.cruiseControlPushbutton, B3);
+    DigitalInput_Constructor(&DigitalInputList.antiSlipPushbutton, B4);
 }
 
 /*
@@ -61,7 +63,7 @@ void initInputs(void)
 void readDigitalInputs(void)
 {
     DigitalInput *structPointer;
-    DigitalInput *initialMemoryPosition = &DigitalInputList;
+    DigitalInput *initialMemoryPosition = &DigitalInputList.regenBrakingPushbutton;
     DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(DigitalInputList);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)

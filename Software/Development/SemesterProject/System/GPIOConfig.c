@@ -13,34 +13,29 @@
 //
 // Included Files
 //
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
+#include "Include/GPIOConfig.h"
 
-//
-// Function declaration
-//
-void configureGPIO(void);
-
-
-//Function: configureGPIO
-//-----------------------
-//This function configures the GPIO pins. Steps:
-//1)Enable or disable pull-up resistors with GP<A/B>PUD.
-//  Enabled by default. For digital input, we want to disable them:
-//
-//2)Select input qualification by GP<A/B>CTRL and GP<A/B>QSEL<1/2>.
-//  This allows to qualify the error asynchronously, synchronized with SYCLOCK
-//  or to qualify after a time window. For digital input we will go for sync
-//  with SYSCLOCK. This is the default configuration. However these can be
-//  explicitly declared by GpioCtrlRegs.GPBCTRL.bit.QUALPRD2 = 0; (GPIO50-55)
-//3)Select pin function by GpioCtrlRegs.GP<A/B>MUX<1/2>.bit.GPIO<whatever number>
-//    to select the appropriate feature in a specific pin, for example GPIO or PWM:
-//    Read Table 6-72 of MCU datasheet to see options. 0 is usually GPIO.
-//    A or B and 1 or 2 depends in what GPIO is desired to be used. Read Table 6-72.
-//4)Select direction of the PIN I/O by GpioCtrlRegs.GP<A/B>DIR.bit.GPIO<whatever number>
-//    as digital output (1) or digital input (0).
-//
-//A or B depends in what GPIO is desired to be used. Read Table 6-72.
-//
+/*
+*Function: configureGPIO
+*-----------------------
+*This function configures the GPIO pins. Steps:
+*1)Enable or disable pull-up resistors with GP<A/B>PUD.
+*  Enabled by default. For digital input, we want to disable them:
+*
+*2)Select input qualification by GP<A/B>CTRL and GP<A/B>QSEL<1/2>.
+*  This allows to qualify the error asynchronously, synchronized with SYCLOCK
+*  or to qualify after a time window. For digital input we will go for sync
+*  with SYSCLOCK. This is the default configuration. However these can be
+*  explicitly declared by GpioCtrlRegs.GPBCTRL.bit.QUALPRD2 = 0; (GPIO50-55)
+*3)Select pin function by GpioCtrlRegs.GP<A/B>MUX<1/2>.bit.GPIO<whatever number>
+*    to select the appropriate feature in a specific pin, for example GPIO or PWM:
+*    Read Table 6-72 of MCU datasheet to see options. 0 is usually GPIO.
+*    A or B and 1 or 2 depends in what GPIO is desired to be used. Read Table 6-72.
+*4)Select direction of the PIN I/O by GpioCtrlRegs.GP<A/B>DIR.bit.GPIO<whatever number>
+*    as digital output (1) or digital input (0).
+*
+*A or B depends in what GPIO is desired to be used. Read Table 6-72.
+*/
 void configureGPIO(void)
 {
     EALLOW;
