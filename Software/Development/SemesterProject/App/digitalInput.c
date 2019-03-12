@@ -28,7 +28,7 @@
  *  -object to be initialized
  *  -GPIO pin
  */
-void DigitalInput_Constructor(DigitalInput *input, int GPIOpin)
+void digitalInput_Constructor(DigitalInput *input, int GPIOpin)
 {
     input->pin = GPIOpin;
 }
@@ -46,7 +46,7 @@ void DigitalInput_Constructor(DigitalInput *input, int GPIOpin)
  *
  * It has a return which might be used if the value
  */
-int DigitalInput_ReadState(DigitalInput *input)
+int digitalInput_ReadState(DigitalInput *input)
 {
     if(pinIsInPortA(input->pin))
     {

@@ -34,7 +34,7 @@ static struct digitalInputListTag
     DigitalInput powerSwitch;
     DigitalInput cruiseControlPushbutton;
     DigitalInput antiSlipPushbutton;
-}DigitalInputList;
+}digitalInputList;
 
 /*
  * The goal of this function is to initialize the DigitalInput objects
@@ -44,12 +44,12 @@ static struct digitalInputListTag
  */
 void initDigitalInputs(void)
 {
-    DigitalInput_Constructor(&DigitalInputList.regenBrakingPushbutton, B2);
-    DigitalInput_Constructor(&DigitalInputList.torqueReferencePushbutton, B1);
-    DigitalInput_Constructor(&DigitalInputList.openClosedLoopSelectionSwitch, S2);
-    DigitalInput_Constructor(&DigitalInputList.powerSwitch, S1);
-    DigitalInput_Constructor(&DigitalInputList.cruiseControlPushbutton, B3);
-    DigitalInput_Constructor(&DigitalInputList.antiSlipPushbutton, B4);
+    digitalInput_Constructor(&digitalInputList.regenBrakingPushbutton, B2);
+    digitalInput_Constructor(&digitalInputList.torqueReferencePushbutton, B1);
+    digitalInput_Constructor(&digitalInputList.openClosedLoopSelectionSwitch, S2);
+    digitalInput_Constructor(&digitalInputList.powerSwitch, S1);
+    digitalInput_Constructor(&digitalInputList.cruiseControlPushbutton, B3);
+    digitalInput_Constructor(&digitalInputList.antiSlipPushbutton, B4);
 }
 
 /*
@@ -63,12 +63,12 @@ void initDigitalInputs(void)
 void readDigitalInputs(void)
 {
     DigitalInput *structPointer;
-    DigitalInput *initialMemoryPosition = &DigitalInputList.regenBrakingPushbutton;
-    DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(DigitalInputList);
+    DigitalInput *initialMemoryPosition = &digitalInputList.regenBrakingPushbutton;
+    DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(digitalInputList);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
-        DigitalInput_ReadState(structPointer);
+        digitalInput_ReadState(structPointer);
     }
 }
 
@@ -78,7 +78,7 @@ void readDigitalInputs(void)
 
 int isPowerSwitchEnabled(void)
 {
-    return DigitalInputList.powerSwitch.state;
+    return digitalInputList.powerSwitch.state;
 }
 
 //

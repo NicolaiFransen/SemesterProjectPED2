@@ -25,34 +25,34 @@
 // Quasi-global variables definition
 //
 
-static SysMgrState SystemState = STARTUP;
+static SysMgrState systemState = STARTUP;
 
 
 void manageSystem(void)
 {
 
-    switch (SystemState)
+    switch (systemState)
     {
         case STARTUP:
         {
             initDigitalInputs();
-            if(startupSequenceFinished()) SystemState = STANDBY;
+            if(startupSequenceFinished()) systemState = STANDBY;
         }break;
 
         case STANDBY:
         {
-            if(isPowerSwitchEnabled()) SystemState = RUNNING;
+            if(isPowerSwitchEnabled()) systemState = RUNNING;
         }break;
 
         case RUNNING:
         {
-            if(!isPowerSwitchEnabled()) SystemState = STANDBY;
+            if(!isPowerSwitchEnabled()) systemState = STANDBY;
            // if(errorDetected()) SystemState = ERROR;
         }break;
 
 //        case ERROR:
 //        {
-//            if(errorIsAcknowledged()) SystemState = STANDBY;
+//            if(errorIsAcknowledged()) systemState = STANDBY;
 //        }break;
     }
     readDigitalInputs();
@@ -60,7 +60,7 @@ void manageSystem(void)
 
 SysMgrState readSystemState(void)
 {
-    return SystemState;
+    return systemState;
 }
 
 

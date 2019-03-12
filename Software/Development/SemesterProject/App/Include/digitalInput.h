@@ -20,8 +20,8 @@ typedef struct DigitalInputTag
 //
 // Function prototyping
 //
-void DigitalInput_Constructor(DigitalInput *input, int pin);
-int DigitalInput_ReadState(DigitalInput *input);
+void digitalInput_Constructor(DigitalInput *input, int pin);
+int digitalInput_ReadState(DigitalInput *input);
 int pinIsInPortA(int pin);
 int pinIsInPortB(int pin);
 
