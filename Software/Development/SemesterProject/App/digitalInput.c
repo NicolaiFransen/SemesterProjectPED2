@@ -39,7 +39,7 @@ void digitalInput_Constructor(DigitalInput *input, int GPIOpin)
  * GPIO pin, as described in figure 1-82 from the technical reference.
  * Then, in order to access to every specific pin, the AND operation is
  * performed to a input.pin length array of '1' and then the result
- * is shifted, obtaining she single bit we are interested in.
+ * is shifted, obtaining the single bit we are interested in.
  * E.g. input.pin = 0 (GPIO0) will return the state of the first bit.
  * For port B, the content is contained in a different register than port B,
  * then the same logic is followed but 32 bits are subtracted.
