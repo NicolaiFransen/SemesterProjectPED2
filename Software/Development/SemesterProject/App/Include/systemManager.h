@@ -10,6 +10,7 @@
 
 #include "digitalInputManager.h"
 #include "../../System/Include/systemInit.h"
+#include <stdint.h>
 
 //
 // Objects declaration

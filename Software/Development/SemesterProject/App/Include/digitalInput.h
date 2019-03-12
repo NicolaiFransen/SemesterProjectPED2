@@ -13,8 +13,8 @@
 //
 typedef struct DigitalInputTag
 {
-    int pin;
-    int state;
+    unsigned char pin:6;
+    unsigned char state:1;
 } DigitalInput;
 
 //
