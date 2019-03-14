@@ -29,7 +29,7 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 
 % ____________________________________________________________________________________________
 
-Udc=36;          % DC-link voltage
+Udc=60;          % DC-link voltage
 fs = 10000;
 Ts=1/fs;
 
