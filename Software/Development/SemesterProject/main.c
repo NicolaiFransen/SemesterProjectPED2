@@ -19,7 +19,8 @@
 // Included Files
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
-#include "systemManager.h"
+#include "System/Include/scheduler.h"
+#include <stddef.h>
 
 //
 // Function Prototypes statements for functions found within this file.
@@ -37,11 +38,8 @@ void systemInit(void);
 void main(void)
 {
     systemInit();
-    for(;;)
-    {
-        manageSystem(); //This call to the system manager is temporary
-                         //until it the Scheduler component is developed.
-    }
+    taskListInitialization();
+    scheduleTasks();
 }
 
 
