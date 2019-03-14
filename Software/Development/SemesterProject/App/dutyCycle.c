@@ -77,9 +77,9 @@ void setDutyCycleC(float duty)
  */
 void setAllDuties(float duty)
 {
-    setDutyCycleA(float duty);
-    setDutyCycleB(float duty);
-    setDutyCycleC(float duty);
+    setDutyCycleA(duty);
+    setDutyCycleB(duty);
+    setDutyCycleC(duty);
 }
 
 
