@@ -29,41 +29,37 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 
 % ____________________________________________________________________________________________
 
-Udc=36;  % DC-link voltage
-fs               = 10000;
+Udc=36;          % DC-link voltage
+fs = 10000;
 Ts=1/fs;
 
 % PI current controllers id, iq 
+% Kp_q= 2.5834;
+% Ki_q= 15.708;
+%  
+% Kp_d= 2.5834; 
+% Ki_d= 15.708;  
+% 
+Kp_q= 2.5834;  %0.1033; %0.2587;
+Ki_q=  15.7;  %0.6283; %1.5708;
+ 
+Kp_d=  2.5834; %0.2583; 
+Ki_d= 15.7; 
 
-Kp_q= 2.5834;
-Ki_q= 15.708;
+Kp_speed = 4.2; 
+Ki_speed=30; 
 
-
-Kp_d= 2.5834; %0.8223;
-Ki_d= 15.708;  %6.0804;
-
-
-Kp_speed = 2; 
-Ki_speed=2; 
-
-landa_r = 0.0567;  %need to be checked
-ids=(1/Lm)*landa_r;
-
-G = 1/(Ls*s+Rs);  %Plant's transfer function
+G_p = 1/(Ls*s+Rs);  %Plant's transfer function
 figure(1)
-margin(G)
+margin(G_p)
 
-Gc = ((Kp_d*Ki_d)*(1+s/Ki_d))/s
 G_PI= Kp_d + Ki_d/s
 
-G_total = G_PI*G
-G_series = Gc*G
-
+G_ol= G_PI*G_p
 figure(2)
-margin(G_total)
+margin(G_ol)
 
-figure(3)
-margin(G_series)
 
-tau_r=Lr/Rr;
-TF_speed= (tau_r)*ids/(1+s*tau_r)
+%Rotor flux calculation for id,ref
+landa_r = 0.0567;  
+ids=(1/Lm)*landa_r;
