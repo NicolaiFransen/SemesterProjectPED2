@@ -34,6 +34,8 @@
 								<listOptionValue builtIn="false" value="PROJECT_KIND=com.ti.ccstudio.managedbuild.core.ProjectKind_Executable"/>
 								<listOptionValue builtIn="false" value="LINK_ORDER=-l&quot;rts2800_fpu32_fast_supplement.lib&quot;;-l&quot;rts2800_fpu32.lib&quot;;"/>
 								<listOptionValue builtIn="false" value="OUTPUT_TYPE=executable"/>
+								<listOptionValue builtIn="false" value="PRODUCTS="/>
+								<listOptionValue builtIn="false" value="PRODUCT_MACRO_IMPORTS={}"/>
 							</option>
 							<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.1159173134" name="Compiler version" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION" value="6.4.2" valueType="string"/>
 							<targetPlatform id="com.ti.ccstudio.buildDefinitions.C2000_6.2.exe.targetPlatformDebug.798996667" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.exe.targetPlatformDebug"/>
@@ -46,7 +48,7 @@
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.CLA_SUPPORT.1518942090" name="Specify CLA support (--cla_support)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.CLA_SUPPORT" value="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.CLA_SUPPORT.cla0" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.VCU_SUPPORT.1896065807" name="Specify VCU support (--vcu_support)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.VCU_SUPPORT" value="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.VCU_SUPPORT.vcu0" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.INCLUDE_PATH.1925965650" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.INCLUDE_PATH" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
+									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/App/Include}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/System/Include/IQ_math_include}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/System/Include/math_include}"/>
@@ -55,8 +57,8 @@
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.DEBUGGING_MODEL.190143679" name="Debugging model" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.DEBUGGING_MODEL" value="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.DEBUGGING_MODEL.SYMDEBUG__DWARF" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.DEFINE.1510780795" name="Pre-define NAME (--define, -D)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.DEFINE" valueType="definedSymbols">
-									<listOptionValue builtIn="false" value="&quot;_DEBUG&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;LARGE_MODEL&quot;"/>
+									<listOptionValue builtIn="false" value="_DEBUG"/>
+									<listOptionValue builtIn="false" value="LARGE_MODEL"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.QUIET_LEVEL.406666070" name="Quiet Level" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.QUIET_LEVEL" value="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.QUIET_LEVEL.QUIET" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.VERBOSE_DIAGNOSTICS.996748138" name="Verbose diagnostics (--verbose_diagnostics, -pdv)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.compilerID.VERBOSE_DIAGNOSTICS" value="true" valueType="boolean"/>
@@ -81,16 +83,16 @@
 									<listOptionValue builtIn="false" value="&quot;$(GEN_CMDS_QUOTED)&quot;"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.LIBRARY.295792853" name="Include library file or command file as input (--library, -l)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.LIBRARY" valueType="libs">
-									<listOptionValue builtIn="false" value="&quot;rts2800_fpu32.lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;IQmath_fpu32.lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;rts2800_fpu32_fast_supplement.lib&quot;"/>
+									<listOptionValue builtIn="false" value="rts2800_fpu32.lib"/>
+									<listOptionValue builtIn="false" value="IQmath_fpu32.lib"/>
+									<listOptionValue builtIn="false" value="rts2800_fpu32_fast_supplement.lib"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.SEARCH_PATH.772718683" name="Add &lt;dir&gt; to library search path (--search_path, -i)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.SEARCH_PATH" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${INSTALLROOT_F2806x}/common/lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${INSTALLROOT_IQMATH}/lib&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${INSTALLROOT_FASTRTS}/lib&quot;"/>
+									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/lib"/>
+									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
+									<listOptionValue builtIn="false" value="${INSTALLROOT_F2806x}/common/lib"/>
+									<listOptionValue builtIn="false" value="${INSTALLROOT_IQMATH}/lib"/>
+									<listOptionValue builtIn="false" value="${INSTALLROOT_FASTRTS}/lib"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.PRIORITY.104330957" name="Search libraries in priority order (--priority, -priority)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.PRIORITY" value="true" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.VERBOSE_DIAGNOSTICS.2042572809" name="Verbose diagnostics (--verbose_diagnostics)" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.2.linkerID.VERBOSE_DIAGNOSTICS" value="true" valueType="boolean"/>

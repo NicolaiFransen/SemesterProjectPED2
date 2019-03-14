@@ -75,12 +75,12 @@ void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int 
  * Reads the discrete value of the specified analog signal.
  * This is done by setting a pointer at the first ADC channel, and then move it to what ever channel is specified.
  */
-Uint16 readADCValue(AnalogSignal *analogSignal)
+void readADCValue(AnalogSignal *analogSignal)
 {
 
-    volatile Uint16 *initialADCMemoryPosition = &AdcResult.ADCRESULT0;
-    volatile Uint16 *finalADCMemoryPosition = initialADCMemoryPosition + analogSignal->adcChannel;
+    volatile Uint16 *ADCResultPosition = &AdcResult.ADCRESULT0 + analogSignal->adcChannel;
 
+    analogSignal->lastObtainedValue = *ADCResultPosition;
     /*
     Uint16 ADCReading;
     float ADCReadingFiltered;
@@ -91,7 +91,16 @@ Uint16 readADCValue(AnalogSignal *analogSignal)
     // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
     ADCReadingFiltered = ADCReading*analogSignal->filterParamA + analogSignal->lastObtainedValue*analogSignal->filterParamB;
      */
-    return &finalADCMemoryPosition;
+}
+
+void filterADCValue(AnalogSignal *analogSignal)
+{
+    float ADCReading = analogSignal->lastObtainedValue / (4095) * 3.3;
+
+    // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
+    float ADCReadingFiltered = ADCReading*analogSignal->filterParamA + analogSignal->oldValue*analogSignal->filterParamB;
+    analogSignal->oldValue = analogSignal->filteredValue;
+    analogSignal->filteredValue = ADCReadingFiltered;
 }
 
 
