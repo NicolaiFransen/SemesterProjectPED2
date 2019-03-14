@@ -55,7 +55,7 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
  * For now its only able to calculated the parameters for a first order low-pass filter, if it is found
  * necessary to use a higher order filter this should be implemented.
  */
-void filterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
+void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
 {
     float parameterA, pi = 3.14;
     float parameterB, tau;
@@ -79,7 +79,7 @@ Uint16 readADCValue(AnalogSignal *analogSignal)
 {
 
     volatile Uint16 *initialADCMemoryPosition = &AdcResult.ADCRESULT0;
-    volatile Uint16 *finalADCMemoryPosition = initialADCMemoryPosition + analogSignal->adcChannel*sizeof(Uint16);
+    volatile Uint16 *finalADCMemoryPosition = initialADCMemoryPosition + analogSignal->adcChannel;
 
     /*
     Uint16 ADCReading;

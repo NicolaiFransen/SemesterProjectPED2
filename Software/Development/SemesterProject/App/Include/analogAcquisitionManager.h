@@ -12,7 +12,7 @@
 // Included Files
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
-
+#include "analogSignal.h"
 //
 // Function prototyping
 //
