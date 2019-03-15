@@ -9,7 +9,7 @@
  *          1- Lecture 6: Digital to analog conversion of
  *          'Realtidssystemer og programmeringssprog' AAU
  *          course by Sergiu Spataru.
- *          2-
+ *          2- TMS320x2806x Piccolo technical reference manual.
  */
 
 //
@@ -27,9 +27,26 @@
 *
 *
 */
+
+
 void configurePWM(void)
 {
-    //Initialize time for EPWM1, EPWM2 and EPWM3
+    //
+    //Pin configuration
+    //
+
+    //  Configure EPWMA1
+    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;    // Select ePWMA1 from MUX
+
+    //  Configure EPWMA2
+    GpioCtrlRegs.GPAMUX1.bit.GPIO2= 1;    // Select ePWMA2 from MUX
+
+    //  Configure EPWMA3
+    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;    // Select ePWMA3 from MUX
+
+
+    //
+    //Initialize EPWM_A1, EPWM_A2 and EPWM_A3
     //
 
     //Configure PWM period. (Page 336)
@@ -136,5 +153,4 @@ void configurePWM(void)
     EPwm1Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
     EPwm2Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
     EPwm3Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
-
 }

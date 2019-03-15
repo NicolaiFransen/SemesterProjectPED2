@@ -15,6 +15,7 @@ void systemInit(void);
 int startupSequenceFinished(void);
 __interrupt void cpu_timer0_isr(void);
 void configureGPIO(void);
+void configurePWM(void);
 
 
 

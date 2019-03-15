@@ -119,6 +119,11 @@ void systemInit(void)
     configureGPIO();
 
     //
+    // Configure PWMs
+    //
+    configurePWM();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     //
     IER |= M_INT1;

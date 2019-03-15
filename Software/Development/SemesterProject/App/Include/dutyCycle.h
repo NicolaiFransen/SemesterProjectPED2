@@ -8,6 +8,10 @@
 #ifndef APP_DUTYCYCLE_H_
 #define APP_DUTYCYCLE_H_
 
+//
+// Includes
+//
+#include "C28x_FPU_FastRTS.h"
 
 //
 //PIN definition. First item is the pwm to be outputed and
@@ -25,18 +29,25 @@
 //
 typedef struct DutyCycleTag
 {
-    int dutyValue;
-    int pin
+    float dutyValue;
+    Uint16 dutyCompare;
 } DutyCycle;
+
+typedef enum
+{
+    LEG_A,
+    LEG_B,
+    LEG_C,
+    ERROR,
+}SysMgrState;
 
 
 //
 // Function prototyping
 //
-void setDutyCycleA(float duty);
-void setDutyCycleB(float duty);
-void setDutyCycleC(float duty);
-void setAllDuties(float duty);
-
+void setDutyCycleA(float);
+void setDutyCycleB(float);
+void setDutyCycleC(float);
+void setAllDuties(float);
 
 #endif /* APP_DUTYCYCLE_H_ */
