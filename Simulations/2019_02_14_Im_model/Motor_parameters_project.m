@@ -29,7 +29,7 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 
 % ____________________________________________________________________________________________
 
-Udc=60;          % DC-link voltage
+Udc=36;          % DC-link voltage
 fs = 10000;
 Ts=1/fs;
 
@@ -59,6 +59,7 @@ G_ol= G_PI*G_p
 figure(2)
 margin(G_ol)
 
+sigma = 1-Lm^2/(Ls*Lr); %leakage factor
 
 %Rotor flux calculation for id,ref
 landa_r = 0.0567;  
