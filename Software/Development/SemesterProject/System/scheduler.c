@@ -20,26 +20,28 @@
 /*
  * Quasi-global variable definition
  */
+enum taskListTag
+{
+    task50usItem,
+    task20msItem,
+    numberOfTasks,
+}taskListItems;
 
-taskControlBlock taskList[maxNumberTasks];
+taskControlBlock taskList[numberOfTasks - 1];
 
 void taskListInitialization(void)
 {
-    Uint16 taskListIndex = 0;
+    taskList[task50usItem].functionPointer = task50us;
+    taskList[task50usItem].taskState = INACTIVE;
+    taskList[task50usItem].cyclicity = 50;
+    taskList[task50usItem].timeLeft = 50;
 
-    taskList[taskListIndex].functionPointer = task50us;
-    taskList[taskListIndex].taskState = INACTIVE;
-    taskList[taskListIndex].cyclicity = 50;
-    taskList[taskListIndex].timeLeft = 50;
-    taskListIndex++;
+    taskList[task20msItem].functionPointer = task20ms;
+    taskList[task20msItem].taskState = READY;
+    taskList[task20msItem].cyclicity = 20000;      // Time in us
+    taskList[task20msItem].timeLeft = 20000;       // Initialize to cyclicity
 
-    taskList[taskListIndex].functionPointer = task20ms;
-    taskList[taskListIndex].taskState = READY;
-    taskList[taskListIndex].cyclicity = 20000;      // Time in us
-    taskList[taskListIndex].timeLeft = 20000;       // Initialize to cyclicity
-    taskListIndex++;
-
-    taskList[taskListIndex].functionPointer = NULL; // End of list
+    taskList[numberOfTasks].functionPointer = NULL; // End of list
 }
 
 void scheduleTasks(void)
@@ -73,10 +75,8 @@ void task50us(void)
 
 void task20ms(void)
 {
-//    GpioDataRegs.GPASET.bit.GPIO18 = 1;
     manageSystem();
     readDigitalInputs();
-    GpioDataRegs.GPATOGGLE.bit.GPIO18 = 1;
 }
 
 //
@@ -125,7 +125,6 @@ void scheduleTask(int taskListIndex)
 void restartTaskCountdown(int taskListIndex)
 {
     taskList[taskListIndex].timeLeft = taskList[taskListIndex].cyclicity;
-
 }
 
 void decreaseCountdown(int taskListIndex)
