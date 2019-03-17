@@ -55,6 +55,7 @@ void systemManager(void)
             {
                 DELAY_US(READ_DELAY);         // Delay before converting ADC channels
                 readAnalogSignals();
+                calculateFilteredValue();
             }
         }break;
 

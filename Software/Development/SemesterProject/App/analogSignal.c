@@ -33,16 +33,16 @@
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
                        int cutoffFreq, Uint16 adcChannel, int threshold[2])
 {
-
     analogSignal->filterType = filterType;
-
     analogSignal->filterOrder = filterOrder;
-
     analogSignal->cutoffFreq = cutoffFreq;
 
     analogSignal->adcChannel = adcChannel;
+
     analogSignal->threshold[0] = threshold[0];
     analogSignal->threshold[1] = threshold[1];
+
+    analogSignal->oldValue = 0;
 
     calculateFilterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
 }
@@ -77,25 +77,14 @@ void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int 
  */
 void readADCValue(AnalogSignal *analogSignal)
 {
-
     volatile Uint16 *ADCResultPosition = &AdcResult.ADCRESULT0 + analogSignal->adcChannel;
 
     analogSignal->lastObtainedValue = *ADCResultPosition;
-    /*
-    Uint16 ADCReading;
-    float ADCReadingFiltered;
-
-    ADCReading = &finalADCMemoryPosition;
-    ADCReading = ADCReading * 3.3/(4096-1);
-
-    // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
-    ADCReadingFiltered = ADCReading*analogSignal->filterParamA + analogSignal->lastObtainedValue*analogSignal->filterParamB;
-     */
 }
 
 void filterADCValue(AnalogSignal *analogSignal)
 {
-    float ADCReading = analogSignal->lastObtainedValue / (4095) * 3.3;
+    float ADCReading = analogSignal->lastObtainedValue / (4095.0) * 3.3;
 
     // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
     float ADCReadingFiltered = ADCReading*analogSignal->filterParamA + analogSignal->oldValue*analogSignal->filterParamB;
