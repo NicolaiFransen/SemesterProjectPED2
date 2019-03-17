@@ -27,7 +27,7 @@ enum taskListTag
     numberOfTasks,
 }taskListItems;
 
-taskControlBlock taskList[numberOfTasks - 1];
+taskControlBlock taskList[numberOfTasks];
 
 void taskListInitialization(void)
 {
