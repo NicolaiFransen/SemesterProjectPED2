@@ -11,8 +11,7 @@
 #include "systemManager.h"
 #include <stddef.h>
 
-#define maxNumberTasks      10
-#define largestCyclicity    20000
+#define maxNumberTasks      5
 #define timerPeriodUs       50
 
 typedef enum
@@ -41,5 +40,13 @@ void task50us(void);
 void task20ms(void);
 void updateTasksState(void);
 int endOfTaskListIsReached(int taskListIndex);
+int taskMustBeScheduled(int taskListIndex);
+void scheduleTask(int taskListIndex);
+void restartTaskCountdown(int taskListIndex);
+void decreaseCountdown(int taskListIndex);
+int taskIsReady(int taskListIndex);
+void deactivateTask(int taskListIndex);
+
+
 
 #endif /* SYSTEM_INCLUDE_SCHEDULER_H_ */

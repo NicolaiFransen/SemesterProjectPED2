@@ -94,7 +94,7 @@ void systemInit(void)
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
 
     //
-    // Configure CPU-Timer 0 to interrupt every 500 milliseconds:
+    // Configure CPU-Timer 0 to interrupt every 50 microseconds:
     // 90MHz CPU Freq, 50 millisecond Period (in uSeconds)
     //
     ConfigCpuTimer(&CpuTimer0, 90, 50);

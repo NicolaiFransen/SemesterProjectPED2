@@ -27,16 +27,16 @@ void taskListInitialization(void)
 {
     Uint16 taskListIndex = 0;
 
-    taskList[taskListIndex].functionPointer = task20ms;
-    taskList[taskListIndex].taskState = READY;
-    taskList[taskListIndex].cyclicity = 20000;      // Time in us
-    taskList[taskListIndex].timeLeft = 20000;       // Initialize to cyclicity
-    taskListIndex++;
-
     taskList[taskListIndex].functionPointer = task50us;
     taskList[taskListIndex].taskState = INACTIVE;
     taskList[taskListIndex].cyclicity = 50;
     taskList[taskListIndex].timeLeft = 50;
+    taskListIndex++;
+
+    taskList[taskListIndex].functionPointer = task20ms;
+    taskList[taskListIndex].taskState = READY;
+    taskList[taskListIndex].cyclicity = 20000;      // Time in us
+    taskList[taskListIndex].timeLeft = 20000;       // Initialize to cyclicity
     taskListIndex++;
 
     taskList[taskListIndex].functionPointer = NULL; // End of list
@@ -47,19 +47,16 @@ void scheduleTasks(void)
     Uint16 taskListIndex = 0;
     for(;;)
     {
-        for (taskListIndex = 0; taskListIndex < maxNumberTasks; taskListIndex++)
+        for (taskListIndex = 0; endOfTaskListIsReached(taskListIndex); taskListIndex++)
         {
-            if (endOfTaskListIsReached(taskListIndex))    break;
-
-            if (taskList[taskListIndex].taskState == READY)
+            if (taskIsReady(taskListIndex))
             {
                 runTask(taskList[taskListIndex].functionPointer);
-                taskList[taskListIndex].taskState = INACTIVE;
+                deactivateTask(taskListIndex);
             }
         }
     }
 }
-
 
 void runTask(void (*functionPTR)())
 {
@@ -76,8 +73,10 @@ void task50us(void)
 
 void task20ms(void)
 {
+//    GpioDataRegs.GPASET.bit.GPIO18 = 1;
     manageSystem();
     readDigitalInputs();
+    GpioDataRegs.GPATOGGLE.bit.GPIO18 = 1;
 }
 
 //
@@ -97,20 +96,50 @@ cpu_timer0_isr(void)
 void updateTasksState(void)
 {
     Uint16 taskListIndex = 0;
-    for (taskListIndex = 0; taskListIndex < maxNumberTasks; taskListIndex++)
+    for (taskListIndex = 0; endOfTaskListIsReached(taskListIndex); taskListIndex++)
     {
-        if (endOfTaskListIsReached(taskListIndex))    break;
-
-        if (taskList[taskListIndex].timeLeft <= timerPeriodUs)
+        if (taskMustBeScheduled(taskListIndex))
         {
-            taskList[taskListIndex].taskState = READY;
-            taskList[taskListIndex].timeLeft = taskList[taskListIndex].cyclicity;
+            scheduleTask(taskListIndex);
+            restartTaskCountdown(taskListIndex);
         }
-        else    taskList[taskListIndex].timeLeft -= timerPeriodUs;
+        else    decreaseCountdown(taskListIndex);
     }
 }
 
 int endOfTaskListIsReached(int taskListIndex)
 {
-    return taskList[taskListIndex].functionPointer == NULL;
+    return taskList[taskListIndex].functionPointer != NULL;
+}
+
+int taskMustBeScheduled(int taskListIndex)
+{
+    return taskList[taskListIndex].timeLeft <= timerPeriodUs;
+}
+
+void scheduleTask(int taskListIndex)
+{
+    taskList[taskListIndex].taskState = READY;
+}
+
+void restartTaskCountdown(int taskListIndex)
+{
+    taskList[taskListIndex].timeLeft = taskList[taskListIndex].cyclicity;
+
+}
+
+void decreaseCountdown(int taskListIndex)
+{
+    taskList[taskListIndex].timeLeft -= timerPeriodUs;
+}
+
+int taskIsReady(int taskListIndex)
+{
+    return taskList[taskListIndex].taskState == READY;
+}
+
+void deactivateTask(int taskListIndex)
+{
+    taskList[taskListIndex].taskState = INACTIVE;
+
 }
