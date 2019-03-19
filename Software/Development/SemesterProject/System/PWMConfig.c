@@ -46,7 +46,6 @@ void configurePWM(void)
     //  Configure EPWMA3
     GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;    // Select ePWMA3 from MUX
 
-    EDIS;
 
 
     //
@@ -157,4 +156,5 @@ void configurePWM(void)
     EPwm1Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
     EPwm2Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
     EPwm3Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
+    EDIS;
 }
