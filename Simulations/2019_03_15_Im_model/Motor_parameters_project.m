@@ -19,7 +19,7 @@ J=0.0151;                               % rotor inertia moment [Nm^2]
 
 % Induction motor nameplate
 Pn = 5300;                              % nominal power [W]
-Un = 24;                        % nominal phase voltage RMS[V]
+Un = 24/sqrt(3);                        % nominal phase voltage RMS[V]
 In = 189;                               % nominal current RMS[A]
 fn = 58;                                % nominal frequency [Hz]
 PF = 0.76;                              % nominal power factor [pu]
@@ -40,11 +40,11 @@ Ts=1/fs;
 % Kp_d= 2.5834; 
 % Ki_d= 15.708;  
 % 
-Kp_q= 2; %2.5834;  %0.1033; %0.2587;
-Ki_q=  10; %15.7;  %0.6283; %1.5708;
+Kp_q= 3; %2; %2.5834;  %0.1033; %0.2587;
+Ki_q=  16;  %10; %15.7;  %0.6283; %1.5708;
  
-Kp_d=  2; %.5834; %0.2583; 
-Ki_d= 10; %5.7; 
+Kp_d=  3; %2; %.5834; %0.2583; 
+Ki_d= 16; %10; %5.7; 
 
 Kp_speed = 0.8; 
 Ki_speed = 10; 
