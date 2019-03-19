@@ -20,14 +20,14 @@
 /*
  * Quasi-global variable definition
  */
-enum taskListTag
+static enum taskListTag
 {
     task50usItem,
     task20msItem,
-    numberOfTasks,
+    numberOfTasks
 }taskListItems;
 
-taskControlBlock taskList[numberOfTasks];
+taskControlBlock taskList[numberOfTasks + 1];
 
 void taskListInitialization(void)
 {
@@ -114,7 +114,7 @@ int endOfTaskListIsReached(int taskListIndex)
 
 int taskMustBeScheduled(int taskListIndex)
 {
-    return taskList[taskListIndex].timeLeft <= timerPeriodUs;
+    return taskList[taskListIndex].timeLeft <= TIMER_PERIOD_US;
 }
 
 void scheduleTask(int taskListIndex)
@@ -129,7 +129,7 @@ void restartTaskCountdown(int taskListIndex)
 
 void decreaseCountdown(int taskListIndex)
 {
-    taskList[taskListIndex].timeLeft -= timerPeriodUs;
+    taskList[taskListIndex].timeLeft -= TIMER_PERIOD_US;
 }
 
 int taskIsReady(int taskListIndex)

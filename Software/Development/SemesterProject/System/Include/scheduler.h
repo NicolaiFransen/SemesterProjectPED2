@@ -11,8 +11,7 @@
 #include "systemManager.h"
 #include <stddef.h>
 
-#define maxNumberTasks      5
-#define timerPeriodUs       50
+#define TIMER_PERIOD_US       50
 
 typedef enum
 {
