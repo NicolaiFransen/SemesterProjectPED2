@@ -18,7 +18,7 @@
 
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "AnalogSignal.h"
-#include "math.h"
+#include <math.h>
 
 
 //

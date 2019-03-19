@@ -44,26 +44,10 @@ static struct
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
  */
-void initADC(void)
+void initAnalogSignals(void)
 {
-    InitAdc();
-    AdcOffsetSelfCal();
-
     configureAnalogSignals();
     configureADCs();
-
-    PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
-    IER |= M_INT1;                     // Enable CPU Interrupt 1
-
-    //
-    // Assumes ePWM1 clock is already enabled in InitSysCtrl();
-    //
-    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
-    EPwm1Regs.ETSEL.bit.SOCASEL = 4;        // Select SOC from CMPA on upcount
-    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
-    EPwm1Regs.CMPA.half.CMPA    = 0x0080;   // Set compare A value
-    EPwm1Regs.TBPRD             = 0xFFFF;   // Set period for ePWM1
-    EPwm1Regs.TBCTL.bit.CTRMODE = 0;        // count up and start
 }
 
 /*
@@ -177,6 +161,7 @@ void configureAnalogSignals(void)
 void configureADCs(void)
 {
     EALLOW;
+
     // Enable non-overlap mode
     AdcRegs.ADCCTL2.bit.ADCNONOVERLAP   = 1;
 
@@ -187,11 +172,6 @@ void configureADCs(void)
 
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
-
-    // Setting all ADCs to sequential sampling
-    //AdcRegs.ADCSAMPLEMODE.bit.SIMULEN0  = 0;
-    AdcRegs.ADCSAMPLEMODE.all           = 0;
-
 
     // Configure ADC for phase A current measurement
     AdcRegs.ADCSOC3CTL.bit.CHSEL        = AnalogSignalList.currentMeasA.adcChannel;
@@ -284,6 +264,16 @@ void calculateFilteredValue(void)
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         filterADCValue(structPointer);
+}
+
+__interrupt void adc_isr(void)
+{
+    readAnalogSignals();
+    calculateFilteredValue();
+    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
+
+    return;
 }
 
 //

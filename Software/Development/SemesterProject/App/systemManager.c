@@ -23,14 +23,10 @@
 #include "F2806x_GlobalPrototypes.h"
 
 #include "Include/systemManager.h"
-#include "analogAcquisitionManager.h"
 
 //
 // Quasi-global variables definition
 //
-__interrupt void adc_isr(void);
-#define READ_DELAY  100000L
-
 
 static SysMgrState SystemState = STARTUP;
 
@@ -42,20 +38,14 @@ void systemManager(void)
     {
         case STARTUP:
         {
-            EALLOW;
-            PieVectTable.ADCINT1 = &adc_isr;
-            EDIS;
-
-            initADC();
 
             if(startupSequenceFinished()) SystemState = STANDBY;
 
 
             for(;;)
             {
-                DELAY_US(READ_DELAY);         // Delay before converting ADC channels
-                readAnalogSignals();
-                calculateFilteredValue();
+                //DELAY_US(READ_DELAY);         // Delay before converting ADC channels
+
             }
         }break;
 
@@ -79,14 +69,6 @@ void systemManager(void)
 
 }
 
-__interrupt void adc_isr(void)
-{
-    readAnalogSignals();
-    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-    PieCtrlRegs.PIEACK.bit.ACK1 = 1;
-
-    return;
-}
 
 SysMgrState readSystemState(void)
 {

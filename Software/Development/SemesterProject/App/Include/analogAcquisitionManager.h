@@ -34,15 +34,17 @@
 #define AD24            14      // ADCINB6
 #define P1              15      // ADCINB7
 
-#define TRIGGER         5       // TRIGGER SELECT
+#define TRIGGER         2    // TRIGGER SELECT
 #define SAMPLING_RATE   6       // ACQPS SELECT
 
 //
 // Function prototyping
 //
+__interrupt void adc_isr(void);
+
 void readAnalogSignals(void);
 void calculateFilteredValue(void);
-void initADC(void);
+void initAnalogSignals(void);
 void configureAnalogSignals(void);
 void configureADCs(void);
 
