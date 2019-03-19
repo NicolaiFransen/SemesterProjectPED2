@@ -35,14 +35,18 @@ void configurePWM(void)
     //Pin configuration
     //
 
+    EALLOW;
+
     //  Configure EPWMA1
     GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;    // Select ePWMA1 from MUX
 
     //  Configure EPWMA2
-    GpioCtrlRegs.GPAMUX1.bit.GPIO2= 1;    // Select ePWMA2 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;    // Select ePWMA2 from MUX
 
     //  Configure EPWMA3
     GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;    // Select ePWMA3 from MUX
+
+    EDIS;
 
 
     //
@@ -139,14 +143,14 @@ void configurePWM(void)
     EPwm3Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
 
     //When counter equals CMPA register and counter is incrementing
-    EPwm1Regs.AQCTLA.bit.CAU = AQ_SET;
-    EPwm2Regs.AQCTLA.bit.CAU = AQ_SET;
-    EPwm3Regs.AQCTLA.bit.CAU = AQ_SET;
+    EPwm1Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+    EPwm2Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+    EPwm3Regs.AQCTLA.bit.CAU = AQ_CLEAR;
 
     //When counter equals CMPA register and counter is decrementing
-    EPwm1Regs.AQCTLA.bit.CAD = AQ_CLEAR;
-    EPwm2Regs.AQCTLA.bit.CAD = AQ_CLEAR;
-    EPwm3Regs.AQCTLA.bit.CAD = AQ_CLEAR;
+    EPwm1Regs.AQCTLA.bit.CAD = AQ_SET;
+    EPwm2Regs.AQCTLA.bit.CAD = AQ_SET;
+    EPwm3Regs.AQCTLA.bit.CAD = AQ_SET;
 
     //DEADBAND register configuration
     //Since the deadband is performed in the inverter circuit, it must be bypassed here.

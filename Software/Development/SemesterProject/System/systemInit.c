@@ -139,7 +139,11 @@ void systemInit(void)
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 
+    initPWM();
+
     startupSequenceFinishedFlag = 1;
+
+    setDutyA(50);
 }
 
 int startupSequenceFinished(void)

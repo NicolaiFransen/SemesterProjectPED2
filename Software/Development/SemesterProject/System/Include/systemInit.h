@@ -9,6 +9,11 @@
 #define SYSTEM_INCLUDE_SYSTEMINIT_H_
 
 //
+//Includes
+//
+#include "../../App/Include/dutyCycle.h"
+
+//
 // Function Prototypes statements for functions found within this file.
 //
 void systemInit(void);

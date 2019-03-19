@@ -13,15 +13,20 @@
 //
 #include "C28x_FPU_FastRTS.h"
 
+
 //
-//PIN definition. First item is the pwm to be outputed and
-//the second item is the EPWM pin where the connector is placed in the PCB.
-//It is in hexadecimal to allow correct understanding of each pin.
-//CONSIDER THE LOCATION OF THESE DEFINITIONS AS WELL AS THE HEXADECIMAL FOR REVIEW.
+// Definitions
 //
-#define PWM_A   0xA1
-#define PWM_B   0xA2
-#define PWM_C   0xA3
+#define MIN_DUTY_VALUE  0.0
+#define MAX_DUTY_VALUE  100.0
+#define MIN_DUTY_COMPARE    0
+//Counter compare module (CMPA) uses the time counter variable to compare in order to set the
+//correct PWM duty cycle, for this, it is important to know how many counts there are in a cycle.
+//In the PWMConfig.c file, the period of the duty cycle is set by assigning the number of clk of a
+//a period, this is done in the command 'EPwm1Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);'
+//Since the configured carrier is a symmetrical triangular, the real period is actually twice as
+//much but the counter will reach maximum that value.
+#define MAX_DUTY_COMPARE    INTERNAL_FREQ/(2*SW_FREQ)
 
 
 //
@@ -30,24 +35,43 @@
 typedef struct DutyCycleTag
 {
     float dutyValue;
+    float minDutyValue;
+    float maxDutyValue;
+
     Uint16 dutyCompare;
+    Uint16 minDutyCompare;
+    Uint16 maxDutyCompare;
+
 } DutyCycle;
+
+//
+// Quasi-global variables definition
+//
+static struct dutyCycleListTag
+{
+    DutyCycle legA;
+    DutyCycle legB;
+    DutyCycle legC;
+}dutyCycleList;
 
 typedef enum
 {
     LEG_A,
     LEG_B,
     LEG_C,
-    ERROR,
-}SysMgrState;
+} InverterLeg;
 
 
 //
 // Function prototyping
 //
-void setDutyCycleA(float);
-void setDutyCycleB(float);
-void setDutyCycleC(float);
+void initPWM();
+void setDutyA(float);
+void setDutyB(float);
+void setDutyC(float);
 void setAllDuties(float);
+float readDutyA();
+float readDutyB();
+float readDutyC();
 
 #endif /* APP_DUTYCYCLE_H_ */

@@ -21,92 +21,92 @@
 //
 // Quasi-global variables definition
 //
-static struct dutyCycleTag
+/*static struct dutyCycleListTag
 {
     DutyCycle legA;
     DutyCycle legB;
     DutyCycle legC;
-}dutyCycle;
+}dutyCycleList;*/
+
+
+/*
+ * dutyCycleList constructor and initialization.
+ */
+void dutyConstructor(DutyCycle *dutyStruct)
+{
+    dutyStruct -> minDutyValue = MIN_DUTY_VALUE;
+    dutyStruct -> maxDutyValue = MAX_DUTY_VALUE;
+    dutyStruct -> minDutyCompare = MIN_DUTY_COMPARE;
+    dutyStruct -> maxDutyCompare = MAX_DUTY_COMPARE;
+}
+
+
+/*
+ * initPWM() initializes the static structs.
+ * This function is only called at STARTUP.
+ */
+void initPWM(void)
+{
+    dutyConstructor(&dutyCycleList.legA);
+    dutyConstructor(&dutyCycleList.legB);
+    dutyConstructor(&dutyCycleList.legC);
+}
+
+/*
+ * Assign duty value to struct.
+ */
+void assignDuty(float duty, DutyCycle *dutyStruct)
+{
+    dutyStruct -> dutyValue = duty;
+}
 
 
 /* CONSIDER REVISION to reduce computing load.
  * Function for internal use.
- * map function performs a linear regression.
- * Inputs are a value with its corresponding lower and upper limits
- * as well as the lower and upper limits of the variable to return.
+ * Function performs a linear regression to map the compare value.
  */
-Uint16 mapDuty(float x, float x_min, float x_max, Uint16 y_min, Uint16 y_max)
+void calculateDutyCompare(DutyCycle *dutyStruct)
 {
-    return y_min + (Uint16)((float)(y_max-y_min)*(x-x_min)/(x_max-x_min));
+    dutyStruct -> dutyCompare = dutyStruct -> minDutyCompare + (Uint16)((float)(dutyStruct -> maxDutyCompare - dutyStruct -> minDutyCompare) * (dutyStruct -> dutyValue - dutyStruct -> minDutyValue) / (dutyStruct -> maxDutyValue - dutyStruct -> minDutyValue));
+    //dutyStruct.dutyCompare = MAX_DUTY_COMPARE / 2; //For debugging purposes only (duty = 0.5);
 }
+
+
+/*
+ * Set counter compare to correct value on leg A.
+ */
+void assignDutyToComparatorA()
+{
+    EPwm1Regs.CMPA.half.CMPA = dutyCycleList.legA.dutyCompare;
+}
+
+
+/*
+ * Set counter compare to correct value on leg B.
+ */
+void assignDutyToComparatorB()
+{
+    EPwm2Regs.CMPA.half.CMPA = dutyCycleList.legB.dutyCompare;
+}
+
+
+/*
+ * Set counter compare to correct value on leg C.
+ */
+void assignDutyToComparatorC()
+{
+    EPwm3Regs.CMPA.half.CMPA = dutyCycleList.legC.dutyCompare;
+}
+
 
 /*
  * Function for internal use.
- * The duty cycle is checked in case it lies outside of boundaries.
  * Later the struct containing the duty information gets updated.
  */
-void fillDutyStruct(float duty, int leg)
+void fillDutyStruct(float duty, DutyCycle *dutyStruct)
 {
-
-    //Counter compare module uses the time counter variable to compare in order to set the
-    //correct PWM duty cycle, for this, it is important to know how many counts there are in a cycle.
-
-    //In the PWMConfig.c file, the period of the duty cycle is set by assigning the number of clk of a
-    //a period, this is done in the command 'EPwm1Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);'
-    //Since the configured carrier is a symmetrical triangular, the real period is actually twice as
-    //much but the counter will reach maximum that value.
-
-    //duty cycle float variable must then be converted into a Uint16 with correspondent
-    //input 0.00 -> output 0 and input 100.00 -> output INTERNAL_FREQ/(2*SW_FREQ).
-
-    //Error check.
-    if (duty > 100)
-    {
-        //Act accordingly.
-        //REPORT ERROR.
-        duty = 100; //For now, adjust to limit.
-    }
-    else if (duty < 0)
-    {
-        //Act accordingly.
-        //REPORT ERROR
-        duty = 0; //For now, adjust to limit.
-    }
-
-
-    //No errors so save to struct.
-    switch (leg)
-    {
-        case LEG_A:
-        {
-
-            dutyCycle.legA.dutyValue = duty;
-
-            //Transform duty to comparator.
-            dutyCycle.legA.dutyCompare = mapDuty(duty, 0.0, 100.0, 0, INTERNAL_FREQ/(2*SW_FREQ));
-        }break;
-
-        case LEG_B:
-        {
-            dutyCycle.legB.dutyValue = duty;
-
-            //Transform duty to comparator.
-            dutyCycle.legB.dutyCompare = mapDuty(duty, 0.0, 100.0, 0, INTERNAL_FREQ/(2*SW_FREQ));
-        }break;
-        case LEG_C:
-        {
-            dutyCycle.legC.dutyValue = duty;
-
-            //Transform duty to comparator.
-            dutyCycle.legC.dutyCompare = mapDuty(duty, 0.0, 100.0, 0, INTERNAL_FREQ/(2*SW_FREQ));
-        }break;
-
-        default:
-        {
-
-        }break;
-    }
-
+    assignDuty(duty, dutyStruct);
+    calculateDutyCompare(dutyStruct); //Transform duty to comparator.
 }
 
 
@@ -117,10 +117,8 @@ void fillDutyStruct(float duty, int leg)
  */
 void setDutyA(float duty)
 {
-    fillDutyStruct(duty, LEG_A);
-
-    //Set counter compare to correct value.
-    EPwm1Regs.CMPA.half.CMPA = dutyCycle.legA.dutyCompare;
+    fillDutyStruct(duty, &dutyCycleList.legA);
+    assignDutyToComparatorA();
 }
 
 
@@ -131,11 +129,8 @@ void setDutyA(float duty)
  */
 void setDutyB(float duty)
 {
-    fillDutyStruct(duty, LEG_B);
-
-    //Set counter compare to correct value.
-    EPwm2Regs.CMPA.half.CMPA = dutyCycle.legA.dutyCompare;
-
+    fillDutyStruct(duty, &dutyCycleList.legB);
+    assignDutyToComparatorC();
 }
 
 
@@ -146,10 +141,8 @@ void setDutyB(float duty)
  */
 void setDutyC(float duty)
 {
-    fillDutyStruct(duty, LEG_C);
-
-    //Set counter compare to correct value.
-    EPwm3Regs.CMPA.half.CMPA = dutyCycle.legA.dutyCompare;
+    fillDutyStruct(duty,  &dutyCycleList.legC);
+    assignDutyToComparatorC();
 }
 
 
@@ -170,7 +163,7 @@ void setAllDuties(float duty)
  */
 float readDutyA()
 {
-    return dutyCycle.legA.dutyValue;
+    return dutyCycleList.legA.dutyValue;
 }
 
 /*
@@ -179,7 +172,7 @@ float readDutyA()
  */
 float readDutyB()
 {
-    return dutyCycle.legB.dutyValue;
+    return dutyCycleList.legB.dutyValue;
 }
 
 /*
@@ -188,5 +181,5 @@ float readDutyB()
  */
 float readDutyC()
 {
-    return dutyCycle.legC.dutyValue;
+    return dutyCycleList.legC.dutyValue;
 }
