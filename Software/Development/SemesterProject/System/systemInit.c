@@ -22,7 +22,7 @@
 // Included Files
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
-#include "analogAcquisitionManager.h"
+#include "../App/Include/analogAcquisitionManager.h"
 
 //
 // Function Prototypes statements for functions found within this file.
@@ -30,7 +30,6 @@
 void systemInit(void);
 int startupSequenceFinished(void);
 __interrupt void cpu_timer0_isr(void);
-__interrupt void cpu_timer1_isr(void);
 void configureGPIO(void);
 
 //
@@ -107,7 +106,7 @@ void systemInit(void)
     // 80MHz CPU Freq, 50 millisecond Period (in uSeconds)
     //
     ConfigCpuTimer(&CpuTimer0, 80, 500000);
-    ConfigCpuTimer(&CpuTimer1, 80, 5000);
+    ConfigCpuTimer(&CpuTimer1, 90, 50);
 
     //
     // To ensure precise timing, use write-only instructions to write to the
@@ -186,16 +185,7 @@ cpu_timer0_isr(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
-__interrupt void
-cpu_timer1_isr(void)
-{
-    CpuTimer1.InterruptCount++;
 
-    //
-    // The CPU acknowledges the interrupt
-    //
-    EDIS;
-}
 
 
 //

@@ -23,11 +23,22 @@
 //
 // Quasi-global variables definition
 //
+
+/*
+ * Two different structs are created for the signals. One with a high priority (The currents),
+ * and one with a low priority (The rest). The reason for this is to keep the execution time for
+ * reading the currents as low as possible, such that we are able to read the values within the
+ * limits of our switching frequency.
+ */
 static struct
 {
     AnalogSignal currentMeasA;
     AnalogSignal currentMeasB;
     AnalogSignal currentMeasC;
+} CurrentSignalList;
+
+static struct
+{
     AnalogSignal voltageMeas24;
     AnalogSignal voltageMeas36;
     AnalogSignal thermalMeas1;
@@ -41,13 +52,100 @@ static struct
     AnalogSignal connectorPot2;
 } AnalogSignalList;
 
+
+/*
+ * Reads and filters the values of signals in the high priority struct.
+ * This function will be called by the adc_isr() every time the timer1 trigger.
+ */
+void readHighPrioritySignals(void)
+{
+    readAnalogSignals(&CurrentSignalList, sizeof(CurrentSignalList));
+    calculateFilteredValue(&CurrentSignalList, sizeof(CurrentSignalList));
+}
+
+/*
+ * Reads and filters the values of signals in the low priority struct.
+ * This function will be called by the scheduler when ever.
+ */
+void readLowPrioritySignals(void)
+{
+    readAnalogSignals(&AnalogSignalList, sizeof(AnalogSignalList));
+    calculateFilteredValue(&AnalogSignalList, sizeof(AnalogSignalList));
+}
+
+/*
+ * This takes the address and the size of the struct of interest, and iterates through it to
+ * read the ADC value from the register
+ */
+void readAnalogSignals(void *signal, int size)
+{
+    AnalogSignal *structPointer;
+    AnalogSignal *initialMemoryPosition = signal;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+        readADCValue(structPointer);
+}
+
+/*
+ * This takes the address and the size of the struct of interest, and iterates through it to
+ * calculate the filtered voltage measured
+ */
+void calculateFilteredValue(void *signal, int size)
+{
+    AnalogSignal *structPointer;
+    AnalogSignal *initialMemoryPosition = signal;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+        filterADCValue(structPointer);
+}
+
+/*
+ * This interrupt is used to trigger the ADC measurements
+ */
+__interrupt void
+cpu_timer1_isr(void)
+{
+    CpuTimer1.InterruptCount++;
+
+    //
+    // The CPU acknowledges the interrupt
+    //
+    EDIS;
+}
+
+/*
+ * This interrupt is called every time the ADC registers have been updated.
+ */
+__interrupt void adc_isr(void)
+{
+    readHighPrioritySignals();
+
+    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
+
+    return;
+}
+
+/*float *getCurrentMeasurements(void)
+{
+    float currentMeasurements[3];
+    currentMeasurements[0] = AnalogSignalList.currentMeasA.filteredValue;
+    currentMeasurements[1] = AnalogSignalList.currentMeasB.filteredValue;
+    currentMeasurements[2] = AnalogSignalList.currentMeasC.filteredValue;
+
+    return currentMeasurements;
+}*/
+
+
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
  */
 void initAnalogSignals(void)
 {
-    configureAnalogSignals();
-    configureADCs();
+    createAnalogSignals();
+    configureADCRegisters();
 }
 
 /*
@@ -55,7 +153,7 @@ void initAnalogSignals(void)
  * To see link to specific ADC channel se configureADCs()
  * and the defines in analogAcquisitionManager.h
  */
-void configureAnalogSignals(void)
+void createAnalogSignals(void)
 {
     // Definition of filter parameters
     char filterType = 'L';
@@ -71,19 +169,19 @@ void configureAnalogSignals(void)
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
-    Signal_Constructor(&AnalogSignalList.currentMeasA, filterType, filterOrder,
+    Signal_Constructor(&CurrentSignalList.currentMeasA, filterType, filterOrder,
                        filterFreq, currentMeasAChannel, currentThreshold);
 
 
     // Create signal for Current B measurement.
     Uint16 currentMeasBChannel = IB;
-    Signal_Constructor(&AnalogSignalList.currentMeasB, filterType, filterOrder,
+    Signal_Constructor(&CurrentSignalList.currentMeasB, filterType, filterOrder,
                        filterFreq, currentMeasBChannel, currentThreshold);
 
 
     // Create signal for Current C measurement.
     Uint16 currentMeasCChannel = IC;
-    Signal_Constructor(&AnalogSignalList.currentMeasC, filterType, filterOrder,
+    Signal_Constructor(&CurrentSignalList.currentMeasC, filterType, filterOrder,
                        filterFreq, currentMeasCChannel, currentThreshold);
 
 
@@ -158,7 +256,7 @@ void configureAnalogSignals(void)
  * Link analog signals to ADC channel by setting Channel, Trigger option and Acquisition period.
  * This also sets some initial registers for general setup of ADC.
  */
-void configureADCs(void)
+void configureADCRegisters(void)
 {
     EALLOW;
 
@@ -174,18 +272,18 @@ void configureADCs(void)
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
 
     // Configure ADC for phase A current measurement
-    AdcRegs.ADCSOC3CTL.bit.CHSEL        = AnalogSignalList.currentMeasA.adcChannel;
+    AdcRegs.ADCSOC3CTL.bit.CHSEL        = CurrentSignalList.currentMeasA.adcChannel;
     AdcRegs.ADCSOC3CTL.bit.TRIGSEL      = TRIGGER;
     AdcRegs.ADCSOC3CTL.bit.ACQPS        = SAMPLING_RATE;
 
 
     // Configure ADC for phase B current measurement
-    AdcRegs.ADCSOC13CTL.bit.CHSEL       = AnalogSignalList.currentMeasB.adcChannel;
+    AdcRegs.ADCSOC13CTL.bit.CHSEL       = CurrentSignalList.currentMeasB.adcChannel;
     AdcRegs.ADCSOC13CTL.bit.TRIGSEL     = TRIGGER;
     AdcRegs.ADCSOC13CTL.bit.ACQPS       = SAMPLING_RATE;
 
     // Configure ADC for phase C current measurement
-    AdcRegs.ADCSOC5CTL.bit.CHSEL        = AnalogSignalList.currentMeasC.adcChannel;
+    AdcRegs.ADCSOC5CTL.bit.CHSEL        = CurrentSignalList.currentMeasC.adcChannel;
     AdcRegs.ADCSOC5CTL.bit.TRIGSEL      = TRIGGER;
     AdcRegs.ADCSOC5CTL.bit.ACQPS        = SAMPLING_RATE;
 
@@ -244,36 +342,6 @@ void configureADCs(void)
     AdcRegs.ADCSOC2CTL.bit.TRIGSEL      = TRIGGER;
     AdcRegs.ADCSOC2CTL.bit.ACQPS        = SAMPLING_RATE;
     EDIS;
-}
-
-void readAnalogSignals(void)
-{
-    AnalogSignal *structPointer;
-    AnalogSignal *initialMemoryPosition = &AnalogSignalList.currentMeasA;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
-
-    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
-        readADCValue(structPointer);
-}
-
-void calculateFilteredValue(void)
-{
-    AnalogSignal *structPointer;
-    AnalogSignal *initialMemoryPosition = &AnalogSignalList.currentMeasA;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
-
-    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
-        filterADCValue(structPointer);
-}
-
-__interrupt void adc_isr(void)
-{
-    readAnalogSignals();
-    calculateFilteredValue();
-    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
-
-    return;
 }
 
 //

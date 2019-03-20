@@ -18,10 +18,6 @@
 // Included Files
 //
 
-#include "F2806x_Cla_typedefs.h"// F2806x CLA Type definitions
-
-#include "F2806x_GlobalPrototypes.h"
-
 #include "Include/systemManager.h"
 
 //
@@ -44,7 +40,6 @@ void systemManager(void)
 
             for(;;)
             {
-                //DELAY_US(READ_DELAY);         // Delay before converting ADC channels
 
             }
         }break;

@@ -14,6 +14,8 @@
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "analogSignal.h"
 
+
+
 //
 // ADC Channel definitions
 //
@@ -40,13 +42,21 @@
 //
 // Function prototyping
 //
+
+__interrupt void cpu_timer1_isr(void);
 __interrupt void adc_isr(void);
 
-void readAnalogSignals(void);
-void calculateFilteredValue(void);
 void initAnalogSignals(void);
-void configureAnalogSignals(void);
-void configureADCs(void);
+void createAnalogSignals(void);
+void configureADCRegisters(void);
+
+void readHighPrioritySignals(void);
+void readLowPrioritySignals(void);
+void readAnalogSignals(void *signal, int signalSize);
+void calculateFilteredValue(void *signal, int signalSize);
+
+
+//float *getCurrentMeasurements(void);
 
 
 

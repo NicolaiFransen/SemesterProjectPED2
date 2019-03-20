@@ -10,21 +10,29 @@
 
 
 //
+// Includes
+//
+#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
+#include "math.h"
+#include "Constants.h"
+
+
+//
 // Object declaration
 //
 
 typedef struct AnalogSignalTag
 {
     char filterType;                // Type of the filter HP of LP
-    int filterOrder;
-    float filterParamA;
-    float filterParamB;
-    float filteredValue;
-    float oldValue;
-    int cutoffFreq;
-    Uint16 lastObtainedValue;
-    Uint16 adcChannel;
-    int threshold[2];
+    int filterOrder;                // Order of the filter
+    int cutoffFreq;                 // Desired cut-off frequency of the filter
+    float filterParamA;             // Filter parameter A, calculated from the filter specifications
+    float filterParamB;             // Filter parameter B, calculated from the filter specifications
+    float filteredValue;            // Filtered value corresponding to the measured voltage
+    float previousValue;            // Filtered value corresponding to the previous measured voltage
+    Uint16 ADCValue;                // Raw digital ADC reading
+    Uint16 adcChannel;              // ADC channel for the signal
+    int threshold[2];               // Maximum and minimum thresholds. Used for error handling.
 } AnalogSignal;
 
 //

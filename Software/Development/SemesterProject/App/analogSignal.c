@@ -15,11 +15,7 @@
 //
 // Includes
 //
-
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "AnalogSignal.h"
-#include <math.h>
-
 
 //
 // Quasi-global variables definition
@@ -42,7 +38,7 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
     analogSignal->threshold[0] = threshold[0];
     analogSignal->threshold[1] = threshold[1];
 
-    analogSignal->oldValue = 0;
+    analogSignal->previousValue = 0;
 
     calculateFilterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
 }
@@ -57,10 +53,9 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
  */
 void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
 {
-    float parameterA, pi = 3.14;
-    float parameterB, tau;
+    float parameterA, parameterB, tau;
 
-    tau = 1/(2*pi*cutoffFreq);
+    tau = 1/(2*PI*cutoffFreq);
 
     parameterB = exp(-1/(ANALOG_EXECUTION_FREQ*tau));
 
@@ -79,16 +74,16 @@ void readADCValue(AnalogSignal *analogSignal)
 {
     volatile Uint16 *ADCResultPosition = &AdcResult.ADCRESULT0 + analogSignal->adcChannel;
 
-    analogSignal->lastObtainedValue = *ADCResultPosition;
+    analogSignal->ADCValue = *ADCResultPosition;
 }
 
 void filterADCValue(AnalogSignal *analogSignal)
 {
-    float ADCReading = analogSignal->lastObtainedValue / (4095.0) * 3.3;
+    float ADCVoltage = analogSignal->ADCValue / (4095.0) * 3.3;
 
     // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
-    float ADCReadingFiltered = ADCReading*analogSignal->filterParamA + analogSignal->oldValue*analogSignal->filterParamB;
-    analogSignal->oldValue = analogSignal->filteredValue;
+    float ADCReadingFiltered = ADCVoltage*analogSignal->filterParamA + analogSignal->previousValue*analogSignal->filterParamB;
+    analogSignal->previousValue = analogSignal->filteredValue;
     analogSignal->filteredValue = ADCReadingFiltered;
 }
 
