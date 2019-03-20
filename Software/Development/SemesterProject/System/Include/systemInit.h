@@ -9,12 +9,18 @@
 #define SYSTEM_INCLUDE_SYSTEMINIT_H_
 
 //
+//Includes
+//
+#include "../../App/Include/dutyCycle.h"
+
+//
 // Function Prototypes statements for functions found within this file.
 //
 void systemInit(void);
 int startupSequenceFinished(void);
 __interrupt void cpu_timer0_isr(void);
 void configureGPIO(void);
+void configurePWM(void);
 
 
 

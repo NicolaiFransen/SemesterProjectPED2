@@ -23,6 +23,8 @@
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
+#include "../App/Include/digitalInputManager.h"
+
 
 //
 // Quasi-global variables definition
@@ -92,10 +94,10 @@ void systemInit(void)
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
 
     //
-    // Configure CPU-Timer 0 to interrupt every 500 milliseconds:
-    // 80MHz CPU Freq, 50 millisecond Period (in uSeconds)
+    // Configure CPU-Timer 0 to interrupt every 50 microseconds:
+    // 90MHz CPU Freq, 50 millisecond Period (in uSeconds)
     //
-    ConfigCpuTimer(&CpuTimer0, 80, 500000);
+    ConfigCpuTimer(&CpuTimer0, 90, 50);
 
     //
     // To ensure precise timing, use write-only instructions to write to the
@@ -119,6 +121,11 @@ void systemInit(void)
     configureGPIO();
 
     //
+    // Configure PWMs
+    //
+    configurePWM();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     //
     IER |= M_INT1;
@@ -134,32 +141,19 @@ void systemInit(void)
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 
+
+    //
+    //  App structures initialization
+    //
+    initDigitalInputs();
+    initPWM();
+
     startupSequenceFinishedFlag = 1;
 }
 
 int startupSequenceFinished(void)
 {
     return startupSequenceFinishedFlag;
-}
-
-
-//
-// cpu_timer0_isr -
-//
-__interrupt void
-cpu_timer0_isr(void)
-{
-    CpuTimer0.InterruptCount++;
-
-    //
-    // Toggle GPIO34 once per 500 milliseconds
-    //
-    GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
-
-    //
-    // Acknowledge this interrupt to receive more interrupts from group 1
-    //
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
 

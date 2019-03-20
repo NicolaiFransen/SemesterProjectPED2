@@ -64,7 +64,7 @@ void readDigitalInputs(void)
 {
     DigitalInput *structPointer;
     DigitalInput *initialMemoryPosition = &digitalInputList.regenBrakingPushbutton;
-    DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(digitalInputList);
+    DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(digitalInputList)/sizeof(DigitalInput);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {

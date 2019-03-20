@@ -35,7 +35,6 @@ void manageSystem(void)
     {
         case STARTUP:
         {
-            initDigitalInputs();
             if(startupSequenceFinished()) systemState = STANDBY;
         }break;
 
