@@ -104,3 +104,5 @@ void configureGPIO(void)
 //    GpioCtrlRegs.GPBDIR.bit.GPIO39 = 1;
     EDIS;
 }
+
+
