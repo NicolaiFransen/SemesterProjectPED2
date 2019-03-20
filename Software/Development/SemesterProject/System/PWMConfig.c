@@ -117,17 +117,17 @@ void configurePWM(void)
     //Load duty on zero.
     EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
     EPwm2Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-    EPwm2Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+    EPwm3Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
 
     //No need to load duty on B.
     EPwm1Regs.CMPCTL.bit.LOADBMODE = CC_LD_DISABLE;
     EPwm2Regs.CMPCTL.bit.LOADBMODE = CC_LD_DISABLE;
-    EPwm2Regs.CMPCTL.bit.LOADBMODE = CC_LD_DISABLE;
+    EPwm3Regs.CMPCTL.bit.LOADBMODE = CC_LD_DISABLE;
 
     //Operating as double buffer. First load shadow and then write via shadow reg.
     EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
     EPwm2Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-    EPwm2Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+    EPwm3Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
 
     //The Action-qualifier output register A (AQCTLA) decides the final output value based on the CMPA value.
     //Since a triangular carrier is used, it has to be configured that way.

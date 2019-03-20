@@ -21,18 +21,13 @@
 //
 // Quasi-global variables definition
 //
-/*static struct dutyCycleListTag
-{
-    DutyCycle legA;
-    DutyCycle legB;
-    DutyCycle legC;
-}dutyCycleList;*/
+DutyCycleListType DutyCycleList;
 
 
 /*
  * dutyCycleList constructor and initialization.
  */
-void dutyConstructor(DutyCycle *dutyStruct)
+void dutyConstructor(DutyCycleListType *dutyStruct)
 {
     dutyStruct -> minDutyValue = MIN_DUTY_VALUE;
     dutyStruct -> maxDutyValue = MAX_DUTY_VALUE;
@@ -47,9 +42,7 @@ void dutyConstructor(DutyCycle *dutyStruct)
  */
 void initPWM(void)
 {
-    dutyConstructor(&dutyCycleList.legA);
-    dutyConstructor(&dutyCycleList.legB);
-    dutyConstructor(&dutyCycleList.legC);
+    dutyConstructor(&DutyCycleList);
 }
 
 /*
@@ -65,9 +58,9 @@ void assignDuty(float duty, DutyCycle *dutyStruct)
  * Function for internal use.
  * Function performs a linear regression to map the compare value.
  */
-void calculateDutyCompare(DutyCycle *dutyStruct)
+void calculateDutyCompare(DutyCycleListType *dutyListStruct, DutyCycle *dutyStruct)
 {
-    dutyStruct -> dutyCompare = dutyStruct -> minDutyCompare + (Uint16)((float)(dutyStruct -> maxDutyCompare - dutyStruct -> minDutyCompare) * (dutyStruct -> dutyValue - dutyStruct -> minDutyValue) / (dutyStruct -> maxDutyValue - dutyStruct -> minDutyValue));
+    dutyStruct -> dutyCompare = dutyListStruct -> minDutyCompare + (Uint16)((float)(dutyListStruct -> maxDutyCompare - dutyListStruct -> minDutyCompare) * (dutyStruct -> dutyValue - dutyListStruct -> minDutyValue) / (dutyListStruct -> maxDutyValue - dutyListStruct -> minDutyValue));
     //dutyStruct.dutyCompare = MAX_DUTY_COMPARE / 2; //For debugging purposes only (duty = 0.5);
 }
 
@@ -77,7 +70,7 @@ void calculateDutyCompare(DutyCycle *dutyStruct)
  */
 void assignDutyToComparatorA()
 {
-    EPwm1Regs.CMPA.half.CMPA = dutyCycleList.legA.dutyCompare;
+    EPwm1Regs.CMPA.half.CMPA = DutyCycleList.legA.dutyCompare;
 }
 
 
@@ -86,7 +79,7 @@ void assignDutyToComparatorA()
  */
 void assignDutyToComparatorB()
 {
-    EPwm2Regs.CMPA.half.CMPA = dutyCycleList.legB.dutyCompare;
+    EPwm2Regs.CMPA.half.CMPA = DutyCycleList.legB.dutyCompare;
 }
 
 
@@ -95,7 +88,7 @@ void assignDutyToComparatorB()
  */
 void assignDutyToComparatorC()
 {
-    EPwm3Regs.CMPA.half.CMPA = dutyCycleList.legC.dutyCompare;
+    EPwm3Regs.CMPA.half.CMPA = DutyCycleList.legC.dutyCompare;
 }
 
 
@@ -103,10 +96,10 @@ void assignDutyToComparatorC()
  * Function for internal use.
  * Later the struct containing the duty information gets updated.
  */
-void fillDutyStruct(float duty, DutyCycle *dutyStruct)
+void fillDutyStruct(float duty, DutyCycleListType *dutyListStruct, DutyCycle *dutyStruct)
 {
     assignDuty(duty, dutyStruct);
-    calculateDutyCompare(dutyStruct); //Transform duty to comparator.
+    calculateDutyCompare(dutyListStruct, dutyStruct); //Transform duty to comparator.
 }
 
 
@@ -117,7 +110,7 @@ void fillDutyStruct(float duty, DutyCycle *dutyStruct)
  */
 void setDutyA(float duty)
 {
-    fillDutyStruct(duty, &dutyCycleList.legA);
+    fillDutyStruct(duty, &DutyCycleList, &DutyCycleList.legA);
     assignDutyToComparatorA();
 }
 
@@ -129,8 +122,8 @@ void setDutyA(float duty)
  */
 void setDutyB(float duty)
 {
-    fillDutyStruct(duty, &dutyCycleList.legB);
-    assignDutyToComparatorC();
+    fillDutyStruct(duty, &DutyCycleList, &DutyCycleList.legB);
+    assignDutyToComparatorB();
 }
 
 
@@ -141,7 +134,7 @@ void setDutyB(float duty)
  */
 void setDutyC(float duty)
 {
-    fillDutyStruct(duty,  &dutyCycleList.legC);
+    fillDutyStruct(duty, &DutyCycleList,  &DutyCycleList.legC);
     assignDutyToComparatorC();
 }
 
@@ -163,7 +156,7 @@ void setAllDuties(float duty)
  */
 float readDutyA()
 {
-    return dutyCycleList.legA.dutyValue;
+    return DutyCycleList.legA.dutyValue;
 }
 
 /*
@@ -172,7 +165,7 @@ float readDutyA()
  */
 float readDutyB()
 {
-    return dutyCycleList.legB.dutyValue;
+    return DutyCycleList.legB.dutyValue;
 }
 
 /*
@@ -181,5 +174,5 @@ float readDutyB()
  */
 float readDutyC()
 {
-    return dutyCycleList.legC.dutyValue;
+    return DutyCycleList.legC.dutyValue;
 }

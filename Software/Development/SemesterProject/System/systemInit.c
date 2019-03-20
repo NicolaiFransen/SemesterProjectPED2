@@ -142,8 +142,6 @@ void systemInit(void)
     initPWM();
 
     startupSequenceFinishedFlag = 1;
-
-    setDutyA(50);
 }
 
 int startupSequenceFinished(void)

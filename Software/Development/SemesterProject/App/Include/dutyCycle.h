@@ -35,24 +35,27 @@
 typedef struct DutyCycleTag
 {
     float dutyValue;
-    float minDutyValue;
-    float maxDutyValue;
-
     Uint16 dutyCompare;
-    Uint16 minDutyCompare;
-    Uint16 maxDutyCompare;
-
 } DutyCycle;
 
-//
-// Quasi-global variables definition
-//
-static struct dutyCycleListTag
+
+typedef struct DutyCycleListTag
 {
     DutyCycle legA;
     DutyCycle legB;
     DutyCycle legC;
-}dutyCycleList;
+
+    float minDutyValue;
+    float maxDutyValue;
+
+    Uint16 minDutyCompare;
+    Uint16 maxDutyCompare;
+} DutyCycleListType;
+
+
+//
+// Quasi-global variables definition
+//
 
 typedef enum
 {
