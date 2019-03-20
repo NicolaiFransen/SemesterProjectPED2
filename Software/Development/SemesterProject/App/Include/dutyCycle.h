@@ -54,18 +54,6 @@ typedef struct DutyCycleListTag
 
 
 //
-// Quasi-global variables definition
-//
-
-typedef enum
-{
-    LEG_A,
-    LEG_B,
-    LEG_C,
-} InverterLeg;
-
-
-//
 // Function prototyping
 //
 void initPWM();
