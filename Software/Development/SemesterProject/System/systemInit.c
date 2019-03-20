@@ -121,6 +121,11 @@ void systemInit(void)
     configureGPIO();
 
     //
+    // Configure PWMs
+    //
+    configurePWM();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     //
     IER |= M_INT1;
@@ -136,11 +141,12 @@ void systemInit(void)
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 
+
     //
     //  App structures initialization
     //
     initDigitalInputs();
-
+    initPWM();
 
     startupSequenceFinishedFlag = 1;
 }
