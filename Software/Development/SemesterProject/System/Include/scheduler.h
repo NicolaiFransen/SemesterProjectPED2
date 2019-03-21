@@ -9,6 +9,7 @@
 #define SYSTEM_INCLUDE_SCHEDULER_H_
 
 #include "systemManager.h"
+#include "openLoopControlManager.h"
 #include <stddef.h>
 
 #define TIMER_PERIOD_US       50
@@ -36,6 +37,7 @@ void taskListInitialization(void);
 void scheduleTasks(void);
 void runTask(void (*functionPTR)());
 void task50us(void);
+void task100us(void);
 void task20ms(void);
 void updateTasksState(void);
 int endOfTaskListIsReached(int taskListIndex);
