@@ -17,17 +17,12 @@
 //
 #include "AnalogSignal.h"
 
-//
-// Quasi-global variables definition
-//
-#define ANALOG_EXECUTION_FREQ 20000
-
 /*
  * The analog signal constructor initialize all defined variables to the selected analog signal struct.
  * Furthermore it calls the method filterParameters() to calculate the necessary parameters for the filter.
  */
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, Uint16 adcChannel, int threshold[2])
+                       int cutoffFreq, Uint16 adcChannel, float threshold[2])
 {
     analogSignal->filterType = filterType;
     analogSignal->filterOrder = filterOrder;
@@ -39,6 +34,8 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
     analogSignal->threshold[1] = threshold[1];
 
     analogSignal->previousValue = 0;
+    analogSignal->filteredValue = 0;
+    analogSignal->maxValue = MAX_VALUE_REFERENCE;
 
     calculateFilterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
 }

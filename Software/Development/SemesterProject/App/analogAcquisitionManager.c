@@ -101,6 +101,36 @@ void calculateFilteredValue(void *signal, int size)
         filterADCValue(structPointer);
 }
 
+Uint16 getAnalogErrorStatus(void)
+{
+    AnalogSignal *structPointer;
+    AnalogSignal *initialMemoryPosition = &CurrentSignalList.currentMeasA;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(CurrentSignalList)/sizeof(AnalogSignal);
+
+    Uint16 errorStatus = 0;
+    int i = 0;
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+    {
+        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+            errorStatus |= 1<<i;
+
+        i++;
+    }
+
+    initialMemoryPosition = &AnalogSignalList.voltageMeas24;
+    finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+    {
+        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+            errorStatus |= 1<<i;
+
+        i++;
+    }
+
+    return errorStatus;
+}
+
 /*
  * This interrupt is used to trigger the ADC measurements
  */
@@ -121,6 +151,7 @@ cpu_timer1_isr(void)
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
+    readLowPrioritySignals();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
@@ -128,16 +159,74 @@ __interrupt void adc_isr(void)
     return;
 }
 
-/*float *getCurrentMeasurements(void)
+
+/*
+ * Interface functions to return filtered measurements
+ */
+void getCurrentMeasurements(float *currentMeasurement)
 {
-    float currentMeasurements[3];
-    currentMeasurements[0] = AnalogSignalList.currentMeasA.filteredValue;
-    currentMeasurements[1] = AnalogSignalList.currentMeasB.filteredValue;
-    currentMeasurements[2] = AnalogSignalList.currentMeasC.filteredValue;
+    *currentMeasurement = CurrentSignalList.currentMeasA.filteredValue;
+    currentMeasurement++;
+    *currentMeasurement = CurrentSignalList.currentMeasB.filteredValue;
+    currentMeasurement++;
+    *currentMeasurement = CurrentSignalList.currentMeasC.filteredValue;
 
-    return currentMeasurements;
-}*/
+}
 
+float getDCLinkMeasurement(void)
+{
+    return AnalogSignalList.voltageMeas36.filteredValue;
+}
+
+float getControlsupplyMeasurement(void)
+{
+    return AnalogSignalList.voltageMeas24.filteredValue;
+}
+
+float getTorqueReferenceSliderMeasurement(void)
+{
+    return AnalogSignalList.sliderPotRight.filteredValue;
+}
+
+float getBrakeReferenceSliderMeasurent(void)
+{
+    return AnalogSignalList.sliderPotLeft.filteredValue;
+}
+
+float getTorqueReferencePedalMeasurement(void)
+{
+    return AnalogSignalList.connectorPot1.filteredValue;
+}
+
+float getBrakeReferencePedalMeasurement(void)
+{
+    return AnalogSignalList.connectorPot2.filteredValue;
+}
+
+float getThermometer1Measurement(void)
+{
+    return AnalogSignalList.thermalMeas1.filteredValue;
+}
+
+float getThermometer2Measurement(void)
+{
+    return AnalogSignalList.thermalMeas2.filteredValue;
+}
+
+float getRotaryPot1Measurement(void)
+{
+    return AnalogSignalList.rotaryPot1.filteredValue;
+}
+
+float getRotaryPot2Measurement(void)
+{
+    return AnalogSignalList.rotaryPot2.filteredValue;
+}
+
+float getRotaryPot3Measurement(void)
+{
+    return AnalogSignalList.rotaryPot3.filteredValue;
+}
 
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
@@ -157,15 +246,15 @@ void createAnalogSignals(void)
 {
     // Definition of filter parameters
     char filterType = 'L';
-    int filterOrder = 1, filterFreq = 580;
+    int filterOrder = 1, filterFreq = 50;
 
     // Definition of thresholds
-    int currentThreshold[2] = {300, 3000};
-    int voltageThreshold[2] = {300, 3000};
-    int thermalThreshold[2] = {300, 3000};
-    int sliderPotThreshold[2] = {300, 3000};
-    int rotaryPotThreshold[2] = {300, 3000};
-    int connectorPotThreshold[2] = {300, 3000};
+    float currentThreshold[2] = {0.3, 0.5};
+    float voltageThreshold[2] = {0.3, 3.1};
+    float thermalThreshold[2] = {0.2, 2.5};
+    float sliderPotThreshold[2] = {0.2, 3.0};
+    float rotaryPotThreshold[2] = {0.2, 0.5};
+    float connectorPotThreshold[2] = {0.2, 3.0};
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;

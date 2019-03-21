@@ -16,6 +16,8 @@
 #include "math.h"
 #include "Constants.h"
 
+#define MAX_VALUE_REFERENCE     3.3
+#define ANALOG_EXECUTION_FREQ   20000
 
 //
 // Object declaration
@@ -32,15 +34,15 @@ typedef struct AnalogSignalTag
     float previousValue;            // Filtered value corresponding to the previous measured voltage
     Uint16 ADCValue;                // Raw digital ADC reading
     Uint16 adcChannel;              // ADC channel for the signal
-    int threshold[2];               // Maximum and minimum thresholds. Used for error handling.
+    float threshold[2];             // Maximum and minimum thresholds. Used for error handling.
+    float maxValue;                 // Maximum value for reference use
 } AnalogSignal;
 
 //
 // Method prototyping
 //
-
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, Uint16 adcChannel, int threshold[2]);
+                       int cutoffFreq, Uint16 adcChannel, float threshold[2]);
 void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq);
 void setFilteredValue(AnalogSignal *analogSignal);
 void readADCValue(AnalogSignal *analogSignal);
