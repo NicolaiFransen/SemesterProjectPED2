@@ -15,15 +15,15 @@
 //#include "analogSignal.h"
 #include "dutyCycle.h"
 #include "../../System/Include/PWMConfig.h"
+#include "analogAcquisitionManager.h"
+#include "Constants.h"
 
 
 //
 //Defines
 //
 #define MAX_STATOR_FREQ 54 //Hz
-#define PI  3.14159265
-#define SINE_LUT_LENGTH  100
-#define MA  1
+#define SINE_LUT_LENGTH  1002 //So it's divisible by 3 and phases are accurately shifted.
 
 
 //
