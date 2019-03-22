@@ -101,6 +101,11 @@ void calculateFilteredValue(void *signal, int size)
         filterADCValue(structPointer);
 }
 
+/*
+ * Returns the error status of the analog measurements.
+ * The function returns a '1' in the position of the signal
+ * if the measurement is outside the threshold values
+ */
 Uint16 getAnalogErrorStatus(void)
 {
     AnalogSignal *structPointer;
