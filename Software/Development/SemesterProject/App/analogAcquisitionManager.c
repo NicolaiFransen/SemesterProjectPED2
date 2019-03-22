@@ -162,6 +162,11 @@ __interrupt void adc_isr(void)
 
 /*
  * Interface functions to return filtered measurements
+ * It's used as followed:
+ * float currents[3];
+ * getCurrentMeasurements(&currents);
+ *
+ * Where 'currents' then will be an array of the currents as {IA, IB, IC}.
  */
 void getCurrentMeasurements(float *currentMeasurement)
 {
