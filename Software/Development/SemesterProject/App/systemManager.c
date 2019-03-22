@@ -66,4 +66,3 @@ SysMgrState readSystemState(void)
 //
 // End of File
 //
-
