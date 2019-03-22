@@ -15,6 +15,7 @@
     <DEPENDENCIES>
       <COMP relation="OwnedBehavior">
         <COMPID name="State Machine" mc="Standard.StateMachine" uid="75549698-ae8b-41d9-957d-2db17d0e4c36"/>
+        <COMPID name="Analog Acquisition Manager" mc="Standard.StateMachine" uid="0924ef7f-ad36-4632-ab5e-66685c0591b0"/>
       </COMP>
       <COMP relation="OwnedElement">
         <COMPID name="signal" mc="Standard.Class" uid="29fb42a8-f67e-4139-ada4-ebb8fb236157"/>
