@@ -75,10 +75,33 @@ void readDigitalInputs(void)
 /*
  * Abstraction functions
  */
+int isRegenBrakingPushbuttonEnabled(void)
+{
+    return digitalInputList.regenBrakingPushbutton.state;
+}
 
+int isTorqueReferencePushButtonEnabled(void)
+{
+    return digitalInputList.regenBrakingPushbutton.state;
+}
+
+int isOpenClosedLoopSelectionSwitchEnabled(void)
+{
+    return digitalInputList.openClosedLoopSelectionSwitch.state;
+}
 int isPowerSwitchEnabled(void)
 {
     return digitalInputList.powerSwitch.state;
+}
+
+int isCruiseControlPushbuttonEnabled(void)
+{
+    return digitalInputList.cruiseControlPushbutton.state;
+}
+
+int isAntiSlipPushbuttonEnabled(void)
+{
+    return digitalInputList.antiSlipPushbutton.state;
 }
 
 //
