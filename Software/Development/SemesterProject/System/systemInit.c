@@ -176,29 +176,6 @@ int startupSequenceFinished(void)
 
 
 //
-
-// cpu_timer0_isr -
-//
-__interrupt void
-cpu_timer0_isr(void)
-{
-    CpuTimer0.InterruptCount++;
-
-    //
-    // Toggle GPIO34 once per 500 milliseconds
-    //
-    GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
-
-    //
-    // Acknowledge this interrupt to receive more interrupts from group 1
-    //
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
-}
-
-
-
-
-//
 // End of File
 //
 
