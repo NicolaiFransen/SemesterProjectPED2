@@ -20,58 +20,49 @@
 
 #include "Include/systemManager.h"
 
+
 //
 // Quasi-global variables definition
 //
 
-static SysMgrState SystemState = STARTUP;
+static SysMgrState systemState = STARTUP;
 
 
-void systemManager(void)
+void manageSystem(void)
 {
 
-    switch (SystemState)
+    switch (systemState)
     {
         case STARTUP:
         {
-
-            if(startupSequenceFinished()) SystemState = STANDBY;
-
-
-            for(;;)
-            {
-
-            }
+            if(startupSequenceFinished()) systemState = STANDBY;
         }break;
 
         case STANDBY:
         {
-            for(;;);
-
-
+            if(isPowerSwitchEnabled()) systemState = RUNNING;
         }break;
-//
-//        case RUNNING:
-//        {
-//
-//        }break;
-//
+
+        case RUNNING:
+        {
+            if(!isPowerSwitchEnabled()) systemState = STANDBY;
+           // if(errorDetected()) SystemState = ERROR;
+        }break;
+
 //        case ERROR:
 //        {
-//
+//            if(errorIsAcknowledged()) systemState = STANDBY;
 //        }break;
     }
-
+    readDigitalInputs();
 }
-
 
 SysMgrState readSystemState(void)
 {
-    return SystemState;
+    return systemState;
 }
 
 
 //
 // End of File
 //
-
