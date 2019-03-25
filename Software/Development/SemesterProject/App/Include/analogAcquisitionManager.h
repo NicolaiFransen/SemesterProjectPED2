@@ -85,5 +85,7 @@ float getRotaryPot1Measurement(void);
 float getRotaryPot2Measurement(void);
 float getRotaryPot3Measurement(void);
 
+float getMaxReferenceADC(void);
+
 
 #endif /* APP_INCLUDE_ANALOGACQUISITIONMANAGER_H_ */

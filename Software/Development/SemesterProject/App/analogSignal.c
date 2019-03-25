@@ -35,7 +35,7 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
 
     analogSignal->previousValue = 0;
     analogSignal->filteredValue = 0;
-    analogSignal->maxValue = MAX_VALUE_REFERENCE;
+    analogSignal->maxValue = MAX_VALUE_ADC;
 
     calculateFilterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
 }

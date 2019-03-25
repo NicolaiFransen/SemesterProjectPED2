@@ -238,6 +238,11 @@ float getRotaryPot3Measurement(void)
     return AnalogSignalList.rotaryPot3.filteredValue;
 }
 
+
+float getMaxReferenceADC(void)
+{
+    return MAX_VALUE_ADC;
+}
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
  */
