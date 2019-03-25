@@ -37,8 +37,8 @@ void systemInit(void);
 //
 void main(void)
 {
-    systemInit();
     taskListInitialization();
+    systemInit();
     scheduleTasks();
 }
 

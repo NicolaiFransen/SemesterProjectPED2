@@ -22,15 +22,15 @@
 //
 //Defines
 //
-#define MAX_STATOR_FREQ 54 //Hz
+#define MAX_STATOR_FREQ 58 //Hz
 #define SINE_LUT_LENGTH  1002 //So it's divisible by 3 and phases are accurately shifted.
 
 
 //
 // Function prototyping
 //
-void setConstantDutyFromPot(void);
-void setFrequencyFromPot(void);
+void setConstantDutyFromReference(void);
+void openLoopVFControl(void);
 
 
 #endif /* APP_OPENLOOPCONTROLMANAGER_H_ */
