@@ -14,7 +14,7 @@
 //
 // Function definition
 //
-int executeControl(void);
+void executeControl(void);
 void disableDutyCycles(void);
 int isOpenLoopControlSelected(void);
 
