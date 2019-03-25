@@ -13,13 +13,19 @@
  */
 void executeControl(void)
 {
-    if (isOpenLoopControlSelected())
-        // Call open-loop function
-        setFrequencyFromPot();
+    if (readSystemState() == RUNNING)
+    {
+        if (isOpenLoopControlSelected())
+            // Call open-loop function
+            setFrequencyFromPot();
 
-    // else
-        // Call closed-loop function
-        // runClosedLoopControl();
+        // else
+            // Call closed-loop function
+            // runClosedLoopControl();
+    }
+    else
+        errorReactionControl();
+
 }
 
 /*
@@ -33,9 +39,28 @@ void disableDutyCycles(void)
 }
 
 /*
+ * This function disables the PWM driver circuit, by clearing the enable signal.
+ */
+void disablePWMDrivers(void)
+{
+    // Set the enable output to 0
+    GpioDataRegs.GPACLEAR.bit.GPIO8 = 1;
+}
+
+/*
  * This function will return the state of the open-loop/closed-loop switch.
  */
 int isOpenLoopControlSelected(void)
 {
     return isOpenClosedLoopSelectionSwitchEnabled();
+}
+
+/*
+ * This function will be called when system state is not in "Running"
+ */
+void errorReactionControl(void)
+{
+    disableDutyCycles();
+    disablePWMDrivers();
+    // restartControlVariables();  Uncomment when created under  closedLoopControlManager
 }
