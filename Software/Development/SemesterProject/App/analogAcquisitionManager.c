@@ -239,9 +239,9 @@ float getRotaryPot3Measurement(void)
 }
 
 
-float getMaxReferenceValue(void)
+float getMaxReferenceADC(void)
 {
-    return MAX_VALUE_REFERENCE;
+    return MAX_VALUE_ADC;
 }
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
