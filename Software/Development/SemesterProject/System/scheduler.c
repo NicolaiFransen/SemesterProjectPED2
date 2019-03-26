@@ -76,7 +76,7 @@ void runTask(void (*functionPTR)())
  */
 void task100us(void)
 {//running at switching 10kHz (update with switching frequency);
-    openLoopVFControl();
+    return;
 }
 void task50us(void)
 {
