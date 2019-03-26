@@ -43,8 +43,13 @@ void configureGPIO(void)
      * Output pins configuration
      */
 //    Configure GPIO34 as a GPIO output pin
+    // GPIO8 is enable PWM drivers
+    GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;
+
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 0;
     GpioCtrlRegs.GPADIR.bit.GPIO18 = 1;
+
     GpioCtrlRegs.GPBMUX1.bit.GPIO34 = 0;
     GpioCtrlRegs.GPBDIR.bit.GPIO34 = 1;
 

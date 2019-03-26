@@ -80,13 +80,14 @@ void task100us(void)
 }
 void task50us(void)
 {
-    return;
+    executeControl();
 }
 
 void task20ms(void)
 {
     manageSystem();
     readDigitalInputs();
+    readLowPrioritySignals();
 }
 
 //

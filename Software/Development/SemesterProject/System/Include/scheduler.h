@@ -10,6 +10,7 @@
 
 #include "systemManager.h"
 #include "openLoopControlManager.h"
+#include "controlTask.h"
 #include <stddef.h>
 
 #define TIMER_PERIOD_US       50
