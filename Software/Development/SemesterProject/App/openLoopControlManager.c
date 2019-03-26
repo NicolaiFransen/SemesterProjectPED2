@@ -41,6 +41,9 @@ int16 mapInt(int16 x, int16 xMax, int16 yMax)
 }
 
 
+
+
+
 /*
  * This function sets all the PWM signals to a constant value
  * obtained from a reference.
@@ -79,17 +82,14 @@ void setConstantDutyFromReference(void)
 }
 
 
-//
-//Function called at switching frequency.
-//It sets VF control on the motor according to the torque reference potentiometer.
-//
-void openLoopVFControl(void)
+
+//Functions for VF control.
+
+/*
+ * Obtain the stator frequency to be set.
+ */
+float getStatorFreq()
 {
-    float statorFreq;
-    float stepsPerCycle;
-    float dutyA, dutyB, dutyC;
-    int phaseToUpdate = 0;
-    float vfFactor;
     float torqueRef, maxRef;
 
     /*  INCLUDE THIS WHEN EVERYTHING IS ADDED
@@ -113,27 +113,50 @@ void openLoopVFControl(void)
 
     }*/
 
-
+    //Remove next two lines when previous is uncommented.
     torqueRef = getTorqueReferenceSliderMeasurement();
     maxRef = 3.3;//getMaximumReferenceADC();
 
     //Calculate at what frequency the stator should go according to input.
-    statorFreq = mapFloat(torqueRef, maxRef, MAX_STATOR_FREQ);
+    return mapFloat(torqueRef, maxRef, MAX_STATOR_FREQ);
+}
 
-    //VF factor value. This value is calculated assuming that at max
-    //frequency, the sine goes all the way up to battery voltage.
-    vfFactor = statorFreq * vfConst;
+
+/*
+ * VF factor will make the voltage level go down at lower frequencies.
+ */
+float getvfFactor(float statorFreq)
+{
+    return statorFreq * vfConst;
+}
+
+
+/*
+ * The values of the phases should change in every iteration.
+ */
+void updatePhases(float statorFreq)
+{
+    float stepsPerCycle;
+    int phaseToUpdate = 0;
 
     //The higher the frequency the more steps to advance in the LUT per cycle.
     stepsPerCycle = statorFreq * SINE_LUT_LENGTH / SW_FREQ;
 
-    //Update current cycle position in all phases.
     currentCyclePos[phaseToUpdate] += stepsPerCycle;
     for (phaseToUpdate = 0; phaseToUpdate < 3; phaseToUpdate++)
     {
         currentCyclePos[phaseToUpdate] = currentCyclePos[0] + phaseToUpdate * SINE_LUT_LENGTH/3;
         if (currentCyclePos[phaseToUpdate] >= SINE_LUT_LENGTH) {currentCyclePos[phaseToUpdate] -= SINE_LUT_LENGTH;}
     }
+}
+
+
+/*
+ * Set the correct duties to each legs.
+ */
+void setDuties(float vfFactor)
+{
+    float dutyA, dutyB, dutyC;
 
     //Calculate duty value.
     dutyA = vfFactor * sineLut[(int16) currentCyclePos[0]]/10;
@@ -144,4 +167,23 @@ void openLoopVFControl(void)
     setDutyA(dutyA);
     setDutyB(dutyB);
     setDutyC(dutyC);
+}
+
+
+//
+//Function called at switching frequency.
+//It sets VF control on the motor according to the torque reference potentiometer.
+//
+void openLoopVFControl(void)
+{
+    float statorFreq;
+    float vfFactor;
+
+    statorFreq = getStatorFreq();
+
+    vfFactor = getvfFactor(statorFreq);
+
+    updatePhases(statorFreq); //Update current cycle position in all phases.
+
+    setDuties(vfFactor);
 }
