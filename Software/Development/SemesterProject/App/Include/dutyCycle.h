@@ -64,5 +64,6 @@ void setAllDuties(float);
 float readDutyA();
 float readDutyB();
 float readDutyC();
+float readMaxDuty();
 
 #endif /* APP_DUTYCYCLE_H_ */
