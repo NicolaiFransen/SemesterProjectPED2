@@ -17,7 +17,7 @@ void executeControl(void)
     {
         if (isOpenLoopControlSelected())
             // Call open-loop function
-            setFrequencyFromPot();
+            openLoopVFControl();
 
         // else
             // Call closed-loop function
