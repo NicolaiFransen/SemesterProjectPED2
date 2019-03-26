@@ -70,13 +70,14 @@ void runTask(void (*functionPTR)())
  */
 void task50us(void)
 {
-    return;
+    executeControl();
 }
 
 void task20ms(void)
 {
     manageSystem();
     readDigitalInputs();
+    readLowPrioritySignals();
 }
 
 //

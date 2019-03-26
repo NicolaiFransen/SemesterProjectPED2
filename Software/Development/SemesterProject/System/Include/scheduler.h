@@ -9,6 +9,7 @@
 #define SYSTEM_INCLUDE_SCHEDULER_H_
 
 #include "systemManager.h"
+#include "controlTask.h"
 #include <stddef.h>
 
 #define TIMER_PERIOD_US       50

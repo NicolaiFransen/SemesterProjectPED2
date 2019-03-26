@@ -156,7 +156,6 @@ cpu_timer1_isr(void)
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
-    readLowPrioritySignals();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
