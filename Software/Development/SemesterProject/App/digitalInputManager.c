@@ -20,7 +20,6 @@
 #include "digitalInput.h"
 #include "../System/Include/GPIOConfig.h"
 
-
 //
 // Quasi-global variables definition
 //
@@ -75,6 +74,7 @@ void readDigitalInputs(void)
 /*
  * Abstraction functions
  */
+
 int isRegenBrakingPushbuttonEnabled(void)
 {
     return digitalInputList.regenBrakingPushbutton.state;
