@@ -44,15 +44,47 @@ void configureGPIO(void)
      */
 //    Configure GPIO34 as a GPIO output pin
     // GPIO8 is enable PWM drivers
+    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO5 = 1;
+
     GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;
     GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;
+
+    GpioCtrlRegs.GPAMUX1.bit.GPIO12 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO12 = 1;
+
+    GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO13 = 1;
+
+    GpioCtrlRegs.GPAMUX2.bit.GPIO16 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO16 = 1;
+
+    GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO17 = 1;
 
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 0;
     GpioCtrlRegs.GPADIR.bit.GPIO18 = 1;
 
+    GpioCtrlRegs.GPAMUX2.bit.GPIO22 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO22 = 1;
+
+    GpioCtrlRegs.GPBMUX1.bit.GPIO33 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO33 = 1;
+
     GpioCtrlRegs.GPBMUX1.bit.GPIO34 = 0;
     GpioCtrlRegs.GPBDIR.bit.GPIO34 = 1;
 
+    GpioCtrlRegs.GPBMUX1.bit.GPIO44 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO44 = 1;
+
+    GpioCtrlRegs.GPBMUX2.bit.GPIO50 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO50 = 1;
+
+    GpioCtrlRegs.GPBMUX2.bit.GPIO51 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO51 = 1;
+
+    GpioCtrlRegs.GPBMUX2.bit.GPIO55 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO55 = 1;
     /*
      * Input pins configuration
      */
