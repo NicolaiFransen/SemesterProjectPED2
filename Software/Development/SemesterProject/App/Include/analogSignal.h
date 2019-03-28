@@ -16,7 +16,7 @@
 #include "math.h"
 #include "Constants.h"
 
-#define MAX_VALUE_REFERENCE     3.3
+#define MAX_VALUE_ADC     3.3
 #define ANALOG_EXECUTION_FREQ   20000
 
 //
@@ -35,7 +35,7 @@ typedef struct AnalogSignalTag
     Uint16 ADCValue;                // Raw digital ADC reading
     Uint16 adcChannel;              // ADC channel for the signal
     float threshold[2];             // Maximum and minimum thresholds. Used for error handling.
-    float maxValue;                 // Maximum value for reference use
+    float maxValue;                 // Maximum ADC value for reference use
 } AnalogSignal;
 
 //

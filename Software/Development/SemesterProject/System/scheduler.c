@@ -23,6 +23,7 @@
 static enum taskListTag
 {
     task50usItem,
+    task100usItem,
     task20msItem,
     task200msItem,
     numberOfTasks
@@ -36,6 +37,11 @@ void taskListInitialization(void)
     taskList[task50usItem].taskState = INACTIVE;
     taskList[task50usItem].cyclicity = 50;
     taskList[task50usItem].timeLeft = 50;
+
+    taskList[task100usItem].functionPointer = task100us;
+    taskList[task100usItem].taskState = INACTIVE;
+    taskList[task100usItem].cyclicity = 100;
+    taskList[task100usItem].timeLeft = 100;
 
     taskList[task20msItem].functionPointer = task20ms;
     taskList[task20msItem].taskState = READY;
@@ -74,15 +80,20 @@ void runTask(void (*functionPTR)())
 /*
  * Tasks definition
  */
+void task100us(void)
+{//running at switching 10kHz (update with switching frequency);
+    return;
+}
 void task50us(void)
 {
-    return;
+    executeControl();
 }
 
 void task20ms(void)
 {
     manageSystem();
     readDigitalInputs();
+    readLowPrioritySignals();
 }
 
 void task200ms(void)

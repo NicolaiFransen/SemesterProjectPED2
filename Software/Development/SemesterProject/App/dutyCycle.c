@@ -176,3 +176,11 @@ float readDutyC()
 {
     return DutyCycleList.legC.dutyValue;
 }
+
+/*
+ * Maximum value of duty cycle is sent.
+ */
+float readMaxDuty()
+{
+    return DutyCycleList.maxDutyValue;
+}

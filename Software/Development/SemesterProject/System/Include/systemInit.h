@@ -12,6 +12,7 @@
 //Includes
 //
 #include "../../App/Include/dutyCycle.h"
+#include "../../App/Include/openLoopControlManager.h"
 
 //
 // Function Prototypes statements for functions found within this file.

@@ -10,6 +10,8 @@
 
 #include "systemManager.h"
 #include "communicationManager.h"
+#include "openLoopControlManager.h"
+#include "controlTask.h"
 #include <stddef.h>
 
 #define TIMER_PERIOD_US       50
@@ -38,6 +40,7 @@ void scheduleTasks(void);
 void runTask(void (*functionPTR)());
 
 void task50us(void);
+void task100us(void);
 void task20ms(void);
 void task200ms(void);
 
