@@ -55,67 +55,136 @@ void initDigitalOutputs(void)
 /*
  * These are the interface function to be used to set the specific output
  */
-void setAntiSlipLED(LEDStatus state)
+void setAntiSlipLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.antiSlipLED, state);
 }
 
-void setCruiseControlLED(LEDStatus state)
+void setCruiseControlLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.cruiseControlLED, state);
 }
 
-void setRegenerativeBrakingLED(LEDStatus state)
+void setRegenerativeBrakingLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.regenerativeBrakingLED, state);
 }
 
-void setTorqueReferenceSliderLED(LEDStatus state)
+void setTorqueReferenceSliderLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.torqueReferenceSliderLED, state);
 }
 
-void setTorqueReferencePedalLED(LEDStatus state)
+void setTorqueReferencePedalLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.torqueReferencePedalLED, state);
 }
 
-void setTorqueReferenceUARTLED(LEDStatus state)
+void setTorqueReferenceUARTLED(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.torqueReferenceUARTLED, state);
 }
 
-void setLed9(LEDStatus state)
+void setLED9(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED9, state);
 }
 
-void setLED10(LEDStatus state)
+void setLED10(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED10, state);
 }
 
-void setLED17(LEDStatus state)
+void setLED17(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED17, state);
 }
 
-void setLED18(LEDStatus state)
+void setLED18(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED18, state);
 }
 
-void setLED19(LEDStatus state)
+void setLED19(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED19, state);
 }
 
-void setLED20(LEDStatus state)
+void setLED20(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.LED20, state);
 }
 
-void setEnablePWM(LEDStatus state)
+void setEnablePWM(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.enablePWM, state);
+}
+
+/*
+ * These are the interface function to be used to get the state of
+ * the specific output
+ */
+int getAntiSlipLEDState(void)
+{
+    return digitalOutputList.antiSlipLED.state;
+}
+
+int getCruiseControlLEDState(void)
+{
+    return digitalOutputList.cruiseControlLED.state;
+}
+
+int getRegenerativeBrakingLEDState(void)
+{
+    return digitalOutputList.regenerativeBrakingLED.state;
+}
+
+int getTorqueReferenceSliderLEDState(void)
+{
+    return digitalOutputList.torqueReferenceSliderLED.state;
+}
+
+int getTorqueReferencePedalLEDState(void)
+{
+    return digitalOutputList.torqueReferencePedalLED.state;
+}
+
+int getTorqueReferenceUARTLEDState(void)
+{
+    return digitalOutputList.torqueReferenceUARTLED.state;
+}
+
+int getLED9State(void)
+{
+    return digitalOutputList.LED9.state;
+}
+
+int getLED10State(void)
+{
+    return digitalOutputList.LED10.state;
+}
+
+int getLED17State(void)
+{
+    return digitalOutputList.LED17.state;
+}
+
+int getLED18State(void)
+{
+    return digitalOutputList.LED18.state;
+}
+
+int getLED19State(void)
+{
+    return digitalOutputList.LED19.state;
+}
+
+int getLED20State(void)
+{
+    return digitalOutputList.LED20.state;
+}
+
+int getEnablePWMState(void)
+{
+    return digitalOutputList.enablePWM.state;
 }

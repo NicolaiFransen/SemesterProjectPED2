@@ -17,7 +17,7 @@ typedef enum
 {
     OFF,
     ON
-} LEDStatus;
+} digitalOutputStatus;
 
 //
 // Object declaration
@@ -25,14 +25,14 @@ typedef enum
 typedef struct DigitalOutputTag
 {
     unsigned char pin:6;
-    LEDStatus state;
+    digitalOutputStatus state;
 } DigitalOutput;
 
 //
 // Function prototyping
 //
 void digitalOutput_Constructor(DigitalOutput *output, int pin);
-void setDigitalOutput(DigitalOutput *output, LEDStatus state);
+void setDigitalOutput(DigitalOutput *output, digitalOutputStatus state);
 void setDigitalOutputHigh(DigitalOutput *output);
 void setDigitalOutputLow(DigitalOutput *output);
 
