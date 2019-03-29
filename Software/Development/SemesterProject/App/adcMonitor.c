@@ -12,7 +12,7 @@
 #include "adcMonitor.h"
 #include "DSP28x_Project.h"
 
-error areAdcMeasurementsWithinThresholds(void)
+errorStatus areAdcMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
     Uint16 errorStatusPosition;
@@ -21,13 +21,13 @@ error areAdcMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ADC_ERROR;
+            return ERROR;
     }
-    return NO_ADC_ERROR;
+    return NO_ERROR;
 }
 
 
-error areBatteryMeasurementsWithinThresholds(void)
+errorStatus areBatteryMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
     Uint16 errorStatusPosition;
@@ -36,11 +36,11 @@ error areBatteryMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ADC_ERROR;
+            return ERROR;
     }
-    return NO_ADC_ERROR;
+    return NO_ERROR;
 }
-error areCurrentMeasurementsWithinThresholds(void)
+errorStatus areCurrentMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
     Uint16 errorStatusPosition;
@@ -49,7 +49,7 @@ error areCurrentMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ADC_ERROR;
+            return ERROR;
     }
-    return NO_ADC_ERROR;
+    return NO_ERROR;
 }

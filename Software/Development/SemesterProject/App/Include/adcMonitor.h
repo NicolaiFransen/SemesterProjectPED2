@@ -16,15 +16,15 @@
 
 typedef enum
 {
-    ADC_ERROR,
-    NO_ADC_ERROR,
+    ERROR,
+    NO_ERROR,
     IDLE
-} error;
+} errorStatus;
 //
 // Function prototyping
 //
-error areAdcMeasurementsWithinThresholds(void);
-error areBatteryMeasurementsWithinThresholds(void);
-error areCurrentMeasurementsWithinThresholds(void);
+errorStatus areAdcMeasurementsWithinThresholds(void);
+errorStatus areBatteryMeasurementsWithinThresholds(void);
+errorStatus areCurrentMeasurementsWithinThresholds(void);
 
 #endif /* APP_INCLUDE_ADCMONITOR_H_ */
