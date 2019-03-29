@@ -144,6 +144,7 @@ void systemInit(void)
     initDigitalInputs();
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
+    initializeGUIPushbuttonsStructure();
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

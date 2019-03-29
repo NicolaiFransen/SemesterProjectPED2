@@ -13,7 +13,7 @@
  *  Now there are some variables that the user might modify in the GUI, like
  *  a torque reference, in that case the communication will follow the next:
  *                  GUI ---->COmmunicationManager --> ReferenceHandler
- *  In this case, whenever the reference handler calls getGUIAnalogSignals()
+ *  In this case, whenever the reference handler calls getGUISignals()
  *  a struct containing all the variables is returned.
  *
  *  Now the system is able to:
@@ -25,7 +25,7 @@
  *          ++closed loop control ----> To be developed
  *          ++ErrorMgr            ----> To be developed
  *      *Get the values from GUI and allow the read from other software components
- *          **struct GUIAnalogSignalsTag getGUIAnalogSignals(void)
+ *          **struct GUISignalsTag getGUISignals(void)
  */
 
 #include "communicationManager.h"
@@ -43,36 +43,35 @@ volatile SysMgrState COMMS_SysMgrState;
     //DigitalInputManager
 volatile int COMMS_PowerEnabledSwitch;
 
-
 //Variables updated by GUI
 volatile float COMMS_GUITorqueRef, COMMS_GUISpeedRef, COMMS_GUIBrakeRef;
-volatile int COMMS_GUICruiseControlEnabled, COMMS_GUIReferenceSourcepushbutton;
+volatile int COMMS_GUIReferenceTypepushbutton, COMMS_GUIReferenceSourcepushbutton;
+volatile int COMMS_GUIspeedDecreasePushButton, COMMS_GUIspeedIncreasePushButton;
 
 //Support variables for GUI
 volatile int COMMS_TorqueReferenceSliderEnabled, COMMS_TorqueReferenceSliderDisabled;
 
 // Quasi-Global variables
-static struct GUIAnalogSignalsTag
-{
-    float TorqueReference;
-    float SpeedReference;
-    float BrakeReference;
-    int CruiseControlEnabled;
-    int ReferenceSourcePushbutton;
-}GUIAnalogSignals;
+static GUISignalsTag GUISignals;
+static struct GUIPushbuttonListTag GUIPushButtonList;
 
 /*
  * This function gathers the variables from the GUI to be used in other SWC
  *                      GUI ---> CommunicationMgr ---> SWC
  */
-struct GUIAnalogSignalsTag getGUIAnalogSignals(void)
+GUISignalsTag getGUISignals(void)
 {
-    GUIAnalogSignals.TorqueReference = COMMS_GUITorqueRef;
-    GUIAnalogSignals.SpeedReference = COMMS_GUISpeedRef;
-    GUIAnalogSignals.BrakeReference = COMMS_GUIBrakeRef;
-    GUIAnalogSignals.ReferenceSourcePushbutton = COMMS_GUIReferenceSourcepushbutton;
-    GUIAnalogSignals.CruiseControlEnabled = COMMS_GUICruiseControlEnabled;
-    return GUIAnalogSignals;
+    GUISignals.TorqueReference = COMMS_GUITorqueRef;
+    GUISignals.SpeedReference = COMMS_GUISpeedRef;
+    GUISignals.BrakeReference = COMMS_GUIBrakeRef;
+    GUISignals.ReferenceSourcePushbutton = GUIPushButtonList.referenceSourcePushButton.pushbuttonHasBeenPressed;
+    GUISignals.ReferenceTypePushbutton = GUIPushButtonList.referenceTypePushButton.pushbuttonHasBeenPressed;
+    GUISignals.SpeedIncreasePushbutton = GUIPushButtonList.speedIncreasePushButton.pushbuttonHasBeenPressed;
+    GUISignals.SpeedDecreasePushbutton = GUIPushButtonList.speedDecreasePushButton.pushbuttonHasBeenPressed;
+
+    restartPushbuttonsValue();
+
+    return GUISignals;
 }
 
 /*
@@ -85,9 +84,9 @@ void manageCommunications(void)
     getAnalogSignals();
     performGUISideTasks();
     getDigitalSignals();
-//    getErrorSignals();    todo
-//    getReferenceHandlerSignals(); todo
-//    getClosedLoopControlSignals(); todo
+//    getErrorSignals();                todo
+//    getReferenceHandlerSignals();     todo
+//    getClosedLoopControlSignals();    todo
 }
 
 
@@ -111,7 +110,7 @@ void getAnalogSignals(void)
     COMMS_DClinkVoltage = getDCLinkMeasurement();
     COMMS_ControlSupplyVoltage = getControlsupplyMeasurement();
     COMMS_PCBTorqueReference = getTorqueReferenceSliderMeasurement();
-    COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurent();
+//    COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurement();
     COMMS_PedalTorqueReference = getTorqueReferencePedalMeasurement();
     COMMS_PedalBrakeReference = getBrakeReferencePedalMeasurement();
     COMMS_Thermometer1 = getThermometer1Measurement();
@@ -125,8 +124,55 @@ void getDigitalSignals(void)
 
 void performGUISideTasks(void)
 {
-    COMMS_TorqueReferenceSliderEnabled = COMMS_GUICruiseControlEnabled;
-    COMMS_TorqueReferenceSliderDisabled = !COMMS_GUICruiseControlEnabled;
+    COMMS_TorqueReferenceSliderEnabled = torqueControlIsEnabled();
+    COMMS_TorqueReferenceSliderDisabled = !torqueControlIsEnabled();
+    handleGUIPushbuttons();
 }
 
+void initializeGUIPushbuttonsStructure(void)
+{
+    GUIPushbuttonTag *structIterator;
+    GUIPushbuttonTag *startPosition = &GUIPushButtonList.speedIncreasePushButton;
+    GUIPushbuttonTag *finalPosition = startPosition + sizeof(GUIPushButtonList)/sizeof(GUIPushbuttonTag);
+    for (structIterator = startPosition; startPosition < finalPosition; structIterator++)
+    {
+        structIterator->previousValue = 0;
+    }
+}
+
+void handleGUIPushbuttons(void)
+{
+    updatePushButtonList();
+    handlePushbuttonsPress();
+}
+
+void updatePushButtonList(void)
+{
+    GUIPushButtonList.referenceSourcePushButton.GUIValue = COMMS_GUIReferenceSourcepushbutton;
+    GUIPushButtonList.referenceTypePushButton.GUIValue = COMMS_GUIReferenceTypepushbutton;
+    GUIPushButtonList.speedDecreasePushButton.GUIValue = COMMS_GUIspeedDecreasePushButton;
+    GUIPushButtonList.speedIncreasePushButton.GUIValue = COMMS_GUIspeedIncreasePushButton;
+}
+
+void handlePushbuttonsPress(void)
+{
+    GUIPushbuttonTag *structIterator;
+    GUIPushbuttonTag *startPosition = &GUIPushButtonList.speedIncreasePushButton;
+    GUIPushbuttonTag *finalPosition = startPosition + sizeof(GUIPushButtonList)/sizeof(GUIPushbuttonTag);
+    for (structIterator = startPosition; startPosition < finalPosition; structIterator++)
+    {
+        if (structIterator->previousValue < structIterator->GUIValue)   structIterator->pushbuttonHasBeenPressed = 1;
+    }
+}
+
+void restartPushbuttonsValue(void)
+{
+    GUIPushbuttonTag *structIterator;
+    GUIPushbuttonTag *startPosition = &GUIPushButtonList.speedIncreasePushButton;
+    GUIPushbuttonTag *finalPosition = startPosition + sizeof(GUIPushButtonList)/sizeof(GUIPushbuttonTag);
+    for (structIterator = startPosition; startPosition < finalPosition; structIterator++)
+    {
+        structIterator->pushbuttonHasBeenPressed = 0;
+    }
+}
 
