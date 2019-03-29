@@ -26,7 +26,18 @@ void setLED17(digitalOutputStatus state);
 void setLED18(digitalOutputStatus state);
 void setLED19(digitalOutputStatus state);
 void setLED20(digitalOutputStatus state);
+void setExtraLED1(digitalOutputStatus state);
+void setExtraLED2(digitalOutputStatus state);
+void setExtraLED3(digitalOutputStatus state);
+void setExtraLED4(digitalOutputStatus state);
+void setExtraLED5(digitalOutputStatus state);
+void setExtraLED6(digitalOutputStatus state);
+void setExtraLED7(digitalOutputStatus state);
+void setExtraLED8(digitalOutputStatus state);
+
 void setEnablePWM(digitalOutputStatus state);
+void setExtraConnectorJ20(digitalOutputStatus state);
+void setExtraConnectorJ21(digitalOutputStatus state);
 
 // Get state functions
 int getAntiSlipLEDState(void);
@@ -41,7 +52,18 @@ int getLED17State(void);
 int getLED18State(void);
 int getLED19State(void);
 int getLED20State(void);
+int getExtraLED1State(void);
+int getExtraLED2State(void);
+int getExtraLED3State(void);
+int getExtraLED4State(void);
+int getExtraLED5State(void);
+int getExtraLED6State(void);
+int getExtraLED7State(void);
+int getExtraLED8State(void);
+
 int getEnablePWMState(void);
+int getExtraConnectorJ20State(void);
+int getExtraConnectorJ21State(void);
 
 
 #endif /* APP_INCLUDE_DIGITALOUTPUTMANAGER_H_ */

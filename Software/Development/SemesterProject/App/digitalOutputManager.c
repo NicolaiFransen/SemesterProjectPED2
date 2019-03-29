@@ -8,7 +8,7 @@
 #include "digitalInputManager.h"
 #include "digitalOutput.h"
 #include "../System/Include/GPIOConfig.h"
-
+#include "digitalOutputManager.h"
 
 /*
  * Struct containing all digital output signals
@@ -27,7 +27,18 @@ static struct digitalOutputListTag
     DigitalOutput LED9;
     DigitalOutput LED18;
     DigitalOutput LED17;
+    DigitalOutput extraLED1;
+    DigitalOutput extraLED2;
+    DigitalOutput extraLED3;
+    DigitalOutput extraLED4;
+    DigitalOutput extraLED5;
+    DigitalOutput extraLED6;
+    DigitalOutput extraLED7;
+    DigitalOutput extraLED8;
+
     DigitalOutput enablePWM;
+    DigitalOutput extraConnectorJ20;
+    DigitalOutput extraConnectorJ21;
 } digitalOutputList;
 
 
@@ -49,7 +60,18 @@ void initDigitalOutputs(void)
     digitalOutput_Constructor(&digitalOutputList.LED18, DS18);
     digitalOutput_Constructor(&digitalOutputList.LED19, DS19);
     digitalOutput_Constructor(&digitalOutputList.LED20, DS20);
+    digitalOutput_Constructor(&digitalOutputList.extraLED1, J5);
+    digitalOutput_Constructor(&digitalOutputList.extraLED2, J6);
+    digitalOutput_Constructor(&digitalOutputList.extraLED3, J7);
+    digitalOutput_Constructor(&digitalOutputList.extraLED4, J8);
+    digitalOutput_Constructor(&digitalOutputList.extraLED5, J9);
+    digitalOutput_Constructor(&digitalOutputList.extraLED6, J10);
+    digitalOutput_Constructor(&digitalOutputList.extraLED7, J11);
+    digitalOutput_Constructor(&digitalOutputList.extraLED8, J12);
+
     digitalOutput_Constructor(&digitalOutputList.enablePWM, J17);
+    digitalOutput_Constructor(&digitalOutputList.extraConnectorJ20, J20);
+    digitalOutput_Constructor(&digitalOutputList.extraConnectorJ21, J21);
 }
 
 /*
@@ -115,10 +137,61 @@ void setLED20(digitalOutputStatus state)
     setDigitalOutput(&digitalOutputList.LED20, state);
 }
 
+void setExtraLED1(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED1, state);
+}
+
+void setExtraLED2(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED2, state);
+}
+
+void setExtraLED3(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED3, state);
+}
+
+void setExtraLED4(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED4, state);
+}
+
+void setExtraLED5(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED5, state);
+}
+
+void setExtraLED6(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED6, state);
+}
+
+void setExtraLED7(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED7, state);
+}
+
+void setExtraLED8(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraLED8, state);
+}
+
 void setEnablePWM(digitalOutputStatus state)
 {
     setDigitalOutput(&digitalOutputList.enablePWM, state);
 }
+
+void setExtraConnectorJ20(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraConnectorJ20, state);
+}
+
+void setExtraConnectorJ21(digitalOutputStatus state)
+{
+    setDigitalOutput(&digitalOutputList.extraConnectorJ21, state);
+}
+
 
 /*
  * These are the interface function to be used to get the state of
@@ -184,7 +257,19 @@ int getLED20State(void)
     return digitalOutputList.LED20.state;
 }
 
+
+
 int getEnablePWMState(void)
 {
     return digitalOutputList.enablePWM.state;
+}
+
+int getExtraConnectorJ20State(void)
+{
+    return digitalOutputList.extraConnectorJ20.state;
+}
+
+int getExtraConnectorJ21State(void)
+{
+    return digitalOutputList.extraConnectorJ21.state;
 }
