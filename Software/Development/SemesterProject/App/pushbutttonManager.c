@@ -4,11 +4,11 @@
  *  Created on: Mar 27, 2019
  *      Author: Nicolas
  *      This module is an abstraction layer higher than digitalInputMgr.
- *      Its goal is to qualify whether a pushbutton is on or not.
+ *      Its goal is to qualify whether a pushbutton has been pressed or not.
  *      It is based on a FSM which will qualify a 'pressed' event
- *      whenever a pushbutton is pushed AND released. The pressed event
+ *      whenever a pushbutton is pushed and released. The pressed event
  *      will hold a '1' value until an external software component
- *      reads it. At that moment, the value will be reset to 0.
+ *      uses thhe interface to check it. At that moment, the value will be reset to 0.
  *      This implies risks in case that two software components use the same
  *      button, but that will never be allowed.
  *
@@ -18,22 +18,23 @@
 
 static struct pushButtonListTag
 {
-    PushButton regenerativeBraking;
-    PushButton torqueReference;
-    PushButton cruiseControl;
-    PushButton antiSlip;
+    PushButton referenceSource;
+    PushButton referenceType;
+    PushButton speedIncrease;
+    PushButton speedDecrease;
 }pushButtonList;
 
 void initPushbuttons()
 {
     PushButton *structPointer;
-    PushButton *initialMemoryPosition = &pushButtonList.regenerativeBraking;
+    PushButton *initialMemoryPosition = &pushButtonList.referenceSource;
     PushButton *finalMemoryPosition = initialMemoryPosition + sizeof(pushButtonList)/sizeof(PushButton);
 
-    pushButtonList.regenerativeBraking.functionPointer = isRegenBrakingPushbuttonEnabled;
-    pushButtonList.antiSlip.functionPointer = isAntiSlipPushbuttonEnabled;
-    pushButtonList.cruiseControl.functionPointer = isCruiseControlPushbuttonEnabled;
-    pushButtonList.torqueReference.functionPointer = isTorqueReferencePushButtonEnabled;
+    //Tracing the function pointers to DigitalInputManager Interfaces
+    pushButtonList.referenceSource.functionPointer = isReferenceSourcePushbuttonEnabled;
+    pushButtonList.referenceType.functionPointer = isReferenceTypePushbuttonEnabled;
+    pushButtonList.speedDecrease.functionPointer = isSpeedDecreasePushbuttonEnabled;
+    pushButtonList.speedIncrease.functionPointer = isSpeedIncreasePushbuttonEnabled;
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
@@ -45,7 +46,7 @@ void initPushbuttons()
 void handlePushbuttons(void)
 {
     PushButton *structPointer;
-    PushButton *initialMemoryPosition = &pushButtonList.regenerativeBraking;
+    PushButton *initialMemoryPosition = &pushButtonList.referenceSource;
     PushButton *finalMemoryPosition = initialMemoryPosition + sizeof(pushButtonList)/sizeof(PushButton);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
@@ -61,16 +62,16 @@ void pushEventQualificationFSM(PushButton *pushbutton)
         case waitingForRisingEdge:
         {
             if (pinIsHigh(pushbutton))  pushbutton->FSMState = waitingForFallingEdge;
-        }
+        }break;
         case waitingForFallingEdge:
         {
             if (pinIsLow(pushbutton))   pushbutton->FSMState = qualifyState;
-        }
+        }break;
         case qualifyState:
         {
             pushbutton->ButtonState = 1;
             pushbutton->FSMState = waitingForRisingEdge;
-        }
+        }break;
     }
 }
 
@@ -84,31 +85,32 @@ int pinIsLow(PushButton *pushbutton)
     return !(pushbutton->functionPointer());
 }
 
-int regenerativeBrakingHasBeenPressed(void)
+int referenceSourceHasBeenPressed(void)
 {
-    int buttonStateValue = pushButtonList.regenerativeBraking.ButtonState;
-    pushButtonList.regenerativeBraking.ButtonState = 0;
+    int buttonStateValue = pushButtonList.referenceSource.ButtonState;
+    pushButtonList.referenceSource.ButtonState = 0;
     return buttonStateValue;
 }
 
-int cruiseControlHasBeenPressed(void)
+int referenceTypeHasBeenPressed(void)
 {
-    int buttonStateValue = pushButtonList.cruiseControl.ButtonState;
-    pushButtonList.cruiseControl.ButtonState = 0;
+    int buttonStateValue = pushButtonList.referenceType.ButtonState;
+    pushButtonList.referenceType.ButtonState = 0;
     return buttonStateValue;
 }
 
-int torqueReferenceHasBeenPressed(void)
+int speedRefDecreaseHasBeenPressed(void)
 {
-    int buttonStateValue = pushButtonList.torqueReference.ButtonState;
-    pushButtonList.torqueReference.ButtonState = 0;
+    int buttonStateValue = pushButtonList.speedDecrease.ButtonState;
+    pushButtonList.speedDecrease.ButtonState = 0;
     return buttonStateValue;
 }
 
-int antiSlipHasBeenPressed(void)
+int speedRefIncreaseHasBeenPressed(void)
 {
-    int buttonStateValue = pushButtonList.antiSlip.ButtonState;
-    pushButtonList.antiSlip.ButtonState = 0;
+    int buttonStateValue = pushButtonList.speedIncrease.ButtonState;
+    pushButtonList.speedIncrease.ButtonState = 0;
     return buttonStateValue;
 }
+
 

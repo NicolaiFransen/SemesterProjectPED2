@@ -29,10 +29,14 @@ void handlePushbuttons(void);
 void pushEventQualificationFSM(PushButton *pushbutton);
 int pinIsHigh(PushButton *pushbutton);
 int pinIsLow(PushButton *pushbutton);
-int regenerativeBrakingHasBeenPressed(void);
-int cruiseControlHasBeenPressed(void);
-int torqueReferenceHasBeenPressed(void);
-int antiSlipHasBeenPressed(void);
+
+/*
+ * External Interface
+ */
+int referenceSourceHasBeenPressed(void);
+int referenceTypeHasBeenPressed(void);
+int speedRefDecreaseHasBeenPressed(void);
+int speedRefIncreaseHasBeenPressed(void);
 
 
 

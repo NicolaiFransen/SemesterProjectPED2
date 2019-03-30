@@ -27,12 +27,12 @@
 // initialization of all digital inputs {pin, state}
 static struct digitalInputListTag
 {
-    DigitalInput regenBrakingPushbutton;
-    DigitalInput torqueReferencePushbutton;
+    DigitalInput referenceSourcePushbutton;
+    DigitalInput referenceTypePushbutton;
     DigitalInput openClosedLoopSelectionSwitch;
     DigitalInput powerSwitch;
-    DigitalInput cruiseControlPushbutton;
-    DigitalInput antiSlipPushbutton;
+    DigitalInput speedIncreasePushbutton;
+    DigitalInput speedDecreasePushbutton;
 }digitalInputList;
 
 /*
@@ -43,12 +43,12 @@ static struct digitalInputListTag
  */
 void initDigitalInputs(void)
 {
-    digitalInput_Constructor(&digitalInputList.regenBrakingPushbutton, B2);
-    digitalInput_Constructor(&digitalInputList.torqueReferencePushbutton, B1);
+    digitalInput_Constructor(&digitalInputList.referenceTypePushbutton, B2);
+    digitalInput_Constructor(&digitalInputList.referenceSourcePushbutton, B1);
     digitalInput_Constructor(&digitalInputList.openClosedLoopSelectionSwitch, S2);
     digitalInput_Constructor(&digitalInputList.powerSwitch, S1);
-    digitalInput_Constructor(&digitalInputList.cruiseControlPushbutton, B3);
-    digitalInput_Constructor(&digitalInputList.antiSlipPushbutton, B4);
+    digitalInput_Constructor(&digitalInputList.speedIncreasePushbutton, B3);
+    digitalInput_Constructor(&digitalInputList.speedDecreasePushbutton, B4);
 }
 
 /*
@@ -62,7 +62,7 @@ void initDigitalInputs(void)
 void readDigitalInputs(void)
 {
     DigitalInput *structPointer;
-    DigitalInput *initialMemoryPosition = &digitalInputList.regenBrakingPushbutton;
+    DigitalInput *initialMemoryPosition = &digitalInputList.referenceSourcePushbutton;
     DigitalInput *finalMemoryPosition = initialMemoryPosition + sizeof(digitalInputList)/sizeof(DigitalInput);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
@@ -73,16 +73,17 @@ void readDigitalInputs(void)
 
 /*
  * Abstraction functions
+ *
  */
 
-int isRegenBrakingPushbuttonEnabled(void)
+int isReferenceTypePushbuttonEnabled(void)
 {
-    return digitalInputList.regenBrakingPushbutton.state;
+    return digitalInputList.referenceTypePushbutton.state;
 }
 
-int isTorqueReferencePushButtonEnabled(void)
+int isReferenceSourcePushbuttonEnabled(void)
 {
-    return digitalInputList.regenBrakingPushbutton.state;
+    return digitalInputList.referenceSourcePushbutton.state;
 }
 
 int isOpenClosedLoopSelectionSwitchEnabled(void)
@@ -94,14 +95,14 @@ int isPowerSwitchEnabled(void)
     return digitalInputList.powerSwitch.state;
 }
 
-int isCruiseControlPushbuttonEnabled(void)
+int isSpeedIncreasePushbuttonEnabled(void)
 {
-    return digitalInputList.cruiseControlPushbutton.state;
+    return digitalInputList.speedIncreasePushbutton.state;
 }
 
-int isAntiSlipPushbuttonEnabled(void)
+int isSpeedDecreasePushbuttonEnabled(void)
 {
-    return digitalInputList.antiSlipPushbutton.state;
+    return digitalInputList.speedIncreasePushbutton.state;
 }
 
 //
