@@ -9,6 +9,7 @@
 #define SYSTEM_INCLUDE_SCHEDULER_H_
 
 #include "systemManager.h"
+#include "communicationManager.h"
 #include "openLoopControlManager.h"
 #include "controlTask.h"
 #include <stddef.h>
@@ -39,9 +40,13 @@ typedef struct TCBstruct
 void taskListInitialization(void);
 void scheduleTasks(void);
 void runTask(void (*functionPTR)());
+
 void task50us(void);
 void task100us(void);
 void task20ms(void);
+void task200ms(void);
+
+
 void updateTasksState(void);
 int endOfTaskListIsReached(int taskListIndex);
 int taskMustBeScheduled(int taskListIndex);

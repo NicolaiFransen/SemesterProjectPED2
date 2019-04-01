@@ -25,6 +25,7 @@ static enum taskListTag
     task50usItem,
     task100usItem,
     task20msItem,
+    task200msItem,
     numberOfTasks
 }taskListItems;
 
@@ -46,6 +47,11 @@ void taskListInitialization(void)
     taskList[task20msItem].taskState = READY;
     taskList[task20msItem].cyclicity = 20000;      // Time in us
     taskList[task20msItem].timeLeft = 20000;       // Initialize to cyclicity
+
+    taskList[task200msItem].functionPointer = task200ms;
+    taskList[task200msItem].taskState = INACTIVE;
+    taskList[task200msItem].cyclicity = 200000;
+    taskList[task200msItem].timeLeft = 200000;
 
     taskList[numberOfTasks].functionPointer = NULL; // End of list
 }
@@ -91,12 +97,18 @@ void task20ms(void)
     handlePushbuttons()
 }
 
+void task200ms(void)
+{
+    manageCommunications();
+}
+
 //
 // cpu_timer0_isr - The time was measured to be 2.3 us
 //
 __interrupt void
 cpu_timer0_isr(void)
 {
+
     CpuTimer0.InterruptCount++;
     updateTasksState();
     //
