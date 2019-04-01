@@ -43,6 +43,11 @@ void initPushbuttons()
     }
 }
 
+/*
+ * Pushbutton Manager. This function performs analysis of whether
+ * a pushbutton has been pressed and provides an interface for
+ * external use.
+ */
 void handlePushbuttons(void)
 {
     PushButton *structPointer;
