@@ -25,6 +25,7 @@
 #include "Include/systemInit.h"
 #include "../App/Include/digitalInputManager.h"
 #include "pushButtonManager.h"
+#include "../App/Include/digitalOutputManager.h"
 #include "../App/Include/analogAcquisitionManager.h"
 
 
@@ -144,7 +145,7 @@ void systemInit(void)
     initDigitalInputs();
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
-
+    initDigitalOutputs();
 	initPushbuttons();
 	
     //
@@ -166,19 +167,6 @@ void systemInit(void)
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 
-<<<<<<< HEAD
-
-    //
-    //  App structures initialization
-    //
-    initDigitalInputs();
-    initPWM();
-    initPushbuttons();
-
-    initAnalogSignals();      // Initialize the analog signals and their ADC channels
-
-=======
->>>>>>> develop
     startupSequenceFinishedFlag = 1;
 
 }
