@@ -24,8 +24,8 @@
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
 #include "../App/Include/digitalInputManager.h"
+#include "pushButtonManager.h"
 #include "../App/Include/digitalOutputManager.h"
-
 #include "../App/Include/analogAcquisitionManager.h"
 
 
@@ -146,7 +146,8 @@ void systemInit(void)
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initDigitalOutputs();
-  
+	initPushbuttons();
+	
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
     // which is connected to CPU-Timer 1:

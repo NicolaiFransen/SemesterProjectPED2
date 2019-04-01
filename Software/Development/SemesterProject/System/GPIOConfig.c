@@ -92,8 +92,8 @@ void configureGPIO(void)
 
     /*
      * Extra Outputs:
+     */
 
-   */
     /*
      * Input pins configuration
      */
@@ -134,8 +134,6 @@ void configureGPIO(void)
     GpioCtrlRegs.GPBQSEL1.bit.GPIO32 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;    // Select GPIO from MUX
     GpioCtrlRegs.GPBDIR.bit.GPIO32 = 0;     // Select digital input
-
-
 
     //  Configure GPIO 54 (Anti-slip pushbutton) as input
     GpioCtrlRegs.GPBPUD.bit.GPIO54 = 1; //Disable pull-up resistor
@@ -225,7 +223,7 @@ void configureGPIO(void)
     GpioCtrlRegs.GPBMUX2.bit.GPIO56 = 0;    // Select GPIO from MUX
     GpioCtrlRegs.GPBDIR.bit.GPIO56 = 0;     // Select digital input*/
 
-    // Configure GPIO as output
+    // Configure GPIO56 as output
     GpioCtrlRegs.GPBMUX2.bit.GPIO56 = 0;
     GpioCtrlRegs.GPBDIR.bit.GPIO56 = 1;
 
