@@ -102,7 +102,7 @@ int isSpeedIncreasePushbuttonEnabled(void)
 
 int isSpeedDecreasePushbuttonEnabled(void)
 {
-    return digitalInputList.speedIncreasePushbutton.state;
+    return digitalInputList.speedDecreasePushbutton.state;
 }
 
 //

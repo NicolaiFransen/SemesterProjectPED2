@@ -94,7 +94,7 @@ void task20ms(void)
     manageSystem();
     readDigitalInputs();
     readLowPrioritySignals();
-    handlePushbuttons()
+    handlePushbuttons();
 }
 
 void task200ms(void)
