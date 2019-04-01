@@ -140,6 +140,14 @@ void systemInit(void)
     AdcOffsetSelfCal();
 
     //
+    //  App structures initialization
+    //
+    initDigitalInputs();
+    initPWM();
+    initAnalogSignals();      // Initialize the analog signals and their ADC channels
+    initDigitalOutputs();
+  
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
     // which is connected to CPU-Timer 1:
     //
@@ -158,16 +166,8 @@ void systemInit(void)
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
 
-
-    //
-    //  App structures initialization
-    //
-    initDigitalInputs();
-    initPWM();
-
-    initAnalogSignals();      // Initialize the analog signals and their ADC channels
-    initDigitalOutputs();
     startupSequenceFinishedFlag = 1;
+
 }
 
 int startupSequenceFinished(void)

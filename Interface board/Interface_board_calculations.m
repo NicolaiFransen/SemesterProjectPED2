@@ -24,7 +24,7 @@ Iin = -300:1:300;
 Vref = 5;
 Vin = (Iin/2000) * Rin;
 
-Vb = (R4/(R3+R4)) * Vref;
+Vb = (R4/(R3+R4)) * Vref;  %OA_bias
 G = -R2/R1;
 
 Vo = G*Vin + (1-G)*Vb;
@@ -57,10 +57,10 @@ R2 = 1e3;
 R1_1 = 10e3;
 R3 = 16.2e3;
 
-Vdc = 45;
-Vin = (R2/(R1+R2)) * Vdc;
+Vdc = 25;
+Vin = (R2/(R1+R2)) * Vdc  %Differential voltage (pin 7 and 6)
 
-Vout = R3/R1_1 * Vin
+Vout = R3/R1_1 * Vin   %AD_36 for checking the OPAMP
 %Vout = 3;
 %R3 = Vout*R3 / (Vin);
 
@@ -80,7 +80,7 @@ eq = V1 == (R1/(R+R1)) * Vdc;
 solve(eq, R)
 
 %% Voltage divider for 24V measuring
-Vin = 30;
+Vin = 24; %24V
 Vout = 3.3;
 R2 = 1e3;
 
@@ -89,7 +89,7 @@ eq = Vout == (R2/(R1+R2))*Vin;
 solve(eq, R1)
 
 R1 = 8.25e3;
-(R2/(R1+R2))*Vin
+(R2/(R1+R2))*Vin   %AD_24
 
 %% Encoder calculations
 Vin = 5;
@@ -100,7 +100,7 @@ R2 = 1.78e3;
 (R2/(R1+R2))*Vin
 
 %% LEDs
-Iled = 20e-3;
+Iled = 10e-3;
 
 Vin = [3.3 5 12 15 24 36];
 
