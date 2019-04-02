@@ -24,6 +24,7 @@
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
 #include "../App/Include/digitalInputManager.h"
+#include "../App/Include/errorManager.h"
 
 #include "../App/Include/analogAcquisitionManager.h"
 
@@ -122,27 +123,6 @@ void systemInit(void)
     //
 
     //
-    // Connect the watchdog to the reset interrupt of the PIE
-    // Write to the whole SCSR register to avoid clearing WDOVERRIDE bit
-    //
-    EALLOW;
-    SysCtrlRegs.SCSR = BIT2;
-    EDIS;
-
-    //
-    // Reset the watchdog counter
-    //
-    ServiceDog();
-
-    //
-    // Enable the watchdog
-    //
-    EALLOW;
-    SysCtrlRegs.WDCR = 0x0028;
-    EDIS;
-
-
-    //
     // Configure GPIO
     //
     configureGPIO();
@@ -165,6 +145,7 @@ void systemInit(void)
     initDigitalInputs();
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
+    initWatchdog();
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

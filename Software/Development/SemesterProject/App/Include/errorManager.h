@@ -22,5 +22,7 @@ errorStatus getCurrentErrorStatus(void);
 errorStatus getBatteryErrorStatus(void);
 errorStatus getAdcErrorStatus(void);
 
+void initWatchdog(void);
+
 
 #endif /* APP_INCLUDE_ERRORMANAGER_H_ */
