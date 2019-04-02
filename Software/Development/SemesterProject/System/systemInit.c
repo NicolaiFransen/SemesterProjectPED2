@@ -122,6 +122,27 @@ void systemInit(void)
     //
 
     //
+    // Connect the watchdog to the reset interrupt of the PIE
+    // Write to the whole SCSR register to avoid clearing WDOVERRIDE bit
+    //
+    EALLOW;
+    SysCtrlRegs.SCSR = BIT2;
+    EDIS;
+
+    //
+    // Reset the watchdog counter
+    //
+    ServiceDog();
+
+    //
+    // Enable the watchdog
+    //
+    EALLOW;
+    SysCtrlRegs.WDCR = 0x0028;
+    EDIS;
+
+
+    //
     // Configure GPIO
     //
     configureGPIO();

@@ -21,7 +21,7 @@ errorStatus areAdcMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ERROR;
+            return ERROR_HAS_HAPPENED;
     }
     return NO_ERROR;
 }
@@ -36,7 +36,7 @@ errorStatus areBatteryMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ERROR;
+            return ERROR_HAS_HAPPENED;
     }
     return NO_ERROR;
 }
@@ -49,7 +49,7 @@ errorStatus areCurrentMeasurementsWithinThresholds(void)
     {
         int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
         if (errorHasHappened)
-            return ERROR;
+            return ERROR_HAS_HAPPENED;
     }
     return NO_ERROR;
 }

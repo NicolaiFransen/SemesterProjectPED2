@@ -28,10 +28,12 @@ void monitorErrorSources(void)
     errorStatusList.batteryErrorStatus = areBatteryMeasurementsWithinThresholds();
     errorStatusList.adcErrorStatus = areAdcMeasurementsWithinThresholds();
 
-    if (errorStatusList.currentErrorStatus == ERROR ||
-        errorStatusList.batteryErrorStatus == ERROR ||
-        errorStatusList.adcErrorStatus == ERROR)
+    if (errorStatusList.currentErrorStatus == ERROR_HAS_HAPPENED ||
+        errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED ||
+        errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
             performSafetyReactions();
+    else
+        turnOffErrorLED();
 
 }
 
@@ -59,11 +61,13 @@ void disableDrivers(void)
 
 void turnOnErrorLED(void)
 {
+    GpioDataRegs.GPASET.bit.GPIO18 = 1;
     //setErrorLED(ON); Uncomment this when merged with digital output manager (LED17)
 }
 
 void turnOffErrorLED(void)
 {
+    GpioDataRegs.GPACLEAR.bit.GPIO18 = 1;
     //setErrorLED(OFF); Uncomment this when merged with digital output manager (LED17)
 }
 

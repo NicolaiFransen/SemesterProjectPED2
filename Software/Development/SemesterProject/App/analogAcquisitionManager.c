@@ -263,29 +263,29 @@ void createAnalogSignals(void)
     int filterOrder = 1, filterFreq = 50;
 
     // Definition of thresholds
-    float currentThreshold[2] = {0.3, 0.5};
-    float voltageThreshold[2] = {0.3, 3.1};
-    float thermalThreshold[2] = {0.2, 2.5};
+    float currentThreshold[2] = {0.3, 3.0};
+    float voltageThreshold[2] = {0.0, 3.1};
+    float thermalThreshold[2] = {0.0, 2.5};
     float sliderPotThreshold[2] = {0.2, 3.0};
-    float rotaryPotThreshold[2] = {0.2, 3.0};
-    float connectorPotThreshold[2] = {0.2, 0.5};
+    float rotaryPotThreshold[2] = {0.0, 3.0};
+    float connectorPotThreshold[2] = {0.0, 3.0};
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
     Signal_Constructor(&CurrentSignalList.currentMeasA, filterType, filterOrder,
-                       filterFreq, currentMeasAChannel, voltageThreshold);
+                       filterFreq, currentMeasAChannel, currentThreshold);
 
 
     // Create signal for Current B measurement.
     Uint16 currentMeasBChannel = IB;
     Signal_Constructor(&CurrentSignalList.currentMeasB, filterType, filterOrder,
-                       filterFreq, currentMeasBChannel, voltageThreshold);
+                       filterFreq, currentMeasBChannel, currentThreshold);
 
 
     // Create signal for Current C measurement.
     Uint16 currentMeasCChannel = IC;
     Signal_Constructor(&CurrentSignalList.currentMeasC, filterType, filterOrder,
-                       filterFreq, currentMeasCChannel, voltageThreshold);
+                       filterFreq, currentMeasCChannel, currentThreshold);
 
 
     // Create signal for 24V measurement
@@ -333,7 +333,7 @@ void createAnalogSignals(void)
     // Create signal for extra rotary potentiometer 2
     Uint16 rotaryPot2Channel = P4;
     Signal_Constructor(&AnalogSignalList.rotaryPot2, filterType, filterOrder,
-                       filterFreq, rotaryPot2Channel, connectorPotThreshold);
+                       filterFreq, rotaryPot2Channel, rotaryPotThreshold);
 
 
     // Create signal for extra rotary potentiometer 3
@@ -345,13 +345,13 @@ void createAnalogSignals(void)
     // Create signal for connector potentiometer 1
     Uint16 connectorPot1Channel = J3;
     Signal_Constructor(&AnalogSignalList.connectorPot1, filterType, filterOrder,
-                       filterFreq, connectorPot1Channel, rotaryPotThreshold);
+                       filterFreq, connectorPot1Channel, connectorPotThreshold);
 
 
     // Create signal for connector potentiometer 2
     Uint16 connectorPot2Channel = J4;
     Signal_Constructor(&AnalogSignalList.connectorPot2, filterType, filterOrder,
-                       filterFreq, connectorPot2Channel, rotaryPotThreshold);
+                       filterFreq, connectorPot2Channel, connectorPotThreshold);
 }
 
 
