@@ -12,6 +12,12 @@
 #include "adcMonitor.h"
 #include "DSP28x_Project.h"
 
+/*
+ * These three functions check different parts of the analogErrorStatus for errors
+ * An error in this bit string is a 0, So the function checks the string for 1's.
+ * If the for-loop finds a 1 errorHasHappened will be 0, and will therefore not
+ * enter the if-statement.
+ */
 errorStatus areAdcMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
@@ -40,6 +46,7 @@ errorStatus areBatteryMeasurementsWithinThresholds(void)
     }
     return NO_ERROR;
 }
+
 errorStatus areCurrentMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();

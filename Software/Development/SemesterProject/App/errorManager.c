@@ -20,7 +20,8 @@ static struct
 } errorStatusList;
 
 /*
- * This function updates the the error status of the different measurements
+ * This function updates the the error status of the different measurements,
+ * and determines if safety reactions should be performed
  */
 void monitorErrorSources(void)
 {
@@ -33,7 +34,10 @@ void monitorErrorSources(void)
         errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
             performSafetyReactions();
     else
+    {
         turnOffErrorLED();
+        //setEnablePWM(ON);
+    }
 
 }
 
@@ -89,6 +93,10 @@ errorStatus getAdcErrorStatus(void)
     return errorStatusList.adcErrorStatus;
 }
 
+/*
+ * Function to initialize the watchdog.
+ * By setting bit2 in SCSR the watchdog is set to reset the MCU
+ */
 void initWatchdog(void)
 {
     //
