@@ -16,13 +16,16 @@
 //
 // Function prototyping
 //
+void initDigitalInputs(void);
 void readDigitalInputs(void);
-int isRegenBrakingPushbuttonEnabled(void);
-int isTorqueReferencePushButtonEnabled(void);
+
 int isOpenClosedLoopSelectionSwitchEnabled(void);
 int isPowerSwitchEnabled(void);
-int isCruiseControlPushbuttonEnabled(void);
-int isAntiSlipPushbuttonEnabled(void);
-void initDigitalInputs(void);
+
+int isSpeedIncreasePushbuttonEnabled(void);
+int isSpeedDecreasePushbuttonEnabled(void);
+int isReferenceSourcePushbuttonEnabled(void);
+int isReferenceTypePushbuttonEnabled(void);
+
 
 #endif /* APP_INCLUDE_DIGITALINPUTMANAGER_H_ */
