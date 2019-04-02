@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="State Machine1 State Machine diagram" version="4">
+  <OBJECT>
+    <ID name="State Machine1 State Machine diagram" mc="Standard.StateMachineDiagram" uid="510e3725-9a21-4674-9427-d01ae468566d"/>
+    <PID name="Analog Acquisition Manager" mc="Standard.StateMachine" uid="0924ef7f-ad36-4632-ab5e-66685c0591b0"/>
+    <ATTRIBUTES>
+      <ATT name="UiDataVersion">70</ATT>
+      <ATT name="UiData"><![CDATA[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]]></ATT>
+      <ATT name="Name"><![CDATA[State Machine1 State Machine diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Represented">
+        <REFOBJ>
+          <ID name="Initial State" mc="Standard.InitialPseudoState" uid="ce905796-538a-4d77-a640-9e48b6e7e3ed"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="initADC()" mc="Standard.State" uid="f6365bf0-5f13-43cf-aa97-85ae8492874e"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Idle" mc="Standard.State" uid="91a5e1fd-4756-474a-9aef-d793ace63660"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="readSignals()" mc="Standard.State" uid="fbb7abec-3c6f-4721-8aaf-1309a3fcad24"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="filterSignals()" mc="Standard.State" uid="7be47c9d-8106-48d7-a8a6-3444b8b5cf1a"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Transition" mc="Standard.Transition" uid="72320f2a-9b96-4141-ab8a-fefb0c6a3234"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Transition" mc="Standard.Transition" uid="ad7e98dc-859d-4f02-a1c3-9f68b371b5e9"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Transition" mc="Standard.Transition" uid="8903ce57-53f3-4cf4-b431-8ae72e11398b"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Transition" mc="Standard.Transition" uid="712cd284-807f-4ba6-8306-45d7155132a1"/>
+        </REFOBJ>
+        <REFOBJ>
+          <ID name="Transition" mc="Standard.Transition" uid="6790ef06-12f1-423a-a6dc-290ab616b65c"/>
+        </REFOBJ>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
