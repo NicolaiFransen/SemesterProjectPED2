@@ -17,19 +17,19 @@
 //
 // Included Files
 //
-
 #include "Include/systemManager.h"
 
 
 //
 // Quasi-global variables definition
 //
-
 static SysMgrState systemState = STARTUP;
 
 
 void manageSystem(void)
 {
+    // Switch LEDs off
+    setLED18(OFF);
 
     switch (systemState)
     {
@@ -40,13 +40,14 @@ void manageSystem(void)
 
         case STANDBY:
         {
-            if(isPowerSwitchEnabled()) systemState = RUNNING;
+            if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
         }break;
 
         case RUNNING:
         {
-            if(!isPowerSwitchEnabled()) systemState = STANDBY;
+            if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
            // if(errorDetected()) SystemState = ERROR;
+            setLED18(ON); // System is in running state LED
         }break;
 
 //        case ERROR:

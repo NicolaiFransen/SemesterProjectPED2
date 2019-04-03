@@ -49,8 +49,11 @@ void getReferenceHandlerSignals(void);
 void getAnalogSignals(void);
 void getDigitalSignals(void);
 void performGUISideTasks(void);
+void handleGUIPushbuttons(void);
+void updatePushButtonList(void);
+void handlePushbuttonsPress(void);
 void restartPushbuttonsValue(void);
-
+void initializeGUIPushbuttonsStructure(void);
 
 
 #endif /* APP_INCLUDE_COMMUNICATIONMANAGER_H_ */

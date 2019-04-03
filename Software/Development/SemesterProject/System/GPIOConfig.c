@@ -168,14 +168,14 @@ void configureGPIO(void)
     GpioCtrlRegs.GPADIR.bit.GPIO24 = 1;
 
     // Configure GPIO25 as input
-    /*GpioCtrlRegs.GPAPUD.bit.GPIO25 = 1; //Disable pull-up resistor
+    GpioCtrlRegs.GPAPUD.bit.GPIO25 = 1; //Disable pull-up resistor
     GpioCtrlRegs.GPAQSEL2.bit.GPIO25 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;    // Select GPIO from MUX
-    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;     // Select digital input*/
+    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;     // Select digital input
 
-    // Configure GPIO25 as output
+    /*/ Configure GPIO25 as output
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO25 = 1;
+    GpioCtrlRegs.GPADIR.bit.GPIO25 = 1;*/
 
     // Configure GPIO26 as input
     /*GpioCtrlRegs.GPAPUD.bit.GPIO26 = 1; //Disable pull-up resistor

@@ -49,8 +49,8 @@ static struct digitalOutputListTag
 void initDigitalOutputs(void)
 {
     digitalOutput_Constructor(&digitalOutputList.antiSlipLED, DS16);
-    digitalOutput_Constructor(&digitalOutputList.cruiseControlLED, DS15);
-    digitalOutput_Constructor(&digitalOutputList.regenerativeBrakingLED, DS14);
+    digitalOutput_Constructor(&digitalOutputList.cruiseControlLED, DS14);
+    digitalOutput_Constructor(&digitalOutputList.regenerativeBrakingLED, DS15);
     digitalOutput_Constructor(&digitalOutputList.torqueReferenceSliderLED, DS13);
     digitalOutput_Constructor(&digitalOutputList.torqueReferencePedalLED, DS12);
     digitalOutput_Constructor(&digitalOutputList.torqueReferenceUARTLED, DS11);

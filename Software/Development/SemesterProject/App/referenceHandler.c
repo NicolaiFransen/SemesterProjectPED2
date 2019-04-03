@@ -4,11 +4,31 @@
  *  Created on: Mar 27, 2019
  *      Author: Nicolas
  *
+ *      >>Looking at the system description diagram found in the class design
+ *      is highly recommended<<
+ *
  *      The goal of this module is to check what reference source is selected
  *      by the user. When the source is known, the value of that reference must
  *      be obtained. When the value is obtained and with the goal of limiting
  *      large reference differences a new reference considering the maximum
- *      allowed reference derivative is provided by means of an interface.
+ *      allowed reference derivative is provided by means of an interface. Then,
+ *      in order to avoid references over the technical limits of the system,
+ *      like a 100 Nm torque reference, the references are limited to a preset
+ *      value MAX_TORQUE_REF_NM and MAXIMUM_SPEED_REF_RPM.
+ *
+ *      The interfaces provided are:
+ *          *Torque reference
+ *          *Speed reference
+ *          *Open-loop reference (which collects the reference from torque inputs)
+ *          *Cruise control or Torque control
+ *          *Reference source
+ *          *Reference source change
+ *
+ *      The scheduled function is handleReferences().
+ *      In this module there are two tasks performed:
+ *      ** Reference calculation    calculateReference()
+ *      ** Reference type (torque/cruise control) decision  decideReferenceType()
+ *
  *
  */
 
@@ -19,16 +39,64 @@
  */
 static GUISignalsTag GUISignals;
 static float speedReference, torqueReference;
-static float deltaSpeed, deltaTorque;
+static float deltaSpeed = 5, deltaTorque = 0.1;
 static int undampedSpeedReference = 0;
+static int referenceSourceChanged = 0;
 
 
-static enum referenceSourceTag referenceSource = interfacePCB;
+static referenceSourceTag referenceSource = interfacePCB;
 static enum referenceTypeTag referenceType = torqueControl;
 
 
+void handleReferences(void)
+{
+    GUISignals = getGUISignals();
+    decideReferenceSource();
+    if (readSystemState() == RUNNING)
+    {
+        calculateReference();
+        decideReferenceType();
+    }
+}
+
+void decideReferenceSource(void)
+{
+    switch (referenceSource)
+        {
+        case interfacePCB:
+        {
+            setTorqueReferenceSliderLED(ON); // Necessary for system startup
+            if (referenceSourceIsChanged())
+            {
+                setTorqueReferenceSliderLED(OFF);
+                referenceSource = goKart;
+                setTorqueReferencePedalLED(ON);
+            }
+        }break;
+        case goKart:
+        {
+            if (referenceSourceIsChanged())
+            {
+                setTorqueReferencePedalLED(OFF);
+                referenceSource = GUI;
+                setTorqueReferenceUARTLED(ON);
+            }
+        }break;
+        case GUI:
+        {
+            if (referenceSourceIsChanged())
+            {
+                setTorqueReferenceUARTLED(OFF);
+                referenceSource = interfacePCB;
+                setTorqueReferenceSliderLED(ON);
+            }
+        }break;
+        }
+}
+
 void decideReferenceType(void)
 {
+    setCruiseControlLED(OFF);
     switch (referenceType)
     {
     case torqueControl:
@@ -41,50 +109,51 @@ void decideReferenceType(void)
     }break;
     case cruiseControl:
     {
-        if (referenceTypeIsChanged())   referenceType = torqueControl;
+        if (referenceTypeIsChanged())
+        {
+            referenceType = torqueControl;
+            restartSpeedReference();
+        }
+        setCruiseControlLED(ON);
     }break;
     }
 }
 
 void calculateReference(void)
 {
-    GUISignals = getGUISignals();
     calculateTorqueReference();
     calculateSpeedReference();
 }
 
 void calculateTorqueReference(void)
 {
-    float torqueReferenceBeforeLimit, torqueReferenceBeforeSaturation;
+    float torqueReferenceBeforeLimit = 0, torqueReferenceBeforeSaturation = 0;
 
-    decideReferenceSource();
     torqueReferenceBeforeLimit = getReferenceValue();
     torqueReferenceBeforeSaturation = calculateLimitedTorqueReference(torqueReferenceBeforeLimit);
     torqueReference = calculateSaturatedTorque(torqueReferenceBeforeSaturation);
 }
 
-void decideReferenceSource(void)
-{
-    if (referenceSourceIsChanged())
-    {
-        referenceSource++;
-        if (referenceSource == lastIndexRS) referenceSource = interfacePCB;
-    }
-}
-
 int referenceSourceIsChanged(void)
 {
-    return (GUISignals.ReferenceSourcePushbutton);// || torqueReferenceHasBeenPressed()) DO NOT FORGET TO ADD THIS FUNCTION WHEN PUSHBUTTON HANDLER IS MERGED
+    if (GUISignals.ReferenceSourcePushbutton || referenceSourceHasBeenPressed())
+    {
+        torqueReference = 0;
+        speedReference = 0;
+        if ((readSystemState() == RUNNING)) referenceSourceChanged = 1; //If the referenceSOurce is changed while in running, qualify the change so the system know it must go back to STANDBY
+        return 1;
+    }
+    else    return 0;
 }
 
 int referenceTypeIsChanged(void)
 {
-    return (GUISignals.ReferenceTypePushbutton); // || cruiseControlHasBeenPressed()DO NOT FORGET TO ADD THIS FUNCTION WHEN PUSHBUTTON HANDLER IS MERGED
+    return (GUISignals.ReferenceTypePushbutton || referenceTypeHasBeenPressed());
 }
 
 float getReferenceValue(void)
 {
-    float analogValueTorque, torqueReferenceBeforeLimit;
+    float analogValueTorque = 0, torqueReferenceBeforeLimit = 0;
     switch (referenceSource)
     {
     case interfacePCB:
@@ -92,14 +161,14 @@ float getReferenceValue(void)
         analogValueTorque = getTorqueReferenceSliderMeasurement();
         torqueReferenceBeforeLimit = CalculateTorqueRefFromAnalog(analogValueTorque);
     }break;
-    case GUI:
-    {
-        torqueReferenceBeforeLimit = GUISignals.TorqueReference;
-    }break;
     case goKart:
     {
         analogValueTorque = getTorqueReferencePedalMeasurement();
         torqueReferenceBeforeLimit = CalculateTorqueRefFromAnalog(analogValueTorque);
+    }break;
+    case GUI:
+    {
+        torqueReferenceBeforeLimit = GUISignals.TorqueReference;
     }break;
     }
     return torqueReferenceBeforeLimit;
@@ -135,7 +204,7 @@ float calculateSaturatedTorque(float torqueBeforeSaturation)
 
 void calculateSpeedReference(void)
 {
-    int speedReferenceBeforeLimit, speedReferenceBeforeSaturation;
+    int speedReferenceBeforeLimit = 0, speedReferenceBeforeSaturation = 0;
     speedReferenceBeforeLimit = getSpeedReferenceValue();
     speedReferenceBeforeSaturation = calculateLimitedSpeedReference(speedReferenceBeforeLimit);
     speedReference = calculateSaturatedSpeed(speedReferenceBeforeSaturation);
@@ -162,23 +231,28 @@ int speedRefIncreased(int speedReferenceBeforeLimit)
 
 int speedRefDecreased(int speedReferenceBeforeLimit)
 {
-    return speedReferenceBeforeLimit - speedReference - deltaSpeed;
+    return speedReferenceBeforeLimit < speedReference - deltaSpeed;
 }
 
 int speedMustBeIncreased(void)
 {
-    return 0;//speedRefIncreaseHasBeenPressed(); add after pushbuttton MGR
+    return speedRefIncreaseHasBeenPressed();
 }
 
 int speedMustBeDecreased(void)
 {
-    return 0; // speedRefDecreaseHasBeenPressed(); add after pushbuttton MGR
-}
+    return speedRefDecreaseHasBeenPressed();
+    }
 
 int calculateSaturatedSpeed(int speedReferenceBeforeSaturation)
 {
     if (speedReferenceBeforeSaturation > MAXIMUM_SPEED_REF_RPM) return MAXIMUM_SPEED_REF_RPM;
     else return speedReferenceBeforeSaturation;
+}
+
+void restartSpeedReference(void)
+{
+    undampedSpeedReference = 0;
 }
 
 /*
@@ -204,3 +278,17 @@ int torqueControlIsEnabled(void)
 {
     return referenceType == torqueControl;
 }
+
+referenceSourceTag getReferenceSource(void)
+{
+    return referenceSource;
+}
+
+int referenceSourceHasChanged(void)
+{
+    int tempValue;
+    tempValue = referenceSourceChanged;
+    referenceSourceChanged = 0;
+    return tempValue;
+}
+

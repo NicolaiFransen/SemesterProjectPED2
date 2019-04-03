@@ -27,6 +27,7 @@
 #include "pushButtonManager.h"
 #include "../App/Include/digitalOutputManager.h"
 #include "../App/Include/analogAcquisitionManager.h"
+#include "communicationManager.h"
 
 
 //

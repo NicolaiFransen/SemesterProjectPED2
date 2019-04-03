@@ -11,6 +11,9 @@
 #include "digitalInputManager.h"
 #include "../../System/Include/systemInit.h"
 #include <stdint.h>
+#include "digitalOutputManager.h"
+#include "pushButtonManager.h"
+#include "referenceHandler.h"
 
 
 //

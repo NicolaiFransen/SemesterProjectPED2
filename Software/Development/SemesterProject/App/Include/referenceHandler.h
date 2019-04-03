@@ -2,7 +2,7 @@
  * referenceHandler.h
  *
  *  Created on: Mar 27, 2019
- *      Author: alumn
+ *      Author: Nicolas
  */
 
 #ifndef APP_INCLUDE_REFERENCEHANDLER_H_
@@ -11,19 +11,20 @@
 #include "communicationManager.h"
 #include "analogAcquisitionManager.h"
 #include "AnalogSignal.h"
-//#include "pushButtonManager.h"            TO BE ADDED AFTER PUSHBUTTONmGR IS MERGED
+#include "pushButtonManager.h"
+#include "systemManager.h"
 
 #define MAX_TORQUE_REF_NM       30
 #define MAXIMUM_SPEED_REF_RPM   1685
 #define SPEED_STEP_FROM_BUTTON     50
 
-enum referenceSourceTag
+typedef enum
 {
     interfacePCB,
-    GUI,
     goKart,
+    GUI,
     lastIndexRS
-};
+} referenceSourceTag;
 
 enum referenceTypeTag
 {
@@ -32,10 +33,12 @@ enum referenceTypeTag
     lastIndexRT
 };
 
+void handleReferences(void);
 void decideReferenceType(void);
 int referenceTypeIsChanged(void);
 void decideReferenceSource(void);
 int referenceSourceIsChanged(void);
+void calculateReference(void);
 void calculateTorqueReference(void);
     float getReferenceValue(void);
     float CalculateTorqueRefFromAnalog(float analogRead);
@@ -51,7 +54,7 @@ void calculateSpeedReference(void);
     int speedRefIncreased(int speedReferenceBeforeLimit);
     int speedRefDecreased(int speedReferenceBeforeLimit);
     int calculateSaturatedSpeed(int speedReferenceBeforeSaturation);
-
+    void restartSpeedReference(void);
 
 /*
  * External Interfaces
@@ -60,5 +63,7 @@ float getTorqueReference(void);
 float getSpeedReference(void);
 float getOpenLoopReference(void);
 int torqueControlIsEnabled(void);
+referenceSourceTag getReferenceSource(void);
+int referenceSourceHasChanged(void);
 
 #endif /* APP_INCLUDE_REFERENCEHANDLER_H_ */
