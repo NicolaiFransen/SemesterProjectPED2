@@ -30,11 +30,11 @@ T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
 %Parameters for mechanical model: (values from report 2017)
 Rw = 0.1375;                            %meters Radius of the wheel 
 density = 1.225;                        %kg/m^3 air density
-Cd = 0.8;                              %Aerodynamic drag coefficient 
+Cd = 0.8;                               %Aerodynamic drag coefficient 
 Af = 0.5;                               %m^2 Kart's approx. front area assuming the kart is a prismatic body
 Mcar = 233;                             %kg Mass including motor, chasis and driver 
-Cr = 0.013; %Consider putting it as a function of speed                       
-            %Tire rolling resistance coefficient. http://eprints.lancs.ac.uk/84708/1/ISIE2016_KR_FInalSubmission_CJT_v3.pdf
+Cr = 0.013;                             %Consider putting it as a function of speed                       
+                                        %Tire rolling resistance coefficient. http://eprints.lancs.ac.uk/84708/1/ISIE2016_KR_FInalSubmission_CJT_v3.pdf
 Gr = 1.6666;                            %Transmission gearbox ratio
 g=9.81;           
 Mw =  20;                               %Mass of the 4 wheels (to be weighted)
