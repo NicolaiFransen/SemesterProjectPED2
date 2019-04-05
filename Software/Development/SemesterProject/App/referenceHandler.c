@@ -11,8 +11,16 @@
  *      by the user. When the source is known, the value of that reference must
  *      be obtained. When the value is obtained and with the goal of limiting
  *      large reference differences a new reference considering the maximum
- *      allowed reference derivative is provided by means of an interface. Then,
- *      in order to avoid references over the technical limits of the system,
+ *      allowed reference derivative is calculated. This is calculated by setting
+ *      a maximum deltaTorque and deltaSpeed.
+ *
+ *      For example, if the reference is changed from 10 Nm to 20 Nm, it will
+ *      increase deltaTorque every time the referenceHandler is run.
+ *      If deltaTorque is 0.1 and the referenceHandler is run every 20 ms.
+ *      The new reference will be reached in (20 - 10)/(0.1/20e-3) = 2 s. The
+ *      key parameter is deltaTorque and the user can select the desired value.
+ *
+ *      Then, in order to avoid references over the technical limits of the system,
  *      like a 100 Nm torque reference, the references are limited to a preset
  *      value MAX_TORQUE_REF_NM and MAXIMUM_SPEED_REF_RPM.
  *
@@ -46,6 +54,7 @@ static int referenceSourceChanged = 0;
 
 static referenceSourceTag referenceSource = interfacePCB;
 static enum referenceTypeTag referenceType = torqueControl;
+const int SPEED_STEP_FROM_BUTTON_RPM = 60 * SPEED_STEP_FROM_BUTTON_KPH / 3.6 * GEAR_RATIO / RADIUS_WHEELS;
 
 
 void handleReferences(void)
@@ -59,6 +68,10 @@ void handleReferences(void)
     }
 }
 
+/*
+ * This FSM decides what reference is going to be used for setting a torque
+ * reference. The options are Interface PCB, Pedal or Graphical user interface.
+ */
 void decideReferenceSource(void)
 {
     switch (referenceSource)
@@ -94,6 +107,12 @@ void decideReferenceSource(void)
         }
 }
 
+/*
+ * This FSM decides what type of control is used for controlling the motor: Torque
+ * control or cruise control. If the system is being torque controlled and the user
+ * requests cruise control, the instantaneous rotor speed will be acquired and will
+ * be used as the reference for the control algorithm.
+ */
 void decideReferenceType(void)
 {
     setCruiseControlLED(OFF);
@@ -151,6 +170,10 @@ int referenceTypeIsChanged(void)
     return (GUISignals.ReferenceTypePushbutton || referenceTypeHasBeenPressed());
 }
 
+/*
+ * This FSM analyses what is the reference source selected and then acquires
+ * the torque reference from Analog read or graphical user interface.
+ */
 float getReferenceValue(void)
 {
     float analogValueTorque = 0, torqueReferenceBeforeLimit = 0;
@@ -211,8 +234,8 @@ void calculateSpeedReference(void)
 }
 int getSpeedReferenceValue(void)
 {
-    if (speedMustBeIncreased())     undampedSpeedReference += SPEED_STEP_FROM_BUTTON;
-    if (speedMustBeDecreased())     undampedSpeedReference -= SPEED_STEP_FROM_BUTTON;
+    if (speedMustBeIncreased())     undampedSpeedReference += SPEED_STEP_FROM_BUTTON_RPM;
+    if (speedMustBeDecreased())     undampedSpeedReference -= SPEED_STEP_FROM_BUTTON_RPM;
 
     return undampedSpeedReference;
 }
