@@ -3,11 +3,22 @@
  *
  *  Created on: 29. mar. 2019
  *      Author: Nicolai Fransen
+ *
+ *      The task of the error manager is to detect if an error has happened
+ *      somewhere in the system, and perform the necessary safety reactions.
+ *      The actual error detection only divides the signals into three groups:
+ *      Currents, batteries and the rest. Then the interface functions will
+ *      have to be called to discover the exact source of the error.
+ *
+ *      The errorManager also includes a watchdog that will reset the DSP if
+ *      the watchdog counter is not reset within a certain time period
  */
 
 #include "adcMonitor.h"
 #include "errorManager.h"
 #include "dutyCycle.h"
+#include "digitalOutput.h"
+#include "digitalOutputManager.h"
 
 /*
  * Struct that contains the error status of the different measurements
@@ -36,7 +47,7 @@ void monitorErrorSources(void)
     else
     {
         turnOffErrorLED();
-        //setEnablePWM(ON);
+        setEnablePWM(ON);
     }
 
 }
@@ -60,38 +71,106 @@ void performSafetyReactions(void)
  */
 void disableDrivers(void)
 {
-    // setEnablePWM(OFF); Uncomment this when merged with digital output manager
+    setEnablePWM(OFF);
 }
 
 void turnOnErrorLED(void)
 {
-    GpioDataRegs.GPASET.bit.GPIO18 = 1;
-    //setErrorLED(ON); Uncomment this when merged with digital output manager (LED17)
+    setErrorLED(ON);
 }
 
 void turnOffErrorLED(void)
 {
-    GpioDataRegs.GPACLEAR.bit.GPIO18 = 1;
-    //setErrorLED(OFF); Uncomment this when merged with digital output manager (LED17)
+    setErrorLED(OFF);
 }
 
 /*
- * Interface functions to get the three error status'
+ * Interface functions to get the error status of every single bit
  */
-errorStatus getCurrentErrorStatus(void)
+errorStatus getCurrentAErrorStatus(void)
 {
-    return errorStatusList.currentErrorStatus;
+    return getErrorStatusInBit(0);
 }
 
-errorStatus getBatteryErrorStatus(void)
+errorStatus getCurrentBErrorStatus(void)
 {
-    return errorStatusList.batteryErrorStatus;
+    return getErrorStatusInBit(1);
 }
 
-errorStatus getAdcErrorStatus(void)
+errorStatus getCurrentCErrorStatus(void)
 {
-    return errorStatusList.adcErrorStatus;
+    return getErrorStatusInBit(2);
 }
+
+errorStatus getControlSupplyBatteryErrorStatus(void)
+{
+    return getErrorStatusInBit(3);
+}
+
+errorStatus getDCLinkBatteryErrorStatus(void)
+{
+    return getErrorStatusInBit(4);
+}
+
+errorStatus getThermometer1ErrorStatus(void)
+{
+    return getErrorStatusInBit(5);
+}
+
+errorStatus getThermometer2ErrorStatus(void)
+{
+    return getErrorStatusInBit(6);
+}
+
+errorStatus getTorqueReferenceSliderErrorStatus(void)
+{
+    return getErrorStatusInBit(7);
+}
+
+errorStatus getSpeedReferenceSliderErrorStatus(void)
+{
+    return getErrorStatusInBit(8);
+}
+
+errorStatus getRotaryPot1ErrorStatus(void)
+{
+    return getErrorStatusInBit(9);
+}
+
+errorStatus getRotaryPot2ErrorStatus(void)
+{
+    return getErrorStatusInBit(10);
+}
+
+errorStatus getRotaryPot3ErrorStatus(void)
+{
+    return getErrorStatusInBit(11);
+}
+
+errorStatus getTorqueReferencePedalErrorStatus(void)
+{
+    return getErrorStatusInBit(12);
+}
+
+errorStatus getBrakeReferencePedalErrorStatus(void)
+{
+    return getErrorStatusInBit(13);
+}
+
+/*
+ * This function takes the position of the wanted error status and returns
+ * if an error has happened.
+ */
+errorStatus getErrorStatusInBit(Uint16 position)
+{
+    Uint16 analogErrorStatus = getAnalogErrorStatus();
+
+    if ((analogErrorStatus & (1<<position)) >> position)
+        return ERROR_HAS_HAPPENED;
+    else
+        return NO_ERROR;
+}
+
 
 /*
  * Function to initialize the watchdog.

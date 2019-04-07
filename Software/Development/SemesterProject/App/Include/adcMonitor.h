@@ -16,8 +16,8 @@
 
 typedef enum
 {
-    ERROR_HAS_HAPPENED,
     NO_ERROR,
+    ERROR_HAS_HAPPENED,
     IDLE
 } errorStatus;
 //

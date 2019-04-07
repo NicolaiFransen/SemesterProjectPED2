@@ -14,21 +14,17 @@
 
 /*
  * These three functions check different parts of the analogErrorStatus for errors
- * An error in this bit string is a 0, So the function checks the string for 1's.
- * If the for-loop finds a 1 errorHasHappened will be 0, and will therefore not
- * enter the if-statement.
+ * An error in this bit string is a 1.
+ * The if statements checks for a 1 in any of the places used in the part of the string that
+ * are of interest.
  */
 errorStatus areAdcMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
-    Uint16 errorStatusPosition;
 
-    for (errorStatusPosition = 5; errorStatusPosition < 14; errorStatusPosition++)
-    {
-        int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
-        if (errorHasHappened)
-            return ERROR_HAS_HAPPENED;
-    }
+    if (analogErrorStatus & 0b0011111111100000)
+        return ERROR_HAS_HAPPENED;
+
     return NO_ERROR;
 }
 
@@ -36,27 +32,19 @@ errorStatus areAdcMeasurementsWithinThresholds(void)
 errorStatus areBatteryMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
-    Uint16 errorStatusPosition;
 
-    for (errorStatusPosition = 3; errorStatusPosition < 5; errorStatusPosition++)
-    {
-        int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
-        if (errorHasHappened)
-            return ERROR_HAS_HAPPENED;
-    }
+    if (analogErrorStatus & 0b0000000000011000)
+        return ERROR_HAS_HAPPENED;
+
     return NO_ERROR;
 }
 
 errorStatus areCurrentMeasurementsWithinThresholds(void)
 {
     Uint16 analogErrorStatus = getAnalogErrorStatus();
-    Uint16 errorStatusPosition;
 
-    for (errorStatusPosition = 0; errorStatusPosition < 3; errorStatusPosition++)
-    {
-        int errorHasHappened = !((analogErrorStatus & (1 << errorStatusPosition)) >> errorStatusPosition);
-        if (errorHasHappened)
-            return ERROR_HAS_HAPPENED;
-    }
+    if (analogErrorStatus & 0b0000000000000111)
+        return ERROR_HAS_HAPPENED;
+
     return NO_ERROR;
 }
