@@ -104,6 +104,7 @@ void decideReferenceSource(void)
                 setTorqueReferenceSliderLED(ON);
             }
         }break;
+        default:    referenceSource = interfacePCB;
         }
 }
 
@@ -135,6 +136,7 @@ void decideReferenceType(void)
         }
         setCruiseControlLED(ON);
     }break;
+    default:    referenceType = torqueControl;
     }
 }
 
@@ -159,6 +161,7 @@ int referenceSourceIsChanged(void)
     {
         torqueReference = 0;
         speedReference = 0;
+        referenceType = torqueControl;
         if ((readSystemState() == RUNNING)) referenceSourceChanged = 1; //If the referenceSOurce is changed while in running, qualify the change so the system know it must go back to STANDBY
         return 1;
     }
@@ -240,6 +243,13 @@ int getSpeedReferenceValue(void)
     return undampedSpeedReference;
 }
 
+/*
+ * The current speed reference input by the user is compared to the speed
+ * reference used by the control algorithm. If there's a big difference
+ * between them, speedReferenceBeforeLimit is increased by deltaSpeed,
+ * which is a user selectable value. If there's no difference, the same
+ * value is returned.
+ */
 int calculateLimitedSpeedReference(int speedReferenceBeforeLimit)
 {
     if (speedRefIncreased(speedReferenceBeforeLimit)) return speedReferenceBeforeLimit + deltaSpeed;

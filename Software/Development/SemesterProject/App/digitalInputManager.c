@@ -33,7 +33,7 @@ static struct digitalInputListTag
     DigitalInput powerSwitch;
     DigitalInput speedIncreasePushbutton;
     DigitalInput speedDecreasePushbutton;
-    DigitalInput userACKPushbutton
+    DigitalInput userACKPushbutton;
 }digitalInputList;
 
 /*
