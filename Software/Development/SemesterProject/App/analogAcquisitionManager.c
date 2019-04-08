@@ -18,6 +18,7 @@
 //
 #include "analogAcquisitionManager.h"
 #include "DSP28x_Project.h"
+#include "Constants.h"
 
 
 //
@@ -143,16 +144,15 @@ Uint16 getAnalogErrorStatus(void)
 void setCurrentThresholds(float *currentThresholdArray,
                           float maximumCurrent, float minimumCurrent)
 {
-    float Rin = 9.1, biasVoltage = 0.817, opampGain = -1;
-    int currentSensorGain = 2000;
-
     float opampVoltage, maximumCurrentThreshold, minimumCurrentThreshold;
 
-    opampVoltage = maximumCurrent/currentSensorGain * Rin;
-    maximumCurrentThreshold = opampGain*opampVoltage + (1-opampGain)*biasVoltage;
+    opampVoltage = maximumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    maximumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
 
-    opampVoltage = minimumCurrent/currentSensorGain * Rin;
-    minimumCurrentThreshold = opampGain*opampVoltage + (1-opampGain)*biasVoltage;
+    opampVoltage = minimumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    minimumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
 
 
     *currentThresholdArray = maximumCurrentThreshold;
@@ -167,13 +167,11 @@ void setCurrentThresholds(float *currentThresholdArray,
 void setDCLinkVoltageThresholds(float *DCLinkThresholdArray,
                                 float maximumVoltage, float minimumVoltage)
 {
-    float R1 = 21500, R2 = 1000, R3 = 16200, R4 = 10000;
-
     float voltageDividerGain, opampGain;
     float maximumVoltageThreshold, minimumVoltageThreshold;
 
-    voltageDividerGain = R2/(R1+R2);
-    opampGain = R3/R4;
+    voltageDividerGain = R2_DCLINK_MEAS / (R1_DCLINK_MEAS + R2_DCLINK_MEAS);
+    opampGain = R3_DCLINK_MEAS / R4_DCLINK_MEAS;
 
     maximumVoltageThreshold = maximumVoltage * voltageDividerGain * opampGain;
     minimumVoltageThreshold = minimumVoltage * voltageDividerGain * opampGain;
@@ -190,12 +188,10 @@ void setDCLinkVoltageThresholds(float *DCLinkThresholdArray,
 void setControlSupplyVoltageThresholds(float *controlSupplyThresholdArray,
                                        float maximumVoltage, float minimumVoltage)
 {
-    float R1 = 8200, R2 = 1000;
-
     float voltageDividerGain;
     float maximumVoltageThreshold, minimumVoltageThreshold;
 
-    voltageDividerGain = R2/(R1+R2);
+    voltageDividerGain = R2_CONTROL_SUPPLY_MEAS / (R1_CONTROL_SUPPLY_MEAS + R2_CONTROL_SUPPLY_MEAS);
 
     maximumVoltageThreshold = maximumVoltage * voltageDividerGain;
     minimumVoltageThreshold = minimumVoltage * voltageDividerGain;
@@ -213,11 +209,10 @@ void setControlSupplyVoltageThresholds(float *controlSupplyThresholdArray,
 void setThermometerThresholds(float *thermometerThresholdArray,
                               float maximumTemperature, float minimumTemperature)
 {
-    float sensorGain = 0.01;          //Gain in sensor is 10mV/deg
     float maximumTemperatureThreshold, minimumTemperatureThreshold;
 
-    maximumTemperatureThreshold = maximumTemperature * sensorGain;
-    minimumTemperatureThreshold = minimumTemperature * sensorGain;
+    maximumTemperatureThreshold = maximumTemperature * TEMP_SENSOR_GAIN;
+    minimumTemperatureThreshold = minimumTemperature * TEMP_SENSOR_GAIN;
 
     *thermometerThresholdArray = minimumTemperatureThreshold;
     thermometerThresholdArray++;
@@ -357,10 +352,16 @@ void createAnalogSignals(void)
     float rotaryPotThreshold[2] = {0.0, 3.3};
     float connectorPotThreshold[2] = {0.0, 3.3};
 
+    /*
+     * To call these functions you pass the address of the first position in the array
+     * where you want to save the threshold values. So it is important to initialize the arrays
+     * before using them.
+     * Then pass the maximum and then the minimum value of the threshold you want to set.
+     */
     setCurrentThresholds(&currentThreshold[0], 300, -300);
     setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 40, 10);
     setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 5);
-    setThermometerThresholds(&thermalThreshold[0], 10, 100);
+    setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
