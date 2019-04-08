@@ -18,6 +18,7 @@
 //
 #include "analogAcquisitionManager.h"
 #include "DSP28x_Project.h"
+#include "Constants.h"
 
 
 //
@@ -103,7 +104,7 @@ void calculateFilteredValue(void *signal, int size)
 
 /*
  * Returns the error status of the analog measurements.
- * The function returns a '1' in the position of the signal
+ * The function returns a '0' in the position of the signal
  * if the measurement is outside the threshold values
  */
 Uint16 getAnalogErrorStatus(void)
@@ -116,7 +117,7 @@ Uint16 getAnalogErrorStatus(void)
     int i = 0;
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
-        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+        if (structPointer->filteredValue < structPointer->threshold[0] || structPointer->filteredValue > structPointer->threshold[1])
             errorStatus |= 1<<i;
 
         i++;
@@ -127,13 +128,95 @@ Uint16 getAnalogErrorStatus(void)
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
-        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+        if (structPointer->filteredValue < structPointer->threshold[0] || structPointer->filteredValue > structPointer->threshold[1])
             errorStatus |= 1<<i;
 
         i++;
     }
 
     return errorStatus;
+}
+
+/*
+ * Function to set thresholds for the current measurements.
+ * Absolute minimum and maximum is +/- 300A.
+ */
+void setCurrentThresholds(float *currentThresholdArray,
+                          float maximumCurrent, float minimumCurrent)
+{
+    float opampVoltage, maximumCurrentThreshold, minimumCurrentThreshold;
+
+    opampVoltage = maximumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    maximumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
+
+    opampVoltage = minimumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    minimumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
+
+
+    *currentThresholdArray = maximumCurrentThreshold;
+    currentThresholdArray++;
+    *currentThresholdArray = minimumCurrentThreshold;
+}
+
+/*
+ * Function to set thresholds for the DC-Link voltage measurements.
+ * Absolute maximum is 45V.
+ */
+void setDCLinkVoltageThresholds(float *DCLinkThresholdArray,
+                                float maximumVoltage, float minimumVoltage)
+{
+    float voltageDividerGain, opampGain;
+    float maximumVoltageThreshold, minimumVoltageThreshold;
+
+    voltageDividerGain = R2_DCLINK_MEAS / (R1_DCLINK_MEAS + R2_DCLINK_MEAS);
+    opampGain = R3_DCLINK_MEAS / R4_DCLINK_MEAS;
+
+    maximumVoltageThreshold = maximumVoltage * voltageDividerGain * opampGain;
+    minimumVoltageThreshold = minimumVoltage * voltageDividerGain * opampGain;
+
+    *DCLinkThresholdArray = minimumVoltageThreshold;
+    DCLinkThresholdArray++;
+    *DCLinkThresholdArray = maximumVoltageThreshold;
+}
+
+/*
+ * Function to set thresholds for the control supply voltage measurements.
+ * Absolute maximum is 30V.
+ */
+void setControlSupplyVoltageThresholds(float *controlSupplyThresholdArray,
+                                       float maximumVoltage, float minimumVoltage)
+{
+    float voltageDividerGain;
+    float maximumVoltageThreshold, minimumVoltageThreshold;
+
+    voltageDividerGain = R2_CONTROL_SUPPLY_MEAS / (R1_CONTROL_SUPPLY_MEAS + R2_CONTROL_SUPPLY_MEAS);
+
+    maximumVoltageThreshold = maximumVoltage * voltageDividerGain;
+    minimumVoltageThreshold = minimumVoltage * voltageDividerGain;
+
+    *controlSupplyThresholdArray = minimumVoltageThreshold;
+    controlSupplyThresholdArray++;
+    *controlSupplyThresholdArray = maximumVoltageThreshold;
+}
+
+/*
+ * Function to set thresholds for thermal measurements.
+ * No realistic maximum, but 330 deg is equal to 3.3V input to DSP
+ * Sensor is limited to 2-150 deg.
+ */
+void setThermometerThresholds(float *thermometerThresholdArray,
+                              float maximumTemperature, float minimumTemperature)
+{
+    float maximumTemperatureThreshold, minimumTemperatureThreshold;
+
+    maximumTemperatureThreshold = maximumTemperature * TEMP_SENSOR_GAIN;
+    minimumTemperatureThreshold = minimumTemperature * TEMP_SENSOR_GAIN;
+
+    *thermometerThresholdArray = minimumTemperatureThreshold;
+    thermometerThresholdArray++;
+    *thermometerThresholdArray = maximumTemperatureThreshold;
 }
 
 /*
@@ -263,12 +346,22 @@ void createAnalogSignals(void)
     int filterOrder = 1, filterFreq = 50;
 
     // Definition of thresholds
-    float currentThreshold[2] = {0.3, 0.5};
-    float voltageThreshold[2] = {0.3, 3.1};
-    float thermalThreshold[2] = {0.2, 2.5};
-    float sliderPotThreshold[2] = {0.2, 3.0};
-    float rotaryPotThreshold[2] = {0.2, 0.5};
-    float connectorPotThreshold[2] = {0.2, 3.0};
+    float currentThreshold[2], thermalThreshold[2];
+    float DCLinkVoltageThreshold[2], controlVoltageThreshold[2];
+    float sliderPotThreshold[2] = {0.0, 3.3};
+    float rotaryPotThreshold[2] = {0.0, 3.3};
+    float connectorPotThreshold[2] = {0.0, 3.3};
+
+    /*
+     * To call these functions you pass the address of the first position in the array
+     * where you want to save the threshold values. So it is important to initialize the arrays
+     * before using them.
+     * Then pass the maximum and then the minimum value of the threshold you want to set.
+     */
+    setCurrentThresholds(&currentThreshold[0], 300, -300);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 40, 10);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 5);
+    setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
@@ -291,13 +384,13 @@ void createAnalogSignals(void)
     // Create signal for 24V measurement
     Uint16 voltageMeas24Channel = AD24;
     Signal_Constructor(&AnalogSignalList.voltageMeas24, filterType, filterOrder,
-                       filterFreq, voltageMeas24Channel, voltageThreshold);
+                       filterFreq, voltageMeas24Channel, DCLinkVoltageThreshold);
 
 
     // Create signal for 36V measurement
     Uint16 voltageMeas36Channel = AD36;
     Signal_Constructor(&AnalogSignalList.voltageMeas36, filterType, filterOrder,
-                       filterFreq, voltageMeas36Channel, voltageThreshold);
+                       filterFreq, voltageMeas36Channel, controlVoltageThreshold);
 
 
     // Create signal for Thermal measurement 1
@@ -313,13 +406,13 @@ void createAnalogSignals(void)
 
 
     // Create signal for Left slider Potentiometer
-    Uint16 leftSliderPotChannel = P2;
+    Uint16 leftSliderPotChannel = P1;
     Signal_Constructor(&AnalogSignalList.sliderPotLeft, filterType, filterOrder,
                        filterFreq, leftSliderPotChannel, sliderPotThreshold);
 
 
     // Create signal for Right slider potentiometer
-    Uint16 rightSliderPotChannel = P1;
+    Uint16 rightSliderPotChannel = P2;
     Signal_Constructor(&AnalogSignalList.sliderPotRight, filterType, filterOrder,
                        filterFreq, rightSliderPotChannel, sliderPotThreshold);
 

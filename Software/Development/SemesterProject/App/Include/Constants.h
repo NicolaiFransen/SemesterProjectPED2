@@ -60,6 +60,21 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
+// Constant component values from interface PCB
+#define R_IN_CURRENT_MEAS           9.1     // Ohm
+#define BIAS_VOLTAGE_OPAMP          0.817   // V
+#define OPAMP_GAIN_CURRENT_MEAS     -1      // []
+#define CURRENT_SENSOR_GAIN         2000    // []
+#define R1_DCLINK_MEAS              21500   // Ohm
+#define R2_DCLINK_MEAS              1000    // Ohm
+#define R3_DCLINK_MEAS              16200   // Ohm
+#define R4_DCLINK_MEAS              10000   // Ohm
+#define R1_CONTROL_SUPPLY_MEAS      8200    // Ohm
+#define R2_CONTROL_SUPPLY_MEAS      1000    // Ohm
+#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+
+
+
 #endif  
 
 
