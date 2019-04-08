@@ -11,6 +11,8 @@
 #include "analogAcquisitionManager.h"
 #include "systemManager.h"
 #include "digitalInputManager.h"
+#include "temperatureManager.h"
+
 
 struct GUIAnalogSignalsTag getGUIAnalogSignals(void);
 void manageCommunications(void);

@@ -114,8 +114,10 @@ void getAnalogSignals(void)
     COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurent();
     COMMS_PedalTorqueReference = getTorqueReferencePedalMeasurement();
     COMMS_PedalBrakeReference = getBrakeReferencePedalMeasurement();
-    COMMS_Thermometer1 = getThermometer1Measurement();
-    COMMS_Thermometer2 = getThermometer2Measurement();
+    //Using temperatureManager Interface
+    COMMS_Thermometer1 = getSensor1Temperature();
+    COMMS_Thermometer2 = getSensor2Temperature();
+
 }
 
 void getDigitalSignals(void)
