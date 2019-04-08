@@ -8,6 +8,8 @@
 #ifndef APP_INCLUDE_TEMPERATUREMANAGER_H_
 #define APP_INCLUDE_TEMPERATUREMANAGER_H_
 
+#include "Constants.h"
+
 void calculateTemperature(void);
 float getSensor1Temperature(void);
 float getSensor2Temperature(void);

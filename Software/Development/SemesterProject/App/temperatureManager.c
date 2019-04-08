@@ -17,11 +17,6 @@
 #include "temperatureManager.h"
 
 /*
- * Temperature sensor gain in Volts/degC
- */
-#define TEMPERATURE_SENSOR_GAIN 0.01
-
-/*
  * Quasi Global variable definition
  */
 static float S1Temperature = 0, S2Temperature = 0;
@@ -30,11 +25,11 @@ void calculateTemperature(void) //To be called from scheduler when reference han
 {
     float voltageSensor1;
     voltageSensor1 = getThermometer1Measurement();
-    S1Temperature = voltageSensor1 / TEMPERATURE_SENSOR_GAIN;
+    S1Temperature = voltageSensor1 / TEMP_SENSOR_GAIN;
 
     float voltageSensor2;
     voltageSensor2 = getThermometer2Measurement();
-    S2Temperature = voltageSensor2 / TEMPERATURE_SENSOR_GAIN;
+    S2Temperature = voltageSensor2 / TEMP_SENSOR_GAIN;
 }
 
 /*
