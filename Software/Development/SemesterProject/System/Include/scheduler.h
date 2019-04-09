@@ -44,6 +44,7 @@ void runTask(void (*functionPTR)());
 
 void task50us(void);
 void task100us(void);
+void task10ms(void);
 void task20ms(void);
 void task200ms(void);
 void task1s(void);

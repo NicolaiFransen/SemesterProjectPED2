@@ -16,6 +16,7 @@
  *      will be called. Otherwise it will loop infinitely.
  */
 #include "Include/scheduler.h"
+#include "errorManager.h"
 
 /*
  * Quasi-global variable definition
@@ -24,6 +25,7 @@ static enum taskListTag
 {
     task50usItem,
     task100usItem,
+    task10msItem,
     task20msItem,
     task200msItem,
     task1sItem,
@@ -43,6 +45,11 @@ void taskListInitialization(void)
     taskList[task100usItem].taskState = INACTIVE;
     taskList[task100usItem].cyclicity = 100;
     taskList[task100usItem].timeLeft = 100;
+
+    taskList[task10msItem].functionPointer = task10ms;
+    taskList[task10msItem].taskState = INACTIVE;
+    taskList[task10msItem].cyclicity = 10000;
+    taskList[task10msItem].timeLeft = 10000;
 
     taskList[task20msItem].functionPointer = task20ms;
     taskList[task20msItem].taskState = READY;
@@ -93,6 +100,12 @@ void task100us(void)
 void task50us(void)
 {
     executeControl();
+    monitorErrorSources();
+}
+
+void task10ms(void)
+{
+    ServiceDog();
 }
 
 void task20ms(void)
