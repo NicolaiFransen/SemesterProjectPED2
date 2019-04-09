@@ -2,7 +2,6 @@
 *.raw
 *.net
 *.asv
-*.Zip
 
 #Avoid PLECS autosave
 *.autosave

@@ -280,7 +280,7 @@ float getTorqueReferenceSliderMeasurement(void)
     return AnalogSignalList.sliderPotRight.filteredValue;
 }
 
-float getBrakeReferenceSliderMeasurent(void)
+float getSpeedReferenceSliderMeasurement(void)
 {
     return AnalogSignalList.sliderPotLeft.filteredValue;
 }
@@ -366,85 +366,87 @@ void createAnalogSignals(void)
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
     Signal_Constructor(&CurrentSignalList.currentMeasA, filterType, filterOrder,
-                       filterFreq, currentMeasAChannel, currentThreshold);
+                       filterFreq, currentMeasAChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current B measurement.
     Uint16 currentMeasBChannel = IB;
     Signal_Constructor(&CurrentSignalList.currentMeasB, filterType, filterOrder,
-                       filterFreq, currentMeasBChannel, currentThreshold);
+                       filterFreq, currentMeasBChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current C measurement.
     Uint16 currentMeasCChannel = IC;
     Signal_Constructor(&CurrentSignalList.currentMeasC, filterType, filterOrder,
-                       filterFreq, currentMeasCChannel, currentThreshold);
+                       filterFreq, currentMeasCChannel, currentThreshold, HIGH);
 
 
     // Create signal for 24V measurement
     Uint16 voltageMeas24Channel = AD24;
     Signal_Constructor(&AnalogSignalList.voltageMeas24, filterType, filterOrder,
-                       filterFreq, voltageMeas24Channel, DCLinkVoltageThreshold);
+                       filterFreq, voltageMeas24Channel, controlVoltageThreshold, LOW);
+
 
 
     // Create signal for 36V measurement
     Uint16 voltageMeas36Channel = AD36;
     Signal_Constructor(&AnalogSignalList.voltageMeas36, filterType, filterOrder,
-                       filterFreq, voltageMeas36Channel, controlVoltageThreshold);
+                       filterFreq, voltageMeas36Channel, DCLinkVoltageThreshold, LOW);
+
 
 
     // Create signal for Thermal measurement 1
     Uint16 thermalMeas1Channel = J1;
     Signal_Constructor(&AnalogSignalList.thermalMeas1, filterType, filterOrder,
-                       filterFreq, thermalMeas1Channel, thermalThreshold);
+                       filterFreq, thermalMeas1Channel, thermalThreshold, LOW);
 
 
     // Create signal for Thermal measurement 2
     Uint16 thermalMeas2Channel = J2;
     Signal_Constructor(&AnalogSignalList.thermalMeas2, filterType, filterOrder,
-                       filterFreq, thermalMeas2Channel, thermalThreshold);
+                       filterFreq, thermalMeas2Channel, thermalThreshold, LOW);
 
 
     // Create signal for Left slider Potentiometer
     Uint16 leftSliderPotChannel = P1;
     Signal_Constructor(&AnalogSignalList.sliderPotLeft, filterType, filterOrder,
-                       filterFreq, leftSliderPotChannel, sliderPotThreshold);
+                       filterFreq, leftSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for Right slider potentiometer
     Uint16 rightSliderPotChannel = P2;
     Signal_Constructor(&AnalogSignalList.sliderPotRight, filterType, filterOrder,
-                       filterFreq, rightSliderPotChannel, sliderPotThreshold);
+                       filterFreq, rightSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 1
     Uint16 rotaryPot1Channel = P3;
     Signal_Constructor(&AnalogSignalList.rotaryPot1, filterType, filterOrder,
-                       filterFreq, rotaryPot1Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot1Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 2
     Uint16 rotaryPot2Channel = P4;
     Signal_Constructor(&AnalogSignalList.rotaryPot2, filterType, filterOrder,
-                       filterFreq, rotaryPot2Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot2Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 3
     Uint16 rotaryPot3Channel = P5;
     Signal_Constructor(&AnalogSignalList.rotaryPot3, filterType, filterOrder,
-                       filterFreq, rotaryPot3Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot3Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for connector potentiometer 1
     Uint16 connectorPot1Channel = J3;
     Signal_Constructor(&AnalogSignalList.connectorPot1, filterType, filterOrder,
-                       filterFreq, connectorPot1Channel, connectorPotThreshold);
+                       filterFreq, connectorPot1Channel, connectorPotThreshold, LOW);
 
 
     // Create signal for connector potentiometer 2
     Uint16 connectorPot2Channel = J4;
     Signal_Constructor(&AnalogSignalList.connectorPot2, filterType, filterOrder,
-                       filterFreq, connectorPot2Channel, connectorPotThreshold);
+                       filterFreq, connectorPot2Channel, connectorPotThreshold, LOW);
 }
 
 

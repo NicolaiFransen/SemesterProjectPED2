@@ -28,6 +28,7 @@ static enum taskListTag
     task10msItem,
     task20msItem,
     task200msItem,
+    task1sItem,
     numberOfTasks
 }taskListItems;
 
@@ -59,6 +60,11 @@ void taskListInitialization(void)
     taskList[task200msItem].taskState = INACTIVE;
     taskList[task200msItem].cyclicity = 200000;
     taskList[task200msItem].timeLeft = 200000;
+
+    taskList[task1sItem].functionPointer = task1s;
+    taskList[task1sItem].taskState = INACTIVE;
+    taskList[task1sItem].cyclicity = 1000000;
+    taskList[task1sItem].timeLeft = 1000000;
 
     taskList[numberOfTasks].functionPointer = NULL; // End of list
 }
@@ -108,11 +114,17 @@ void task20ms(void)
     readDigitalInputs();
     readLowPrioritySignals();
     handlePushbuttons();
+    handleReferences();
 }
 
 void task200ms(void)
 {
     manageCommunications();
+}
+
+void task1s(void)
+{
+    restartPushbuttonsState();
 }
 
 //

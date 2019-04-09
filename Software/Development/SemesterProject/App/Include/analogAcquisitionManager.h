@@ -88,7 +88,7 @@ void getCurrentMeasurements(float *array);
 float getDCLinkMeasurement(void);
 float getControlsupplyMeasurement(void);
 float getTorqueReferenceSliderMeasurement(void);
-float getBrakeReferenceSliderMeasurent(void);
+float getSpeedReferenceSliderMeasurement(void);
 float getTorqueReferencePedalMeasurement(void);
 float getBrakeReferencePedalMeasurement(void);
 float getThermometer1Measurement(void);
