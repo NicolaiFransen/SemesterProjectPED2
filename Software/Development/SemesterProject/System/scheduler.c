@@ -18,6 +18,7 @@
 #include "Include/scheduler.h"
 #include "errorManager.h"
 
+
 /*
  * Quasi-global variable definition
  */
@@ -99,7 +100,8 @@ void task100us(void)
 
 void task50us(void)
 {
-    executeControl();
+//    executeControl();
+//    runClosedLoopControl();
     monitorErrorSources();
 }
 
