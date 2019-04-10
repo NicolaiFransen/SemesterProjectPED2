@@ -33,6 +33,7 @@ static struct digitalInputListTag
     DigitalInput powerSwitch;
     DigitalInput speedIncreasePushbutton;
     DigitalInput speedDecreasePushbutton;
+    DigitalInput userACKPushbutton;
 }digitalInputList;
 
 /*
@@ -49,6 +50,7 @@ void initDigitalInputs(void)
     digitalInput_Constructor(&digitalInputList.powerSwitch, S1);
     digitalInput_Constructor(&digitalInputList.speedIncreasePushbutton, B3);
     digitalInput_Constructor(&digitalInputList.speedDecreasePushbutton, B4);
+    digitalInput_Constructor(&digitalInputList.userACKPushbutton, J12);
 }
 
 /*
@@ -103,6 +105,11 @@ int isSpeedIncreasePushbuttonEnabled(void)
 int isSpeedDecreasePushbuttonEnabled(void)
 {
     return digitalInputList.speedDecreasePushbutton.state;
+}
+
+int isUserACKPushbuttonEnabled(void)
+{
+    return digitalInputList.userACKPushbutton.state;
 }
 
 //

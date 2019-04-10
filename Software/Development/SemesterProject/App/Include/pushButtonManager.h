@@ -29,6 +29,8 @@ void handlePushbuttons(void);
 void pushEventQualificationFSM(PushButton *pushbutton);
 int pinIsHigh(PushButton *pushbutton);
 int pinIsLow(PushButton *pushbutton);
+void restartPushbuttonsState(void);
+
 
 /*
  * External Interface
@@ -37,6 +39,7 @@ int referenceSourceHasBeenPressed(void);
 int referenceTypeHasBeenPressed(void);
 int speedRefDecreaseHasBeenPressed(void);
 int speedRefIncreaseHasBeenPressed(void);
+int userACKHasBeenPressed(void);
 
 
 

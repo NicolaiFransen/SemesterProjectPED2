@@ -12,9 +12,38 @@
 #include "systemManager.h"
 #include "digitalInputManager.h"
 #include "temperatureManager.h"
+#include "referenceHandler.h"
 
 
-struct GUIAnalogSignalsTag getGUIAnalogSignals(void);
+
+
+typedef struct
+{
+    int previousValue;
+    int GUIValue;
+    int pushbuttonHasBeenPressed;
+}GUIPushbuttonTag;
+
+struct GUIPushbuttonListTag
+{
+    GUIPushbuttonTag speedIncreasePushButton;
+    GUIPushbuttonTag speedDecreasePushButton;
+    GUIPushbuttonTag referenceSourcePushButton;
+    GUIPushbuttonTag referenceTypePushButton;
+};
+
+typedef struct
+{
+    float TorqueReference;
+    float SpeedReference;
+    float BrakeReference;
+    int ReferenceTypePushbutton;
+    int ReferenceSourcePushbutton;
+    int SpeedIncreasePushbutton;
+    int SpeedDecreasePushbutton;
+}GUISignalsTag;
+
+GUISignalsTag getGUISignals(void);
 void manageCommunications(void);
 void getSystemManagerSignals(void);
 void getErrorSignals(void);
@@ -22,7 +51,11 @@ void getReferenceHandlerSignals(void);
 void getAnalogSignals(void);
 void getDigitalSignals(void);
 void performGUISideTasks(void);
-
+void handleGUIPushbuttons(void);
+void updatePushButtonList(void);
+void handlePushbuttonsPress(void);
+void restartPushbuttonsValue(void);
+void initializeGUIPushbuttonsStructure(void);
 
 
 #endif /* APP_INCLUDE_COMMUNICATIONMANAGER_H_ */

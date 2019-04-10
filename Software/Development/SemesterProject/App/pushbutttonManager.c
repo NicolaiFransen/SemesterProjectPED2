@@ -22,6 +22,7 @@ static struct pushButtonListTag
     PushButton referenceType;
     PushButton speedIncrease;
     PushButton speedDecrease;
+    PushButton userACK;
 }pushButtonList;
 
 void initPushbuttons()
@@ -35,6 +36,7 @@ void initPushbuttons()
     pushButtonList.referenceType.functionPointer = isReferenceTypePushbuttonEnabled;
     pushButtonList.speedDecrease.functionPointer = isSpeedDecreasePushbuttonEnabled;
     pushButtonList.speedIncrease.functionPointer = isSpeedIncreasePushbuttonEnabled;
+    pushButtonList.userACK.functionPointer = isUserACKPushbuttonEnabled;
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
@@ -90,6 +92,23 @@ int pinIsLow(PushButton *pushbutton)
     return !(pushbutton->functionPointer());
 }
 
+void restartPushbuttonsState(void)
+{
+    PushButton *structPointer;
+    PushButton *initialMemoryPosition = &pushButtonList.referenceSource;
+    PushButton *finalMemoryPosition = initialMemoryPosition + sizeof(pushButtonList)/sizeof(PushButton);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+    {
+        structPointer->FSMState = waitingForRisingEdge; // First State of FSM
+        structPointer->ButtonState = 0;
+    }
+}
+
+/*
+ * External Interface
+ */
+
 int referenceSourceHasBeenPressed(void)
 {
     int buttonStateValue = pushButtonList.referenceSource.ButtonState;
@@ -118,4 +137,9 @@ int speedRefIncreaseHasBeenPressed(void)
     return buttonStateValue;
 }
 
-
+int userACKHasBeenPressed(void)
+{
+    int buttonStateValue = pushButtonList.userACK.ButtonState;
+    pushButtonList.userACK.ButtonState = 0;
+    return buttonStateValue;
+}

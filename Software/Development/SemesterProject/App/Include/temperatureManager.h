@@ -9,6 +9,8 @@
 #define APP_INCLUDE_TEMPERATUREMANAGER_H_
 
 #include "Constants.h"
+#include "analogAcquisitionManager.h"
+
 
 void calculateTemperature(void);
 float getSensor1Temperature(void);
