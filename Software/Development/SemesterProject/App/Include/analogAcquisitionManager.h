@@ -13,6 +13,7 @@
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "analogSignal.h"
+#include "controlTask.h"
 
 
 
@@ -36,7 +37,7 @@
 #define AD24            14      // ADCINB6      Control supply voltage
 #define P1              15      // ADCINB7      Torque reference (Right slider)
 
-#define TRIGGER         2       // TRIGGER SELECT
+#define TRIGGER         5       // TRIGGER SELECT
 #define SAMPLING_RATE   6       // ACQPS SELECT
 
 //
@@ -46,7 +47,6 @@
 /*
  * Interrupts for updating measurements
  */
-__interrupt void cpu_timer1_isr(void);
 __interrupt void adc_isr(void);
 
 /*

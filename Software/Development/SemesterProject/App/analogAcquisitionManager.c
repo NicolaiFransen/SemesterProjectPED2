@@ -137,25 +137,20 @@ Uint16 getAnalogErrorStatus(void)
 }
 
 /*
- * This interrupt is used to trigger the ADC measurements
- */
-__interrupt void
-cpu_timer1_isr(void)
-{
-    CpuTimer1.InterruptCount++;
-
-    //
-    // The CPU acknowledges the interrupt
-    //
-    EDIS;
-}
-
-/*
- * This interrupt is called every time the ADC registers have been updated.
+ * When the triangular counter reaches a peak, meaning the middle of the PWM,
+ * the sampling triggers and hit hit SOC(start-of-conversion). When conversion
+ * is finished ADC-INT1 will be triggered and this interrupt will be called.
+ * This interrupt then reads the newest values in the ADC registers, and execute
+ * the control algorithm.
+ *
+ * The execution frequency of the control will therefore follow the frequency
+ * of the PWM signals.
  */
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
+
+    executeControl();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
@@ -371,6 +366,13 @@ void configureADCRegisters(void)
     AdcRegs.INTSEL1N2.bit.INT1E         = 1;
     AdcRegs.INTSEL1N2.bit.INT1CONT      = 0;
 
+    EPwm1Regs.ETSEL.bit.INTEN = 1;  // Enable INT
+    EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
+
+    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = 1;        // Select SOC from CMPA on upcount
+    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
+
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
 
@@ -446,6 +448,7 @@ void configureADCRegisters(void)
     AdcRegs.ADCSOC2CTL.bit.ACQPS        = SAMPLING_RATE;
     EDIS;
 }
+
 
 //
 // End of File
