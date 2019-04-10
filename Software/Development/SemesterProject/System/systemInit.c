@@ -21,12 +21,7 @@
 //
 // Included Files
 //
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
-#include "../App/Include/digitalInputManager.h"
-
-#include "../App/Include/analogAcquisitionManager.h"
-
 
 //
 // Quasi-global variables definition
@@ -136,6 +131,7 @@ void systemInit(void)
     // Initialize and calibrate ADC blocks
     //
     InitAdc();
+
     AdcOffsetSelfCal();
 
     //
@@ -144,6 +140,7 @@ void systemInit(void)
     initDigitalInputs();
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
+    initEncoder();
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

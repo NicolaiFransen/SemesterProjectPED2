@@ -12,6 +12,7 @@
 #include "communicationManager.h"
 #include "openLoopControlManager.h"
 #include "controlTask.h"
+#include "encoderManager.h"
 #include <stddef.h>
 
 #define TIMER_PERIOD_US       50

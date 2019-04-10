@@ -9,31 +9,36 @@
 #define APP_ENCODERMANAGER_H_
 
 #include "DSP28x_Project.h"
+#include "Constants.h"
 
-#define ENCODER_STEPS 100
-#define ENCODER_INT_FREQ 200 //5ms period for reading encoder (200Hz).
+#define ENCODER_STEPS 40
+#define BASE_FREQ 50        //us
+
+
 typedef struct
 {
-    int32 thetaRaw;     // Raw angle, counter of steps in cycle
-    int32 offsetTheta;  // Offset between index and phase
+    int32 thetaRaw;      // Raw angle, counter of steps in cycle (steps).
+    int poles;           // Number of poles of the motor.
+    int speedTempCount;  // Defines how often the values will be updated.
 
-    int16 stepsPerCycle;
+    int dir;             // Motor direction: 0=CCW/reverse, 1=CW/forward
 
-    int dir;            // Motor direction: 0=CCW/reverse, 1=CW/forward
+    float thetaElecOld;  // Last motor raw angle (rad).
+    float thetaElec;     // Motor Electrical angle (rad).
+    float thetaMech;     // Motor Mechanical Angle (rad).
 
-    int32 thetaElecOld;  // Last motor raw angle, not necessary because Xdelta is saved inside the module (QPOSLAT).
-    int16 thetaElec;    // Motor Electrical angle, current electrical angle of the motor
-    int16 thetaMech;    // Motor Mechanical Angle, current mechanical angle of the motor
+    float freqElec;      // Motor Electrical freq [Hz]
+    float freqMech;      // Motor Mechanical freq [Hz]
 
-    float freqElec;     // Motor Electrical freq [Hz]
-    int poles;          // Number of poles of the motor.
-    float freqMech;     // Motor Mechanical freq [Hz]
-
-    int16 rpmMech;      // Motor revolutions per minute
+    int16 rpmMech;       // Motor revolutions per minute
 
 } motorPosSpeed;
 
 
+void initEncoder(void);
+void motorPosSpeedConstructor(void);
+void motorPosCalc(void);
+void motorSpeedCalc(void);
 int16 readRotorElecAngle(void);
 float readRotorElecFreq(void);
 int16 readRotorMechAngle(void);

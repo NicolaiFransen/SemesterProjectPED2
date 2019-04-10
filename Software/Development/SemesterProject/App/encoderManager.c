@@ -30,7 +30,6 @@ void initEncoder(void)
     GpioCtrlRegs.GPAMUX2.bit.GPIO21 = 1;   // Configure GPIO21 as EQEP1B
     GpioCtrlRegs.GPAMUX2.bit.GPIO23 = 1;   // Configure GPIO23 as EQEP1I
 
-
     EQep1Regs.QUPRD = 900000;         // Unit Timer for 100Hz at 80 MHz SYSCLKOUT
 
     EQep1Regs.QDECCTL.bit.QSRC = 00;  // QEP quadrature count mode
@@ -50,7 +49,7 @@ void initEncoder(void)
     EQep1Regs.QEPCTL.bit.UTE = 1;     // Unit Timeout Enable. 1->Enabled.
     EQep1Regs.QEPCTL.bit.WDE = 0;     // Watchdog enable. 0->disabled
 
-    EQep1Regs.QPOSMAX = 0xffffffff;   // Maximum possible counter value.
+    EQep1Regs.QPOSMAX = ENCODER_STEPS;         // Maximum possible counter value.
     EQep1Regs.QPOSINIT = 0;           // Position value used to initialize when index event.
 
     EQep1Regs.QCAPCTL.bit.CEN = 1;    // QEP Capture Enable
@@ -59,6 +58,7 @@ void initEncoder(void)
 
     EDIS;
 
+    motorPosSpeedConstructor();
 }
 
 
@@ -66,49 +66,12 @@ void initEncoder(void)
  * Encoder constructor.
  * To be called as motorPosSpeedConstructor(&motorPosSpeedObject);
  */
-void motorPosSpeedConstructor(motorPosSpeed *motorPosSpeed)
+void motorPosSpeedConstructor(void)
 {
-    motorPosSpeed->offsetTheta = 0;
-    motorPosSpeed->poles = 2;
-    motorPosSpeed->stepsPerCycle = ENCODER_STEPS;
-}
-
-
-/*
- * Function that updates the object containing position info from encoder.
- * To be called as motorPosCalc(&motorPosSpeedObject);
- */
-void motorPosCalc(motorPosSpeed *motorPosSpeed)
-{
-    // Check motor direction: 0=CCW/reverse, 1=CW/forward.
-    motorPosSpeed->dir = EQep1Regs.QEPSTS.bit.QDF;
-
-/*    // Save previous angle, for later speed calculation.
-    motorPosSpeed->oldThetaRaw = motorPosSpeed->thetaRaw;   // According to my understanding of the datasheet, QPOSLAT already saves Xdelta in a time period.
-                                                            // So it should be possible to use that as a value for measuring speed.
-*/
-
-    //Update raw angle with counter, remember that QPOSCNT already takes into account direction, QPOSCNT is latched into QPOSLAT.
-    motorPosSpeed->thetaRaw = EQep1Regs.QPOSLAT;
-
-    // Check an index occurrence
-    if (EQep1Regs.QFLG.bit.IEL == 1) EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
-
-    motorPosSpeed->thetaElecOld = motorPosSpeed->thetaElec;
-    motorPosSpeed->thetaElec = motorPosSpeed->thetaRaw * motorPosSpeed->poles * 360 / ENCODER_STEPS;    //Transform into electrical angle [º]
-    motorPosSpeed->thetaMech = motorPosSpeed->thetaElec * 360 / ENCODER_STEPS;
-}
-
-
-/*
- * Function that updates the object containing speed info from encoder.
- * To be called as motorSpeedCalc(&motorPosSpeedObject);
- */
-void motorSpeedCalc(motorPosSpeed *motorPosSpeed)
-{
-    motorPosSpeed->freqElec = ( motorPosSpeed->thetaElec - motorPosSpeed->thetaElecOld ) * ENCODER_INT_FREQ;
-    motorPosSpeed->freqMech = motorPosSpeed->freqElec / motorPosSpeed->poles;                                   //Hz
-    motorPosSpeed->rpmMech = motorPosSpeed->freqMech * 60; //To go from Hz to rpm.
+    motorPosSpeedObject.poles = 2;
+    motorPosSpeedObject.thetaElec = 0;
+    motorPosSpeedObject.thetaElecOld = 0;
+    motorPosSpeedObject.speedTempCount = 0;
 }
 
 
@@ -118,22 +81,84 @@ void clearInterruptFlag(void)
 }
 
 
-int16 readRotorElecAngle(void)
+/*
+ * Obtain position and speed of the rotor.
+ * Should be called at switch freq.
+ */
+void posSpeedFromEncoder(void)
+{
+    motorPosCalc();
+    motorSpeedCalc();
+    clearInterruptFlag();
+}
+
+
+/*
+ * Function that updates the object containing position info from encoder.
+ * To be called as motorPosCalc(&motorPosSpeedObject);
+ */
+void motorPosCalc(void)
+{
+    // Check motor direction: 0=CCW/reverse, 1=CW/forward.
+    motorPosSpeedObject.dir = EQep1Regs.QEPSTS.bit.QDF;
+
+    //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
+    motorPosSpeedObject.thetaRaw = EQep1Regs.QPOSCNT;
+
+    // Check an index occurrence
+    if (EQep1Regs.QFLG.bit.IEL == 1) EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
+
+    motorPosSpeedObject.thetaElec = motorPosSpeedObject.thetaRaw * motorPosSpeedObject.poles * REV_TO_RAD / ENCODER_STEPS;    //Transform into electrical angle [º]
+    if (motorPosSpeedObject.thetaElec >= TWO_PI) motorPosSpeedObject.thetaElec -= TWO_PI;
+    motorPosSpeedObject.thetaMech = motorPosSpeedObject.thetaRaw * REV_TO_RAD / ENCODER_STEPS;
+
+    motorPosSpeedObject.speedTempCount += SW_PERIOD_US;
+}
+
+
+/*
+ *  To ensure the maximum accuracy in the position, the period between two measurements is minimized to switching frequency.
+ *  However, the rotor speed cannot be calculated at the same frequency since it will lead to errors.
+ *  Instead, the speed will be calculated every 10 degrees.
+ */
+void motorSpeedCalc(void)
+{
+    float deltaTheta;
+
+    //Calculate delta and check if it has jumped to next lap.
+    deltaTheta = fabs(motorPosSpeedObject.thetaElec - motorPosSpeedObject.thetaElecOld);
+    if (deltaTheta > PI) deltaTheta = fabs(TWO_PI - deltaTheta);
+
+    //Measure speed every 10 degrees.
+    if (deltaTheta > DEG_10_TO_RAD)
+    {
+        motorPosSpeedObject.freqElec = deltaTheta * RAD_TO_REV * 1000000 / motorPosSpeedObject.speedTempCount;
+        motorPosSpeedObject.thetaElecOld = motorPosSpeedObject.thetaElec;
+        motorPosSpeedObject.speedTempCount = 0;
+    }
+
+    //Calculate other speeds.
+    motorPosSpeedObject.freqMech = motorPosSpeedObject.freqElec / motorPosSpeedObject.poles;    //Hz
+    motorPosSpeedObject.rpmMech = motorPosSpeedObject.freqMech * 60;                            //To go from Hz to rpm.
+}
+
+
+int16 readRotorElecAngleRad(void)
 {
     return motorPosSpeedObject.thetaElec;
 }
 
-float readRotorElecFreq(void)
+float readRotorElecFreqHz(void)
 {
     return motorPosSpeedObject.freqElec;
 }
 
-int16 readRotorMechAngle(void)
+int16 readRotorMechAngleDeg(void)
 {
     return motorPosSpeedObject.thetaMech;
 }
 
-float readRotorMechFreq(void)
+float readRotorMechFreqHz(void)
 {
     return motorPosSpeedObject.freqMech;
 }
@@ -141,13 +166,4 @@ float readRotorMechFreq(void)
 int16 readRotorRPM(void)
 {
     return motorPosSpeedObject.rpmMech;
-}
-
-
-
-void posSpeedFromEncoder(void)
-{
-    motorPosCalc(&motorPosSpeedObject);
-    motorSpeedCalc(&motorPosSpeedObject);
-    clearInterruptFlag();
 }
