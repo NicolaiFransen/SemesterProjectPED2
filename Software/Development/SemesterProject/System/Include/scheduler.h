@@ -13,6 +13,9 @@
 #include "openLoopControlManager.h"
 #include "controlTask.h"
 #include <stddef.h>
+#include "pushButtonManager.h"
+#include "referenceHandler.h"
+
 
 #define TIMER_PERIOD_US       50
 
@@ -26,8 +29,8 @@ typedef struct TCBstruct
 {
     void (*functionPointer)();
     taskState taskState;
-    Uint16 cyclicity;
-    Uint16 timeLeft;
+    Uint32 cyclicity;
+    Uint32 timeLeft;
     unsigned int sleepTime;
     char priority;
 }taskControlBlock;
@@ -41,8 +44,10 @@ void runTask(void (*functionPTR)());
 
 void task50us(void);
 void task100us(void);
+void task10ms(void);
 void task20ms(void);
 void task200ms(void);
+void task1s(void);
 
 
 void updateTasksState(void);
