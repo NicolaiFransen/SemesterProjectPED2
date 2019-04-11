@@ -24,11 +24,12 @@ static struct
 {
     PIobject IqController;
     PIobject IdController;
-    PIobject TorqueController;
+    PIobject SpeedController;
 } PIControllerList;
 
 
-void PIObject_Constructor(PIobject *PIcontroller, int KP, int KI, float saturationThreshold)
+void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI,
+                          float saturationThreshold, int antiWindupFlag)
 {
     PIcontroller->KP = KP;
     PIcontroller->KI = KI;
@@ -37,81 +38,74 @@ void PIObject_Constructor(PIobject *PIcontroller, int KP, int KI, float saturati
     PIcontroller->integralPart = 0;
     PIcontroller->previousOutput = 0;
     PIcontroller->previousLimitedOutput = 0;
+
+    PIcontroller->antiWindupFlag = antiWindupFlag;
 }
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, 10, 10, 10);
-    PIObject_Constructor(&PIControllerList.IdController, 10, 10, 10);
-    PIObject_Constructor(&PIControllerList.TorqueController, 10, 10, 10);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, CURRENT_LIMIT, 0);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, CURRENT_LIMIT, 0);
+    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, SPEED_LIMIT, 1);
 }
 
 /*
- * PI controller for the inner loops.
+ * PI controller calculations.
+ * Depending on the value of the windup falg, this part will be used or not.
  */
-float PiCurrentCalculation(PIobject *PIcontroller, float measureredValue)
+float PiCalculation(PIobject *PIcontroller, float measuredValue)
 {
-    int KP = PIcontroller->KP;
-    int KI = PIcontroller->KI;
+    float KP = PIcontroller->KP;
+    float KI = PIcontroller->KI;
 
-    float error, PiOutput;
+    float error, PIoutput, outputFeedback;
 
     // Calculating the difference between the reference and the measured
-    error = PIcontroller->referencePoint - measureredValue;
+    error = PIcontroller->referencePoint - measuredValue;
 
     // Calculating the integral part from the error
     PIcontroller->integralPart = PIcontroller->integralPart + error;
 
-    // Calculating the controller output
-    PiOutput = KP * error + KI * PIcontroller->integralPart;
+    if (PIcontroller->antiWindupFlag)
+    {
+        // Calculating the difference between the wanted output and the actual output
+        // To be used in the anti-windup of the integrator
+        outputFeedback = PIcontroller->previousOutput - PIcontroller->previousLimitedOutput;
 
-    // If the wanted output is outside saturation limits, then limit the output
-    if (isOutputSaturated(PIcontroller))
-        PiOutput = PIcontroller->saturationLimit;
-
-    else if (isOutputSaturatedNegative(PIcontroller))
-        PiOutput = -(PIcontroller->saturationLimit);
-
-    return PiOutput;
-}
-
-/*
- * PI controller for outer loop.
- * This controller includes an anti-windup feedback for the integrator
- */
-float PiTorqueCalculation(PIobject *PIcontroller, float measureredValue)
-{
-    int KP = PIcontroller->KP;
-    int KI = PIcontroller->KI;
-
-    float error, PiOutput, outputFeedback;
-
-    // Calculating the difference between the reference and the measured
-    error = PIcontroller->referencePoint - measureredValue;
-
-    // Calculating the integral part from the error
-    PIcontroller->integralPart = PIcontroller->integralPart + error;
-
-    // Calculating the difference between the wanted output and the actual output
-    // To be used in the anti-windup of the integrator
-    outputFeedback = PIcontroller->previousOutput - PIcontroller->previousLimitedOutput;
-
-    // Calculating the controller output
-    PiOutput = KP * error +
-              (KI * PIcontroller->integralPart - outputFeedback * 1/KP);
-
-    PIcontroller->previousOutput = PiOutput;
+        // Calculating the controller output
+        PIoutput = KP * error +
+                  (KI * PIcontroller->integralPart - outputFeedback / KP);
+    }
+    else
+        // Calculating the controller output
+        PIoutput = KP * error + KI * PIcontroller->integralPart;
 
     // If the wanted output is outside saturation limits, then limit the output
     if (isOutputSaturatedPositive(PIcontroller))
-        PiOutput = PIcontroller->saturationLimit;
+        PIoutput = PIcontroller->saturationLimit;
 
     else if (isOutputSaturatedNegative(PIcontroller))
-        PiOutput = -(PIcontroller->saturationLimit);
+        PIoutput = -(PIcontroller->saturationLimit);
 
-    PIcontroller->previousLimitedOutput = PiOutput;
+    return PIoutput;
+}
 
-    return PiOutput;
+/*
+ * Interface functions to use PI controllers
+ */
+float PiCalcualtionIQ(float measuredValue)
+{
+    return PiCalculation(&PIControllerList.IqController, measuredValue);
+}
+
+float PiCalculationID(float measuredValue)
+{
+    return PiCalculation(&PIControllerList.IdController, measuredValue);
+}
+
+float PiCalculationSpeed(float measuredValue)
+{
+    return PiCalculation(&PIControllerList.SpeedController, measuredValue);
 }
 
 /*
@@ -140,8 +134,8 @@ void setIdReferencePoint(float referencePoint)
     PIControllerList.IdController.referencePoint = referencePoint;
 }
 
-void setTorqueReferencePoint(float referencePoint)
+void setSpeedReferencePoint(float referencePoint)
 {
-    PIControllerList.TorqueController.referencePoint = referencePoint;
+    PIControllerList.SpeedController.referencePoint = referencePoint;
 }
 

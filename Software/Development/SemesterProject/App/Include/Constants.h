@@ -60,6 +60,17 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
+#define KP_IQ           10
+#define KI_IQ           10
+#define KP_ID           10
+#define KI_ID           10
+#define KP_SPEED        10
+#define KI_SPEED        10
+
+#define CURRENT_LIMIT   200
+#define SPEED_LIMIT     1800
+
+
 #endif  
 
 
