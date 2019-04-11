@@ -14,11 +14,8 @@
  *      the watchdog counter is not reset within a certain time period
  */
 
-#include "adcMonitor.h"
 #include "errorManager.h"
-#include "dutyCycle.h"
-#include "digitalOutput.h"
-#include "digitalOutputManager.h"
+
 
 /*
  * Struct that contains the error status of the different measurements
@@ -29,6 +26,8 @@ static struct
     errorStatus batteryErrorStatus;
     errorStatus adcErrorStatus;
 } errorStatusList;
+
+errorStatus systemErrorStatus = NO_ERROR;
 
 /*
  * This function updates the the error status of the different measurements,
@@ -45,11 +44,15 @@ void monitorErrorSources(void)
         errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
             performSafetyReactions();
     else
-    {
-        turnOffErrorLED();
-        setEnablePWM(ON);
-    }
+        resetSafetyReactions();
+}
 
+void isErrorMonitoringEnabled(void)
+{
+    if (isErrorMonitorSwitchEnabled())
+        monitorErrorSources();
+    else
+        resetSafetyReactions();
 }
 
 /*
@@ -63,15 +66,29 @@ void performSafetyReactions(void)
 {
     setAllDuties(0);
     disableDrivers();
-    turnOnErrorLED();
+    systemErrorStatus = ERROR_HAS_HAPPENED;
 }
 
 /*
- * Function to disable drivers when an error happens
+ * This function will reset the safety reactions performed in performSafetyReactions().
+ */
+void resetSafetyReactions(void)
+{
+    enableDrivers();
+    systemErrorStatus = NO_ERROR;
+}
+
+/*
+ * Functions to disable and enable drivers when an error happens
  */
 void disableDrivers(void)
 {
     setEnablePWM(OFF);
+}
+
+void enableDrivers(void)
+{
+    setEnablePWM(ON);
 }
 
 void turnOnErrorLED(void)
@@ -169,6 +186,14 @@ errorStatus getErrorStatusInBit(Uint16 position)
         return ERROR_HAS_HAPPENED;
     else
         return NO_ERROR;
+}
+
+/*
+ * This function will return the overall error status of the system.
+ */
+errorStatus getSystemErrorStatus(void)
+{
+    return systemErrorStatus;
 }
 
 
