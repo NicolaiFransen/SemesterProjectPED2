@@ -110,9 +110,6 @@ cpu_timer0_isr(void)
 
     CpuTimer0.InterruptCount++;
     updateTasksState();
-    GpioDataRegs.GPADAT.bit.GPIO18 = 1;
-    posSpeedFromEncoder();
-    GpioDataRegs.GPADAT.bit.GPIO18 = 0;
     //
     // Acknowledge this interrupt to receive more interrupts from group 1
     //
