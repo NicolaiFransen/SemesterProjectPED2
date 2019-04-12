@@ -100,7 +100,7 @@ void task100us(void)
 void task50us(void)
 {
     executeControl();
-    isErrorMonitoringEnabled();
+    performErrorMonitoring();
 }
 
 void task10ms(void)

@@ -18,7 +18,7 @@
 // Function prototyping
 //
 void monitorErrorSources(void);
-void isErrorMonitoringEnabled(void);
+void performErrorMonitoring(void);
 void performSafetyReactions(void);
 void resetSafetyReactions(void);
 void disableDrivers(void);

@@ -47,7 +47,7 @@ void monitorErrorSources(void)
         resetSafetyReactions();
 }
 
-void isErrorMonitoringEnabled(void)
+void performErrorMonitoring(void)
 {
     if (isErrorMonitorSwitchEnabled())
         monitorErrorSources();
