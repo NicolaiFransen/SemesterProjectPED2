@@ -12,15 +12,13 @@
 // Includes
 //
 #include "Constants.h"
-#include "DSP28x_Project.h"
 
 
 typedef struct PIobjectTag
 {
     float KP;
     float KI;
-    float integralPart;
-    float referencePoint;
+    float integrationOfError;
     float previousOutput;
     float previousLimitedOutput;
     float saturationLimit;
@@ -37,22 +35,16 @@ void initPIControllers(void);
 /*
  * PI controllers
  */
-float PiCalculation(PIobject *PIcontroller, float measurementValue);
-float PiCalculationIQ(float measuredValue);
-float PiCalculationID(float measuredValue);
-float PiCalcualtionSpeed(float measuredValue);
+float PiCalculation(PIobject *PIcontroller, float reference, float measurementValue);
+float PiCalculationIQ(float reference, float measuredValue);
+float PiCalculationID(float reference, float measuredValue);
+float PiCalcualtionSpeed(float reference, float measuredValue);
 
 /*
  * Function to check saturation of output
  */
-int isOutputSaturatedPositive(PIobject *PIcontroller);
-int isOutputSaturatedNegative(PIobject *PIcontroller);
+int isOutputSaturatedPositive(PIobject *PIcontroller, float PIoutput);
+int isOutputSaturatedNegative(PIobject *PIcontroller, float PIoutput);
 
-/*
- * Functions to change reference point
- */
-void setIqReferencePoint(float referencePoint);
-void setIdReferencePoint(float referencePoint);
-void setSpeedReferencePoint(float referencePoint);
 
 #endif /* APP_INCLUDE_PICONTROLLER_H_ */
