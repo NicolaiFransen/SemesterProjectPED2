@@ -15,7 +15,8 @@
 #include <stddef.h>
 #include "pushButtonManager.h"
 #include "referenceHandler.h"
-
+#include "temperatureManager.h"
+#include "errorManager.h"
 
 #define TIMER_PERIOD_US       50
 

@@ -16,7 +16,6 @@
  *      will be called. Otherwise it will loop infinitely.
  */
 #include "Include/scheduler.h"
-#include "errorManager.h"
 
 /*
  * Quasi-global variable definition
@@ -125,6 +124,7 @@ void task200ms(void)
 void task1s(void)
 {
     restartPushbuttonsState();
+    calculateTemperature();
 }
 
 //

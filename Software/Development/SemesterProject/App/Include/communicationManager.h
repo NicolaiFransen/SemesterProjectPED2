@@ -11,7 +11,9 @@
 #include "analogAcquisitionManager.h"
 #include "systemManager.h"
 #include "digitalInputManager.h"
+#include "temperatureManager.h"
 #include "referenceHandler.h"
+
 
 
 
