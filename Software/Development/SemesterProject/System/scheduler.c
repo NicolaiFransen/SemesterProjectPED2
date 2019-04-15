@@ -117,7 +117,6 @@ void task20ms(void)
     readLowPrioritySignals();
     handlePushbuttons();
     handleReferences();
-    UARTIntPrint("iref \0", 30211);
 }
 
 void task200ms(void)
@@ -199,7 +198,7 @@ void handleSystemClock(void)
 {
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
-    UARTIntPrint("TimeStamp \0", (int)sysClock);
+    UARTIntPrint("TimeStamp ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
