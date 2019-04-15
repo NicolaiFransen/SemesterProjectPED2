@@ -117,7 +117,7 @@ void getAnalogSignals(void)
     COMMS_DClinkVoltage = getDCLinkMeasurement();
     COMMS_ControlSupplyVoltage = getControlsupplyMeasurement();
     COMMS_PCBTorqueReference = getTorqueReferenceSliderMeasurement();
-//    COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurement();
+    //COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurement();
     COMMS_PedalTorqueReference = getTorqueReferencePedalMeasurement();
     COMMS_PedalBrakeReference = getBrakeReferencePedalMeasurement();
     //Using temperatureManager Interface

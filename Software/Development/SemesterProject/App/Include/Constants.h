@@ -71,7 +71,7 @@
 #define R4_DCLINK_MEAS              10000   // Ohm
 #define R1_CONTROL_SUPPLY_MEAS      8200    // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      1000    // Ohm
-#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+#define TEMP_SENSOR_GAIN            100    // degC/V
 
 
 

@@ -19,17 +19,18 @@
 /*
  * Quasi Global variable definition
  */
-static float S1Temperature = 0, S2Temperature = 0;
+static float sensor1Temp = 0, sensor2Temp = 0;
 
 void calculateTemperature(void) //To be called from scheduler when reference handler is merged
 {
     float voltageSensor1;
-    voltageSensor1 = getThermometer1Measurement();
-    S1Temperature = voltageSensor1 / TEMP_SENSOR_GAIN;
-
     float voltageSensor2;
+
+    voltageSensor1 = getThermometer1Measurement();
+    sensor1Temp = voltageSensor1 * TEMP_SENSOR_GAIN;
+
     voltageSensor2 = getThermometer2Measurement();
-    S2Temperature = voltageSensor2 / TEMP_SENSOR_GAIN;
+    sensor2Temp = voltageSensor2 * TEMP_SENSOR_GAIN;
 }
 
 /*
@@ -38,12 +39,12 @@ void calculateTemperature(void) //To be called from scheduler when reference han
 
 float getSensor1Temperature(void)
 {
-    return S1Temperature;
+    return sensor1Temp;
 }
 
 float getSensor2Temperature(void)
 {
-    return S2Temperature;
+    return sensor2Temp;
 }
 
 
