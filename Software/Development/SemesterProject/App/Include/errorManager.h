@@ -9,13 +9,20 @@
 #define APP_INCLUDE_ERRORMANAGER_H_
 
 #include "adcMonitor.h"
+#include "dutyCycle.h"
+#include "digitalOutput.h"
+#include "digitalOutputManager.h"
+#include "digitalInputManager.h"
 
 //
 // Function prototyping
 //
 void monitorErrorSources(void);
+void performErrorMonitoring(void);
 void performSafetyReactions(void);
+void resetSafetyReactions(void);
 void disableDrivers(void);
+void enableDrivers(void);
 void turnOnErrorLED(void);
 void turnOffErrorLED(void);
 errorStatus getCurrentAErrorStatus(void);
@@ -34,6 +41,7 @@ errorStatus getRotaryPot2ErrorStatus(void);
 errorStatus getRotaryPot3ErrorStatus(void);
 
 errorStatus getErrorStatusInBit(Uint16);
+errorStatus getSystemErrorStatus(void);
 
 void initWatchdog(void);
 
