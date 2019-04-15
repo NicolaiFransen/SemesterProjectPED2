@@ -18,7 +18,7 @@
  *      multiply by them instead of divide.
  *
  *      Encoder is inputing mechanical speed but all the calculations are measured in the electrical environment, then transformed
- *      again to mechanical domain. The relationship between this two depends on the number of poles.
+ *      again to mechanical domain. The relationship between this two depends on the number of pole pairs.
  *
  */
 
@@ -26,7 +26,6 @@
 
 
 static motorPosSpeed motorPosSpeedObject;
-static float poles_inverse;
 
 
 void initEncoder(void)
@@ -82,11 +81,9 @@ void initEncoder(void)
 
 /*
  * Encoder constructor.
- * To be called as motorPosSpeedConstructor(&motorPosSpeedObject);
  */
 void motorPosSpeedConstructor(void)
 {
-    motorPosSpeedObject.poles = 2;
     motorPosSpeedObject.dir = 0;
     motorPosSpeedObject.thetaMech = 0;
     motorPosSpeedObject.thetaElec = 0;
@@ -95,7 +92,6 @@ void motorPosSpeedConstructor(void)
     motorPosSpeedObject.freqElec = 0;
     motorPosSpeedObject.freqMech = 0;
     motorPosSpeedObject.rpmMech = 0;
-    poles_inverse = (float) (1.0 / motorPosSpeedObject.poles);
 }
 
 
@@ -117,9 +113,37 @@ void posSpeedFromEncoder(void)
 }
 
 
+float obtainDeltaTheta(void)
+{
+    //Calculate delta and check if it has jumped to next lap.
+    float deltaTheta;
+    deltaTheta = fabs(motorPosSpeedObject.thetaElec - motorPosSpeedObject.thetaElecOld);
+    if (deltaTheta > PI) deltaTheta = fabs(TWO_PI - deltaTheta);
+    return deltaTheta;
+}
+
+
+void updateSpeed(float deltaTheta)
+{
+    //Check direction and calculate electrical frequency.
+    if (motorPosSpeedObject.dir == 0) motorPosSpeedObject.freqElec = deltaTheta * RAD_TO_REV * 1000000 / motorPosSpeedObject.speedTempCount;
+    else motorPosSpeedObject.freqElec = - deltaTheta * RAD_TO_REV * 1000000 / motorPosSpeedObject.speedTempCount; //Going reverse direction.
+
+    //Update other values.
+    motorPosSpeedObject.thetaElecOld = motorPosSpeedObject.thetaElec;
+    motorPosSpeedObject.speedTempCount = 0;
+}
+
+
+void calcOtherSpeeds(void)
+{
+    motorPosSpeedObject.freqMech = motorPosSpeedObject.freqElec * POLE_PAIRS_INVERSE;    //Hz
+    motorPosSpeedObject.rpmMech = (int16) (motorPosSpeedObject.freqMech * 60.0);    //To go from Hz to rpm.
+}
+
+
 /*
  * Function that updates the object containing position info from encoder.
- * To be called as motorPosCalc(&motorPosSpeedObject);
  */
 void motorPosCalc(void)
 {
@@ -132,8 +156,8 @@ void motorPosCalc(void)
     // Check an index occurrence
     if (EQep1Regs.QFLG.bit.IEL == 1) EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
 
-    //Transform into electrical angle [º]
-    motorPosSpeedObject.thetaElec = motorPosSpeedObject.thetaRaw * motorPosSpeedObject.poles * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    //Transform into electrical angle [rad]
+    motorPosSpeedObject.thetaElec = motorPosSpeedObject.thetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
     if (motorPosSpeedObject.thetaElec >= TWO_PI) motorPosSpeedObject.thetaElec -= TWO_PI;
     motorPosSpeedObject.thetaMech = motorPosSpeedObject.thetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
 
@@ -150,22 +174,14 @@ void motorSpeedCalc(void)
 {
     float deltaTheta;
 
-    //Calculate delta and check if it has jumped to next lap.
-    deltaTheta = fabs(motorPosSpeedObject.thetaElec - motorPosSpeedObject.thetaElecOld);
-    if (deltaTheta > PI) deltaTheta = fabs(TWO_PI - deltaTheta);
+    deltaTheta = obtainDeltaTheta();
 
-    //Measure speed every 10 degrees.
+    //Speed is only calculated every 10 degrees.
     if (deltaTheta > DEG_10_TO_RAD)
     {
-        if (motorPosSpeedObject.dir == 0) motorPosSpeedObject.freqElec = deltaTheta * RAD_TO_REV * 1000000 / motorPosSpeedObject.speedTempCount;
-        else motorPosSpeedObject.freqElec = - deltaTheta * RAD_TO_REV * 1000000 / motorPosSpeedObject.speedTempCount; //Going reverse direction.
-        motorPosSpeedObject.thetaElecOld = motorPosSpeedObject.thetaElec;
-        motorPosSpeedObject.speedTempCount = 0;
+        updateSpeed(deltaTheta);
+        calcOtherSpeeds(); //Calculate other speeds.
     }
-
-    //Calculate other speeds.
-    motorPosSpeedObject.freqMech = motorPosSpeedObject.freqElec * poles_inverse;    //Hz
-    motorPosSpeedObject.rpmMech = (int16) (motorPosSpeedObject.freqMech * 60.0);    //To go from Hz to rpm.
 }
 
 

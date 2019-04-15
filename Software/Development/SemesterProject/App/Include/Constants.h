@@ -46,7 +46,7 @@
 #define TWO_SQRT3_DIV_PI ((double)1.102657790843584) // '2*sqrt(3)/pi'
 
 // definitions for sector angle limits
-#define DEG_10_TO_RAD  ((double)0.174532925199433)
+#define DEG_10_TO_RAD  ((double)0.174532925199433) // '10 deg --> rad'
 #define DEG_30_TO_RAD  ((double)0.523598775598299) // '30 deg --> rad'
 #define DEG_60_TO_RAD  ((double)1.047197551196598) // '60 deg --> rad'
 #define DEG_90_TO_RAD  ((double)1.570796326794897) // '90 deg --> rad'

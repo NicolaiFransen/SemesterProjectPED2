@@ -13,13 +13,13 @@
 
 #define ENCODER_STEPS 2048
 #define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
-#define BASE_FREQ 50        //us
+#define POLE_PAIRS  2   //Number of pole pairs of the motor.
+#define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
 
 
 typedef struct
 {
     int32 thetaRaw;      // Raw angle, counter of steps in cycle (steps).
-    int poles;           // Number of poles of the motor.
     int32 speedTempCount;  // Defines how often the values will be updated.
 
     int dir;             // Motor direction: 0=CCW/reverse, 1=CW/forward
