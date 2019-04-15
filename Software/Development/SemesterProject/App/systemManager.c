@@ -56,6 +56,7 @@ void manageSystem(void)
 //        }break;
     }
     readDigitalInputs();
+
 }
 
 SysMgrState readSystemState(void)

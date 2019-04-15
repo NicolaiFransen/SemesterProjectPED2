@@ -34,6 +34,8 @@ static enum taskListTag
 
 taskControlBlock taskList[numberOfTasks + 1];
 
+static Uint32 sysClock = 0;
+
 void taskListInitialization(void)
 {
     taskList[task50usItem].functionPointer = task50us;
@@ -115,11 +117,13 @@ void task20ms(void)
     readLowPrioritySignals();
     handlePushbuttons();
     handleReferences();
+    UARTIntPrint("iref \0", 30211);
 }
 
 void task200ms(void)
 {
     manageCommunications();
+    handleSystemClock();
 }
 
 void task1s(void)
@@ -189,5 +193,16 @@ int taskIsReady(int taskListIndex)
 void deactivateTask(int taskListIndex)
 {
     taskList[taskListIndex].taskState = INACTIVE;
+}
 
+void handleSystemClock(void)
+{
+    sysClock++;
+    if (sysClock >= INT_MAX)    sysClock = 0;
+    UARTIntPrint("TimeStamp \0", (int)sysClock);
+}
+
+Uint32 getSystemClock(void)
+{
+    return sysClock;
 }

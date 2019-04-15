@@ -29,14 +29,16 @@
 #include "../App/Include/digitalOutputManager.h"
 #include "../App/Include/analogAcquisitionManager.h"
 #include "communicationManager.h"
+#include "Include/UARTInterface.h"
+#include "queueObject.h"
+
+
 
 
 //
 // Quasi-global variables definition
 //
 static int startupSequenceFinishedFlag = 0;
-
-
 
 void systemInit(void)
 {
@@ -148,9 +150,12 @@ void systemInit(void)
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initializeGUIPushbuttonsStructure();
-	  initDigitalOutputs();
-	  initPushbuttons();
+    initDigitalOutputs();
+    initPushbuttons();
     initWatchdog();
+    UARTinit();
+    UARTStringPrint("\n\rWelcome to the excellent Go-Kart controller, by PED-841.\n\r");
+
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
@@ -179,6 +184,7 @@ int startupSequenceFinished(void)
 {
     return startupSequenceFinishedFlag;
 }
+
 
 
 //

@@ -15,7 +15,6 @@
 #include "pushButtonManager.h"
 #include "referenceHandler.h"
 
-
 //
 // Objects declaration
 //
