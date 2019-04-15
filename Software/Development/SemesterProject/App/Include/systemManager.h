@@ -14,6 +14,8 @@
 #include "digitalOutputManager.h"
 #include "pushButtonManager.h"
 #include "referenceHandler.h"
+#include "errorManager.h"
+#include "adcMonitor.h"
 
 
 //
@@ -24,7 +26,7 @@ typedef enum
     STARTUP,
     STANDBY,
     RUNNING,
-    ERROR,
+    ERROR
 }SysMgrState;
 
 //
