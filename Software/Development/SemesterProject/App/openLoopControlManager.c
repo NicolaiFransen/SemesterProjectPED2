@@ -59,16 +59,8 @@ int16 mapInt(int16 x, int16 xMax, int16 yMax)
  */
 void setConstantDutyFromReference(void)
 {
-    float duty;
-    float reference;
-
     //Get the reference value to be set, this is a float between 0 and 100.
-    reference = getOpenLoopReference();
-
-    //Since reference and duty values have the same min and max value, there is no need for a mapping.
-    duty = reference;
-
-    setAllDuties(duty);
+    setAllDuties(getOpenLoopReference());
 }
 
 
