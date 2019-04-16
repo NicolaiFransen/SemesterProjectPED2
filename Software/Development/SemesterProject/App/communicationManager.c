@@ -96,12 +96,12 @@ void manageCommunications(void)
     getErrorSignals();
     getReferenceHandlerSignals();
 //    getClosedLoopControlSignals();    todo
-//    getEncoderSignals();
+    getEncoderSignals();
 }
 
-void getEncoderSignals()
+void getEncoderSignals(void)
 {
-//    COMMS_RotorSpeed = readRotorRPM();
+    COMMS_RotorSpeed = readRotorRPM();
 }
 
 void getSystemManagerSignals(void)
