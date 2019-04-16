@@ -12,8 +12,10 @@
 #include "systemManager.h"
 #include "digitalInputManager.h"
 #include "referenceHandler.h"
-
-
+//#include "encoderManager.h"
+#include "adcMonitor.h"
+#include "errorManager.h"
+#include "Constants.h"
 
 typedef struct
 {
@@ -49,6 +51,7 @@ void getReferenceHandlerSignals(void);
 void getAnalogSignals(void);
 void getDigitalSignals(void);
 void performGUISideTasks(void);
+void setReferenceRamps(void);
 void handleGUIPushbuttons(void);
 void updatePushButtonList(void);
 void handlePushbuttonsPress(void);
