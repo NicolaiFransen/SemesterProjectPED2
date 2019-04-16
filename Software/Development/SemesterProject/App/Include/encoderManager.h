@@ -11,39 +11,34 @@
 #include "DSP28x_Project.h"
 #include "Constants.h"
 
-#define ENCODER_STEPS 2048
-#define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
-#define POLE_PAIRS  2   //Number of pole pairs of the motor.
-#define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
-
 
 typedef struct
 {
     int32 thetaRaw;      // Raw angle, counter of steps in cycle (steps).
     int32 speedTempCount;  // Defines how often the values will be updated.
 
-    int dir;             // Motor direction: 0=CCW/reverse, 1=CW/forward
+    int dir;             // rotor direction: 0=CCW/reverse, 1=CW/forward
 
-    float thetaElecOld;  // Last motor raw angle (rad).
-    float thetaElec;     // Motor Electrical angle (rad).
-    float thetaMech;     // Motor Mechanical Angle (rad).
+    float thetaElecOld;  // Last rotor raw angle (rad).
+    float thetaElec;     // rotor Electrical angle (rad).
+    float thetaMech;     // rotor Mechanical Angle (rad).
 
-    float freqElec;      // Motor Electrical freq [Hz]
-    float freqMech;      // Motor Mechanical freq [Hz]
+    float freqElec;      // rotor Electrical freq [Hz]
+    float freqMech;      // rotor Mechanical freq [Hz]
 
-    int16 rpmMech;       // Motor revolutions per minute
+    int16 rpmMech;       // rotor revolutions per minute
 
-} motorPosSpeed;
+} rotorPosSpeed;
 
 
 void initEncoder(void);
-void motorPosSpeedConstructor(void);
-void motorPosCalc(void);
-void motorSpeedCalc(void);
-int16 readRotorElecAngle(void);
-float readRotorElecFreq(void);
-int16 readRotorMechAngle(void);
-float readRotorMechFreq(void);
+void rotorPosSpeedConstructor(void);
+void rotorPosCalc(void);
+void rotorSpeedCalc(void);
+float readRotorElecAngleRad(void);
+float readRotorElecFreqHz(void);
+float readRotorMechAngleRad(void);
+float readRotorMechFreqHz(void);
 int16 readRotorRPM(void);
 void posSpeedFromEncoder(void);
 

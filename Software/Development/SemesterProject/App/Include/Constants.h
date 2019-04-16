@@ -58,6 +58,19 @@
 #define REV_TO_RAD     ((double)6.283185307179586) // '1 rev   --> rad'
 #define RAD_TO_REV     ((double)0.159154943091895) // '1 rad   --> rev'
 
+// definitions specific to the motor
+#define Rr             ((float))
+#define Lr             ((float))
+#define Tr             ((float))    // Lr/Rr;
+#define Tr_inverse     ((float))    // Rr/Lr;
+
+#define ENCODER_STEPS 2048
+#define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
+#define POLE_PAIRS  2   //Number of pole pairs of the motor.
+#define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
+
+//TO BE FOUND IN MATLAB SCRIPT
+
 #define d_axis			0
 #define	q_axis			1
 #define	z_seq			2
