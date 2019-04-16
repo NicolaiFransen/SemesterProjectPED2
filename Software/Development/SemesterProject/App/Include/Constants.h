@@ -61,19 +61,27 @@
 #define ZERO_SEQ		2
 
 // Constant component values from interface PCB
-#define R_IN_CURRENT_MEAS           9.1     // Ohm
-#define BIAS_VOLTAGE_OPAMP          0.817   // V
-#define OPAMP_GAIN_CURRENT_MEAS     (float)-1      // []
-#define CURRENT_SENSOR_GAIN         (float)2000    // []
-#define R1_DCLINK_MEAS              (float)21500   // Ohm
-#define R2_DCLINK_MEAS              (float)1000    // Ohm
-#define R3_DCLINK_MEAS              (float)16200   // Ohm
-#define R4_DCLINK_MEAS              (float)10000   // Ohm
-#define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
-#define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
-#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+#define R_IN_CURRENT_MEAS                   9.1     // Ohm
+#define BIAS_VOLTAGE_OPAMP                  0.817   // V
+#define OPAMP_GAIN_CURRENT_MEAS     (float) -1      // []
+#define CURRENT_SENSOR_GAIN         (float) 2000    // []
+#define R1_DCLINK_MEAS              (float) 21500   // Ohm
+#define R2_DCLINK_MEAS              (float) 1000    // Ohm
+#define R3_DCLINK_MEAS              (float) 16200   // Ohm
+#define R4_DCLINK_MEAS              (float) 10000   // Ohm
+#define R1_CONTROL_SUPPLY_MEAS      (float) 8200    // Ohm
+#define R2_CONTROL_SUPPLY_MEAS      (float) 1000    // Ohm
+#define TEMP_SENSOR_GAIN                    0.01    // 10mV/deg
 
 
+// Values for reference calculations
+#define L_M                         (float) 0.00038      // [H]
+#define L_DR                        (float) 0.00003116   // [H]
+#define L_R                                 L_M + L_DR   // [H]
+#define LANDA_R                     (float) 0.0567       //
+#define P                           (float) 2            // Number of pole-pairs
+#define TORQUE_TO_Q_CURRENT                 1/(TWO_DIV_3 * P * (L_M/L_R) * LANDA_R)
+#define D_CURRENT_REFERENCE                 LANDA_R/L_M
 
 #endif  
 
