@@ -24,8 +24,10 @@ static enum taskListTag
 {
     task50usItem,
     task100usItem,
+    task10msItem,
     task20msItem,
     task200msItem,
+    task1sItem,
     numberOfTasks
 }taskListItems;
 
@@ -43,6 +45,11 @@ void taskListInitialization(void)
     taskList[task100usItem].cyclicity = 100;
     taskList[task100usItem].timeLeft = 100;
 
+    taskList[task10msItem].functionPointer = task10ms;
+    taskList[task10msItem].taskState = INACTIVE;
+    taskList[task10msItem].cyclicity = 10000;
+    taskList[task10msItem].timeLeft = 10000;
+
     taskList[task20msItem].functionPointer = task20ms;
     taskList[task20msItem].taskState = READY;
     taskList[task20msItem].cyclicity = 20000;      // Time in us
@@ -52,6 +59,11 @@ void taskListInitialization(void)
     taskList[task200msItem].taskState = INACTIVE;
     taskList[task200msItem].cyclicity = 200000;
     taskList[task200msItem].timeLeft = 200000;
+
+    taskList[task1sItem].functionPointer = task1s;
+    taskList[task1sItem].taskState = INACTIVE;
+    taskList[task1sItem].cyclicity = 1000000;
+    taskList[task1sItem].timeLeft = 1000000;
 
     taskList[numberOfTasks].functionPointer = NULL; // End of list
 }
@@ -82,11 +94,17 @@ void runTask(void (*functionPTR)())
  */
 void task100us(void)
 {//running at switching 10kHz (update with switching frequency);
-    return;
 }
+
 void task50us(void)
 {
     executeControl();
+    performErrorMonitoring();
+}
+
+void task10ms(void)
+{
+    ServiceDog();
 }
 
 void task20ms(void)
@@ -94,11 +112,19 @@ void task20ms(void)
     manageSystem();
     readDigitalInputs();
     readLowPrioritySignals();
+    handlePushbuttons();
+    handleReferences();
 }
 
 void task200ms(void)
 {
     manageCommunications();
+}
+
+void task1s(void)
+{
+    restartPushbuttonsState();
+    calculateTemperature();
 }
 
 //

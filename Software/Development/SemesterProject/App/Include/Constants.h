@@ -14,8 +14,8 @@
 #define SW_PERIOD_US   50           //Period of the PWM.
 #define INTERNAL_FREQ   90000000    //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
 
-#define MinPulseWidth	((double)2e-6)                  //minimum pulse width in s
-#define MinPulseWidthCNT	((unsigned short)300)       //MinPulseWidth/CLOCK_PERIOD (2us)
+#define MinPulseWidth	((double)2e-6) //minimum pulse width in s
+#define MinPulseWidthCNT	((unsigned short)300)        //MinPulseWidth/CLOCK_PERIOD (2us)
 #define Half_MinPulseWidthCNT	((unsigned short)150)	//half MinPulseWidth/CLOCK_PERIOD (1us)	
 
 //Mathematical Constants
@@ -26,11 +26,11 @@
 #define PI_DIV_6		((double)(0.523599)) // 'pi/6'
 #define PI_DIV_3		((double)(1.047198)) // 'pi/3'
 #define TWO_PI_DIV_3	((double)(2.094395)) // '2*pi/3'
-#define FOUR_PI_DIV_3	((double)(4.18879))  // '4*pi/3'
+#define FOUR_PI_DIV_3	((double)(4.18879)) // '4*pi/3'
 #define FIVE_PI_DIV_3	((double)(5.235988)) // '5*pi/3'
 
-#define  SQRT_2  ((double)1.41421356237309)  // sqrt(2)
-#define  SQRT_3  ((double)1.73205080756887)  // sqrt(3)
+#define  SQRT_2  ((double)1.41421356237309) // sqrt(2)
+#define  SQRT_3  ((double)1.73205080756887) // sqrt(3)
 
 // set implementation definitions:
 #define ONE_DIV_3     ((double)0.333333333333333) // '1/3'
@@ -58,6 +58,7 @@
 #define REV_TO_RAD     ((double)6.283185307179586) // '1 rev   --> rad'
 #define RAD_TO_REV     ((double)0.159154943091895) // '1 rad   --> rev'
 
+
 // definitions specific to the motor
 #define Rr             ((float))
 #define Lr             ((float))
@@ -69,7 +70,6 @@
 #define POLE_PAIRS  2   //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
 
-//TO BE FOUND IN MATLAB SCRIPT
 
 #define d_axis			0
 #define	q_axis			1
@@ -79,6 +79,22 @@
 #define ALPHA_AX		0
 #define BETA_AX			1
 #define ZERO_SEQ		2
+
+
+// Constant component values from interface PCB
+#define R_IN_CURRENT_MEAS           9.1     // Ohm
+#define BIAS_VOLTAGE_OPAMP          0.817   // V
+#define OPAMP_GAIN_CURRENT_MEAS     (float)-1      // []
+#define CURRENT_SENSOR_GAIN         (float)2000    // []
+#define R1_DCLINK_MEAS              (float)21500   // Ohm
+#define R2_DCLINK_MEAS              (float)1000    // Ohm
+#define R3_DCLINK_MEAS              (float)16200   // Ohm
+#define R4_DCLINK_MEAS              (float)10000   // Ohm
+#define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
+#define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
+#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+
+
 
 #endif  
 
