@@ -34,22 +34,22 @@
  *     DQCurrent = abc2dq(&ABCCurrent[0], theta);
  *
  */
-DQObject abc2dq(float *currentArray, float thetaRad)
+dqObject abc2dq(float *abcArray, float thetaRad)
 {
-    DQObject DQCurrent;
+    dqObject dqStruct;
 
-    float AComponent = *currentArray;
-    float BComponent = *(currentArray + 1);
-    float CComponent = *(currentArray + 2);
+    float aComponent = *abcArray;
+    float bComponent = *(abcArray + 1);
+    float cComponent = *(abcArray + 2);
 
-    DQCurrent.DComponent = TWO_DIV_3 * (AComponent * cos(thetaRad) +
-                                        BComponent * cos(thetaRad - TWO_PI_DIV_3) +
-                                        CComponent * cos(thetaRad - FOUR_PI_DIV_3));
+    dqStruct.dComponent = TWO_DIV_3 * (aComponent * cos(thetaRad) +
+                                        bComponent * cos(thetaRad - TWO_PI_DIV_3) +
+                                        cComponent * cos(thetaRad - FOUR_PI_DIV_3));
 
-    DQCurrent.QComponent = -TWO_DIV_3 * (AComponent * sin(thetaRad) +
-                                         BComponent * sin(thetaRad - TWO_PI_DIV_3) +
-                                         CComponent * sin(thetaRad - FOUR_PI_DIV_3));
-    return DQCurrent;
+    dqStruct.qComponent = -TWO_DIV_3 * (aComponent * sin(thetaRad) +
+                                         bComponent * sin(thetaRad - TWO_PI_DIV_3) +
+                                         cComponent * sin(thetaRad - FOUR_PI_DIV_3));
+    return dqStruct;
 }
 
 
@@ -63,16 +63,16 @@ DQObject abc2dq(float *currentArray, float thetaRad)
  *     abVoltage = dq2alphabeta(&DQVoltage, theta);
  *
  */
-alphaBetaObject dq2alphabeta(DQObject *DQVoltage, float thetaRad)
+alphaBetaObject dq2alphabeta(dqObject *dqStruct, float thetaRad)
 {
-    alphaBetaObject alphaBetaVoltage;
+    alphaBetaObject alphaBetaStruct;
 
-    alphaBetaVoltage.alphaComponent = DQVoltage->DComponent * cos(thetaRad) -
-                                      DQVoltage->QComponent * sin(thetaRad);
+    alphaBetaStruct.alphaComponent =    dqStruct->dComponent * cos(thetaRad) -
+                                        dqStruct->qComponent * sin(thetaRad);
 
-    alphaBetaVoltage.betaComponent = DQVoltage->DComponent * sin(thetaRad) +
-                                     DQVoltage->QComponent * cos(thetaRad);
+    alphaBetaStruct.betaComponent =     dqStruct->dComponent * sin(thetaRad) +
+                                        dqStruct->qComponent * cos(thetaRad);
 
-    return alphaBetaVoltage;
+    return alphaBetaStruct;
 }
 

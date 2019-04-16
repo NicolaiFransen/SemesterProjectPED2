@@ -21,9 +21,9 @@ void runClosedLoopControl(void);
 
 typedef struct
 {
-    float DComponent;
-    float QComponent;
-}DQObject;
+    float dComponent;
+    float qComponent;
+}dqObject;
 
 typedef struct
 {
@@ -32,7 +32,7 @@ typedef struct
 }alphaBetaObject;
 
 
-DQObject abc2dq(float *currentArray, float thetaRad);
-alphaBetaObject dq2alphabeta(DQObject *DQVoltage, float thetaRad);
+dqObject abc2dq(float *currentArray, float thetaRad);
+alphaBetaObject dq2alphabeta(dqObject *dqVoltage, float thetaRad);
 
 #endif /* APP_INCLUDE_REFERENCEFRAMECONVERSION_H_ */
