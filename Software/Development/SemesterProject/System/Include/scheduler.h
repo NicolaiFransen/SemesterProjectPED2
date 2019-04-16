@@ -12,6 +12,7 @@
 #include "communicationManager.h"
 #include "openLoopControlManager.h"
 #include "controlTask.h"
+#include "encoderManager.h"
 #include <stddef.h>
 #include "pushButtonManager.h"
 #include "referenceHandler.h"
