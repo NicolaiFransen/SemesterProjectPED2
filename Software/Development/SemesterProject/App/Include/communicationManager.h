@@ -11,11 +11,13 @@
 #include "analogAcquisitionManager.h"
 #include "systemManager.h"
 #include "digitalInputManager.h"
+#include "temperatureManager.h"
 #include "referenceHandler.h"
 //#include "encoderManager.h"
 #include "adcMonitor.h"
 #include "errorManager.h"
 #include "Constants.h"
+
 
 typedef struct
 {
