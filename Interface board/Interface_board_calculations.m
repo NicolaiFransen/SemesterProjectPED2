@@ -47,6 +47,11 @@ plot(Iin, Vout)
 xlabel('Measured current')
 ylabel('Output voltage')
 
+%%
+syms x
+
+eq = 1.515 == G*((x/2000) * Rin) + (1-G)*Vb;
+double(solve(eq))
 %% Voltage sensor Amplification
 clear
 close all
@@ -91,6 +96,10 @@ solve(eq, R1)
 R1 = 8.25e3;
 (R2/(R1+R2))*Vin   %AD_24
 
+%%
+syms x
+eq = 2.83 == (R2/(R1+R2))*x;
+double(solve(eq, x))
 %% Encoder calculations
 Vin = 5;
 

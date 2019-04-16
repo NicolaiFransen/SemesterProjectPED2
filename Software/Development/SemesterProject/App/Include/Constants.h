@@ -92,7 +92,8 @@
 #define R4_DCLINK_MEAS              (float)10000   // Ohm
 #define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
-#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+#define TEMP_SENSOR_VOLT_PER_DEG           0.01    // 10mV/deg
+#define TEMP_SENSOR_DEG_PER_VOLT           100     // 100deg/V
 
 
 

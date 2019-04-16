@@ -18,7 +18,7 @@
 //
 #include "analogAcquisitionManager.h"
 #include "DSP28x_Project.h"
-#include "Constants.h"
+
 
 
 //
@@ -211,8 +211,8 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 {
     float maximumTemperatureThreshold, minimumTemperatureThreshold;
 
-    maximumTemperatureThreshold = maximumTemperature * TEMP_SENSOR_GAIN;
-    minimumTemperatureThreshold = minimumTemperature * TEMP_SENSOR_GAIN;
+    maximumTemperatureThreshold = maximumTemperature * TEMP_SENSOR_VOLT_PER_DEG;
+    minimumTemperatureThreshold = minimumTemperature * TEMP_SENSOR_VOLT_PER_DEG;
 
     *thermometerThresholdArray = minimumTemperatureThreshold;
     thermometerThresholdArray++;

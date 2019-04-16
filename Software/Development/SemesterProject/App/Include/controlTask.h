@@ -11,6 +11,7 @@
 #include "digitalInputManager.h"
 #include "dutyCycle.h"
 #include "systemManager.h"
+#include "errorManager.h"
 //
 // Function definition
 //

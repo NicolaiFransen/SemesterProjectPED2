@@ -27,10 +27,10 @@ void calculateTemperature(void) //To be called from scheduler when reference han
     float voltageSensor2;
 
     voltageSensor1 = getThermometer1Measurement();
-    sensor1Temp = voltageSensor1 * TEMP_SENSOR_GAIN;
+    sensor1Temp = voltageSensor1 * TEMP_SENSOR_DEG_PER_VOLT;
 
     voltageSensor2 = getThermometer2Measurement();
-    sensor2Temp = voltageSensor2 * TEMP_SENSOR_GAIN;
+    sensor2Temp = voltageSensor2 * TEMP_SENSOR_DEG_PER_VOLT;
 }
 
 /*

@@ -6,7 +6,7 @@
  */
 
 #include "controlTask.h"
-#include "errorManager.h"
+//#include "errorManager.h"
 
 /*
  * This function will check the state of the open-loop/closed-loop switch,
@@ -20,9 +20,16 @@ void executeControl(void)
             // Call open-loop function
             openLoopVFControl();
 
-        // else
+        else
+        {
+            enableDrivers();
+            setDutyA(10);
+            setDutyB(0);
+            setDutyC(0);
             // Call closed-loop function
             // runClosedLoopControl();
+        }
+
     }
     else
         performSafetyReactions();

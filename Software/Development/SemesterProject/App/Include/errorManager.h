@@ -8,11 +8,11 @@
 #ifndef APP_INCLUDE_ERRORMANAGER_H_
 #define APP_INCLUDE_ERRORMANAGER_H_
 
-#include "adcMonitor.h"
 #include "dutyCycle.h"
 #include "digitalOutput.h"
 #include "digitalOutputManager.h"
 #include "digitalInputManager.h"
+#include "adcMonitor.h"
 
 //
 // Function prototyping
