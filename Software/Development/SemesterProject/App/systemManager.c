@@ -46,16 +46,20 @@ void manageSystem(void)
         case RUNNING:
         {
             if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
-           // if(errorDetected()) SystemState = ERROR;
+            if(getSystemErrorStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             setLED18(ON); // System is in running state LED
         }break;
 
-//        case ERROR:
-//        {
-//            if(errorIsAcknowledged()) systemState = STANDBY;
-//        }break;
+        case ERROR:
+        {
+            turnOnErrorLED();
+            if(userACKHasBeenPressed())
+            {
+                systemState = STANDBY;
+                turnOffErrorLED();
+            }
+        }break;
     }
-    readDigitalInputs();
 }
 
 SysMgrState readSystemState(void)

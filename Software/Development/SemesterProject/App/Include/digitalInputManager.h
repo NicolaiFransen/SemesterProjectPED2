@@ -21,6 +21,7 @@ void readDigitalInputs(void);
 
 int isOpenClosedLoopSelectionSwitchEnabled(void);
 int isPowerSwitchEnabled(void);
+int isErrorMonitorSwitchEnabled(void);
 
 int isSpeedIncreasePushbuttonEnabled(void);
 int isSpeedDecreasePushbuttonEnabled(void);
