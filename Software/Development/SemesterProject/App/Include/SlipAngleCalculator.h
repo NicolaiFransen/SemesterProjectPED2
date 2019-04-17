@@ -9,6 +9,9 @@
 #define APP_INCLUDE_SLIPANGLECALCULATOR_H_
 
 
+#include "Constants.h"
+
+
 typedef struct
 {
     float posRad;
