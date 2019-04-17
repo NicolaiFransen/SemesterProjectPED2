@@ -53,11 +53,11 @@ void manageSystem(void)
 
         case ERROR:
         {
-            turnOnErrorLED();
+            performSafetyReactions();
             if(userACKHasBeenPressed())
             {
-                systemState = STANDBY;
                 resetSafetyReactions();
+                systemState = STANDBY;
             }
         }break;
     }

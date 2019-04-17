@@ -43,8 +43,8 @@ void monitorErrorSources(void)
         errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED ||
         errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
             performSafetyReactions();
-    else
-        resetSafetyReactions();
+//    else
+//        resetSafetyReactions();
 }
 
 void performErrorMonitoring(void)
@@ -66,6 +66,7 @@ void performSafetyReactions(void)
 {
     setAllDuties(0);
     disableDrivers();
+    turnOnErrorLED();
     systemErrorStatus = ERROR_HAS_HAPPENED;
 }
 
@@ -75,6 +76,7 @@ void performSafetyReactions(void)
 void resetSafetyReactions(void)
 {
     enableDrivers();
+    turnOffErrorLED();
     systemErrorStatus = NO_ERROR;
 }
 

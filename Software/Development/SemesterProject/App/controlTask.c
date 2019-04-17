@@ -17,21 +17,21 @@ void executeControl(void)
     if (readSystemState() == RUNNING)
     {
         if (isOpenLoopControlSelected())
+        {
             // Call open-loop function
             openLoopVFControl();
+        }
 
          else
          {
              enableDrivers();
-             setDutyB(10);
+             setDutyB(0);
              setDutyA(0);
              setDutyC(0);
             // Call closed-loop function
             // runClosedLoopControl();
          }
     }
-//    else
-//        performSafetyReactions();
 }
 
 /*
