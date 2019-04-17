@@ -47,7 +47,7 @@
  */
 static GUISignalsTag GUISignals;
 static float speedReference, torqueReference;
-static float deltaSpeed = 1, deltaTorque = 0.1;
+static float deltaSpeed = 5, deltaTorque = 0.1;
 static int undampedSpeedReference = 0;
 static int referenceSourceChanged = 0;
 
@@ -269,13 +269,13 @@ int speedRefDecreased(int speedReferenceBeforeLimit)
 
 int speedMustBeIncreased(void)
 {
-    return (speedRefIncreaseHasBeenPressed() || GUISignals.SpeedIncreasePushbutton);
+    return speedRefIncreaseHasBeenPressed();
 }
 
 int speedMustBeDecreased(void)
 {
-    return (speedRefDecreaseHasBeenPressed() || GUISignals.SpeedDecreasePushbutton);
-}
+    return speedRefDecreaseHasBeenPressed();
+    }
 
 int calculateSaturatedSpeed(int speedReferenceBeforeSaturation)
 {
@@ -323,15 +323,5 @@ int referenceSourceHasChanged(void)
     tempValue = referenceSourceChanged;
     referenceSourceChanged = 0;
     return tempValue;
-}
-
-void setSpeedRamp(int rampRPMperSec)
-{
-    deltaSpeed = referenceHandlerPeriodicity * rampRPMperSec;
-}
-
-void setTorqueRamp(int rampNmperSec)
-{
-    deltaTorque = referenceHandlerPeriodicity * rampNmperSec;
 }
 

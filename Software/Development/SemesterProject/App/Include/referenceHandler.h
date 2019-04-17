@@ -19,7 +19,6 @@
 #define SPEED_STEP_FROM_BUTTON_KPH  5
 #define GEAR_RATIO                  1.66
 #define RADIUS_WHEELS               0.137
-#define referenceHandlerPeriodicity 0.02    //seconds
 
 
 typedef enum
@@ -69,8 +68,5 @@ float getOpenLoopReference(void);
 int torqueControlIsEnabled(void);
 referenceSourceTag getReferenceSource(void);
 int referenceSourceHasChanged(void);
-void setSpeedRamp(int rampRPMperSec);
-void setTorqueRamp(int rampNmperSec);
-
 
 #endif /* APP_INCLUDE_REFERENCEHANDLER_H_ */
