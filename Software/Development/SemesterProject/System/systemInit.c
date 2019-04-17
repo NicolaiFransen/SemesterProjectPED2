@@ -127,6 +127,21 @@ void systemInit(void)
     configurePWM();
 
     //
+    // Copy time critical code and Flash setup code to RAM
+    // This includes the following ISR functions: epwm1_timer_isr(),
+    // epwm2_timer_isr(), epwm3_timer_isr and and InitFlash();
+    // The  RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart
+    // symbols are created by the linker. Refer to the F2808.cmd file.
+    //
+    //memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+
+    //
+    // Call Flash Initialization to setup flash waitstates
+    // This function must reside in RAM
+    //
+    //InitFlash();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     // Initialize and calibrate ADC blocks
     //
@@ -141,11 +156,12 @@ void systemInit(void)
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initializeGUIPushbuttonsStructure();
-	  initDigitalOutputs();
-	  initPushbuttons();
+    initDigitalOutputs();
+    initPushbuttons();
     initWatchdog();
-    initEncoder();
-  
+    initUART();
+	initEncoder();
+
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

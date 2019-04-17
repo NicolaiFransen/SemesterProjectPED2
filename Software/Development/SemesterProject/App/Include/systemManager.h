@@ -17,7 +17,6 @@
 #include "errorManager.h"
 #include "adcMonitor.h"
 
-
 //
 // Objects declaration
 //
