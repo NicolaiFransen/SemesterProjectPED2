@@ -75,7 +75,6 @@
 #define POLE_PAIRS  2   //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
 
-//TO BE FOUND IN MATLAB SCRIPT
 
 #define d_axis			0
 #define	q_axis			1
@@ -85,6 +84,22 @@
 #define ALPHA_AX		0
 #define BETA_AX			1
 #define ZERO_SEQ		2
+
+
+// Constant component values from interface PCB
+#define R_IN_CURRENT_MEAS           9.1     // Ohm
+#define BIAS_VOLTAGE_OPAMP          0.817   // V
+#define OPAMP_GAIN_CURRENT_MEAS     (float)-1      // []
+#define CURRENT_SENSOR_GAIN         (float)2000    // []
+#define R1_DCLINK_MEAS              (float)21500   // Ohm
+#define R2_DCLINK_MEAS              (float)1000    // Ohm
+#define R3_DCLINK_MEAS              (float)16200   // Ohm
+#define R4_DCLINK_MEAS              (float)10000   // Ohm
+#define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
+#define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
+#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+
+
 
 #endif  
 

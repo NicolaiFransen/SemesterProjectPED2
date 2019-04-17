@@ -50,12 +50,12 @@ int digitalInput_ReadState(DigitalInput *input)
 {
     if(pinIsInPortA(input->pin))
     {
-        input->state = (GpioDataRegs.GPADAT.all & (1 << input->pin)) >> input->pin;
+        input->state = (GpioDataRegs.GPADAT.all & ((Uint32)1 << input->pin)) >> input->pin;
     }
     if(pinIsInPortB(input->pin))
     {
         int pinReferredToPortB = input->pin - 32;
-        input->state = (GpioDataRegs.GPBDAT.all & ( 1 << pinReferredToPortB )) >> pinReferredToPortB;
+        input->state = (GpioDataRegs.GPBDAT.all & ((Uint32)1 << pinReferredToPortB )) >> pinReferredToPortB;
     }
     return input->state;
 }

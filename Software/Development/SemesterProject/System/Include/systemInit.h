@@ -16,7 +16,16 @@
 #include "../../App/Include/analogAcquisitionManager.h"
 #include "../../App/Include/dutyCycle.h"
 #include "../../App/Include/openLoopControlManager.h"
+#include "string.h"
+#include "digitalInputManager.h"
+#include "errorManager.h"
+#include "pushButtonManager.h"
+#include "digitalOutputManager.h"
+#include "analogAcquisitionManager.h"
+#include "communicationManager.h"
+#include "UARTInterface.h"
 #include "../../App/Include/encoderManager.h"
+
 
 //
 // Function Prototypes statements for functions found within this file.
@@ -26,8 +35,5 @@ int startupSequenceFinished(void);
 __interrupt void cpu_timer0_isr(void);
 void configureGPIO(void);
 void configurePWM(void);
-
-
-
 
 #endif /* SYSTEM_INCLUDE_SYSTEMINIT_H_ */

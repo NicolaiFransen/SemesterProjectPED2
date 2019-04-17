@@ -22,7 +22,7 @@
  * Furthermore it calls the method filterParameters() to calculate the necessary parameters for the filter.
  */
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, Uint16 adcChannel, float threshold[2])
+                       int cutoffFreq, Uint16 adcChannel, float threshold[2], priorityObject priority)
 {
     analogSignal->filterType = filterType;
     analogSignal->filterOrder = filterOrder;
@@ -37,7 +37,9 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
     analogSignal->filteredValue = 0;
     analogSignal->maxValue = MAX_VALUE_ADC;
 
-    calculateFilterParameters(analogSignal, filterType, filterOrder, cutoffFreq);
+    analogSignal->priority = priority;
+
+    calculateFilterParameters(analogSignal);
 }
 
 /*
@@ -48,13 +50,17 @@ void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterO
  * For now its only able to calculated the parameters for a first order low-pass filter, if it is found
  * necessary to use a higher order filter this should be implemented.
  */
-void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq)
+void calculateFilterParameters(AnalogSignal *analogSignal)
 {
     float parameterA, parameterB, tau;
+    int executionFrequency;
 
-    tau = 1/(2*PI*cutoffFreq);
+    if (analogSignal->priority == LOW) executionFrequency = ANALOG_EXECUTION_FREQ_LOW_PRIORITY;
+    if (analogSignal->priority == HIGH) executionFrequency = ANALOG_EXECUTION_FREQ_HIGH_PRIORITY;
 
-    parameterB = exp(-1/(ANALOG_EXECUTION_FREQ*tau));
+    tau = 1/(2*PI*analogSignal->cutoffFreq);
+
+    parameterB = exp(-1/(executionFrequency*tau));
 
     parameterA = 1 - parameterB;
 

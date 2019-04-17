@@ -1,5 +1,5 @@
 /*
- * signal.h
+ * analogsignal.h
  *
  *  Created on: 6. mar. 2019
  *      Author: Nicolai Fransen
@@ -17,11 +17,17 @@
 #include "Constants.h"
 
 #define MAX_VALUE_ADC     3.3
-#define ANALOG_EXECUTION_FREQ   20000
+#define ANALOG_EXECUTION_FREQ_HIGH_PRIORITY     20000   //Hz
+#define ANALOG_EXECUTION_FREQ_LOW_PRIORITY      100     //Hz
 
 //
 // Object declaration
 //
+typedef enum priorityObjectTag
+{
+    HIGH,
+    LOW
+}priorityObject;
 
 typedef struct AnalogSignalTag
 {
@@ -36,14 +42,15 @@ typedef struct AnalogSignalTag
     Uint16 adcChannel;              // ADC channel for the signal
     float threshold[2];             // Maximum and minimum thresholds. Used for error handling.
     float maxValue;                 // Maximum ADC value for reference use
+    priorityObject priority;        // Priority of the signal (let's the filter calculator know how often it is executed)
 } AnalogSignal;
 
 //
 // Method prototyping
 //
 void Signal_Constructor(AnalogSignal *analogSignal, char filterType, int filterOrder,
-                       int cutoffFreq, Uint16 adcChannel, float threshold[2]);
-void calculateFilterParameters(AnalogSignal *analogSignal, char filterType, int filterOrder, int cutoffFreq);
+                       int cutoffFreq, Uint16 adcChannel, float threshold[2], priorityObject priority);
+void calculateFilterParameters(AnalogSignal *analogSignal);
 void setFilteredValue(AnalogSignal *analogSignal);
 void readADCValue(AnalogSignal *analogSignal);
 void filterADCValue(AnalogSignal *analogSignal);
