@@ -198,7 +198,7 @@ void handleSystemClock(void)
 {
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
-    UARTIntPrint("TimeStamp ", (int)sysClock);
+    UARTIntPrint("Rotor RPM ", (int)readRotorRPM());
 }
 
 Uint32 getSystemClock(void)
