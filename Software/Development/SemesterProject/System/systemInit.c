@@ -141,13 +141,13 @@ void systemInit(void)
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initializeGUIPushbuttonsStructure();
-	  initDigitalOutputs();
-	  initPushbuttons();
+    initDigitalOutputs();
+    initPushbuttons();
     initWatchdog();
-    initEncoder();
-  
+    initUART();
+	initEncoder();
 
-    //
+
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
     // which is connected to CPU-Timer 1:
     //
@@ -175,6 +175,9 @@ int startupSequenceFinished(void)
     return startupSequenceFinishedFlag;
 }
 
+
+
 //
 // End of File
 //
+
