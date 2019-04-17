@@ -16,6 +16,7 @@
 #include "dutyCycle.h"
 #include "../../System/Include/PWMConfig.h"
 #include "analogAcquisitionManager.h"
+#include "referenceHandler.h"
 #include "Constants.h"
 
 

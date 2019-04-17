@@ -23,14 +23,12 @@
 //
 #include "Include/systemInit.h"
 
-
-
-
-
 //
 // Quasi-global variables definition
 //
 static int startupSequenceFinishedFlag = 0;
+
+
 
 void systemInit(void)
 {
@@ -133,6 +131,7 @@ void systemInit(void)
     // Initialize and calibrate ADC blocks
     //
     InitAdc();
+
     AdcOffsetSelfCal();
 
     //
@@ -146,7 +145,7 @@ void systemInit(void)
     initPushbuttons();
     initWatchdog();
     initUART();
-
+	initEncoder();
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

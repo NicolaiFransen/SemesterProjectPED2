@@ -59,37 +59,9 @@ int16 mapInt(int16 x, int16 xMax, int16 yMax)
  */
 void setConstantDutyFromReference(void)
 {
-    float duty;
-    float torqueRef, maxRef;
-    /*  INCLUDE THIS WHEN EVERYTHING IS ADDED
-    switch (getReferenceInput())
-    {
-        case POT:
-        {
-            torqueRef = getTorqueReferenceSliderMeasurement();
-            maxRef = getMaximumReferenceValue();
-        }break;
-        case GUI:
-        {
-            torqueRef = getTorqueReferenceFromGUI();
-            maxRef = getMaximumReferenceGUI();
-        }
-        case PEDAL:
-        {
-            torqueRef = getTorqueReferenceFromPedal();
-            maxRef = getMaximumReferencePedal();
-        }
-
-    }*/
-
-    torqueRef = getTorqueReferenceSliderMeasurement();
-    maxRef = 3.3;//getMaximumReferenceADC();
-
-    duty = mapFloat(torqueRef, maxRef, readMaxDuty());
-
-    setAllDuties(duty);
+    //Get the reference value to be set, this is a float between 0 and 100.
+    setAllDuties(getOpenLoopReference());
 }
-
 
 
 //Functions for VF control.
@@ -99,35 +71,13 @@ void setConstantDutyFromReference(void)
  */
 float getStatorFreq()
 {
-    float torqueRef, maxRef;
+    float reference;
 
-    /*  INCLUDE THIS WHEN EVERYTHING IS ADDED
-    switch (getReferenceInput())
-    {
-        case POT:
-        {
-            torqueRef = getTorqueReferenceSliderMeasurement();
-            maxRef = getMaximumReferenceADC();
-        }break;
-        case GUI:
-        {
-            torqueRef = getTorqueReferenceFromGUI();
-            maxRef = getMaximumReferenceGUI();
-        }
-        case PEDAL:
-        {
-            torqueRef = getTorqueReferenceFromPedal();
-            maxRef = getMaximumReferenceADC();
-        }
+    //Get the reference value to be set, this is a float between 0 and 100.
+    reference = getOpenLoopReference();
 
-    }*/
-
-    //Remove next two lines when previous is uncommented.
-    torqueRef = getTorqueReferenceSliderMeasurement();
-    maxRef = 3.3;//getMaximumReferenceADC();
-
-    //Calculate at what frequency the stator should go according to input.
-    return mapFloat(torqueRef, maxRef, MAX_STATOR_FREQ);
+    //Calculate at what frequency the stator should go according to input. 100 is the max value of the reference.
+    return mapFloat(reference, 100.0, MAX_STATOR_FREQ);
 }
 
 
