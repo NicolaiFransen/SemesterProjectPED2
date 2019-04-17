@@ -21,16 +21,8 @@
 //
 // Included Files
 //
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
-#include "../App/Include/digitalInputManager.h"
-#include "../App/Include/errorManager.h"
-#include "pushButtonManager.h"
-#include "../App/Include/digitalOutputManager.h"
-#include "../App/Include/analogAcquisitionManager.h"
-#include "communicationManager.h"
-#include "Include/UARTInterface.h"
-#include "queueObject.h"
+
 
 
 
@@ -153,8 +145,7 @@ void systemInit(void)
     initDigitalOutputs();
     initPushbuttons();
     initWatchdog();
-    UARTinit();
-    UARTStringPrint("\n\rWelcome to the excellent Go-Kart controller, by PED-841.\n\r");
+    initUART();
 
 
 

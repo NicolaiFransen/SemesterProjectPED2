@@ -52,11 +52,12 @@ interrupt void SCIA_TX_isr(void)
 }
 
 
-void UARTinit(void)
+void initUART(void)
 {
     constructUARTBuffer();
     InitSciGpio();
     sciConfiguration();
+    UARTStringPrint("\n\rWelcome to the excellent Go-Kart controller, by PED-841.\n\r");
 }
 
 void sciConfiguration(void)

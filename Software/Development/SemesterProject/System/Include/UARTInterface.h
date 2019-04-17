@@ -10,7 +10,7 @@
 
 #include "queueObject.h"
 
-void UARTinit(void);
+void initUART(void);
 void UARTComms(void);
 void scia_fifo_init(void);
 void sciConfiguration(void);
