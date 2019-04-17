@@ -18,6 +18,36 @@
 #include "Constants.h"
 #include "referenceFrameConversion.h"
 
+
+/*
+ * temporary
+ */
+void runClosedLoopControl(void)
+{
+    float ABCCurrent[3] = {0, 0, 0};
+    dqObject DQCurrent, DQVoltage;
+    alphaBetaObject abVoltage;
+
+    getCurrentMeasurements(&ABCCurrent[0]);
+
+//    GpioDataRegs.GPADAT.bit.GPIO18 = 1;
+    DQCurrent = abc2dq(&ABCCurrent[0], 0.1); //theta is 0.1 radians
+//    voltageQRef = PICalculationIq(DQCurrent.QComponent);
+    abVoltage = dq2alphabeta(&DQVoltage, 0.1); //theta is 0.1 radians
+    GpioDataRegs.GPADAT.bit.GPIO18 = 0;
+
+
+    //
+//    runControl();
+//
+//    ABCVoltage = dq2abc(&DQVoltage);
+//    runSVM(&ABCVoltage);
+
+}
+/*
+ * end of temporary
+ */
+
 /*
  * This function performs the calculation of the dq components.
  * It uses theta in radians, provided by the controlTask

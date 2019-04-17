@@ -21,15 +21,7 @@
 //
 // Included Files
 //
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
-#include "../App/Include/digitalInputManager.h"
-#include "../App/Include/errorManager.h"
-#include "pushButtonManager.h"
-#include "../App/Include/digitalOutputManager.h"
-#include "../App/Include/analogAcquisitionManager.h"
-#include "communicationManager.h"
-
 
 //
 // Quasi-global variables definition
@@ -38,8 +30,10 @@ static int startupSequenceFinishedFlag = 0;
 
 
 
+
 void systemInit(void)
 {
+
     //
     // Step 1. Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
@@ -83,6 +77,8 @@ void systemInit(void)
     // This function is found in F2806x_PieVect.c.
     //
     InitPieVectTable();
+
+
 
     //
     // Interrupts that are used in this example are re-mapped to
@@ -135,10 +131,26 @@ void systemInit(void)
     configurePWM();
 
     //
+    // Copy time critical code and Flash setup code to RAM
+    // This includes the following ISR functions: epwm1_timer_isr(),
+    // epwm2_timer_isr(), epwm3_timer_isr and and InitFlash();
+    // The  RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart
+    // symbols are created by the linker. Refer to the F2808.cmd file.
+    //
+    //memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+
+    //
+    // Call Flash Initialization to setup flash waitstates
+    // This function must reside in RAM
+    //
+    //InitFlash();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     // Initialize and calibrate ADC blocks
     //
     InitAdc();
+
     AdcOffsetSelfCal();
 
     //
@@ -148,9 +160,11 @@ void systemInit(void)
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initializeGUIPushbuttonsStructure();
-	  initDigitalOutputs();
-	  initPushbuttons();
+    initDigitalOutputs();
+    initPushbuttons();
     initWatchdog();
+    initUART();
+	initEncoder();
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
@@ -179,6 +193,7 @@ int startupSequenceFinished(void)
 {
     return startupSequenceFinishedFlag;
 }
+
 
 
 //

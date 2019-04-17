@@ -16,7 +16,6 @@
  *      will be called. Otherwise it will loop infinitely.
  */
 #include "Include/scheduler.h"
-#include "errorManager.h"
 
 
 /*
@@ -34,6 +33,8 @@ static enum taskListTag
 }taskListItems;
 
 taskControlBlock taskList[numberOfTasks + 1];
+
+static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
@@ -100,9 +101,9 @@ void task100us(void)
 
 void task50us(void)
 {
-//    executeControl();
+    executeControl();
 //    runClosedLoopControl();
-    monitorErrorSources();
+    performErrorMonitoring();
 }
 
 void task10ms(void)
@@ -122,11 +123,13 @@ void task20ms(void)
 void task200ms(void)
 {
     manageCommunications();
+    handleSystemClock();
 }
 
 void task1s(void)
 {
     restartPushbuttonsState();
+    calculateTemperature();
 }
 
 //
@@ -191,5 +194,16 @@ int taskIsReady(int taskListIndex)
 void deactivateTask(int taskListIndex)
 {
     taskList[taskListIndex].taskState = INACTIVE;
+}
 
+void handleSystemClock(void)
+{
+    sysClock++;
+    if (sysClock >= INT_MAX)    sysClock = 0;
+    UARTIntPrint("TimeStamp ", (int)sysClock);
+}
+
+Uint32 getSystemClock(void)
+{
+    return sysClock;
 }
