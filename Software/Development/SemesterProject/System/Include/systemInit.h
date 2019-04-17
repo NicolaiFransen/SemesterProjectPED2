@@ -14,6 +14,7 @@
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "../../App/Include/dutyCycle.h"
 #include "../../App/Include/openLoopControlManager.h"
+#include "string.h"
 #include "digitalInputManager.h"
 #include "errorManager.h"
 #include "pushButtonManager.h"
@@ -32,8 +33,5 @@ int startupSequenceFinished(void);
 __interrupt void cpu_timer0_isr(void);
 void configureGPIO(void);
 void configurePWM(void);
-
-
-
 
 #endif /* SYSTEM_INCLUDE_SYSTEMINIT_H_ */
