@@ -23,7 +23,7 @@ void executeControl(void)
         else
         {
             enableDrivers();
-            setDutyA(10);
+            setDutyA(0);
             setDutyB(0);
             setDutyC(0);
             // Call closed-loop function
@@ -31,8 +31,8 @@ void executeControl(void)
         }
 
     }
-    else
-        performSafetyReactions();
+    //else
+    //    performSafetyReactions();
 }
 
 /*

@@ -41,6 +41,7 @@ void manageSystem(void)
         case STANDBY:
         {
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
+            resetSafetyReactions();
         }break;
 
         case RUNNING:
@@ -55,8 +56,8 @@ void manageSystem(void)
             turnOnErrorLED();
             if(userACKHasBeenPressed())
             {
+                resetSafetyReactions();
                 systemState = STANDBY;
-                turnOffErrorLED();
             }
         }break;
     }
