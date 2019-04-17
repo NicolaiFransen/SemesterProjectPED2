@@ -137,13 +137,13 @@ void systemInit(void)
     // The  RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart
     // symbols are created by the linker. Refer to the F2808.cmd file.
     //
-    //memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
 
     //
     // Call Flash Initialization to setup flash waitstates
     // This function must reside in RAM
     //
-    //InitFlash();
+    InitFlash();
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0
