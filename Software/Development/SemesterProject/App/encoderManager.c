@@ -22,11 +22,7 @@
  *
  */
 
-#include "encoderManager.h"
-
-
-static rotorPosSpeed rotorPosSpeedObject;
-
+#include "positionCalculator.h"
 
 void initEncoder(void)
 {
@@ -79,89 +75,54 @@ void initEncoder(void)
 }
 
 
-/*
- * Encoder constructor.
- */
-void rotorPosSpeedConstructor(void)
-{
-    rotorPosSpeedObject.dir = 0;
-    rotorPosSpeedObject.thetaMech = 0;
-    rotorPosSpeedObject.thetaElec = 0;
-    rotorPosSpeedObject.thetaElecOld = 0;
-    rotorPosSpeedObject.speedTempCount = 0;
-    rotorPosSpeedObject.freqElec = 0;
-    rotorPosSpeedObject.freqMech = 0;
-    rotorPosSpeedObject.rpmMech = 0;
-}
-
-
 void clearInterruptFlag(void)
 {
     EQep1Regs.QCLR.bit.UTO=1; // Clear interrupt flag
 }
 
 
-/*
- * Obtain position and speed of the rotor.
- * Should be called at switch freq.
- */
-void posSpeedFromEncoder(void)
-{
-    rotorPosCalc();
-    rotorSpeedCalc();
-    clearInterruptFlag();
-}
-
-
-float obtainDeltaTheta(void)
+float obtainDeltaTheta(motorPosSpeed *motorPosSpeedObject)
 {
     //Calculate delta and check if it has jumped to next lap.
     float deltaTheta;
-    deltaTheta = fabs(rotorPosSpeedObject.thetaElec - rotorPosSpeedObject.thetaElecOld);
+    deltaTheta = fabs(motorPosSpeedObject->rotorThetaElec - motorPosSpeedObject->rotorThetaElecOld);
     if (deltaTheta > PI) deltaTheta = fabs(TWO_PI - deltaTheta);
     return deltaTheta;
 }
 
 
-void updateSpeed(float deltaTheta)
+void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 {
     //Check direction and calculate electrical frequency.
-    if (rotorPosSpeedObject.dir == 0) rotorPosSpeedObject.freqElec = deltaTheta * RAD_TO_REV * 1000000 / rotorPosSpeedObject.speedTempCount;
-    else rotorPosSpeedObject.freqElec = - deltaTheta * RAD_TO_REV * 1000000 / rotorPosSpeedObject.speedTempCount; //Going reverse direction.
+    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount;
+    else motorPosSpeedObject->rotorSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount; //Going reverse direction.
 
     //Update other values.
-    rotorPosSpeedObject.thetaElecOld = rotorPosSpeedObject.thetaElec;
-    rotorPosSpeedObject.speedTempCount = 0;
-}
-
-
-void calcOtherSpeeds(void)
-{
-    rotorPosSpeedObject.freqMech = rotorPosSpeedObject.freqElec * POLE_PAIRS_INVERSE;    //Hz
-    rotorPosSpeedObject.rpmMech = (int16) (rotorPosSpeedObject.freqMech * 60.0);    //To go from Hz to rpm.
+    motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;
+    motorPosSpeedObject->rotorSpeedTempCount = 0;
 }
 
 
 /*
  * Function that updates the object containing position info from encoder.
  */
-void rotorPosCalc(void)
+void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
 {
     // Check rotor direction: 0=CCW/reverse, 1=CW/forward.
-    rotorPosSpeedObject.dir = EQep1Regs.QEPSTS.bit.QDF;
+    motorPosSpeedObject->dir = EQep1Regs.QEPSTS.bit.QDF;
 
     //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
-    rotorPosSpeedObject.thetaRaw = EQep1Regs.QPOSCNT;
+    motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
 
     // Check an index occurrence
     if (EQep1Regs.QFLG.bit.IEL == 1) EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
 
     //Transform into electrical angle [rad]
-    rotorPosSpeedObject.thetaElec = rotorPosSpeedObject.thetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
-    if (rotorPosSpeedObject.thetaElec >= TWO_PI) rotorPosSpeedObject.thetaElec -= TWO_PI;
-    rotorPosSpeedObject.thetaMech = rotorPosSpeedObject.thetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
+    motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
 
-    rotorPosSpeedObject.speedTempCount += SW_PERIOD_US;
+    motorPosSpeedObject->rotorSpeedTempCount += SW_PERIOD_US;
 }
 
 
@@ -170,42 +131,15 @@ void rotorPosCalc(void)
  *  However, the rotor speed cannot be calculated at the same frequency since it will lead to errors.
  *  Instead, the speed will be calculated every 10 degrees.
  */
-void rotorSpeedCalc(void)
+void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
 {
     float deltaTheta;
 
-    deltaTheta = obtainDeltaTheta();
+    deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
     //Speed is only calculated every 10 degrees.
     if (deltaTheta > DEG_10_TO_RAD)
     {
-        updateSpeed(deltaTheta);
-        calcOtherSpeeds(); //Calculate other speeds.
+        updateSpeed(motorPosSpeedObject, deltaTheta);
     }
-}
-
-
-float readRotorElecAngleRad(void)
-{
-    return rotorPosSpeedObject.thetaElec;
-}
-
-float readRotorElecFreqHz(void)
-{
-    return rotorPosSpeedObject.freqElec;
-}
-
-float readRotorMechAngleRad(void)
-{
-    return rotorPosSpeedObject.thetaMech;
-}
-
-float readRotorMechFreqHz(void)
-{
-    return rotorPosSpeedObject.freqMech;
-}
-
-int16 readRotorRPM(void)
-{
-    return rotorPosSpeedObject.rpmMech;
 }
