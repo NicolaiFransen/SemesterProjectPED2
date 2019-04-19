@@ -3,6 +3,10 @@
  *
  *  Created on: 17 abr. 2019
  *      Author: Aitor Teran
+ *
+ *      In this module, information about the position and speed of the rotor flux is calculated.
+ *      This values are estimations.
+ *      The functions are called from positionCalculator.c
  */
 
 #include "positionCalculator.h"

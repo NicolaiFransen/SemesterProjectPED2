@@ -19,7 +19,6 @@
  *
  *      Encoder is inputing mechanical speed but all the calculations are measured in the electrical environment, then transformed
  *      again to mechanical domain. The relationship between this two depends on the number of pole pairs.
- *
  */
 
 #include "positionCalculator.h"

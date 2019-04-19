@@ -3,6 +3,12 @@
  *
  *  Created on: 17 abr. 2019
  *      Author: Aitor Teran
+ *
+ *      The module gathers information about the position and speed of the rotor as well  as of it's flux.
+ *      The modules encoderManager and slipAngleCalculator are submodules of this and their functions are
+ *      called from this module.
+ *      All information regarding the position of the rotor or its flux is read from this module.
+ *      motorPosSpeedObject includes all the information.
  */
 
 
@@ -38,13 +44,16 @@ void posSpeedFromEncoder()
 }
 
 
+/*
+ * Obtain position and speed of the rotor flux.
+ */
 void rotorFluxPosSpeed()
 {
-    calcSlipSpeed(&motorPosSpeedObject);
+    calcRotorFluxPosSpeed(&motorPosSpeedObject);
 }
 
 
-
+//Read rotor related angles.
 float readRotorElecAngleRad(void)
 {
     return motorPosSpeedObject.rotorThetaElec;
@@ -56,6 +65,7 @@ float readRotorMechAngleRad(void)
 }
 
 
+//Read rotor related speeds.
 float readRotorSpeedRadS(void)
 {
     return motorPosSpeedObject.rotorSpeedRadS;
@@ -74,4 +84,16 @@ float readRotorMechFreqHz(void)
 int16 readRotorRPM(void)
 {
     return (int16) (motorPosSpeedObject.rotorSpeedRadS * RAD_TO_REV * POLE_PAIRS_INVERSE * 60);    //rpm
+}
+
+
+//Read rotor flux speed and position.
+float readRotorFluxAngleRad(void)
+{
+    return motorPosSpeedObject.rotorFluxPosRad;
+}
+
+float readRotorFluxSpeedRadS(void)
+{
+    return motorPosSpeedObject.rotorFluxSpeedRadS;
 }
