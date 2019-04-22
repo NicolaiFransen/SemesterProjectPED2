@@ -9,6 +9,9 @@
  *      called from this module.
  *      All information regarding the position of the rotor or its flux is read from this module.
  *      motorPosSpeedObject includes all the information.
+ *
+ *      Function to call to calculate parameters is getRotorPosSpeedParameters();
+ *      It should be called at switching frequency.
  */
 
 
@@ -49,7 +52,17 @@ void posSpeedFromEncoder()
  */
 void rotorFluxPosSpeed()
 {
-    calcRotorFluxPosSpeed(&motorPosSpeedObject);
+    calcSlipSpeed(&motorPosSpeedObject);
+    calcSlipAngle(&motorPosSpeedObject);
+}
+
+/*
+ * Obtain position and speed of both rotor and its flux.
+ */
+void getRotorPosSpeedParameters()
+{
+    posSpeedFromEncoder();
+    rotorFluxPosSpeed();
 }
 
 

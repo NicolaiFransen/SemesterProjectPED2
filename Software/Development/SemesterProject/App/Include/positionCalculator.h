@@ -29,7 +29,7 @@ typedef struct
     float rotorSpeedRadS;     // rotor Electrical speed [rad/s]
 
     //SLIP RELATED PARAMETERS
-    float slipPosRad;
+    float slipAngleRad;
     float rotorFluxPosRad;
     float slipSpeedRadS;
     float rotorFluxSpeedRadS;
@@ -38,9 +38,9 @@ typedef struct
 
 
 //Functions related to positionCalculator.c
+void getRotorPosSpeedParameters();
+
 void rotorPosSpeedConstructor(void);
-void posSpeedFromEncoder(void);
-void rotorFluxPosSpeed(void);
 
 float readRotorElecAngleRad(void);
 float readRotorElecFreqHz(void);
@@ -58,7 +58,5 @@ void rotorSpeedCalc(motorPosSpeed *);
 //Functions related to positionCalculator.c
 void calcSlipSpeed(motorPosSpeed *);
 void calcSlipAngle(motorPosSpeed *);
-void calcRotorFluxPosSpeed(motorPosSpeed *);
-
 
 #endif /* APP_INCLUDE_POSITIONCALCULATOR_H_ */

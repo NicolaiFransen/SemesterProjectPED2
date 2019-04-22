@@ -19,22 +19,16 @@ void calcSlipSpeed(motorPosSpeed *motorPosSpeedObject)
 {
     float iqsRef = TWO_DIV_3 * LR * LM_INVERSE * LAMDA_R_INVERSE * getTorqueReference();
     motorPosSpeedObject->slipSpeedRadS = TR_INVERSE * iqsRef * ID_RATED_INVERSE;
+    motorPosSpeedObject->rotorFluxSpeedRadS = readRotorSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
 }
 
 
 /*
  * In order to obtain the slip angle of the rotor flux, the speed must be integrated.
+ * This function must be called at switching frequency.
  */
 void calcSlipAngle(motorPosSpeed *motorPosSpeedObject)
 {
-
-}
-
-
-void calcRotorFluxPosSpeed(motorPosSpeed *motorPosSpeedObject)
-{
-    calcSlipSpeed(motorPosSpeedObject);
-    calcSlipAngle(motorPosSpeedObject);
-
-    motorPosSpeedObject->rotorFluxSpeedRadS = readRotorSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
+    motorPosSpeedObject->slipAngleRad = motorPosSpeedObject->slipSpeedRadS * SW_PERIOD_S;
+    motorPosSpeedObject->rotorFluxPosRad = motorPosSpeedObject->slipAngleRad + motorPosSpeedObject->rotorThetaElec;
 }
