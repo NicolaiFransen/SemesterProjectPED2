@@ -8,17 +8,6 @@
 #ifndef APP_INCLUDE_REFERENCEFRAMECONVERSION_H_
 #define APP_INCLUDE_REFERENCEFRAMECONVERSION_H_
 
-
-/*
- * Temporary declarations To be removed
- */
-#include "analogAcquisitionManager.h"
-void runClosedLoopControl(void);
-/*
- * end of temporaty declarations
- */
-
-
 typedef struct
 {
     float dComponent;

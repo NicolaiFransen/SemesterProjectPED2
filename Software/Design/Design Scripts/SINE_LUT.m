@@ -1,6 +1,6 @@
 close all
 
-t = 0:0.02/1000:0.02;
+t = 0:0.02/1002:0.02;
 
 phaseShift = [0 2*pi/3 -2*pi/3]
 sinewaveA = 0.5+(sin(100*pi*t + phaseShift(1))/2);

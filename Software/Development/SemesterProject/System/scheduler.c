@@ -17,6 +17,14 @@
  */
 #include "Include/scheduler.h"
 
+/*
+ * testing includes
+ */
+#include "referenceFrameConversion.h"
+
+/*
+ *
+ */
 
 /*
  * Quasi-global variable definition
@@ -102,7 +110,6 @@ void task100us(void)
 void task50us(void)
 {
     executeControl();
-//    runClosedLoopControl();
     performErrorMonitoring();
 }
 
@@ -200,7 +207,7 @@ void handleSystemClock(void)
 {
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
-    UARTIntPrint("TimeStamp ", (int)sysClock);
+    UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
