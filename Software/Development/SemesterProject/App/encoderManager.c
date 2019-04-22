@@ -177,7 +177,7 @@ void rotorSpeedCalc(void)
     deltaTheta = obtainDeltaTheta();
 
     //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || rotorPosSpeedObject.speedTempCount > 120 * SW_PERIOD_US)
+    if (deltaTheta > DEG_10_TO_RAD)
     {
         updateSpeed(deltaTheta);
         calcOtherSpeeds(); //Calculate other speeds.
