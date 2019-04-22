@@ -18,6 +18,15 @@
 #include "Include/scheduler.h"
 
 /*
+ * testing includes
+ */
+#include "referenceFrameConversion.h"
+
+/*
+ *
+ */
+
+/*
  * Quasi-global variable definition
  */
 static enum taskListTag
@@ -32,6 +41,8 @@ static enum taskListTag
 }taskListItems;
 
 taskControlBlock taskList[numberOfTasks + 1];
+
+static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
@@ -119,6 +130,7 @@ void task20ms(void)
 void task200ms(void)
 {
     manageCommunications();
+    handleSystemClock();
 }
 
 void task1s(void)
@@ -189,5 +201,16 @@ int taskIsReady(int taskListIndex)
 void deactivateTask(int taskListIndex)
 {
     taskList[taskListIndex].taskState = INACTIVE;
+}
 
+void handleSystemClock(void)
+{
+    sysClock++;
+    if (sysClock >= INT_MAX)    sysClock = 0;
+    UARTIntPrint("TS ", (int)sysClock);
+}
+
+Uint32 getSystemClock(void)
+{
+    return sysClock;
 }

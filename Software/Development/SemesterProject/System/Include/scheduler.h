@@ -12,9 +12,12 @@
 #include "communicationManager.h"
 #include "openLoopControlManager.h"
 #include "controlTask.h"
+#include "encoderManager.h"
 #include <stddef.h>
 #include "pushButtonManager.h"
 #include "referenceHandler.h"
+#include "UARTInterface.h"
+#include "queueObject.h"
 #include "temperatureManager.h"
 #include "errorManager.h"
 
@@ -60,6 +63,10 @@ void decreaseCountdown(int taskListIndex);
 int taskIsReady(int taskListIndex);
 void deactivateTask(int taskListIndex);
 
-
+/*
+ * External Interface
+ */
+void handleSystemClock(void);
+Uint32 getSystemClock(void);
 
 #endif /* SYSTEM_INCLUDE_SCHEDULER_H_ */

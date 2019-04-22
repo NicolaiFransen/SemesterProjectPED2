@@ -13,8 +13,10 @@
 #include "digitalInputManager.h"
 #include "temperatureManager.h"
 #include "referenceHandler.h"
-
-
+#include "encoderManager.h"
+#include "adcMonitor.h"
+#include "errorManager.h"
+#include "Constants.h"
 
 
 typedef struct
@@ -46,11 +48,13 @@ typedef struct
 GUISignalsTag getGUISignals(void);
 void manageCommunications(void);
 void getSystemManagerSignals(void);
+void getEncoderSignals(void);
 void getErrorSignals(void);
 void getReferenceHandlerSignals(void);
 void getAnalogSignals(void);
 void getDigitalSignals(void);
 void performGUISideTasks(void);
+void setReferenceRamps(void);
 void handleGUIPushbuttons(void);
 void updatePushButtonList(void);
 void handlePushbuttonsPress(void);
