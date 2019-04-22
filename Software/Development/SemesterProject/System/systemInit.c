@@ -21,13 +21,7 @@
 //
 // Included Files
 //
-#include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "Include/systemInit.h"
-#include "../App/Include/digitalInputManager.h"
-#include "pushButtonManager.h"
-#include "../App/Include/digitalOutputManager.h"
-#include "../App/Include/analogAcquisitionManager.h"
-
 
 //
 // Quasi-global variables definition
@@ -36,8 +30,10 @@ static int startupSequenceFinishedFlag = 0;
 
 
 
+
 void systemInit(void)
 {
+
     //
     // Step 1. Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
@@ -82,6 +78,8 @@ void systemInit(void)
     //
     InitPieVectTable();
 
+
+
     //
     // Interrupts that are used in this example are re-mapped to
     // ISR functions found within this file.
@@ -89,7 +87,6 @@ void systemInit(void)
     EALLOW;    // This is needed to write to EALLOW protected registers
     PieVectTable.TINT0 = &cpu_timer0_isr;
     PieVectTable.ADCINT1 = &adc_isr;
-
     EDIS;      // This is needed to disable write to EALLOW protected registers
 
     //
@@ -131,10 +128,26 @@ void systemInit(void)
     configurePWM();
 
     //
+    // Copy time critical code and Flash setup code to RAM
+    // This includes the following ISR functions: epwm1_timer_isr(),
+    // epwm2_timer_isr(), epwm3_timer_isr and and InitFlash();
+    // The  RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart
+    // symbols are created by the linker. Refer to the F2808.cmd file.
+    //
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+
+    //
+    // Call Flash Initialization to setup flash waitstates
+    // This function must reside in RAM
+    //
+    InitFlash();
+
+    //
     // Enable CPU INT1 which is connected to CPU-Timer 0
     // Initialize and calibrate ADC blocks
     //
     InitAdc();
+
     AdcOffsetSelfCal();
 
     //
@@ -143,23 +156,25 @@ void systemInit(void)
     initDigitalInputs();
     initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
+    initializeGUIPushbuttonsStructure();
     initDigitalOutputs();
-	initPushbuttons();
-	
-    //
+    initPushbuttons();
+    initWatchdog();
+    initUART();
+	  initEncoder();
+
+
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
     // which is connected to CPU-Timer 1:
     //
     IER |= M_INT1;
     IER |= M_INT13;
 
-
     //
     // Enable TINT0 in the PIE: Group 1 interrupt 7
     //
     PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
     PieCtrlRegs.PIEIER1.bit.INTx1 = 1;
-
 
     //
     // Enable global Interrupts and higher priority real-time debug events
@@ -177,7 +192,7 @@ int startupSequenceFinished(void)
 }
 
 
+
 //
 // End of File
 //
-

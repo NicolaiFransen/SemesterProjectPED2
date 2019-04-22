@@ -12,9 +12,14 @@
 #include "communicationManager.h"
 #include "openLoopControlManager.h"
 #include "controlTask.h"
+#include "encoderManager.h"
 #include <stddef.h>
 #include "pushButtonManager.h"
-
+#include "referenceHandler.h"
+#include "UARTInterface.h"
+#include "queueObject.h"
+#include "temperatureManager.h"
+#include "errorManager.h"
 
 #define TIMER_PERIOD_US       50
 
@@ -28,8 +33,8 @@ typedef struct TCBstruct
 {
     void (*functionPointer)();
     taskState taskState;
-    Uint16 cyclicity;
-    Uint16 timeLeft;
+    Uint32 cyclicity;
+    Uint32 timeLeft;
     unsigned int sleepTime;
     char priority;
 }taskControlBlock;
@@ -43,8 +48,10 @@ void runTask(void (*functionPTR)());
 
 void task50us(void);
 void task100us(void);
+void task10ms(void);
 void task20ms(void);
 void task200ms(void);
+void task1s(void);
 
 
 void updateTasksState(void);
@@ -56,6 +63,10 @@ void decreaseCountdown(int taskListIndex);
 int taskIsReady(int taskListIndex);
 void deactivateTask(int taskListIndex);
 
-
+/*
+ * External Interface
+ */
+void handleSystemClock(void);
+Uint32 getSystemClock(void);
 
 #endif /* SYSTEM_INCLUDE_SCHEDULER_H_ */

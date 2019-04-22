@@ -103,7 +103,7 @@ void configureGPIO(void)
     GpioCtrlRegs.GPACTRL.bit.QUALPRD1 = 0; //(GPIO8-15)
     GpioCtrlRegs.GPACTRL.bit.QUALPRD2 = 0; //(GPIO16-23)
     GpioCtrlRegs.GPBCTRL.bit.QUALPRD0 = 0; //(GPIO32-39)
-    GpioCtrlRegs.GPBCTRL.bit.QUALPRD2 = 0; //(GPIO50-55)
+    GpioCtrlRegs.GPBCTRL.bit.QUALPRD2 = 0xFF; //(GPIO50-55)
 
     //  Configure GPIO 1 (Power Enable switch) as input
     GpioCtrlRegs.GPAPUD.bit.GPIO1= 1; //Disable pull-up resistor
@@ -137,7 +137,7 @@ void configureGPIO(void)
 
     //  Configure GPIO 54 (Anti-slip pushbutton) as input
     GpioCtrlRegs.GPBPUD.bit.GPIO54 = 1; //Disable pull-up resistor
-    GpioCtrlRegs.GPBQSEL2.bit.GPIO54 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO54 = 2; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPBMUX2.bit.GPIO54 = 0;    // Select GPIO from MUX
     GpioCtrlRegs.GPBDIR.bit.GPIO54 = 0;     // Select digital input
 
@@ -168,14 +168,14 @@ void configureGPIO(void)
     GpioCtrlRegs.GPADIR.bit.GPIO24 = 1;
 
     // Configure GPIO25 as input
-    /*GpioCtrlRegs.GPAPUD.bit.GPIO25 = 1; //Disable pull-up resistor
+    GpioCtrlRegs.GPAPUD.bit.GPIO25 = 1; //Disable pull-up resistor
     GpioCtrlRegs.GPAQSEL2.bit.GPIO25 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;    // Select GPIO from MUX
-    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;     // Select digital input*/
+    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;     // Select digital input
 
-    // Configure GPIO25 as output
+    /*/ Configure GPIO25 as output
     GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO25 = 1;
+    GpioCtrlRegs.GPADIR.bit.GPIO25 = 1;*/
 
     // Configure GPIO26 as input
     /*GpioCtrlRegs.GPAPUD.bit.GPIO26 = 1; //Disable pull-up resistor
@@ -198,14 +198,14 @@ void configureGPIO(void)
     GpioCtrlRegs.GPADIR.bit.GPIO27 = 1;
 
     //  Configure GPIO 52 as input
-    /*GpioCtrlRegs.GPBPUD.bit.GPIO52 = 1; //Disable pull-up resistor
+    GpioCtrlRegs.GPBPUD.bit.GPIO52 = 1; //Disable pull-up resistor
     GpioCtrlRegs.GPBQSEL2.bit.GPIO52 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPBMUX2.bit.GPIO52 = 0;    // Select GPIO from MUX
-    GpioCtrlRegs.GPBDIR.bit.GPIO52 = 0;     // Select digital input*/
+    GpioCtrlRegs.GPBDIR.bit.GPIO52 = 0;     // Select digital input
 
     // Configure GPIO52 as output
-    GpioCtrlRegs.GPBMUX2.bit.GPIO52 = 0;
-    GpioCtrlRegs.GPBDIR.bit.GPIO52 = 1;
+    /*GpioCtrlRegs.GPBMUX2.bit.GPIO52 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO52 = 1;*/
 
     // Configure GPIO 53 as input
     /*GpioCtrlRegs.GPBPUD.bit.GPIO53 = 1; //Disable pull-up resistor

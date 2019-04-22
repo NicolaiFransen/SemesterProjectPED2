@@ -24,12 +24,16 @@ static enum taskListTag
 {
     task50usItem,
     task100usItem,
+    task10msItem,
     task20msItem,
     task200msItem,
+    task1sItem,
     numberOfTasks
 }taskListItems;
 
 taskControlBlock taskList[numberOfTasks + 1];
+
+static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
@@ -43,6 +47,11 @@ void taskListInitialization(void)
     taskList[task100usItem].cyclicity = 100;
     taskList[task100usItem].timeLeft = 100;
 
+    taskList[task10msItem].functionPointer = task10ms;
+    taskList[task10msItem].taskState = INACTIVE;
+    taskList[task10msItem].cyclicity = 10000;
+    taskList[task10msItem].timeLeft = 10000;
+
     taskList[task20msItem].functionPointer = task20ms;
     taskList[task20msItem].taskState = READY;
     taskList[task20msItem].cyclicity = 20000;      // Time in us
@@ -52,6 +61,11 @@ void taskListInitialization(void)
     taskList[task200msItem].taskState = INACTIVE;
     taskList[task200msItem].cyclicity = 200000;
     taskList[task200msItem].timeLeft = 200000;
+
+    taskList[task1sItem].functionPointer = task1s;
+    taskList[task1sItem].taskState = INACTIVE;
+    taskList[task1sItem].cyclicity = 1000000;
+    taskList[task1sItem].timeLeft = 1000000;
 
     taskList[numberOfTasks].functionPointer = NULL; // End of list
 }
@@ -87,6 +101,12 @@ void task100us(void)
 void task50us(void)
 {
     executeControl();
+    performErrorMonitoring();
+}
+
+void task10ms(void)
+{
+    ServiceDog();
 }
 
 void task20ms(void)
@@ -95,11 +115,19 @@ void task20ms(void)
     readDigitalInputs();
     readLowPrioritySignals();
     handlePushbuttons();
+    handleReferences();
 }
 
 void task200ms(void)
 {
     manageCommunications();
+    handleSystemClock();
+}
+
+void task1s(void)
+{
+    restartPushbuttonsState();
+    calculateTemperature();
 }
 
 //
@@ -164,5 +192,16 @@ int taskIsReady(int taskListIndex)
 void deactivateTask(int taskListIndex)
 {
     taskList[taskListIndex].taskState = INACTIVE;
+}
 
+void handleSystemClock(void)
+{
+    sysClock++;
+    if (sysClock >= INT_MAX)    sysClock = 0;
+    UARTIntPrint("TimeStamp ", (int)sysClock);
+}
+
+Uint32 getSystemClock(void)
+{
+    return sysClock;
 }

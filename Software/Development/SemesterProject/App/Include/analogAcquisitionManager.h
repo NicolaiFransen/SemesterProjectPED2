@@ -21,7 +21,7 @@
 // ADC Channel definitions
 //
 #define P4              0       // ADCINA0      Extra rotary potentiometer 2
-#define P2              1       // ADCINA1      Brake reference (Left slider)
+#define P2              1       // ADCINA1      Brake reference (Right slider)
 #define J4              2       // ADCINA2      Brake reference (External connector)
 #define IA              3       // ADCINA3      Current phase A
 // #define              4       // ADCINA4   -- FREE PIN
@@ -35,7 +35,7 @@
 #define AD36            12      // ADCINB4      DC-link voltage
 #define IB              13      // ADCINB5      Current phase B
 #define AD24            14      // ADCINB6      Control supply voltage
-#define P1              15      // ADCINB7      Torque reference (Right slider)
+#define P1              15      // ADCINB7      Torque reference (Left slider)
 
 #define TRIGGER         5       // TRIGGER SELECT
 #define SAMPLING_RATE   6       // ACQPS SELECT
@@ -70,13 +70,25 @@ void calculateFilteredValue(void *signal, int signalSize);
 Uint16 getAnalogErrorStatus(void);
 
 /*
+ * Functions to set threshold values
+ */
+void setCurrentThresholds(float *currentThresholdArray,
+                          float maximumCurrent, float minimumCurrent);
+void setDCLinkVoltageThresholds(float *DCLinkThresholdArray,
+                               float maximumVoltage, float MinimumVoltage);
+void setControlSupplyVoltageThresholds(float *controlSupplyThresholdArray,
+                                      float maximumVoltage, float minimumVoltage);
+void setThermometerThresholds(float *thermometerThresholdArray,
+                              float maximumTemperature, float minimumTemperature);
+
+/*
  * Interface functions to get measurements
  */
 void getCurrentMeasurements(float *array);
 float getDCLinkMeasurement(void);
 float getControlsupplyMeasurement(void);
 float getTorqueReferenceSliderMeasurement(void);
-float getBrakeReferenceSliderMeasurent(void);
+float getSpeedReferenceSliderMeasurement(void);
 float getTorqueReferencePedalMeasurement(void);
 float getBrakeReferencePedalMeasurement(void);
 float getThermometer1Measurement(void);

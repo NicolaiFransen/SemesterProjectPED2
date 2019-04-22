@@ -21,11 +21,13 @@ void readDigitalInputs(void);
 
 int isOpenClosedLoopSelectionSwitchEnabled(void);
 int isPowerSwitchEnabled(void);
+int isErrorMonitorSwitchEnabled(void);
 
 int isSpeedIncreasePushbuttonEnabled(void);
 int isSpeedDecreasePushbuttonEnabled(void);
 int isReferenceSourcePushbuttonEnabled(void);
 int isReferenceTypePushbuttonEnabled(void);
+int isUserACKPushbuttonEnabled(void);
 
 
 #endif /* APP_INCLUDE_DIGITALINPUTMANAGER_H_ */

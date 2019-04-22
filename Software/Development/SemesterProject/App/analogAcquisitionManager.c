@@ -17,7 +17,6 @@
 // Includes
 //
 #include "analogAcquisitionManager.h"
-#include "DSP28x_Project.h"
 
 
 //
@@ -103,7 +102,7 @@ void calculateFilteredValue(void *signal, int size)
 
 /*
  * Returns the error status of the analog measurements.
- * The function returns a '1' in the position of the signal
+ * The function returns a '0' in the position of the signal
  * if the measurement is outside the threshold values
  */
 Uint16 getAnalogErrorStatus(void)
@@ -116,7 +115,7 @@ Uint16 getAnalogErrorStatus(void)
     int i = 0;
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
-        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+        if (structPointer->filteredValue < structPointer->threshold[0] || structPointer->filteredValue > structPointer->threshold[1])
             errorStatus |= 1<<i;
 
         i++;
@@ -127,7 +126,7 @@ Uint16 getAnalogErrorStatus(void)
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
-        if (structPointer->filteredValue > structPointer->threshold[0] && structPointer->filteredValue < structPointer->threshold[1])
+        if (structPointer->filteredValue < structPointer->threshold[0] || structPointer->filteredValue > structPointer->threshold[1])
             errorStatus |= 1<<i;
 
         i++;
@@ -137,20 +136,94 @@ Uint16 getAnalogErrorStatus(void)
 }
 
 /*
- * When the triangular counter reaches a peak, meaning the middle of the PWM,
- * the sampling triggers and hit hit SOC(start-of-conversion). When conversion
- * is finished ADC-INT1 will be triggered and this interrupt will be called.
- * This interrupt then reads the newest values in the ADC registers, and execute
- * the control algorithm.
- *
- * The execution frequency of the control will therefore follow the frequency
- * of the PWM signals.
+ * Function to set thresholds for the current measurements.
+ * Absolute minimum and maximum is +/- 300A.
+ */
+void setCurrentThresholds(float *currentThresholdArray,
+                          float maximumCurrent, float minimumCurrent)
+{
+    float opampVoltage, maximumCurrentThreshold, minimumCurrentThreshold;
+
+    opampVoltage = maximumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    maximumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
+
+    opampVoltage = minimumCurrent/CURRENT_SENSOR_GAIN * R_IN_CURRENT_MEAS;
+    minimumCurrentThreshold = OPAMP_GAIN_CURRENT_MEAS * opampVoltage +
+                              (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP;
+
+
+    *currentThresholdArray = maximumCurrentThreshold;
+    currentThresholdArray++;
+    *currentThresholdArray = minimumCurrentThreshold;
+}
+
+/*
+ * Function to set thresholds for the DC-Link voltage measurements.
+ * Absolute maximum is 45V.
+ */
+void setDCLinkVoltageThresholds(float *DCLinkThresholdArray,
+                                float maximumVoltage, float minimumVoltage)
+{
+    float voltageDividerGain, opampGain;
+    float maximumVoltageThreshold, minimumVoltageThreshold;
+
+    voltageDividerGain = R2_DCLINK_MEAS / (R1_DCLINK_MEAS + R2_DCLINK_MEAS);
+    opampGain = R3_DCLINK_MEAS / R4_DCLINK_MEAS;
+
+    maximumVoltageThreshold = maximumVoltage * voltageDividerGain * opampGain;
+    minimumVoltageThreshold = minimumVoltage * voltageDividerGain * opampGain;
+
+    *DCLinkThresholdArray = minimumVoltageThreshold;
+    DCLinkThresholdArray++;
+    *DCLinkThresholdArray = maximumVoltageThreshold;
+}
+
+/*
+ * Function to set thresholds for the control supply voltage measurements.
+ * Absolute maximum is 30V.
+ */
+void setControlSupplyVoltageThresholds(float *controlSupplyThresholdArray,
+                                       float maximumVoltage, float minimumVoltage)
+{
+    float voltageDividerGain;
+    float maximumVoltageThreshold, minimumVoltageThreshold;
+
+    voltageDividerGain = R2_CONTROL_SUPPLY_MEAS / (R1_CONTROL_SUPPLY_MEAS + R2_CONTROL_SUPPLY_MEAS);
+
+    maximumVoltageThreshold = maximumVoltage * voltageDividerGain;
+    minimumVoltageThreshold = minimumVoltage * voltageDividerGain;
+
+    *controlSupplyThresholdArray = minimumVoltageThreshold;
+    controlSupplyThresholdArray++;
+    *controlSupplyThresholdArray = maximumVoltageThreshold;
+}
+
+/*
+ * Function to set thresholds for thermal measurements.
+ * No realistic maximum, but 330 deg is equal to 3.3V input to DSP
+ * Sensor is limited to 2-150 deg.
+ */
+void setThermometerThresholds(float *thermometerThresholdArray,
+                              float maximumTemperature, float minimumTemperature)
+{
+    float maximumTemperatureThreshold, minimumTemperatureThreshold;
+
+    maximumTemperatureThreshold = maximumTemperature * TEMP_SENSOR_GAIN;
+    minimumTemperatureThreshold = minimumTemperature * TEMP_SENSOR_GAIN;
+
+    *thermometerThresholdArray = minimumTemperatureThreshold;
+    thermometerThresholdArray++;
+    *thermometerThresholdArray = maximumTemperatureThreshold;
+}
+
+
+/*
+ * This interrupt is called every time the ADC registers have been updated.
  */
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
-
-    executeControl();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
@@ -192,7 +265,7 @@ float getTorqueReferenceSliderMeasurement(void)
     return AnalogSignalList.sliderPotRight.filteredValue;
 }
 
-float getBrakeReferenceSliderMeasurent(void)
+float getSpeedReferenceSliderMeasurement(void)
 {
     return AnalogSignalList.sliderPotLeft.filteredValue;
 }
@@ -258,95 +331,107 @@ void createAnalogSignals(void)
     int filterOrder = 1, filterFreq = 50;
 
     // Definition of thresholds
-    float currentThreshold[2] = {0.3, 0.5};
-    float voltageThreshold[2] = {0.3, 3.1};
-    float thermalThreshold[2] = {0.2, 2.5};
-    float sliderPotThreshold[2] = {0.2, 3.0};
-    float rotaryPotThreshold[2] = {0.2, 0.5};
-    float connectorPotThreshold[2] = {0.2, 3.0};
+    float currentThreshold[2], thermalThreshold[2];
+    float DCLinkVoltageThreshold[2], controlVoltageThreshold[2];
+    float sliderPotThreshold[2] = {0.0, 3.3};
+    float rotaryPotThreshold[2] = {0.0, 3.3};
+    float connectorPotThreshold[2] = {0.0, 3.3};
+
+    /*
+     * To call these functions you pass the address of the first position in the array
+     * where you want to save the threshold values. So it is important to initialize the arrays
+     * before using them.
+     * Then pass the maximum and then the minimum value of the threshold you want to set.
+     */
+    setCurrentThresholds(&currentThreshold[0], 250, -250);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 45, 25);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 15);
+    setThermometerThresholds(&thermalThreshold[0], 100, 10);
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
     Signal_Constructor(&CurrentSignalList.currentMeasA, filterType, filterOrder,
-                       filterFreq, currentMeasAChannel, currentThreshold);
+                       filterFreq, currentMeasAChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current B measurement.
     Uint16 currentMeasBChannel = IB;
     Signal_Constructor(&CurrentSignalList.currentMeasB, filterType, filterOrder,
-                       filterFreq, currentMeasBChannel, currentThreshold);
+                       filterFreq, currentMeasBChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current C measurement.
     Uint16 currentMeasCChannel = IC;
     Signal_Constructor(&CurrentSignalList.currentMeasC, filterType, filterOrder,
-                       filterFreq, currentMeasCChannel, currentThreshold);
+                       filterFreq, currentMeasCChannel, currentThreshold, HIGH);
 
 
     // Create signal for 24V measurement
     Uint16 voltageMeas24Channel = AD24;
     Signal_Constructor(&AnalogSignalList.voltageMeas24, filterType, filterOrder,
-                       filterFreq, voltageMeas24Channel, voltageThreshold);
+                       filterFreq, voltageMeas24Channel, controlVoltageThreshold, LOW);
+
 
 
     // Create signal for 36V measurement
     Uint16 voltageMeas36Channel = AD36;
     Signal_Constructor(&AnalogSignalList.voltageMeas36, filterType, filterOrder,
-                       filterFreq, voltageMeas36Channel, voltageThreshold);
+                       filterFreq, voltageMeas36Channel, DCLinkVoltageThreshold, LOW);
+
 
 
     // Create signal for Thermal measurement 1
     Uint16 thermalMeas1Channel = J1;
     Signal_Constructor(&AnalogSignalList.thermalMeas1, filterType, filterOrder,
-                       filterFreq, thermalMeas1Channel, thermalThreshold);
+                       filterFreq, thermalMeas1Channel, thermalThreshold, LOW);
 
 
     // Create signal for Thermal measurement 2
     Uint16 thermalMeas2Channel = J2;
     Signal_Constructor(&AnalogSignalList.thermalMeas2, filterType, filterOrder,
-                       filterFreq, thermalMeas2Channel, thermalThreshold);
+                       filterFreq, thermalMeas2Channel, thermalThreshold, LOW);
 
 
     // Create signal for Left slider Potentiometer
-    Uint16 leftSliderPotChannel = P2;
+    Uint16 leftSliderPotChannel = P1;
     Signal_Constructor(&AnalogSignalList.sliderPotLeft, filterType, filterOrder,
-                       filterFreq, leftSliderPotChannel, sliderPotThreshold);
+                       filterFreq, leftSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for Right slider potentiometer
-    Uint16 rightSliderPotChannel = P1;
+    Uint16 rightSliderPotChannel = P2;
     Signal_Constructor(&AnalogSignalList.sliderPotRight, filterType, filterOrder,
-                       filterFreq, rightSliderPotChannel, sliderPotThreshold);
+                       filterFreq, rightSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 1
     Uint16 rotaryPot1Channel = P3;
     Signal_Constructor(&AnalogSignalList.rotaryPot1, filterType, filterOrder,
-                       filterFreq, rotaryPot1Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot1Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 2
     Uint16 rotaryPot2Channel = P4;
     Signal_Constructor(&AnalogSignalList.rotaryPot2, filterType, filterOrder,
-                       filterFreq, rotaryPot2Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot2Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 3
     Uint16 rotaryPot3Channel = P5;
     Signal_Constructor(&AnalogSignalList.rotaryPot3, filterType, filterOrder,
-                       filterFreq, rotaryPot3Channel, rotaryPotThreshold);
+                       filterFreq, rotaryPot3Channel, rotaryPotThreshold, LOW);
 
 
     // Create signal for connector potentiometer 1
     Uint16 connectorPot1Channel = J3;
     Signal_Constructor(&AnalogSignalList.connectorPot1, filterType, filterOrder,
-                       filterFreq, connectorPot1Channel, connectorPotThreshold);
+                       filterFreq, connectorPot1Channel, connectorPotThreshold, LOW);
 
 
     // Create signal for connector potentiometer 2
     Uint16 connectorPot2Channel = J4;
     Signal_Constructor(&AnalogSignalList.connectorPot2, filterType, filterOrder,
-                       filterFreq, connectorPot2Channel, connectorPotThreshold);
+                       filterFreq, connectorPot2Channel, connectorPotThreshold, LOW);
 }
 
 
@@ -365,8 +450,8 @@ void configureADCRegisters(void)
     AdcRegs.ADCCTL1.bit.INTPULSEPOS     = 1;
     AdcRegs.INTSEL1N2.bit.INT1E         = 1;
     AdcRegs.INTSEL1N2.bit.INT1CONT      = 0;
-
-    EPwm1Regs.ETSEL.bit.INTEN = 1;  // Enable INT
+  
+    EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
     EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
 
     EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
@@ -449,8 +534,6 @@ void configureADCRegisters(void)
     EDIS;
 }
 
-
 //
 // End of File
 //
-
