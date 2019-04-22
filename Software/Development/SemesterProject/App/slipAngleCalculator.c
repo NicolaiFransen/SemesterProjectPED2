@@ -31,4 +31,5 @@ void calcSlipAngle(motorPosSpeed *motorPosSpeedObject)
 {
     motorPosSpeedObject->slipAngleRad = motorPosSpeedObject->slipSpeedRadS * SW_PERIOD_S;
     motorPosSpeedObject->rotorFluxPosRad = motorPosSpeedObject->slipAngleRad + motorPosSpeedObject->rotorThetaElec;
+    if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
 }
