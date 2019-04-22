@@ -46,11 +46,16 @@ volatile int COMMS_PowerEnabledSwitch;
     //Reference Handler
 volatile int COMMS_ReferenceSource;
 volatile float COMMS_OpenLoopReference, COMMS_speedReference, COMMS_torqueReference;
+    //Encoder
+volatile int COMMS_RotorSpeed = 0;
+    //Error Manager
+volatile errorStatus COMMS_ErrorCurrentA = NO_ERROR, COMMS_ErrorCurrentB = NO_ERROR, COMMS_ErrorCurrentC = NO_ERROR, COMMS_ErrorDCLink = NO_ERROR, COMMS_ErrorControlSupply = NO_ERROR, COMMS_ErrorTorqueReferenceSlider = NO_ERROR, COMMS_ErrorSpeedReferenceSlider = NO_ERROR, COMMS_ErrorTorqueReferencePedal = NO_ERROR, COMMS_ErrorBrakeReferencePedal = NO_ERROR, COMMS_ErrorThermometer1 = NO_ERROR, COMMS_ErrorThermometer2 = NO_ERROR, COMMS_ErrorRotaryPot1 = NO_ERROR, COMMS_ErrorRotaryPot2 = NO_ERROR, COMMS_ErrorRotaryPot3 = NO_ERROR;
 
 //Variables updated by GUI
 volatile float COMMS_GUITorqueRef = 0.0, COMMS_GUISpeedRef = 0.0, COMMS_GUIBrakeRef = 0.0;
 volatile int COMMS_GUIReferenceTypepushbutton = 0, COMMS_GUIReferenceSourcepushbutton = 0;
 volatile int COMMS_GUIspeedDecreasePushButton = 0, COMMS_GUIspeedIncreasePushButton = 0;
+volatile int COMMS_GUISpeedRamp = 50, COMMS_GUITorqueRamp = 5;
 
 //Support variables for GUI
 volatile int COMMS_TorqueReferenceSliderEnabled = 1, COMMS_TorqueReferenceSliderDisabled;
@@ -88,11 +93,16 @@ void manageCommunications(void)
     getAnalogSignals();
     performGUISideTasks();
     getDigitalSignals();
-//    getErrorSignals();                todo
+    getErrorSignals();
     getReferenceHandlerSignals();
 //    getClosedLoopControlSignals();    todo
+    getEncoderSignals();
 }
 
+void getEncoderSignals(void)
+{
+    COMMS_RotorSpeed = readRotorRPM();
+}
 
 void getSystemManagerSignals(void)
 {   //Using System Manager Interface
@@ -101,7 +111,20 @@ void getSystemManagerSignals(void)
 
 void getErrorSignals(void)
 {   //Using errorManager Interface
-    //todo
+    COMMS_ErrorCurrentA = getCurrentAErrorStatus();
+    COMMS_ErrorCurrentB = getCurrentBErrorStatus();
+    COMMS_ErrorCurrentC = getCurrentCErrorStatus();
+    COMMS_ErrorDCLink = getDCLinkBatteryErrorStatus();
+    COMMS_ErrorControlSupply = getControlSupplyBatteryErrorStatus();
+    COMMS_ErrorTorqueReferenceSlider = getTorqueReferenceSliderErrorStatus();
+    COMMS_ErrorSpeedReferenceSlider = getSpeedReferenceSliderErrorStatus();
+    COMMS_ErrorTorqueReferencePedal = getTorqueReferencePedalErrorStatus();
+    COMMS_ErrorBrakeReferencePedal = getBrakeReferencePedalErrorStatus();
+    COMMS_ErrorThermometer1 = getThermometer1ErrorStatus();
+    COMMS_ErrorThermometer2 = getThermometer2ErrorStatus();
+    COMMS_ErrorRotaryPot1 = getRotaryPot1ErrorStatus();
+    COMMS_ErrorRotaryPot2 = getRotaryPot2ErrorStatus();
+    COMMS_ErrorRotaryPot3 = getRotaryPot3ErrorStatus();
 }
 
 void getReferenceHandlerSignals(void)
@@ -117,11 +140,12 @@ void getAnalogSignals(void)
     COMMS_DClinkVoltage = getDCLinkMeasurement();
     COMMS_ControlSupplyVoltage = getControlsupplyMeasurement();
     COMMS_PCBTorqueReference = getTorqueReferenceSliderMeasurement();
-//    COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurement();
+    //COMMS_PCBBrakeReference = getBrakeReferenceSliderMeasurement();
     COMMS_PedalTorqueReference = getTorqueReferencePedalMeasurement();
     COMMS_PedalBrakeReference = getBrakeReferencePedalMeasurement();
-    COMMS_Thermometer1 = getThermometer1Measurement();
-    COMMS_Thermometer2 = getThermometer2Measurement();
+    //Using temperatureManager Interface
+    COMMS_Thermometer1 = getSensor1Temperature();
+    COMMS_Thermometer2 = getSensor2Temperature();
 }
 
 void getDigitalSignals(void)
@@ -134,6 +158,13 @@ void performGUISideTasks(void)
     COMMS_TorqueReferenceSliderEnabled = torqueControlIsEnabled();      //Using Reference Handler Interface
     COMMS_TorqueReferenceSliderDisabled = !torqueControlIsEnabled();
     handleGUIPushbuttons();
+    setReferenceRamps();
+}
+
+void setReferenceRamps(void)
+{
+    setSpeedRamp(COMMS_GUISpeedRamp);
+    setTorqueRamp(COMMS_GUITorqueRamp);
 }
 
 void initializeGUIPushbuttonsStructure(void)

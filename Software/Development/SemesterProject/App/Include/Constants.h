@@ -6,9 +6,13 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+
 //Processor related parameters
-#define CLOCK_FREQUENCY ((double)150e6)  // 150 MHz clock frequency
+#define CLOCK_FREQUENCY ((double)150e6)     // 150 MHz clock frequency
 #define CLOCK_PERIOD    ((double)6.667e-9 ) // 1/CLOCK_FREQUENCY clock period
+#define SW_FREQ      10000          //Switching frequency [10kHz].
+#define SW_PERIOD_US   50           //Period of the PWM.
+#define INTERNAL_FREQ   90000000    //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
 
 #define MinPulseWidth	((double)2e-6) //minimum pulse width in s
 #define MinPulseWidthCNT	((unsigned short)300)        //MinPulseWidth/CLOCK_PERIOD (2us)
@@ -41,15 +45,31 @@
 #define TWO_DIV_SQRT3 ((double)1.154700538379252) // '2/sqrt(3)'
 #define TWO_SQRT3_DIV_PI ((double)1.102657790843584) // '2*sqrt(3)/pi'
 
-// definitions for sector angle limits 
+// definitions for sector angle limits
+#define DEG_10_TO_RAD  ((double)0.174532925199433) // '10 deg --> rad'
 #define DEG_30_TO_RAD  ((double)0.523598775598299) // '30 deg --> rad'
-#define DEG_60_TO_RAD  ((double)1.047197551196598) // '60 deg --> rad'9
+#define DEG_60_TO_RAD  ((double)1.047197551196598) // '60 deg --> rad'
 #define DEG_90_TO_RAD  ((double)1.570796326794897) // '90 deg --> rad'
 #define DEG_120_TO_RAD ((double)2.094395102393195) // '120 deg --> rad'
 #define DEG_180_TO_RAD ((double)3.141592653589793) // '180 deg --> rad'
 #define DEG_240_TO_RAD ((double)4.188790204786391) // '240 deg --> rad'
 #define DEG_300_TO_RAD ((double)5.235987755982989) // '300 deg --> rad'
 #define DEG_360_TO_RAD ((double)6.283185307179586) // '360 deg --> rad'
+#define REV_TO_RAD     ((double)6.283185307179586) // '1 rev   --> rad'
+#define RAD_TO_REV     ((double)0.159154943091895) // '1 rad   --> rev'
+
+
+// definitions specific to the motor
+#define Rr             ((float))
+#define Lr             ((float))
+#define Tr             ((float))    // Lr/Rr;
+#define Tr_inverse     ((float))    // Rr/Lr;
+
+#define ENCODER_STEPS 2048
+#define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
+#define POLE_PAIRS  2   //Number of pole pairs of the motor.
+#define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
+
 
 #define d_axis			0
 #define	q_axis			1
@@ -59,6 +79,16 @@
 #define ALPHA_AX		0
 #define BETA_AX			1
 #define ZERO_SEQ		2
+
+#define KP_IQ           10
+#define KI_IQ           10
+#define KP_ID           10
+#define KI_ID           10
+#define KP_SPEED        10
+#define KI_SPEED        10
+
+#define CURRENT_LIMIT   200
+#define SPEED_LIMIT     1800
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS                   9.1     // Ohm
