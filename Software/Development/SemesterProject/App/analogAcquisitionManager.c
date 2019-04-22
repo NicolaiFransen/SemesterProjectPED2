@@ -224,6 +224,7 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
+    executeControl();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
@@ -537,3 +538,4 @@ void configureADCRegisters(void)
 //
 // End of File
 //
+

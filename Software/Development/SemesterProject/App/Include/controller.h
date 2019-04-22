@@ -12,8 +12,19 @@
 // Includes
 //
 #include "Constants.h"
+#include "PIController.h"
 
 float calculateIdReference(void);
 float calculateIqReference(float torqueReference);
+
+/*
+ * PI controllers
+ */
+void initPIControllers(void);
+float PiCalculationIQ(float reference, float measuredValue);
+float PiCalculationID(float reference, float measuredValue);
+float PiCalcualtionSpeed(float reference, float measuredValue);
+
+
 
 #endif /* APP_INCLUDE_CONTROLLER_H_ */
