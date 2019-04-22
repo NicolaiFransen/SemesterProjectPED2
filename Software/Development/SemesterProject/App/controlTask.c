@@ -24,7 +24,6 @@ void executeControl(void)
 
          else
          {
-             enableDrivers();
              setDutyB(0);
              setDutyA(0);
              setDutyC(0);
