@@ -17,8 +17,6 @@
 // Includes
 //
 #include "analogAcquisitionManager.h"
-#include "DSP28x_Project.h"
-#include "Constants.h"
 
 
 //
@@ -219,19 +217,6 @@ void setThermometerThresholds(float *thermometerThresholdArray,
     *thermometerThresholdArray = maximumTemperatureThreshold;
 }
 
-/*
- * This interrupt is used to trigger the ADC measurements
- */
-__interrupt void
-cpu_timer1_isr(void)
-{
-    CpuTimer1.InterruptCount++;
-
-    //
-    // The CPU acknowledges the interrupt
-    //
-    EDIS;
-}
 
 /*
  * This interrupt is called every time the ADC registers have been updated.
@@ -465,6 +450,13 @@ void configureADCRegisters(void)
     AdcRegs.ADCCTL1.bit.INTPULSEPOS     = 1;
     AdcRegs.INTSEL1N2.bit.INT1E         = 1;
     AdcRegs.INTSEL1N2.bit.INT1CONT      = 0;
+  
+    EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
+    EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
+
+    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = 1;        // Select SOC from CMPA on upcount
+    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
 
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
@@ -545,4 +537,3 @@ void configureADCRegisters(void)
 //
 // End of File
 //
-
