@@ -86,7 +86,6 @@ void systemInit(void)
     //
     EALLOW;    // This is needed to write to EALLOW protected registers
     PieVectTable.TINT0 = &cpu_timer0_isr;
-    PieVectTable.TINT1 = &cpu_timer1_isr;
     PieVectTable.ADCINT1 = &adc_isr;
     EDIS;      // This is needed to disable write to EALLOW protected registers
 
@@ -101,7 +100,6 @@ void systemInit(void)
     // 90MHz CPU Freq, 50 millisecond Period (in uSeconds)
     //
     ConfigCpuTimer(&CpuTimer0, 90, 50);
-    ConfigCpuTimer(&CpuTimer1, 90, 50);
 
     //
     // To ensure precise timing, use write-only instructions to write to the
@@ -114,7 +112,6 @@ void systemInit(void)
     // Use write-only instruction to set TSS bit = 0
     //
     CpuTimer0Regs.TCR.all = 0x4001;
-    CpuTimer1Regs.TCR.all = 0x4001;
 
     //
     // Step 5. User specific code, enable interrupts:
@@ -137,13 +134,13 @@ void systemInit(void)
     // The  RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart
     // symbols are created by the linker. Refer to the F2808.cmd file.
     //
-    //memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
 
     //
     // Call Flash Initialization to setup flash waitstates
     // This function must reside in RAM
     //
-    //InitFlash();
+    InitFlash();
 
     //
     // Enable CPU INT1 which is connected to CPU-Timer 0
@@ -164,7 +161,7 @@ void systemInit(void)
     initPushbuttons();
     initWatchdog();
     initUART();
-	initEncoder();
+	  initEncoder();
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
@@ -199,4 +196,3 @@ int startupSequenceFinished(void)
 //
 // End of File
 //
-

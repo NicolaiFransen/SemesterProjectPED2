@@ -18,6 +18,15 @@
 #include "Include/scheduler.h"
 
 /*
+ * testing includes
+ */
+#include "referenceFrameConversion.h"
+
+/*
+ *
+ */
+
+/*
  * Quasi-global variable definition
  */
 static enum taskListTag
@@ -198,7 +207,7 @@ void handleSystemClock(void)
 {
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
-    UARTIntPrint("TimeStamp ", (int)sysClock);
+    UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)

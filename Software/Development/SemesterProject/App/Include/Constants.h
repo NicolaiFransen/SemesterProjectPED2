@@ -80,6 +80,15 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
+#define KP_IQ           10
+#define KI_IQ           10
+#define KP_ID           10
+#define KI_ID           10
+#define KP_SPEED        10
+#define KI_SPEED        10
+
+#define CURRENT_LIMIT   200
+#define SPEED_LIMIT     1800
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           9.1     // Ohm
@@ -93,7 +102,6 @@
 #define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
 #define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
-
 
 
 #endif  
