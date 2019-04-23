@@ -13,13 +13,9 @@
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
 #include "analogAcquisitionManager.h"
+#include "errorManager.h"
 
-typedef enum
-{
-    NO_ERROR,
-    ERROR_HAS_HAPPENED,
-    IDLE
-} errorStatus;
+
 //
 // Function prototyping
 //

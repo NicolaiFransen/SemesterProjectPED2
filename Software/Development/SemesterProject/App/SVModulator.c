@@ -10,7 +10,17 @@
  *      A voltage reference structured as alphaBetaObject is input and
  *      the module sets the appropriate duty cycles using dutyCycle.c interface.
  *
+ *      This module is to be used by the closed loop control module. Its goal
+ *      is to calculate the appropriate duty cycle depending upon the voltage
+ *      reference calculated by the controller and the DC link voltage provided
+ *      by the analogAcquisitionMgr.
  *
+ *      The procedure is as follows:
+ *          + Calculation of limited voltage
+ *          + Determine space vector's sector
+ *          + Calculate t1 and t2
+ *          + Calculate duty cycles from t1 and t2
+ *          + Set duty cycles
  */
 
 #include "SVModulator.h"
@@ -39,13 +49,16 @@ void runSVM(alphaBetaObject voltageRef)
     int sector;
     t1t2Object t1t2Struct;
 
-    Vdc = getDCLinkMeasurement();
+    Vdc = 32.0;//testing here getDCLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc);
     sector = findSector(voltageRef);
     t1t2Struct = t1t2Calculation[sector](voltageRef);
     calculateAndSetDutyCycles(t1t2Struct);
 }
 
+/*
+ * isqrt() is a function provided by fastRTS and approximates the inverse of the square root
+ */
 alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc)
 {
     float weight = Vdc * ONE_DIV_SQRT3 * isqrt(voltageRef.alphaComponent * voltageRef.alphaComponent +
@@ -55,10 +68,10 @@ alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc)
     float qlimit = fabs(voltageRef.betaComponent * weight);
 
     if (fabs(voltageRef.alphaComponent) > dlimit)  voltageRef.alphaComponent = 1.5 * signumf(voltageRef.alphaComponent) * dlimit / Vdc;
-    else    voltageRef.alphaComponent = 1.5 * voltageRef.alphaComponent /Vdc;
+    else    voltageRef.alphaComponent = 1.5 * voltageRef.alphaComponent / Vdc;
 
     if (fabs(voltageRef.betaComponent) > qlimit)  voltageRef.betaComponent = 1.5 * signumf(voltageRef.betaComponent) * qlimit / Vdc;
-    else    voltageRef.betaComponent = 1.5 * voltageRef.betaComponent /Vdc;
+    else    voltageRef.betaComponent = 1.5 * voltageRef.betaComponent / Vdc;
 
     return voltageRef;
 }
@@ -70,13 +83,24 @@ void calculateAndSetDutyCycles(t1t2Object t1t2Struct)
     float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyC = temp;
 
-    setDutyA(dutyA);
-    setDutyB(dutyB);
-    setDutyC(dutyC);
+    /*
+      * testing
+      */
+     static int dummyCounter = 0;
+     dummyCounter++;
+     if (dummyCounter % 20 == 0) UARTIntPrint("a ", (int)(dutyA*1000));
+     /*
+      *
+      */
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
 int findSector(alphaBetaObject voltageRef)
 {
+
     // Sectors 0 and 1
     if (voltageRef.alphaComponent >= 0 && voltageRef.betaComponent >= 0)
     {
@@ -112,46 +136,76 @@ t1t2Object sector0Calculation(alphaBetaObject voltageRef)
     t1t2Object t1t2Struct;
     t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
     t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    //s3
+//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 
 t1t2Object sector1Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
+    //s0
+//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
     t1t2Struct.t1 = 0.5 * (-voltageRef.alphaComponent + voltageRef.betaComponent * ONE_DIV_SQRT3);
     t1t2Struct.t2 = 0.5 * (voltageRef.alphaComponent + voltageRef.betaComponent * ONE_DIV_SQRT3);
+    //s3
+//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 
 t1t2Object sector2Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    //s0
+//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    t1t2Struct.t1 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - voltageRef.betaComponent * ONE_DIV_SQRT3);
+    //s3
+//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 
 t1t2Object sector3Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    //s0
+//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 
 t1t2Object sector4Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    //s0
+//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    t1t2Struct.t1 = 0.5 * (- voltageRef.alphaComponent + fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
+    t1t2Struct.t2 = 0.5 * (voltageRef.alphaComponent + fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
+    //s3
+//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 
 t1t2Object sector5Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    //s0
+//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
+    t1t2Struct.t2 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+    //s3
+//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
+//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
     return t1t2Struct;
 }
 

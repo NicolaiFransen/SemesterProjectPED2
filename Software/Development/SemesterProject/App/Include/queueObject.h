@@ -36,6 +36,7 @@ char front(struct Queue* queue);
 char rear(struct Queue* queue);
 void addIntToQueue(char *variableName, int value);
 char* intToAscii(int i, char b[]);
+int size(struct Queue* queue);
 
 /*
  * External interface
@@ -45,5 +46,6 @@ void UARTIntPrint(char *variableName, int value);
 void UARTStringPrint(char *stringToPrint);
 char getNextBufferValue(void);
 int isUARTBufferEmpty(void);
+int getUARTBufferSize(void);
 
 #endif /* APP_INCLUDE_QUEUEOBJECT_H_ */

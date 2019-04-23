@@ -13,6 +13,7 @@
 #include "Constants.h"
 #include "C28x_FPU_FastRTS.h"
 #include "analogAcquisitionManager.h"
+#include "referenceFrameConversion.h"
 
 
 typedef struct
@@ -20,18 +21,6 @@ typedef struct
     float t1;
     float t2;
 } t1t2Object;
-
-/*
- * Temporary stuff to bee removed
- */
-typedef struct
-{
-    float alphaComponent;
-    float betaComponent;
-}alphaBetaObject;
-/*
- * end of temporary stuff
- */
 
 void SVMInit(void);
 void runSVM(alphaBetaObject voltageRef);

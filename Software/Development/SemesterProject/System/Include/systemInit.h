@@ -23,6 +23,8 @@
 #include "communicationManager.h"
 #include "UARTInterface.h"
 #include "../../App/Include/encoderManager.h"
+#include "SVModulator.h"
+
 
 
 //
