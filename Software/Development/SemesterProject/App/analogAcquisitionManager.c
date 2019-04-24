@@ -259,17 +259,17 @@ void getCurrentMeasurements(float *currentMeasurement)
 {
     *currentMeasurement =
             (((CurrentSignalList.currentMeasA.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET;
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_A;
 
     currentMeasurement++;
     *currentMeasurement =
             (((CurrentSignalList.currentMeasB.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET;
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_B;
 
     currentMeasurement++;
     *currentMeasurement =
             (((CurrentSignalList.currentMeasC.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET;
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_C;
 }
 
 float getDCLinkMeasurement(void)
