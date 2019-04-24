@@ -224,9 +224,12 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
-
+    setLED10(ON);
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
+    getRotorPosSpeedParameters();
+    setLED10(OFF);
+
 
     return;
 }
