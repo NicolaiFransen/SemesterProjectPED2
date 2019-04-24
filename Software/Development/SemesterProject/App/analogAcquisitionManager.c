@@ -540,7 +540,3 @@ void configureADCRegisters(void)
     AdcRegs.ADCSOC2CTL.bit.ACQPS        = SAMPLING_RATE;
     EDIS;
 }
-
-//
-// End of File
-//

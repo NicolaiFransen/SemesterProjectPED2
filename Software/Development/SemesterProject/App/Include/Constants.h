@@ -12,6 +12,7 @@
 #define CLOCK_PERIOD    ((double)6.667e-9 ) // 1/CLOCK_FREQUENCY clock period
 #define SW_FREQ      10000          //Switching frequency [10kHz].
 #define SW_PERIOD_US   100           //Period of the PWM.
+#define SW_PERIOD_S    ((float)100e-6)   //PWM period in s.
 #define INTERNAL_FREQ   90000000    //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
 
 #define MinPulseWidth	((double)2e-6) //minimum pulse width in s
@@ -60,10 +61,16 @@
 
 
 // definitions specific to the motor
-#define Rr             ((float))
-#define Lr             ((float))
-#define Tr             ((float))    // Lr/Rr;
-#define Tr_inverse     ((float))    // Rr/Lr;
+#define LM             ((float)0.38e-3)            // 'Magnetizing inductivity --> H'
+#define LM_INVERSE     ((float)26315.78947)
+#define RR             ((float)2.69e-3)            // 'Rotor resistance --> Ohm'
+#define LR             ((float)411.16e-6)          // 'Rotor total inductance --> H'
+#define TR             ((float)0.1528475836)       // 'Lr/Rr --> H/Ohm'
+#define TR_INVERSE     ((float)6.54246522)         // 'Rr/Lr --> Ohm/H'
+#define LAMDA_R        ((float)0.0567)
+#define LAMDA_R_INVERSE ((float)17.6366843)
+#define ID_RATED       ((float)149.2287)           // 'Id rated current --> A'
+#define ID_RATED_INVERSE ((float)0.006701123845)   // 'Id rated current inverse --> A^-1'
 
 #define ENCODER_STEPS 2048
 #define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
