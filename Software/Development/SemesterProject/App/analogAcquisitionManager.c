@@ -257,22 +257,29 @@ __interrupt void adc_isr(void)
  */
 void getCurrentMeasurements(float *currentMeasurement)
 {
-    *currentMeasurement = CurrentSignalList.currentMeasA.filteredValue;
-    currentMeasurement++;
-    *currentMeasurement = CurrentSignalList.currentMeasB.filteredValue;
-    currentMeasurement++;
-    *currentMeasurement = CurrentSignalList.currentMeasC.filteredValue;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasA.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_A;
 
+    currentMeasurement++;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasB.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_B;
+
+    currentMeasurement++;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasC.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_C;
 }
 
 float getDCLinkMeasurement(void)
 {
-    return AnalogSignalList.voltageMeas36.filteredValue;
+    return (AnalogSignalList.voltageMeas36.filteredValue * DC_LINK_MEAS_TO_VOLTAGE) - DC_LINK_OFFSET;
 }
 
 float getControlsupplyMeasurement(void)
 {
-    return AnalogSignalList.voltageMeas24.filteredValue;
+    return (AnalogSignalList.voltageMeas24.filteredValue * CONTROL_SUPPLY_MEAS_TO_VOLTAGE) - CONTROL_SUPPLY_OFFSET;
 }
 
 float getTorqueReferenceSliderMeasurement(void)
@@ -297,12 +304,12 @@ float getBrakeReferencePedalMeasurement(void)
 
 float getThermometer1Measurement(void)
 {
-    return AnalogSignalList.thermalMeas1.filteredValue;
+    return (AnalogSignalList.thermalMeas1.filteredValue * MEAS_TO_TEMP) - TEMP_SENSOR_OFFSET;
 }
 
 float getThermometer2Measurement(void)
 {
-    return AnalogSignalList.thermalMeas2.filteredValue;
+    return (AnalogSignalList.thermalMeas2.filteredValue * MEAS_TO_TEMP) - TEMP_SENSOR_OFFSET;
 }
 
 float getRotaryPot1Measurement(void)

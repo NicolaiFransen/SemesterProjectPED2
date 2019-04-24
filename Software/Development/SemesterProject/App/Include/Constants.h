@@ -92,8 +92,20 @@
 #define R4_DCLINK_MEAS              (float)10000   // Ohm
 #define R1_CONTROL_SUPPLY_MEAS      (float)8200    // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      (float)1000    // Ohm
-#define TEMP_SENSOR_GAIN            0.01    // 10mV/deg
+#define TEMP_SENSOR_GAIN            0.01           // 10mV/deg
+#define MEAS_TO_TEMP                (float)100     // 100deg/V
 
+// Defines of inverse sensor gains
+#define DC_LINK_MEAS_TO_VOLTAGE         (R4_DCLINK_MEAS/R3_DCLINK_MEAS)*((R1_DCLINK_MEAS+R2_DCLINK_MEAS)/R2_DCLINK_MEAS)
+#define CONTROL_SUPPLY_MEAS_TO_VOLTAGE  ((R1_CONTROL_SUPPLY_MEAS+R2_CONTROL_SUPPLY_MEAS)/R2_CONTROL_SUPPLY_MEAS)
+
+// Sensor offsets
+#define CURRENT_SENSOR_OFFSET_A           9       // [A]
+#define CURRENT_SENSOR_OFFSET_B           9       // [A]
+#define CURRENT_SENSOR_OFFSET_C           9       // [A]
+#define CONTROL_SUPPLY_OFFSET             2       // [V]
+#define DC_LINK_OFFSET                    0       // [V]
+#define TEMP_SENSOR_OFFSET                0       // [deg]
 
 
 #endif  
