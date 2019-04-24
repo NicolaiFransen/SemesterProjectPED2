@@ -17,8 +17,6 @@
 // Includes
 //
 #include "analogAcquisitionManager.h"
-#include "DSP28x_Project.h"
-#include "Constants.h"
 
 
 //
@@ -219,19 +217,6 @@ void setThermometerThresholds(float *thermometerThresholdArray,
     *thermometerThresholdArray = maximumTemperatureThreshold;
 }
 
-/*
- * This interrupt is used to trigger the ADC measurements
- */
-__interrupt void
-cpu_timer1_isr(void)
-{
-    CpuTimer1.InterruptCount++;
-
-    //
-    // The CPU acknowledges the interrupt
-    //
-    EDIS;
-}
 
 /*
  * This interrupt is called every time the ADC registers have been updated.
@@ -251,28 +236,35 @@ __interrupt void adc_isr(void)
  * Interface functions to return filtered measurements
  * It's used as followed:
  * float currents[3];
- * getCurrentMeasurements(&currents);
+ * getCurrentMeasurements(&currents[0]); //if the first element [0] is not selected a warning is created
  *
  * Where 'currents' then will be an array of the currents as {IA, IB, IC}.
  */
 void getCurrentMeasurements(float *currentMeasurement)
 {
-    *currentMeasurement = CurrentSignalList.currentMeasA.filteredValue;
-    currentMeasurement++;
-    *currentMeasurement = CurrentSignalList.currentMeasB.filteredValue;
-    currentMeasurement++;
-    *currentMeasurement = CurrentSignalList.currentMeasC.filteredValue;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasA.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_A;
 
+    currentMeasurement++;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasB.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_B;
+
+    currentMeasurement++;
+    *currentMeasurement =
+            (((CurrentSignalList.currentMeasC.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
+            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_C;
 }
 
 float getDCLinkMeasurement(void)
 {
-    return AnalogSignalList.voltageMeas36.filteredValue;
+    return (AnalogSignalList.voltageMeas36.filteredValue * DC_LINK_MEAS_TO_VOLTAGE) - DC_LINK_OFFSET;
 }
 
 float getControlsupplyMeasurement(void)
 {
-    return AnalogSignalList.voltageMeas24.filteredValue;
+    return (AnalogSignalList.voltageMeas24.filteredValue * CONTROL_SUPPLY_MEAS_TO_VOLTAGE) - CONTROL_SUPPLY_OFFSET;
 }
 
 float getTorqueReferenceSliderMeasurement(void)
@@ -297,12 +289,12 @@ float getBrakeReferencePedalMeasurement(void)
 
 float getThermometer1Measurement(void)
 {
-    return AnalogSignalList.thermalMeas1.filteredValue;
+    return (AnalogSignalList.thermalMeas1.filteredValue * MEAS_TO_TEMP) - TEMP_SENSOR_OFFSET;
 }
 
 float getThermometer2Measurement(void)
 {
-    return AnalogSignalList.thermalMeas2.filteredValue;
+    return (AnalogSignalList.thermalMeas2.filteredValue * MEAS_TO_TEMP) - TEMP_SENSOR_OFFSET;
 }
 
 float getRotaryPot1Measurement(void)
@@ -465,6 +457,13 @@ void configureADCRegisters(void)
     AdcRegs.ADCCTL1.bit.INTPULSEPOS     = 1;
     AdcRegs.INTSEL1N2.bit.INT1E         = 1;
     AdcRegs.INTSEL1N2.bit.INT1CONT      = 0;
+  
+    EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
+    EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
+
+    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = 1;        // Select SOC from CMPA on upcount
+    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
 
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
@@ -541,8 +540,3 @@ void configureADCRegisters(void)
     AdcRegs.ADCSOC2CTL.bit.ACQPS        = SAMPLING_RATE;
     EDIS;
 }
-
-//
-// End of File
-//
-
