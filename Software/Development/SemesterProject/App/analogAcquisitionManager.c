@@ -344,9 +344,9 @@ void createAnalogSignals(void)
      * Then pass the maximum and then the minimum value of the threshold you want to set.
      */
     setCurrentThresholds(&currentThreshold[0], 250, -250);
-    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 45, 25);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 45, 0);
     setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 15);
-    setThermometerThresholds(&thermalThreshold[0], 100, 10);
+    setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;

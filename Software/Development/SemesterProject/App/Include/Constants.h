@@ -11,7 +11,7 @@
 #define CLOCK_FREQUENCY ((double)150e6)     // 150 MHz clock frequency
 #define CLOCK_PERIOD    ((double)6.667e-9 ) // 1/CLOCK_FREQUENCY clock period
 #define SW_FREQ      10000          //Switching frequency [10kHz].
-#define SW_PERIOD_US   50           //Period of the PWM.
+#define SW_PERIOD_US   100           //Period of the PWM.
 #define INTERNAL_FREQ   90000000    //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
 
 #define MinPulseWidth	((double)2e-6) //minimum pulse width in s

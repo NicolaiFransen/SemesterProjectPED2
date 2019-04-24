@@ -20,12 +20,18 @@ void executeControl(void)
             // Call open-loop function
             openLoopVFControl();
 
-        // else
+        else
+        {
+            enableDrivers();
+            setDutyA(getOpenLoopReference());
+            setDutyB(0);
+            setDutyC(0);
             // Call closed-loop function
             // runClosedLoopControl();
+        }
+
     }
-    else
-        performSafetyReactions();
+
 }
 
 /*
