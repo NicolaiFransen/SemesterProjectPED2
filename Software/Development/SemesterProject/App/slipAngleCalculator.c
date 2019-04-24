@@ -11,13 +11,13 @@
 
 #include "positionCalculator.h"
 
-
+static const float iqConst = TWO_DIV_3 * LR * LM_INVERSE * LAMDA_R_INVERSE;
 /*
  * Obtain the slip speed of the rotor flux.
  */
 void calcSlipSpeed(motorPosSpeed *motorPosSpeedObject)
 {
-    float iqsRef = TWO_DIV_3 * LR * LM_INVERSE * LAMDA_R_INVERSE * getTorqueReference();
+    float iqsRef = iqConst * getTorqueReference();
     motorPosSpeedObject->slipSpeedRadS = TR_INVERSE * iqsRef * ID_RATED_INVERSE;
     motorPosSpeedObject->rotorFluxSpeedRadS = readRotorSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
 }

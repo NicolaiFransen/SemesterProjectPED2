@@ -103,7 +103,7 @@ void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 
 
 /*
- * Function that updates the object containing position info from encoder.
+ * Obtain the rotor angle from encoder.
  */
 void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
 {

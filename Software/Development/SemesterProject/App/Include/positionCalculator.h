@@ -38,6 +38,9 @@ typedef struct
 
 
 //Functions related to positionCalculator.c
+void posSpeedFromEncoder();
+void rotorFluxPosSpeed();
+
 void getRotorPosSpeedParameters();
 
 void rotorPosSpeedConstructor(void);

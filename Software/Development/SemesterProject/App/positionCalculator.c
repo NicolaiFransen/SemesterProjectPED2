@@ -11,7 +11,8 @@
  *      motorPosSpeedObject includes all the information.
  *
  *      Function to call to calculate parameters is getRotorPosSpeedParameters();
- *      It should be called at switching frequency.
+ *      It should be called at switching frequency. This function will then call functions located at
+ *      encoderManager.c and slipAngleCalculator.c to obtain encoder readings and estimate flux characteristics.
  */
 
 
@@ -19,6 +20,16 @@
 
 
 static motorPosSpeed motorPosSpeedObject;
+
+
+/*
+ * Obtain position and speed of both rotor and its flux.
+ */
+void getRotorPosSpeedParameters()
+{
+    posSpeedFromEncoder();
+    rotorFluxPosSpeed();
+}
 
 
 /*
@@ -54,15 +65,6 @@ void rotorFluxPosSpeed()
 {
     calcSlipSpeed(&motorPosSpeedObject);
     calcSlipAngle(&motorPosSpeedObject);
-}
-
-/*
- * Obtain position and speed of both rotor and its flux.
- */
-void getRotorPosSpeedParameters()
-{
-    posSpeedFromEncoder();
-    rotorFluxPosSpeed();
 }
 
 
