@@ -6,7 +6,6 @@
  */
 
 #include "controlTask.h"
-#include "errorManager.h"
 
 /*
  * This function will check the state of the open-loop/closed-loop switch,
@@ -17,8 +16,10 @@ void executeControl(void)
     if (readSystemState() == RUNNING)
     {
         if (isOpenLoopControlSelected())
+        {
             // Call open-loop function
             openLoopVFControl();
+        }
 
         else
         {

@@ -25,6 +25,22 @@ void disableDrivers(void);
 void enableDrivers(void);
 void turnOnErrorLED(void);
 void turnOffErrorLED(void);
+
+void setCurrentAErrorStatus(void);
+void setCurrentBErrorStatus(void);
+void setCurrentCErrorStatus(void);
+void setDCLinkBatteryErrorStatus(void);
+void setControlSupplyBatteryErrorStatus(void);
+void setTorqueReferenceSliderErrorStatus(void);
+void setSpeedReferenceSliderErrorStatus(void);
+void setTorqueReferencePedalErrorStatus(void);
+void setBrakeReferencePedalErrorStatus(void);
+void setThermometer1ErrorStatus(void);
+void setThermometer2ErrorStatus(void);
+void setRotaryPot1ErrorStatus(void);
+void setRotaryPot2ErrorStatus(void);
+void setRotaryPot3ErrorStatus(void);
+
 errorStatus getCurrentAErrorStatus(void);
 errorStatus getCurrentBErrorStatus(void);
 errorStatus getCurrentCErrorStatus(void);
@@ -42,6 +58,12 @@ errorStatus getRotaryPot3ErrorStatus(void);
 
 errorStatus getErrorStatusInBit(Uint16);
 errorStatus getSystemErrorStatus(void);
+
+void updateCurrentErrorStatus(void);
+void updateVoltageErrorStatus(void);
+void updateAdcErrorStatus(void);
+
+void resetErrorStatus(void);
 
 void initWatchdog(void);
 
