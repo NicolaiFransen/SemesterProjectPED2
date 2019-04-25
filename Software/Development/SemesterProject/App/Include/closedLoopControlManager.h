@@ -9,12 +9,14 @@
 #define APP_INCLUDE_CLOSEDLOOPCONTROLMANAGER_H_
 
 // Includes
-//#include "controller.h"
+#include "controller.h"
 //#include "SVModulator.h
 #include "referenceFrameConversion.h"
 #include "referenceHandler.h"
 #include "positionCalculator.h"
 #include "analogAcquisitionManager.h"
+#include "DSP28x_Project.h"
+
 
 
 // Functions

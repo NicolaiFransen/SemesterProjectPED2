@@ -13,7 +13,7 @@ void runClosedLoopControl(void)
     float iqReference = 0, idReference = 0;
     float abcCurrents[2];
     float theta = 0;
-    volatile dqObject dqCurrents, dqVoltages;
+    dqObject dqCurrents, dqVoltages;
     alphaBetaObject abVoltages;
 
     movementReference = getMovementReference();         // Reads torque or speed reference
@@ -27,8 +27,8 @@ void runClosedLoopControl(void)
     dqCurrents = abc2dq(&abcCurrents[0], theta);        // Transform current measurements from abc->dq
 
     // Calculate voltage references from current PI-controllers
-    dqVoltages.qComponent = PICalculationIQ(iqReference, dqCurrents.qComponent);
-    dqVoltages.dComponent = PICalculationID(idReference, dqCurrents.dComponent);
+    dqVoltages.qComponent = PiCalculationIQ(iqReference, dqCurrents.qComponent);
+    dqVoltages.dComponent = PiCalculationID(idReference, dqCurrents.dComponent);
 
     abVoltages = dq2alphabeta(&dqVoltages, theta);       // d/q->alpha/beta transformation
 
@@ -46,7 +46,6 @@ float getMovementReference(void)
     return movementReference;
 }
 
-// get parameter types to match the used functions      TODO
 float getIqReference(float movementReference)
 {
     float iqReference = 0;
@@ -60,7 +59,7 @@ float getIqReference(float movementReference)
         int16 speedMeasurement = readRotorRPM();
 
         // Calculate iq reference from speed controller
-        iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
+        iqReference = PiCalcualtionSpeed(movementReference, speedMeasurement);
     }
 
     return iqReference;
