@@ -291,19 +291,7 @@ errorStatus getBrakeReferencePedalErrorStatus(void)
     return latchingErrorStatusList.brakeReferencePedalErrorStatus;
 }
 
-/*
- * This function takes the position of the wanted error status and returns
- * if an error has happened.
- */
-errorStatus getErrorStatusInBit(Uint16 position)
-{
-    Uint16 analogErrorStatus = getAnalogErrorStatus();
 
-    if ((analogErrorStatus & (1<<position)) >> position)
-        return ERROR_HAS_HAPPENED;
-    else
-        return NO_ERROR;
-}
 
 /*
  * This function will return the overall error status of the system.

@@ -10,7 +10,6 @@
 // Included Files
 //
 #include "adcMonitor.h"
-#include "DSP28x_Project.h"
 
 /*
  * These three functions check different parts of the analogErrorStatus for errors
@@ -47,4 +46,19 @@ errorStatus areCurrentMeasurementsWithinThresholds(void)
         return ERROR_HAS_HAPPENED;
 
     return NO_ERROR;
+}
+
+
+/*
+ * This function takes the position of the wanted error status and returns
+ * if an error has happened.
+ */
+errorStatus getErrorStatusInBit(Uint16 position)
+{
+    Uint16 analogErrorStatus = getAnalogErrorStatus();
+
+    if ((analogErrorStatus & (1<<position)) >> position)
+        return ERROR_HAS_HAPPENED;
+    else
+        return NO_ERROR;
 }
