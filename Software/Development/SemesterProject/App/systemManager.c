@@ -42,7 +42,7 @@ void manageSystem(void)
         case STANDBY:
         {
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
-            //resetSafetyReactions();
+            resetIntegrators();
         }break;
 
         case RUNNING:
@@ -71,7 +71,3 @@ SysMgrState readSystemState(void)
     return systemState;
 }
 
-
-//
-// End of File
-//

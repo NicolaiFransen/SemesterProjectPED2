@@ -77,6 +77,8 @@
 #define POLE_PAIRS  2   //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE ((float) 0.5)    //To be used instead of a division.
 
+#define TORQUE_TO_Q_CURRENT                 1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
+#define D_CURRENT_REFERENCE                 LAMDA_R/LM
 
 #define d_axis			0
 #define	q_axis			1
@@ -125,8 +127,3 @@
 
 
 #endif  
-
-
-//===========================================================================
-// End of file.
-//===========================================================================

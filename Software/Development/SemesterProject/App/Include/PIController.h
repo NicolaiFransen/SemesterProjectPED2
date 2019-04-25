@@ -30,21 +30,13 @@ typedef struct PIobjectTag
  */
 void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI,
                           float saturationLimit, int antiWindupFlag);
-void initPIControllers(void);
 
-/*
- * PI controllers
- */
 float PiCalculation(PIobject *PIcontroller, float reference, float measurementValue);
-float PiCalculationIQ(float reference, float measuredValue);
-float PiCalculationID(float reference, float measuredValue);
-float PiCalcualtionSpeed(float reference, float measuredValue);
 
 /*
  * Function to check saturation of output
  */
 int isOutputSaturatedPositive(PIobject *PIcontroller, float PIoutput);
 int isOutputSaturatedNegative(PIobject *PIcontroller, float PIoutput);
-
 
 #endif /* APP_INCLUDE_PICONTROLLER_H_ */

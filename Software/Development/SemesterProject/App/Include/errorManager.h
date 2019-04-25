@@ -8,6 +8,14 @@
 #ifndef APP_INCLUDE_ERRORMANAGER_H_
 #define APP_INCLUDE_ERRORMANAGER_H_
 
+
+typedef enum
+{
+    NO_ERROR,
+    ERROR_HAS_HAPPENED,
+    IDLE
+} errorStatus;
+
 #include "adcMonitor.h"
 #include "dutyCycle.h"
 #include "digitalOutput.h"
@@ -56,7 +64,6 @@ errorStatus getRotaryPot1ErrorStatus(void);
 errorStatus getRotaryPot2ErrorStatus(void);
 errorStatus getRotaryPot3ErrorStatus(void);
 
-errorStatus getErrorStatusInBit(Uint16);
 errorStatus getSystemErrorStatus(void);
 
 void updateCurrentErrorStatus(void);
