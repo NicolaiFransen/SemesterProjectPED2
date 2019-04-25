@@ -23,16 +23,9 @@ static float sensor1Temp = 0, sensor2Temp = 0;
 
 void calculateTemperature(void) //To be called from scheduler when reference handler is merged
 {
-    float voltageSensor1;
-    float voltageSensor2;
-
-    voltageSensor1 = getThermometer1Measurement();
-    sensor1Temp = voltageSensor1 * TEMP_SENSOR_GAIN;
-
-    voltageSensor2 = getThermometer2Measurement();
-    sensor2Temp = voltageSensor2 * TEMP_SENSOR_GAIN;
+    sensor1Temp = getThermometer1Measurement();
+    sensor2Temp = getThermometer2Measurement();
 }
-
 /*
  * External Interfaces
  */

@@ -35,6 +35,7 @@ void manageSystem(void)
     {
         case STARTUP:
         {
+            resetSafetyReactions();
             if(startupSequenceFinished()) systemState = STANDBY;
         }break;
 
@@ -49,15 +50,17 @@ void manageSystem(void)
             if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
             if(getSystemErrorStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             setLED18(ON); // System is in running state LED
+            enableDrivers();
+
         }break;
 
         case ERROR:
         {
-            turnOnErrorLED();
+            performSafetyReactions();
             if(userACKHasBeenPressed())
             {
+                resetSafetyReactions();
                 systemState = STANDBY;
-                turnOffErrorLED();
             }
         }break;
     }
@@ -68,7 +71,3 @@ SysMgrState readSystemState(void)
     return systemState;
 }
 
-
-//
-// End of File
-//

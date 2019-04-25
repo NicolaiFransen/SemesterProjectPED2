@@ -190,9 +190,3 @@ int startupSequenceFinished(void)
 {
     return startupSequenceFinishedFlag;
 }
-
-
-
-//
-// End of File
-//

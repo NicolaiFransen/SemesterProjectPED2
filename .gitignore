@@ -1,3 +1,7 @@
+##Avoid aitor's shitty zips
+*Interface board/*.zip
+*Interface board/*.SchDocPreview
+
 ##Void .raw files from LTspice simulation
 *.raw
 *.net

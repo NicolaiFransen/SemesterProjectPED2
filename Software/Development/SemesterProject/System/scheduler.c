@@ -207,6 +207,7 @@ void handleSystemClock(void)
 {
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
+
     UARTIntPrint("TS ", (int)sysClock);
 }
 

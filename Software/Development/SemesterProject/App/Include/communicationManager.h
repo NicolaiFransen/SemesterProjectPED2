@@ -13,7 +13,7 @@
 #include "digitalInputManager.h"
 #include "temperatureManager.h"
 #include "referenceHandler.h"
-#include "encoderManager.h"
+#include "positionCalculator.h"
 #include "adcMonitor.h"
 #include "errorManager.h"
 #include "Constants.h"
