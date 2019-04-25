@@ -41,6 +41,7 @@ void manageSystem(void)
         case STANDBY:
         {
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
+            resetIntegrators();
         }break;
 
         case RUNNING:

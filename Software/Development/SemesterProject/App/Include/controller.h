@@ -24,6 +24,10 @@ void initPIControllers(void);
 float PiCalculationIQ(float reference, float measuredValue);
 float PiCalculationID(float reference, float measuredValue);
 float PiCalcualtionSpeed(float reference, float measuredValue);
+void resetIntegrators(void);
+void resetIdIntegrator(void);
+void resetIqIntegrator(void);
+void resetSpeedIntegrator(void);
 
 
 

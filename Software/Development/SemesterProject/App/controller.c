@@ -54,3 +54,29 @@ float calculateIqReference(float torqueReference)
 {
     return torqueReference * TORQUE_TO_Q_CURRENT;
 }
+
+/*
+ * Function used to reset the integrators of the controllers.
+ * Must be called every time the software leaves RUNNING state.
+ */
+void resetIntegrators(void)
+{
+    resetIdIntegrator();
+    resetIqIntegrator();
+    resetSpeedIntegrator();
+}
+
+void resetIdIntegrator(void)
+{
+    PIControllerList.IdController.integrationOfError = 0;
+}
+
+void resetIqIntegrator(void)
+{
+    PIControllerList.IqController.integrationOfError = 0;
+}
+
+void resetSpeedIntegrator(void)
+{
+    PIControllerList.SpeedController.integrationOfError = 0;
+}
