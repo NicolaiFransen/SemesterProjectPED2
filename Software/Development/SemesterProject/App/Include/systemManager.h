@@ -16,6 +16,7 @@
 #include "referenceHandler.h"
 #include "errorManager.h"
 #include "adcMonitor.h"
+#include "controller.h"
 
 //
 // Objects declaration
