@@ -24,7 +24,7 @@ void runClosedLoopControl(void);
 
 float getMovementReference(void);
 float getIqReference(float movementReference);
-int torqueControlIsSelected(void);
+dqObject calculateVoltageReferences(float currentReferences[], dqObject dqCurrents);
 
 void resetControlVariables(void);
 
