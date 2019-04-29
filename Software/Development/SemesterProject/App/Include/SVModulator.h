@@ -25,14 +25,13 @@ typedef struct
 void SVMInit(void);
 void runSVM(alphaBetaObject voltageRef);
 alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc);
-void calculateAndSetDutyCycles(t1t2Object t1t2Struct);
 int findSector(alphaBetaObject voltageRef);
-t1t2Object sector0Calculation(alphaBetaObject voltageRef);
-t1t2Object sector1Calculation(alphaBetaObject voltageRef);
-t1t2Object sector2Calculation(alphaBetaObject voltageRef);
-t1t2Object sector3Calculation(alphaBetaObject voltageRef);
-t1t2Object sector4Calculation(alphaBetaObject voltageRef);
-t1t2Object sector5Calculation(alphaBetaObject voltageRef);
+void sector0Calculation(alphaBetaObject voltageRef);
+void sector1Calculation(alphaBetaObject voltageRef);
+void sector2Calculation(alphaBetaObject voltageRef);
+void sector3Calculation(alphaBetaObject voltageRef);
+void sector4Calculation(alphaBetaObject voltageRef);
+void sector5Calculation(alphaBetaObject voltageRef);
 int signumf(float variable);
 
 

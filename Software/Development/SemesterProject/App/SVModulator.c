@@ -25,7 +25,7 @@
 
 #include "SVModulator.h"
 
-static t1t2Object (*t1t2Calculation[6]) (alphaBetaObject voltageRef);
+static void (*t1t2Calculation[6]) (alphaBetaObject voltageRef);
 
 void SVMInit(void)
 {
@@ -47,13 +47,11 @@ void runSVM(alphaBetaObject voltageRef)
 {
     float Vdc;
     int sector;
-    t1t2Object t1t2Struct;
 
     Vdc = 32.0;//testing here getDCLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc);
     sector = findSector(voltageRef);
-    t1t2Struct = t1t2Calculation[sector](voltageRef);
-    calculateAndSetDutyCycles(t1t2Struct);
+    t1t2Calculation[sector](voltageRef);
 }
 
 /*
@@ -76,27 +74,6 @@ alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc)
     return voltageRef;
 }
 
-void calculateAndSetDutyCycles(t1t2Object t1t2Struct)
-{
-    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
-    float dutyA = 1 - temp;
-    float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
-    float dutyC = temp;
-
-    /*
-      * testing
-      */
-     static int dummyCounter = 0;
-     dummyCounter++;
-     if (dummyCounter % 20 == 0) UARTIntPrint("a ", (int)(dutyA*1000));
-     /*
-      *
-      */
-
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
-}
 
 int findSector(alphaBetaObject voltageRef)
 {
@@ -131,82 +108,105 @@ int findSector(alphaBetaObject voltageRef)
     return 0;
 }
 
-t1t2Object sector0Calculation(alphaBetaObject voltageRef)
+void sector0Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
     t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
     t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
-    //s3
-//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyA = 1 - temp;
+    float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyC = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
-t1t2Object sector1Calculation(alphaBetaObject voltageRef)
+void sector1Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    //s0
-//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+
     t1t2Struct.t1 = 0.5 * (-voltageRef.alphaComponent + voltageRef.betaComponent * ONE_DIV_SQRT3);
     t1t2Struct.t2 = 0.5 * (voltageRef.alphaComponent + voltageRef.betaComponent * ONE_DIV_SQRT3);
-    //s3
-//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyB = 1 - temp;
+    float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyC = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
-t1t2Object sector2Calculation(alphaBetaObject voltageRef)
+void sector2Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    //s0
-//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+
     t1t2Struct.t1 = voltageRef.betaComponent * ONE_DIV_SQRT3;
     t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - voltageRef.betaComponent * ONE_DIV_SQRT3);
-    //s3
-//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyB = 1 - temp;
+    float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyA = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
-t1t2Object sector3Calculation(alphaBetaObject voltageRef)
+void sector3Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    //s0
-//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
+
     t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent) * ONE_DIV_SQRT3);
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyC = 1 - temp;
+    float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyA = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
-t1t2Object sector4Calculation(alphaBetaObject voltageRef)
+void sector4Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    //s0
-//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
-    t1t2Struct.t1 = 0.5 * (- voltageRef.alphaComponent + fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    t1t2Struct.t2 = 0.5 * (voltageRef.alphaComponent + fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    //s3
-//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+
+    t1t2Struct.t1 = 0.5 * (- voltageRef.alphaComponent + fabs(voltageRef.betaComponent) * ONE_DIV_SQRT3);
+    t1t2Struct.t2 = 0.5 * (voltageRef.alphaComponent + fabs(voltageRef.betaComponent) * ONE_DIV_SQRT3);
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyC = 1 - temp;
+    float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyB = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
-t1t2Object sector5Calculation(alphaBetaObject voltageRef)
+void sector5Calculation(alphaBetaObject voltageRef)
 {
     t1t2Object t1t2Struct;
-    //s0
-//    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = voltageRef.betaComponent * ONE_DIV_SQRT3;
-    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
+
+    t1t2Struct.t1 = 0.5 * (voltageRef.alphaComponent - fabs(voltageRef.betaComponent) * ONE_DIV_SQRT3);
     t1t2Struct.t2 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-    //s3
-//    t1t2Struct.t1 = fabs(voltageRef.betaComponent * ONE_DIV_SQRT3);
-//    t1t2Struct.t2 = 0.5 * (fabs(voltageRef.alphaComponent) - fabs(voltageRef.betaComponent * ONE_DIV_SQRT3));
-    return t1t2Struct;
+
+    float temp = 0.5 - t1t2Struct.t1 - t1t2Struct.t2;
+    float dutyA = 1 - temp;
+    float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
+    float dutyB = temp;
+
+    setDutyA(dutyA * 100);
+    setDutyB(dutyB * 100);
+    setDutyC(dutyC * 100);
 }
 
 /*
