@@ -113,12 +113,6 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
     //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
     motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
 
-    // Check an index occurrence+
-    /*if (EQep1Regs.QFLG.bit.IEL == 1)
-    {
-        EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
-    }*/
-
     //Transform into electrical angle [rad]
     motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
     if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
@@ -144,7 +138,5 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
         //Enter here either if there have been more than 10º or if a time longer than 6ms has passed (for low speeds).
     {
         updateSpeed(motorPosSpeedObject, deltaTheta);
-
-        //UARTIntPrint("RPM ", (int) readRotorRPM());
     }
 }
