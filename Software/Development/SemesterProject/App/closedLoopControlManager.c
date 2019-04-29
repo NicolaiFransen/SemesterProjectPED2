@@ -24,7 +24,6 @@
 void runClosedLoopControl(void)
 {
     float movementReference = 0;
-    //float currentReferences[2];
     float abcCurrents[3];
     float theta = 0;
     dqObject dqCurrents, currentReferences, dqVoltages;
