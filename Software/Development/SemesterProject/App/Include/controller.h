@@ -24,7 +24,7 @@ float calculateIqReference(float torqueReference);
 void initPIControllers(void);
 float PiCalculationIQ(float reference, float measuredValue);
 float PiCalculationID(float reference, float measuredValue);
-float PiCalcualtionSpeed(float reference, int16 measuredValue);
+float PiCalculationSpeed(float reference, int16 measuredValue);
 void resetIntegrators(void);
 void resetIdIntegrator(void);
 void resetIqIntegrator(void);

@@ -10,7 +10,7 @@
 
 // Includes
 #include "controller.h"
-#include "SVModulator.h
+#include "SVModulator.h"
 #include "referenceFrameConversion.h"
 #include "referenceHandler.h"
 #include "positionCalculator.h"

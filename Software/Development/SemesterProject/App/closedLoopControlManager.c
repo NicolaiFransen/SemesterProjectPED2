@@ -90,7 +90,7 @@ float getIqReference(float movementReference)
         int16 speedMeasurement = readRotorRPM();
 
         // Calculate iq reference from speed controller
-        iqReference = PiCalcualtionSpeed(movementReference, speedMeasurement);
+        iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
     }
 
     return iqReference;

@@ -29,7 +29,7 @@ void initPIControllers(void)
 /*
  * Interface functions to use PI controllers
  */
-float PiCalcualtionIQ(float reference, float measuredValue)
+float PiCalculationIQ(float reference, float measuredValue)
 {
     return PiCalculation(&PIControllerList.IqController, reference, measuredValue);
 }
