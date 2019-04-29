@@ -39,13 +39,13 @@ float PiCalculationID(float reference, float measuredValue)
     return PiCalculation(&PIControllerList.IdController, reference, measuredValue);
 }
 
-float PiCalculationSpeed(float reference, float measuredValue)
+float PiCalculationSpeed(float reference, int16 measuredValue)
 {
-    return PiCalculation(&PIControllerList.SpeedController, reference, measuredValue);
+    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue);
 }
 
 
-float calculateIdReference(void)
+float getIdReference(void)
 {
     return D_CURRENT_REFERENCE;
 }

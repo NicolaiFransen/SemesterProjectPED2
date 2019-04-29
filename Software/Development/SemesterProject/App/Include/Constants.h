@@ -90,12 +90,12 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define KP_IQ           10
-#define KI_IQ           10
-#define KP_ID           10
-#define KI_ID           10
-#define KP_SPEED        10
-#define KI_SPEED        10
+#define KP_IQ           (float)2.58
+#define KI_IQ           (float)15.70
+#define KP_ID           (float)2.58
+#define KI_ID           (float)15.70
+#define KP_SPEED        (float)10
+#define KI_SPEED        (float)10
 
 #define CURRENT_LIMIT   200
 #define SPEED_LIMIT     1800
