@@ -6,7 +6,6 @@
  */
 
 #include "controlTask.h"
-#include "errorManager.h"
 
 
 /*
@@ -18,15 +17,15 @@ void executeControl(void)
     if (readSystemState() == RUNNING)
     {
         if (isOpenLoopControlSelected())
+        {
             // Call open-loop function
             openLoopVFControl();
+        }
 
          else
             // Call closed-loop function
              runClosedLoopControl();
     }
-    else
-        performSafetyReactions();
 }
 
 /*

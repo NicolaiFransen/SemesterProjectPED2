@@ -15,12 +15,14 @@
 #include "analogAcquisitionManager.h"
 #include "errorManager.h"
 
-
 //
 // Function prototyping
 //
 errorStatus areAdcMeasurementsWithinThresholds(void);
 errorStatus areBatteryMeasurementsWithinThresholds(void);
 errorStatus areCurrentMeasurementsWithinThresholds(void);
+
+errorStatus getErrorStatusInBit(Uint16);
+
 
 #endif /* APP_INCLUDE_ADCMONITOR_H_ */

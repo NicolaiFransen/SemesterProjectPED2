@@ -12,6 +12,9 @@
 //Includes
 //
 #include "DSP28x_Project.h"     // Device Headerfile and Examples Include File
+#include "../../App/Include/positionCalculator.h"
+#include "../../App/Include/digitalInputManager.h"
+#include "../../App/Include/analogAcquisitionManager.h"
 #include "../../App/Include/dutyCycle.h"
 #include "../../App/Include/openLoopControlManager.h"
 #include "string.h"
@@ -23,9 +26,6 @@
 #include "communicationManager.h"
 #include "UARTInterface.h"
 #include "../../App/Include/encoderManager.h"
-#include "SVModulator.h"
-
-
 
 //
 // Function Prototypes statements for functions found within this file.

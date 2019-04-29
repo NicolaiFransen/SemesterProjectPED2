@@ -23,7 +23,6 @@
 //
 //Defines
 //
-#define MAX_STATOR_FREQ 58 //Hz
 #define SINE_LUT_LENGTH  1002 //So it's divisible by 3 and phases are accurately shifted.
 
 

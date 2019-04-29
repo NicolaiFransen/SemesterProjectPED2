@@ -27,7 +27,25 @@ static struct
     errorStatus adcErrorStatus;
 } errorStatusList;
 
-errorStatus systemErrorStatus = NO_ERROR;
+static struct
+{
+    errorStatus currentAErrorStatus;
+    errorStatus currentBErrorStatus;
+    errorStatus currentCErrorStatus;
+    errorStatus voltage24ErrorStatus;
+    errorStatus voltage36ErrorStatus;
+    errorStatus thermometer1ErrorStatus;
+    errorStatus thermometer2ErrorStatus;
+    errorStatus torqueReferenceSliderErrorStatus;
+    errorStatus speedReferenceSliderErrorStatus;
+    errorStatus rotaryPot1ErrorStatus;
+    errorStatus rotaryPot2ErrorStatus;
+    errorStatus rotaryPot3ErrorStatus;
+    errorStatus torqueReferencePedalErrorStatus;
+    errorStatus brakeReferencePedalErrorStatus;
+} latchingErrorStatusList;
+
+static errorStatus systemErrorStatus = NO_ERROR;
 
 /*
  * This function updates the the error status of the different measurements,
@@ -39,12 +57,23 @@ void monitorErrorSources(void)
     errorStatusList.batteryErrorStatus = areBatteryMeasurementsWithinThresholds();
     errorStatusList.adcErrorStatus = areAdcMeasurementsWithinThresholds();
 
-    if (errorStatusList.currentErrorStatus == ERROR_HAS_HAPPENED ||
-        errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED ||
-        errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
-            performSafetyReactions();
-    else
-        resetSafetyReactions();
+    if (errorStatusList.currentErrorStatus == ERROR_HAS_HAPPENED)
+    {
+        performSafetyReactions();
+        updateCurrentErrorStatus();
+    }
+
+    if (errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED)
+    {
+        performSafetyReactions();
+        updateVoltageErrorStatus();
+    }
+
+    if (errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
+    {
+        performSafetyReactions();
+        updateAdcErrorStatus();
+    }
 }
 
 void performErrorMonitoring(void)
@@ -66,6 +95,7 @@ void performSafetyReactions(void)
 {
     setAllDuties(0);
     disableDrivers();
+    turnOnErrorLED();
     systemErrorStatus = ERROR_HAS_HAPPENED;
 }
 
@@ -74,8 +104,8 @@ void performSafetyReactions(void)
  */
 void resetSafetyReactions(void)
 {
-    enableDrivers();
-    systemErrorStatus = NO_ERROR;
+    turnOffErrorLED();
+    resetErrorStatus();
 }
 
 /*
@@ -102,91 +132,166 @@ void turnOffErrorLED(void)
 }
 
 /*
+ * Functions used to set errorStatus for every bit.
+ * This will latch the errors, so resetErrorStatus()
+ * will have to be called to reset the errors.
+ */
+void setCurrentAErrorStatus(void)
+{
+    if (getErrorStatusInBit(0) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.currentAErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setCurrentBErrorStatus(void)
+{
+    if (getErrorStatusInBit(1) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.currentBErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setCurrentCErrorStatus(void)
+{
+    if (getErrorStatusInBit(2) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.currentCErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setControlSupplyBatteryErrorStatus(void)
+{
+    if (getErrorStatusInBit(3) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.voltage24ErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setDCLinkBatteryErrorStatus(void)
+{
+    if (getErrorStatusInBit(4) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.voltage36ErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setThermometer1ErrorStatus(void)
+{
+    if (getErrorStatusInBit(5) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.thermometer1ErrorStatus = ERROR_HAS_HAPPENED;
+}
+void setThermometer2ErrorStatus(void)
+{
+    if (getErrorStatusInBit(6) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.thermometer2ErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setTorqueReferenceSliderErrorStatus(void)
+{
+    if (getErrorStatusInBit(7) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.torqueReferenceSliderErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setSpeedReferenceSliderErrorStatus(void)
+{
+    if (getErrorStatusInBit(8) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.speedReferenceSliderErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setRotaryPot1ErrorStatus(void)
+{
+    if (getErrorStatusInBit(9) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.rotaryPot1ErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setRotaryPot2ErrorStatus(void)
+{
+    if (getErrorStatusInBit(10) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.rotaryPot2ErrorStatus = ERROR_HAS_HAPPENED;
+}
+void setRotaryPot3ErrorStatus(void)
+{
+    if (getErrorStatusInBit(11) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.rotaryPot3ErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+void setTorqueReferencePedalErrorStatus(void)
+{
+    if (getErrorStatusInBit(12) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.torqueReferencePedalErrorStatus = ERROR_HAS_HAPPENED;
+}
+void setBrakeReferencePedalErrorStatus(void)
+{
+    if (getErrorStatusInBit(13) == ERROR_HAS_HAPPENED)
+        latchingErrorStatusList.brakeReferencePedalErrorStatus = ERROR_HAS_HAPPENED;
+}
+
+
+/*
  * Interface functions to get the error status of every single bit
  */
 errorStatus getCurrentAErrorStatus(void)
 {
-    return getErrorStatusInBit(0);
+    return latchingErrorStatusList.currentAErrorStatus;
 }
 
 errorStatus getCurrentBErrorStatus(void)
 {
-    return getErrorStatusInBit(1);
+    return latchingErrorStatusList.currentBErrorStatus;
 }
 
 errorStatus getCurrentCErrorStatus(void)
 {
-    return getErrorStatusInBit(2);
+    return latchingErrorStatusList.currentCErrorStatus;
 }
 
 errorStatus getControlSupplyBatteryErrorStatus(void)
 {
-    return getErrorStatusInBit(3);
+    return latchingErrorStatusList.voltage24ErrorStatus;
 }
 
 errorStatus getDCLinkBatteryErrorStatus(void)
 {
-    return getErrorStatusInBit(4);
+    return latchingErrorStatusList.voltage36ErrorStatus;
 }
 
 errorStatus getThermometer1ErrorStatus(void)
 {
-    return getErrorStatusInBit(5);
+    return latchingErrorStatusList.thermometer1ErrorStatus;
 }
 
 errorStatus getThermometer2ErrorStatus(void)
 {
-    return getErrorStatusInBit(6);
+    return latchingErrorStatusList.thermometer2ErrorStatus;
 }
 
 errorStatus getTorqueReferenceSliderErrorStatus(void)
 {
-    return getErrorStatusInBit(7);
+    return latchingErrorStatusList.torqueReferenceSliderErrorStatus;
 }
 
 errorStatus getSpeedReferenceSliderErrorStatus(void)
 {
-    return getErrorStatusInBit(8);
+    return latchingErrorStatusList.speedReferenceSliderErrorStatus;
 }
 
 errorStatus getRotaryPot1ErrorStatus(void)
 {
-    return getErrorStatusInBit(9);
+    return latchingErrorStatusList.rotaryPot1ErrorStatus;
 }
 
 errorStatus getRotaryPot2ErrorStatus(void)
 {
-    return getErrorStatusInBit(10);
+    return latchingErrorStatusList.rotaryPot2ErrorStatus;
 }
 
 errorStatus getRotaryPot3ErrorStatus(void)
 {
-    return getErrorStatusInBit(11);
+    return latchingErrorStatusList.rotaryPot3ErrorStatus;
 }
 
 errorStatus getTorqueReferencePedalErrorStatus(void)
 {
-    return getErrorStatusInBit(12);
+    return latchingErrorStatusList.torqueReferencePedalErrorStatus;
 }
 
 errorStatus getBrakeReferencePedalErrorStatus(void)
 {
-    return getErrorStatusInBit(13);
+    return latchingErrorStatusList.brakeReferencePedalErrorStatus;
 }
 
-/*
- * This function takes the position of the wanted error status and returns
- * if an error has happened.
- */
-errorStatus getErrorStatusInBit(Uint16 position)
-{
-    Uint16 analogErrorStatus = getAnalogErrorStatus();
 
-    if ((analogErrorStatus & (1<<position)) >> position)
-        return ERROR_HAS_HAPPENED;
-    else
-        return NO_ERROR;
-}
 
 /*
  * This function will return the overall error status of the system.
@@ -194,6 +299,51 @@ errorStatus getErrorStatusInBit(Uint16 position)
 errorStatus getSystemErrorStatus(void)
 {
     return systemErrorStatus;
+}
+
+/*
+ * Functions to update the error status of the signals in the three groups
+ */
+void updateCurrentErrorStatus(void)
+{
+    setCurrentAErrorStatus();
+    setCurrentBErrorStatus();
+    setCurrentCErrorStatus();
+}
+
+void updateVoltageErrorStatus(void)
+{
+    setDCLinkBatteryErrorStatus();
+    setControlSupplyBatteryErrorStatus();
+}
+
+void updateAdcErrorStatus(void)
+{
+    setTorqueReferenceSliderErrorStatus();
+    setSpeedReferenceSliderErrorStatus();
+    setTorqueReferencePedalErrorStatus();
+    setBrakeReferencePedalErrorStatus();
+    setThermometer1ErrorStatus();
+    setThermometer2ErrorStatus();
+    setRotaryPot1ErrorStatus();
+    setRotaryPot2ErrorStatus();
+    setRotaryPot3ErrorStatus();
+}
+
+/*
+ * Function to reset all errors.
+ * Should only be called when leaving ErrorState.
+ */
+void resetErrorStatus(void)
+{
+    errorStatus *structPointer;
+    errorStatus *initialMemoryPosition = &latchingErrorStatusList.currentAErrorStatus;
+    errorStatus *finalMemoryPosition = initialMemoryPosition + sizeof(latchingErrorStatusList)/sizeof(errorStatus);
+
+    for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
+        *structPointer = NO_ERROR;
+
+    systemErrorStatus = NO_ERROR;
 }
 
 

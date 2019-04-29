@@ -17,9 +17,6 @@
 // Function definition
 //
 void executeControl(void);
-void disableDutyCycles(void);
 int isOpenLoopControlSelected(void);
-void errorReactionControl(void);
-void disablePWMDrivers(void);
 
 #endif /* APP_INCLUDE_CONTROLTASK_H_ */
