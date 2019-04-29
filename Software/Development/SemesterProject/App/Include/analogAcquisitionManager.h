@@ -45,11 +45,6 @@
 //
 
 /*
- * Interrupts for updating measurements
- */
-__interrupt void adc_isr(void);
-
-/*
  * Initialization functions for setup
  */
 void initAnalogSignals(void);

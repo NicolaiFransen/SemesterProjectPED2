@@ -21,6 +21,7 @@ typedef enum
 #include "digitalOutput.h"
 #include "digitalOutputManager.h"
 #include "digitalInputManager.h"
+#include "../scheduler.h"
 
 //
 // Function prototyping
@@ -33,6 +34,7 @@ void disableDrivers(void);
 void enableDrivers(void);
 void turnOnErrorLED(void);
 void turnOffErrorLED(void);
+int filtersHaveSettled(void);
 
 void setCurrentAErrorStatus(void);
 void setCurrentBErrorStatus(void);
@@ -70,6 +72,7 @@ void updateCurrentErrorStatus(void);
 void updateVoltageErrorStatus(void);
 void updateAdcErrorStatus(void);
 
+void forceSystemError(void);
 void resetErrorStatus(void);
 
 void initWatchdog(void);

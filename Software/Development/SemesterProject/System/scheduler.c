@@ -109,8 +109,6 @@ void task100us(void)
 
 void task50us(void)
 {
-    executeControl();
-    performErrorMonitoring();
 }
 
 void task10ms(void)
@@ -206,7 +204,7 @@ void deactivateTask(int taskListIndex)
 void handleSystemClock(void)
 {
     sysClock++;
-    if (sysClock >= INT_MAX)    sysClock = 0;
+    if (sysClock >= UINT_MAX)    sysClock = 0;
 
     UARTIntPrint("TS ", (int)sysClock);
 }

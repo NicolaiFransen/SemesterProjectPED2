@@ -219,21 +219,6 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 
 
 /*
- * This interrupt is called every time the ADC registers have been updated.
- */
-__interrupt void adc_isr(void)
-{
-    readHighPrioritySignals();
-    executeControl();
-
-    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
-
-    return;
-}
-
-
-/*
  * Interface functions to return filtered measurements
  * It's used as followed:
  * float currents[3];
