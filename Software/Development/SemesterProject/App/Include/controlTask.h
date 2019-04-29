@@ -10,6 +10,8 @@
 
 #include "digitalInputManager.h"
 #include "dutyCycle.h"
+#include "closedLoopControl.h"
+#include "errorManager.h"
 #include "systemManager.h"
 //
 // Function definition

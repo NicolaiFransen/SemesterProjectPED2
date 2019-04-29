@@ -7,6 +7,7 @@
 
 #include "controlTask.h"
 
+
 /*
  * This function will check the state of the open-loop/closed-loop switch,
  * and from that execute the desired operation mode.
@@ -22,13 +23,8 @@ void executeControl(void)
         }
 
          else
-         {
-             setDutyB(0);
-             setDutyA(0);
-             setDutyC(0);
             // Call closed-loop function
-            // runClosedLoopControl();
-         }
+             runClosedLoopControl();
     }
 }
 

@@ -161,7 +161,8 @@ void systemInit(void)
     initPushbuttons();
     initWatchdog();
     initUART();
-	  initEncoder();
+    initEncoder();
+    SVMInit();
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13

@@ -25,7 +25,7 @@
 #include "analogAcquisitionManager.h"
 #include "communicationManager.h"
 #include "UARTInterface.h"
-
+#include "../../App/Include/encoderManager.h"
 
 //
 // Function Prototypes statements for functions found within this file.

@@ -8,7 +8,6 @@
 #ifndef APP_INCLUDE_ERRORMANAGER_H_
 #define APP_INCLUDE_ERRORMANAGER_H_
 
-
 typedef enum
 {
     NO_ERROR,

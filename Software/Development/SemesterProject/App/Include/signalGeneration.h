@@ -11,7 +11,7 @@
 #include "queueObject.h"
 #include "Constants.h"
 
-void getSineInstantValuesArray(int index, float *sineArray);
+void getSineInstantValuesArray(int index, float *sineArray, float gain);
 float getSineAngleInRads(int index);
 int indexPlus2PiThirds(int index);
 int indexPlus4PiThirds(int index);
