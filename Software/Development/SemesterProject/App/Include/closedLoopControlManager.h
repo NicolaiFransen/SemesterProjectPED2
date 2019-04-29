@@ -10,7 +10,7 @@
 
 // Includes
 #include "controller.h"
-//#include "SVModulator.h
+#include "SVModulator.h
 #include "referenceFrameConversion.h"
 #include "referenceHandler.h"
 #include "positionCalculator.h"
@@ -24,7 +24,8 @@ void runClosedLoopControl(void);
 
 float getMovementReference(void);
 float getIqReference(float movementReference);
-dqObject calculateVoltageReferences(float currentReferences[], dqObject dqCurrents);
+dqObject getCurrentReferences(float movementReference);
+dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents);
 
 void resetControlVariables(void);
 

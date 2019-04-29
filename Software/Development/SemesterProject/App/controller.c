@@ -45,7 +45,7 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
 }
 
 
-float calculateIdReference(void)
+float getIdReference(void)
 {
     return D_CURRENT_REFERENCE;
 }

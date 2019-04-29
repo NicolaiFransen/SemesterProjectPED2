@@ -15,7 +15,7 @@
 #include "PIController.h"
 #include "DSP28x_Project.h"
 
-float calculateIdReference(void);
+float getIdReference(void);
 float calculateIqReference(float torqueReference);
 
 /*

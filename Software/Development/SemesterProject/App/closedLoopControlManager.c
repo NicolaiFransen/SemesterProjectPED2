@@ -24,18 +24,17 @@
 void runClosedLoopControl(void)
 {
     float movementReference = 0;
-    float currentReferences[1];
-    float abcCurrents[2];
+    //float currentReferences[2];
+    float abcCurrents[3];
     float theta = 0;
-    dqObject dqCurrents, dqVoltages;
+    dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
 
     // Checks if the system is in cruise or torque control, and returns
     // the reference corresponding to that control type.
+    // Then calculates the current references from that.
     movementReference = getMovementReference();
-
-    currentReferences[0] = getIqReference(movementReference);   // Calculate iq reference from movement the reference.
-    currentReferences[1] = calculateIdReference();              // Calculate id reference
+    currentReferences = getCurrentReferences(movementReference);
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
     theta = readRotorElecAngleRad();                            // reads electrical angle in radians
@@ -48,6 +47,17 @@ void runClosedLoopControl(void)
 
     runSVM(abVoltages);
 }
+
+dqObject getCurrentReferences(float movementReference)
+{
+    dqObject currentReferences;
+
+    currentReferences.qComponent = getIqReference(movementReference);
+    currentReferences.dComponent = getIdReference();
+
+    return currentReferences;
+}
+
 
 /*
  * Function to determine what kind of control is wanted,
@@ -91,12 +101,12 @@ float getIqReference(float movementReference)
  * Function to calculate the voltage references for the
  * SVM in dq reference frame.
  */
-dqObject calculateVoltageReferences(float currentReferences[], dqObject dqCurrents)
+dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents)
 {
     dqObject dqVoltages;
     // Calculate voltage references from current PI-controllers
-    dqVoltages.qComponent = PiCalculationIQ(currentReferences[0], dqCurrents.qComponent);
-    dqVoltages.dComponent = PiCalculationID(currentReferences[1], dqCurrents.dComponent);
+    dqVoltages.qComponent = PiCalculationIQ(currentReferences.qComponent, dqCurrents.qComponent);
+    dqVoltages.dComponent = PiCalculationID(currentReferences.dComponent, dqCurrents.dComponent);
 
     return dqVoltages;
 }
