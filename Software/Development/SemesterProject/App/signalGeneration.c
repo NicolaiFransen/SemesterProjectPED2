@@ -17,7 +17,7 @@
 /*
  * Comment out the define below to avoid compiling signal generation
  */
-#define signalGenerationEnabled
+//#define signalGenerationEnabled
 
 #ifdef  signalGenerationEnabled
 

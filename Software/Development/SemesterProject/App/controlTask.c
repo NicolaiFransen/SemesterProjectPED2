@@ -7,7 +7,7 @@
 
 #include "controlTask.h"
 #include "errorManager.h"
-#include "closedLoopControl.h"
+
 
 /*
  * This function will check the state of the open-loop/closed-loop switch,
