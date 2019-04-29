@@ -72,6 +72,7 @@
 #define ID_RATED       ((float)149.2287)           // 'Id rated current --> A'
 #define ID_RATED_INVERSE ((float)0.006701123845)   // 'Id rated current inverse --> A^-1'
 
+#define MAX_STATOR_FREQ 58 //Hz used for VF control
 #define ENCODER_STEPS 2048
 #define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
 #define POLE_PAIRS  2   //Number of pole pairs of the motor.

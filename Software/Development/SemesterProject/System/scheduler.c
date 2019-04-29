@@ -209,9 +209,6 @@ void handleSystemClock(void)
     if (sysClock >= INT_MAX)    sysClock = 0;
 
     UARTIntPrint("TS ", (int)sysClock);
-    //UARTIntPrint("RPM ", (int)readRotorRPM());
-    //UARTIntPrint("Hz elec ", (int)readRotorElecFreqHz());
-    //UARTIntPrint("Hz mech ", (int)readRotorMechFreqHz());
 }
 
 Uint32 getSystemClock(void)
