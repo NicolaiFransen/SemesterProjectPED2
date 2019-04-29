@@ -50,7 +50,7 @@ void initEncoder(void)
     EQep1Regs.QEPCTL.bit.FREE_SOFT = 2; // Position counter unaffected by emulation suspension.
     EQep1Regs.QEPCTL.bit.PCRM = 00;   // PCRM=00 mode - QPOSCNT reset on index event
     EQep1Regs.QEPCTL.bit.SEI = 00;    // Strobe event initialization of position counter. 00->does nothing.
-    EQep1Regs.QEPCTL.bit.IEI = 00;    //Do nothing --> 10;    // Index event initialization of counter. 10->init on rising edge.
+    EQep1Regs.QEPCTL.bit.IEI = 10;    //Do nothing --> 10;    // Index event initialization of counter. 10->init on rising edge.
     EQep1Regs.QEPCTL.bit.SWI = 0;     // Software init of position counter. 0->do nothing.
     EQep1Regs.QEPCTL.bit.SEL = 1;     // Strobe event latch of pos counter. 1-> Clockwise, latch on rise, counterclockwise, latch on fall.
     EQep1Regs.QEPCTL.bit.IEL = 01;    // Index event latch of pos counter. 01->latches on rising edge of index.
@@ -112,9 +112,6 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
 
     //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
     motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
-
-    // Check an index occurrence
-    if (EQep1Regs.QFLG.bit.IEL == 1) EQep1Regs.QCLR.bit.IEL = 1;   // Clear interrupt flag
 
     //Transform into electrical angle [rad]
     motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;

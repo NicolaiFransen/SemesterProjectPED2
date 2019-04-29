@@ -228,6 +228,7 @@ __interrupt void adc_isr(void)
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
+    getRotorPosSpeedParameters();
 
     return;
 }
