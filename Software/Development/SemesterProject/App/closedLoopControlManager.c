@@ -12,7 +12,7 @@
  *      The flow is:
  *          - Obtain references
  *          - Obtain currents
- *          - Obtain Rotor position angle in radians
+ *          - Obtain Rotor flux position angle in radians
  *          - Transform currents from ABC -> dq
  *          - Calculate dq voltage references from current PI-controllers
  *          - Transform voltages from dq -> alpha/beta
@@ -36,7 +36,7 @@ void runClosedLoopControl(void)
     currentReferences = getCurrentReferences(movementReference);
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
-    theta = readRotorElecAngleRad();                            // reads electrical angle in radians
+    theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
