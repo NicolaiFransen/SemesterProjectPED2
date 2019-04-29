@@ -1,0 +1,206 @@
+*version 9.1 4251948285
+@index
+symloc DMOS 0 1038 b
+symloc BSZ075N08NS5_L0:DMOS 1038 295
+symloc IPB017N08N5_L0:DMOS 1333 292
+symloc IPP020N08N5_L0:DMOS 1625 292
+symloc BSZ110N08NS5_L0:DMOS 1917 295
+symloc BSZ084N08NS5_L0:DMOS 2212 295
+symloc IPT012N08N5_L0:DMOS 2507 292
+symloc IPB015N08N5_L0:DMOS 2799 292
+symloc IPB020N08N5_L0:DMOS 3091 292
+symloc IPP023N08N5_L0:DMOS 3383 292
+symloc IPB024N08N5_L0:DMOS 3675 292
+symloc IPP027N08N5_L0:DMOS 3967 292
+symloc IPB031N08N5_L0:DMOS 4259 292
+symloc IPP034N08N5_L0:DMOS 4551 292
+symloc IPB049N08N5_L0:DMOS 4843 292
+symloc IPP052N08N5_L0:DMOS 5135 292
+*symbol DMOS b
+d Infineon n-channel DMOS
+@type p 8.0
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 87 34 hcn 100 PART=DMOS
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=DMOS
+@pins
+p 0 25 40 hcn 100 source n 30 40 v
+a 0 s 0:1 0 31 38 hln 100 PIN=3
+a 0 s 0 0 0 0 hln 100 ERC=x
+p 0 10 20 hcn 100 gate n 0 20 h
+a 0 s 0:1 0 1 18 hln 100 PIN=2
+a 0 s 0 0 0 0 hln 100 ERC=x
+p 0 25 10 hcn 100 drain n 30 0 d
+a 0 s 0:1 0 31 -2 hln 100 PIN=1
+a 0 s 0 0 0 0 hln 100 ERC=x
+@graphics 46 40 0 20 10
+c 0 25 20 20 d_info:,0/0/0,,,,,,,,,,,,, 
+v 0 38 10
+38 30
+28 30
+;
+v 0 38 18 d_info:,,,,4/1/6/6,ON,0/0/255,,,,,,,, 
+35 22
+41 22
+38 18
+;
+v 0 25 16
+20 20
+;
+v 0 20 20
+25 24
+;
+r 0 35 17 41 18 d_info:,,,,,ON,0/0/255,,,,,,,, 
+c 0 30 30 1 d_info:,,,,,ON,0/0/255,,,,,,,, 
+c 0 30 10 1 d_info:,,,,,ON,0/0/255,,,,,,,, 
+v 0 30 20
+30 30
+;
+v 0 30 20
+20 20
+;
+v 0 38 10
+30 10
+;
+v 0 15 10
+15 30
+;
+v 0 10 20
+15 20
+;
+v 0 20 10
+30 10
+;
+v 0 20 30
+30 30
+;
+v 0 20 23
+20 17
+;
+v 0 20 33
+20 27
+;
+v 0 20 13
+20 7
+;
+*symbol BSZ075N08NS5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=BSZ075N08NS5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=BSZ075N08NS5_L0
+*symbol IPB017N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB017N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB017N08N5_L0
+*symbol IPP020N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPP020N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPP020N08N5_L0
+*symbol BSZ110N08NS5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=BSZ110N08NS5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=BSZ110N08NS5_L0
+*symbol BSZ084N08NS5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=BSZ084N08NS5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=BSZ084N08NS5_L0
+*symbol IPT012N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPT012N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPT012N08N5_L0
+*symbol IPB015N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB015N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB015N08N5_L0
+*symbol IPB020N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB020N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB020N08N5_L0
+*symbol IPP023N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPP023N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPP023N08N5_L0
+*symbol IPB024N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB024N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB024N08N5_L0
+*symbol IPP027N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPP027N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPP027N08N5_L0
+*symbol IPB031N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB031N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB031N08N5_L0
+*symbol IPP034N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPP034N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPP034N08N5_L0
+*symbol IPB049N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPB049N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPB049N08N5_L0
+*symbol IPP052N08N5_L0 ako DMOS
+d Infineon n-channel DMOS transistor
+@type p 9.1
+@attributes
+a 1 sp 0 0 0 0 hcn 100 TEMPLATE=X^@refdes %drain %gate %source @MODEL 
+a 0 s 9 0 61 12 hcn 100 REFDES=X?
+a 0 sp 11 0 89 38 hcn 100 PART=IPP052N08N5_L0
+a 0 sp 0:13 0 4 40 hcn 100 MODEL=IPP052N08N5_L0
