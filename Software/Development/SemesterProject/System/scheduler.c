@@ -18,21 +18,10 @@
 #include "Include/scheduler.h"
 
 /*
- * testing includes
- */
-#include "referenceFrameConversion.h"
-
-/*
- *
- */
-
-/*
  * Quasi-global variable definition
  */
 static enum taskListTag
 {
-    task50usItem,
-    task100usItem,
     task10msItem,
     task20msItem,
     task200msItem,
@@ -46,16 +35,6 @@ static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
-    taskList[task50usItem].functionPointer = task50us;
-    taskList[task50usItem].taskState = INACTIVE;
-    taskList[task50usItem].cyclicity = 50;
-    taskList[task50usItem].timeLeft = 50;
-
-    taskList[task100usItem].functionPointer = task100us;
-    taskList[task100usItem].taskState = INACTIVE;
-    taskList[task100usItem].cyclicity = 100;
-    taskList[task100usItem].timeLeft = 100;
-
     taskList[task10msItem].functionPointer = task10ms;
     taskList[task10msItem].taskState = INACTIVE;
     taskList[task10msItem].cyclicity = 10000;
@@ -103,14 +82,6 @@ void runTask(void (*functionPTR)())
 /*
  * Tasks definition
  */
-void task100us(void)
-{//running at switching 10kHz (update with switching frequency);
-}
-
-void task50us(void)
-{
-}
-
 void task10ms(void)
 {
     ServiceDog();
