@@ -112,7 +112,6 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
 
     //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
     motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
-
     //Transform into electrical angle [rad]
     motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
     if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;

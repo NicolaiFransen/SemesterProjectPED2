@@ -224,6 +224,7 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
+    posSpeedFromEncoder();
     executeControl();
 
     AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;

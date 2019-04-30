@@ -50,6 +50,7 @@ float readRotorSpeedRadS(void);
 float readRotorMechAngleRad(void);
 float readRotorMechFreqHz(void);
 int16 readRotorRPM(void);
+int readRotorThetaRaw(void);
 
 //Functions related to encoderManager.c
 void initEncoder(void);

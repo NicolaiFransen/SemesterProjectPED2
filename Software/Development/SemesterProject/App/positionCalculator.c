@@ -112,3 +112,9 @@ float readRotorFluxSpeedRadS(void)
 {
     return motorPosSpeedObject.rotorFluxSpeedRadS;
 }
+
+
+int readRotorThetaRaw(void)
+{
+    return motorPosSpeedObject.rotorThetaRaw;
+}

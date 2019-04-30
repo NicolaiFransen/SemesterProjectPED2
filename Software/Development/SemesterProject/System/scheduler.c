@@ -116,6 +116,8 @@ void task50us(void)
 void task10ms(void)
 {
     ServiceDog();
+    UARTIntPrint("RPM: ", (int)readRotorRPM());
+    UARTIntPrint("MechPos: ", (int)(RAD_TO_DEG * readRotorMechAngleRad()));
 }
 
 void task20ms(void)
@@ -208,7 +210,7 @@ void handleSystemClock(void)
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
 
-    UARTIntPrint("TS ", (int)sysClock);
+    //UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
