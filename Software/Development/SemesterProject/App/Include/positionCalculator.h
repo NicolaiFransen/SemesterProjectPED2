@@ -25,7 +25,7 @@ typedef struct
     float rotorThetaElec;     // rotor Electrical angle (rad).
     float rotorThetaMech;     // rotor Mechanical Angle (rad).
 
-    float rotorSpeedRadS;     // rotor Electrical speed [rad/s]
+    float rotorElecSpeedRadS;     // rotor Electrical speed [rad/s]
 
     //SLIP RELATED PARAMETERS
     float slipAngleRad;
@@ -46,7 +46,7 @@ void rotorPosSpeedConstructor(void);
 
 float readRotorElecAngleRad(void);
 float readRotorElecFreqHz(void);
-float readRotorSpeedRadS(void);
+float readRotorElecSpeedRadS(void);
 float readRotorMechAngleRad(void);
 float readRotorMechFreqHz(void);
 int16 readRotorRPM(void);

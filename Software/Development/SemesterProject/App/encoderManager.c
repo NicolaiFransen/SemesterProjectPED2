@@ -93,8 +93,8 @@ float obtainDeltaTheta(motorPosSpeed *motorPosSpeedObject)
 void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 {
     //Check direction and calculate electrical frequency.
-    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount;
-    else motorPosSpeedObject->rotorSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount; //Going reverse direction.
+    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount;
+    else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount; //Going reverse direction.
 
     //Update other values.
     motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;
@@ -133,8 +133,8 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
     deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
     //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTempCount > 120 * SW_PERIOD_US)
-        //Enter here either if there have been more than 10º or if a time longer than 6ms has passed (for low speeds).
+    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTempCount > 100 * SW_PERIOD_US)
+        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
     {
         updateSpeed(motorPosSpeedObject, deltaTheta);
     }

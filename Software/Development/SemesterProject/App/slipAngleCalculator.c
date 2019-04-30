@@ -19,7 +19,7 @@ void calcSlipSpeed(motorPosSpeed *motorPosSpeedObject)
 {
     float iqsRef = iqConst * getTorqueReference();
     motorPosSpeedObject->slipSpeedRadS = TR_INVERSE * iqsRef * ID_RATED_INVERSE;
-    motorPosSpeedObject->rotorFluxSpeedRadS = readRotorSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
+    motorPosSpeedObject->rotorFluxSpeedRadS = readRotorElecSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
 }
 
 
