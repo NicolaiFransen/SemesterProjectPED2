@@ -33,6 +33,7 @@ static enum taskListTag
 {
     task50usItem,
     task100usItem,
+    task1msItem,
     task10msItem,
     task20msItem,
     task200msItem,
@@ -55,6 +56,11 @@ void taskListInitialization(void)
     taskList[task100usItem].taskState = INACTIVE;
     taskList[task100usItem].cyclicity = 100;
     taskList[task100usItem].timeLeft = 100;
+
+    taskList[task1msItem].functionPointer = task1ms;
+    taskList[task1msItem].taskState = INACTIVE;
+    taskList[task1msItem].cyclicity = 1000;
+    taskList[task1msItem].timeLeft = 1000;
 
     taskList[task10msItem].functionPointer = task10ms;
     taskList[task10msItem].taskState = INACTIVE;
@@ -113,8 +119,13 @@ void task50us(void)
     performErrorMonitoring();
 }
 
+void task1ms(void)
+{
+}
+
 void task10ms(void)
 {
+    printUART();
     ServiceDog();
 }
 
@@ -208,10 +219,24 @@ void handleSystemClock(void)
     sysClock++;
     if (sysClock >= INT_MAX)    sysClock = 0;
 
-    UARTIntPrint("TS ", (int)sysClock);
+    UARTIntPrint("TimeStamp ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
 {
     return sysClock;
+}
+
+void printUART(void)
+{
+//    Print stuff with UART here¡!
+//    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
+    UARTIntPrint("Vdc ", (int)(getDCLinkMeasurement() * 100));
+    UARTIntPrint("Temp ", (int)getThermometer1Measurement());
+//    float currentsToPrint[3];
+//
+//    getCurrentMeasurements(&currentsToPrint[0]);
+//    UARTIntPrint("Ia ", (int)currentsToPrint[0]);
+//    UARTIntPrint("Ib ", (int)currentsToPrint[1]);
+//    UARTIntPrint("Ic ", (int)currentsToPrint[2]);
 }

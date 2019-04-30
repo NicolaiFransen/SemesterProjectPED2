@@ -48,6 +48,7 @@ void runTask(void (*functionPTR)());
 
 void task50us(void);
 void task100us(void);
+void task1ms(void);
 void task10ms(void);
 void task20ms(void);
 void task200ms(void);
@@ -68,5 +69,6 @@ void deactivateTask(int taskListIndex);
  */
 void handleSystemClock(void);
 Uint32 getSystemClock(void);
+void printUART(void);
 
 #endif /* SYSTEM_INCLUDE_SCHEDULER_H_ */
