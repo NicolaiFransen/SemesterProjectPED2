@@ -310,7 +310,7 @@ errorStatus getBrakeReferencePedalErrorStatus(void)
 /*
  * This function will return the overall error status of the system.
  */
-errorStatus getSystemErrorStatus(void)
+errorStatus getErrorManagerStatus(void)
 {
     return systemErrorStatus;
 }

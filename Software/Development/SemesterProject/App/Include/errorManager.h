@@ -66,7 +66,7 @@ errorStatus getRotaryPot1ErrorStatus(void);
 errorStatus getRotaryPot2ErrorStatus(void);
 errorStatus getRotaryPot3ErrorStatus(void);
 
-errorStatus getSystemErrorStatus(void);
+errorStatus getErrorManagerStatus(void);
 
 void updateCurrentErrorStatus(void);
 void updateVoltageErrorStatus(void);

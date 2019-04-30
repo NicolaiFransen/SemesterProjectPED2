@@ -42,14 +42,14 @@ void manageSystem(void)
         case STANDBY:
         {
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
-            if(getSystemErrorStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
+            if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             resetIntegrators();
         }break;
 
         case RUNNING:
         {
             if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
-            if(getSystemErrorStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
+            if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             setRunningLED(ON); // System is in running state LED
             enableDrivers();
 
