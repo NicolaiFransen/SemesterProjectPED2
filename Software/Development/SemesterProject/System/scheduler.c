@@ -121,6 +121,7 @@ void task50us(void)
 
 void task1ms(void)
 {
+    printUART();
 }
 
 void task10ms(void)
@@ -231,8 +232,10 @@ void printUART(void)
 {
 //    Print stuff with UART here¡!
 //    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
-    UARTIntPrint("Vdc ", (int)(getDCLinkMeasurement() * 100));
-    UARTIntPrint("Temp ", (int)getThermometer1Measurement());
+//    UARTIntPrint("Vdc ", (int)(getDCLinkMeasurement() * 100));
+//    UARTIntPrint("Temp ", (int)getThermometer1Measurement());
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
+
 //    float currentsToPrint[3];
 //
 //    getCurrentMeasurements(&currentsToPrint[0]);
