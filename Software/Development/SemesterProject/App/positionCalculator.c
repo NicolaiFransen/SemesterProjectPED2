@@ -41,7 +41,7 @@ void rotorPosSpeedConstructor(void)
     motorPosSpeedObject.rotorThetaMech = 0;
     motorPosSpeedObject.rotorThetaElec = 0;
     motorPosSpeedObject.rotorThetaElecOld = 0;
-    motorPosSpeedObject.rotorSpeedTempCount = 0;
+    motorPosSpeedObject.rotorSpeedTimeCount = 0;
     motorPosSpeedObject.rotorElecSpeedRadS = 0;
 }
 

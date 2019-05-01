@@ -3,13 +3,14 @@ array=[-18, 329; -18, 332; -18, 334; -18, 336; -18, 338; -18, 340; -18, 342; -18
 t_bwMeasurements = 10e-3;
 sizeArray = size(array);
 columns = sizeArray(1);
-sizeArray
 
 speedsCompare = zeros(size(array));
 
 
 for i=2:columns(1)
     speedsCompare(i-1,1) = array(i-1,1);
+    % array measurements are in deg. To go from deg to rpm --> 
+    % (deltaDeg / 10e-3s) * 60s/min * 1rev/360deg.
     speedsCompare(i-1,2) = -(60/360) * (array(i,2) - array(i-1,2)) / t_bwMeasurements;
 end
 

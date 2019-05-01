@@ -93,12 +93,33 @@ float obtainDeltaTheta(motorPosSpeed *motorPosSpeedObject)
 void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 {
     //Check direction and calculate electrical frequency.
-    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount;
-    else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount; //Going reverse direction.
+    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount;
+    else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount; //Going reverse direction.
 
     //Update other values.
     motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;
-    motorPosSpeedObject->rotorSpeedTempCount = 0;
+    motorPosSpeedObject->rotorSpeedTimeCount = 0;
+}
+
+
+/*
+ *  To ensure the maximum accuracy in the position, the period between two measurements is minimized to switching frequency.
+ *  However, the rotor speed cannot be calculated at the same frequency since it will lead to errors.
+ *  Instead, the speed will be calculated every 10 degrees.
+ */
+void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
+{
+    float deltaTheta;
+
+    deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
+
+    //Speed is only calculated every 10 degrees.
+    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 5000)
+        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
+
+    {
+        updateSpeed(motorPosSpeedObject, deltaTheta);
+    }
 }
 
 
@@ -117,25 +138,5 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
     if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
     motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
 
-    motorPosSpeedObject->rotorSpeedTempCount += SW_PERIOD_US;
-}
-
-
-/*
- *  To ensure the maximum accuracy in the position, the period between two measurements is minimized to switching frequency.
- *  However, the rotor speed cannot be calculated at the same frequency since it will lead to errors.
- *  Instead, the speed will be calculated every 10 degrees.
- */
-void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
-{
-    float deltaTheta;
-
-    deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
-
-    //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTempCount > 100 * SW_PERIOD_US)
-        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
-    {
-        updateSpeed(motorPosSpeedObject, deltaTheta);
-    }
+    motorPosSpeedObject->rotorSpeedTimeCount += SW_PERIOD_US;
 }
