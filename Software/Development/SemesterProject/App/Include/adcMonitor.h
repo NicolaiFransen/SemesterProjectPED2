@@ -18,9 +18,9 @@
 //
 // Function prototyping
 //
-errorStatus areAdcMeasurementsWithinThresholds(void);
-errorStatus areBatteryMeasurementsWithinThresholds(void);
-errorStatus areCurrentMeasurementsWithinThresholds(void);
+errorStatus areAdcMeasurementsWithinThresholds(Uint16 errorStatus);
+errorStatus areBatteryMeasurementsWithinThresholds(Uint16 errorStatus);
+errorStatus areCurrentMeasurementsWithinThresholds(Uint16 errorStatus);
 
 errorStatus getErrorStatusInBit(Uint16);
 

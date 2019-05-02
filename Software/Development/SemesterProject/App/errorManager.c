@@ -49,19 +49,38 @@ static errorStatus systemErrorStatus = NO_ERROR;
 
 /*
  * This function updates the the error status of the different measurements,
- * and determines if safety reactions should be performed
+ * and determines if safety reactions should be performed.
+ *
+ * The error monitoring is divided into high and low priority signals, to minimize
+ * the execution time.
  */
-void monitorErrorSources(void)
+void monitorHighPriorityErrorSources(void)
 {
-    errorStatusList.currentErrorStatus = areCurrentMeasurementsWithinThresholds();
-    errorStatusList.batteryErrorStatus = areBatteryMeasurementsWithinThresholds();
-    errorStatusList.adcErrorStatus = areAdcMeasurementsWithinThresholds();
+    Uint16 errorStatus = getHighPriorityErrorStatus();
+
+    errorStatusList.currentErrorStatus = areCurrentMeasurementsWithinThresholds(errorStatus);
 
     if (errorStatusList.currentErrorStatus == ERROR_HAS_HAPPENED)
     {
         performSafetyReactions();
         updateCurrentErrorStatus();
     }
+}
+
+void performHighPriorityErrorMonitoring(void)
+{
+    if (isErrorMonitorSwitchEnabled())
+        monitorHighPriorityErrorSources();
+    else
+        resetSafetyReactions();
+}
+
+void monitorLowPriorityErrorSources(void)
+{
+    Uint16 errorStatus = getLowPriorityErrorStatus();
+
+    errorStatusList.batteryErrorStatus = areBatteryMeasurementsWithinThresholds(errorStatus);
+    errorStatusList.adcErrorStatus = areAdcMeasurementsWithinThresholds(errorStatus);
 
     if (errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED)
     {
@@ -76,13 +95,14 @@ void monitorErrorSources(void)
     }
 }
 
-void performErrorMonitoring(void)
+void performLowPriorityErrorMonitoring(void)
 {
     if (isErrorMonitorSwitchEnabled())
-        monitorErrorSources();
+        monitorLowPriorityErrorSources();
     else
         resetSafetyReactions();
 }
+
 
 /*
  * This function will call the safety features when an error is detected.

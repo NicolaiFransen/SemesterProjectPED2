@@ -109,8 +109,8 @@ void task100us(void)
 
 void task50us(void)
 {
-    executeControl();
-    performErrorMonitoring();
+//    executeControl();
+//    performErrorMonitoring();
 }
 
 void task10ms(void)
@@ -123,6 +123,7 @@ void task20ms(void)
     manageSystem();
     readDigitalInputs();
     readLowPrioritySignals();
+    performLowPriorityErrorMonitoring();
     handlePushbuttons();
     handleReferences();
 }
