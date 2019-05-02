@@ -58,7 +58,7 @@
 #define DEG_360_TO_RAD ((double)6.283185307179586) // '360 deg --> rad'
 #define REV_TO_RAD     ((double)6.283185307179586) // '1 rev   --> rad'
 #define RAD_TO_REV     ((double)0.159154943091895) // '1 rad   --> rev'
-#define RAD_TO_DEG     ((double)57.29577951)
+#define RAD_TO_DEG     ((float)57.29577951)
 
 
 // definitions specific to the motor
