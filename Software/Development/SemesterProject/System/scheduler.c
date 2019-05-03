@@ -33,7 +33,7 @@ static enum taskListTag
 {
     task50usItem,
     task100usItem,
-    task1msItem,
+    task5msItem,
     task10msItem,
     task20msItem,
     task200msItem,
@@ -57,10 +57,10 @@ void taskListInitialization(void)
     taskList[task100usItem].cyclicity = 100;
     taskList[task100usItem].timeLeft = 100;
 
-    taskList[task1msItem].functionPointer = task1ms;
-    taskList[task1msItem].taskState = INACTIVE;
-    taskList[task1msItem].cyclicity = 1000;
-    taskList[task1msItem].timeLeft = 1000;
+    taskList[task5msItem].functionPointer = task5ms;
+    taskList[task5msItem].taskState = INACTIVE;
+    taskList[task5msItem].cyclicity = 5000;
+    taskList[task5msItem].timeLeft = 5000;
 
     taskList[task10msItem].functionPointer = task10ms;
     taskList[task10msItem].taskState = INACTIVE;
@@ -119,14 +119,13 @@ void task50us(void)
     performErrorMonitoring();
 }
 
-void task1ms(void)
+void task5ms(void)
 {
-    printUART();
+    printCurrentsUART();
 }
 
 void task10ms(void)
 {
-    printUART();
     ServiceDog();
 }
 
@@ -137,6 +136,7 @@ void task20ms(void)
     readLowPrioritySignals();
     handlePushbuttons();
     handleReferences();
+    printUART();
 }
 
 void task200ms(void)
@@ -231,15 +231,18 @@ Uint32 getSystemClock(void)
 void printUART(void)
 {
 //    Print stuff with UART here¡!
-//    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
-//    UARTIntPrint("Vdc ", (int)(getDCLinkMeasurement() * 100));
-//    UARTIntPrint("Temp ", (int)getThermometer1Measurement());
-//    UARTIntPrint("RPM ", (int)readRotorRPM());
+    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
+    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
+    UARTIntPrint("T ", (int)getThermometer1Measurement());
+    UARTIntPrint("RPM ", (int)readRotorRPM());
+}
 
+void printCurrentsUART(void)
+{
 //    float currentsToPrint[3];
 //
 //    getCurrentMeasurements(&currentsToPrint[0]);
-//    UARTIntPrint("Ia ", (int)currentsToPrint[0]);
-//    UARTIntPrint("Ib ", (int)currentsToPrint[1]);
-//    UARTIntPrint("Ic ", (int)currentsToPrint[2]);
+//    UARTIntPrint("a ", (int)currentsToPrint[0]);
+//    UARTIntPrint("b ", (int)currentsToPrint[1]);
+//    UARTIntPrint("c ", (int)currentsToPrint[2]);
 }
