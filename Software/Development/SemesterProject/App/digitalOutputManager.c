@@ -25,7 +25,7 @@ static struct digitalOutputListTag
     DigitalOutput torqueReferenceUARTLED;
     DigitalOutput LED10;
     DigitalOutput LED9;
-    DigitalOutput LED18;
+    DigitalOutput runningLED;
     DigitalOutput errorLED;
     DigitalOutput extraLED1;
     DigitalOutput extraLED2;
@@ -57,7 +57,7 @@ void initDigitalOutputs(void)
     digitalOutput_Constructor(&digitalOutputList.LED9, DS9);
     digitalOutput_Constructor(&digitalOutputList.LED10, DS10);
     digitalOutput_Constructor(&digitalOutputList.errorLED, DS17);
-    digitalOutput_Constructor(&digitalOutputList.LED18, DS18);
+    digitalOutput_Constructor(&digitalOutputList.runningLED, DS18);
     digitalOutput_Constructor(&digitalOutputList.LED19, DS19);
     digitalOutput_Constructor(&digitalOutputList.LED20, DS20);
     digitalOutput_Constructor(&digitalOutputList.extraLED1, J5);
@@ -122,9 +122,9 @@ void setErrorLED(digitalOutputStatus state)
     setDigitalOutput(&digitalOutputList.errorLED, state);
 }
 
-void setLED18(digitalOutputStatus state)
+void setRunningLED(digitalOutputStatus state)
 {
-    setDigitalOutput(&digitalOutputList.LED18, state);
+    setDigitalOutput(&digitalOutputList.runningLED, state);
 }
 
 void setLED19(digitalOutputStatus state)
@@ -242,9 +242,9 @@ int getErrorLEDState(void)
     return digitalOutputList.errorLED.state;
 }
 
-int getLED18State(void)
+int getRunningLEDState(void)
 {
-    return digitalOutputList.LED18.state;
+    return digitalOutputList.runningLED.state;
 }
 
 int getLED19State(void)
