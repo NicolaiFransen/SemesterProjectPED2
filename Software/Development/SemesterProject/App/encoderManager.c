@@ -93,32 +93,12 @@ float obtainDeltaTheta(motorPosSpeed *motorPosSpeedObject)
 void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 {
     //Check direction and calculate electrical frequency.
-    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount;
-    else motorPosSpeedObject->rotorSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTempCount; //Going reverse direction.
+    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount;
+    else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount; //Going reverse direction.
 
     //Update other values.
     motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;
-    motorPosSpeedObject->rotorSpeedTempCount = 0;
-}
-
-
-/*
- * Obtain the rotor angle from encoder.
- */
-void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
-{
-    // Check rotor direction: 0=CCW/reverse, 1=CW/forward.
-    motorPosSpeedObject->dir = EQep1Regs.QEPSTS.bit.QDF;
-
-    //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
-    motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
-
-    //Transform into electrical angle [rad]
-    motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
-    if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
-    motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
-
-    motorPosSpeedObject->rotorSpeedTempCount += SW_PERIOD_US;
+    motorPosSpeedObject->rotorSpeedTimeCount = 0;
 }
 
 
@@ -134,9 +114,29 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
     deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
     //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTempCount > 120 * SW_PERIOD_US)
-        //Enter here either if there have been more than 10º or if a time longer than 6ms has passed (for low speeds).
+    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 5000)
+        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
+
     {
         updateSpeed(motorPosSpeedObject, deltaTheta);
     }
+}
+
+
+/*
+ * Obtain the rotor angle from encoder.
+ */
+void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
+{
+    // Check rotor direction: 0=CCW/reverse, 1=CW/forward.
+    motorPosSpeedObject->dir = EQep1Regs.QEPSTS.bit.QDF;
+
+    //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
+    motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
+    //Transform into electrical angle [rad]
+    motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
+    motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+
+    motorPosSpeedObject->rotorSpeedTimeCount += SW_PERIOD_US;
 }

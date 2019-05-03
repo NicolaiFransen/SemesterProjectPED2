@@ -41,8 +41,8 @@ void rotorPosSpeedConstructor(void)
     motorPosSpeedObject.rotorThetaMech = 0;
     motorPosSpeedObject.rotorThetaElec = 0;
     motorPosSpeedObject.rotorThetaElecOld = 0;
-    motorPosSpeedObject.rotorSpeedTempCount = 0;
-    motorPosSpeedObject.rotorSpeedRadS = 0;
+    motorPosSpeedObject.rotorSpeedTimeCount = 0;
+    motorPosSpeedObject.rotorElecSpeedRadS = 0;
 }
 
 
@@ -81,24 +81,24 @@ float readRotorMechAngleRad(void)
 
 
 //Read rotor related speeds.
-float readRotorSpeedRadS(void)
+float readRotorElecSpeedRadS(void)
 {
-    return motorPosSpeedObject.rotorSpeedRadS;
+    return motorPosSpeedObject.rotorElecSpeedRadS;
 }
 
 float readRotorElecFreqHz(void)
 {
-    return motorPosSpeedObject.rotorSpeedRadS * RAD_TO_REV;
+    return motorPosSpeedObject.rotorElecSpeedRadS * RAD_TO_REV;
 }
 
 float readRotorMechFreqHz(void)
 {
-    return motorPosSpeedObject.rotorSpeedRadS * RAD_TO_REV * POLE_PAIRS_INVERSE;    //Hz
+    return motorPosSpeedObject.rotorElecSpeedRadS * RAD_TO_REV * POLE_PAIRS_INVERSE;    //Hz
 }
 
 int16 readRotorRPM(void)
 {
-    return (int16) (motorPosSpeedObject.rotorSpeedRadS * RAD_TO_REV * POLE_PAIRS_INVERSE * 60);    //rpm
+    return (int16) (motorPosSpeedObject.rotorElecSpeedRadS * RAD_TO_REV * POLE_PAIRS_INVERSE * 60);    //rpm
 }
 
 

@@ -17,7 +17,7 @@ typedef struct
 {
     //ROTOR RELATED PARAMETERS
     int32 rotorThetaRaw;      // Raw angle, counter of steps in cycle (steps).
-    int32 rotorSpeedTempCount;  // Defines how often the values will be updated.
+    int32 rotorSpeedTimeCount;  // Defines how often the values will be updated.
 
     int dir;             // rotor direction: 0=CCW/reverse, 1=CW/forward
 
@@ -25,7 +25,7 @@ typedef struct
     float rotorThetaElec;     // rotor Electrical angle (rad).
     float rotorThetaMech;     // rotor Mechanical Angle (rad).
 
-    float rotorSpeedRadS;     // rotor Electrical speed [rad/s]
+    float rotorElecSpeedRadS;     // rotor Electrical speed [rad/s]
 
     //SLIP RELATED PARAMETERS
     float slipAngleRad;
@@ -46,7 +46,7 @@ void rotorPosSpeedConstructor(void);
 
 float readRotorElecAngleRad(void);
 float readRotorElecFreqHz(void);
-float readRotorSpeedRadS(void);
+float readRotorElecSpeedRadS(void);
 float readRotorMechAngleRad(void);
 float readRotorMechFreqHz(void);
 int16 readRotorRPM(void);
@@ -62,5 +62,6 @@ float readRotorFluxAngleRad(void);
 float readRotorFluxSpeedRadS(void);
 void calcSlipSpeed(motorPosSpeed *);
 void calcSlipAngle(motorPosSpeed *);
+
 
 #endif /* APP_INCLUDE_POSITIONCALCULATOR_H_ */

@@ -58,6 +58,7 @@
 #define DEG_360_TO_RAD      ((float)6.283185307179586)      // '360 deg --> rad'
 #define REV_TO_RAD          ((float)6.283185307179586)      // '1 rev   --> rad'
 #define RAD_TO_REV          ((float)0.159154943091895)      // '1 rad   --> rev'
+#define RAD_TO_DEG     		((float)57.29577951)
 
 
 // definitions specific to the motor
@@ -73,7 +74,7 @@
 #define ID_RATED_INVERSE    ((float)0.006701123845)         // 'Id rated current inverse --> A^-1'
 
 #define MAX_STATOR_FREQ     58 //Hz used for VF control
-#define ENCODER_STEPS       2048
+#define ENCODER_STEPS       8192
 
 #define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
 #define POLE_PAIRS            2                             //Number of pole pairs of the motor.
