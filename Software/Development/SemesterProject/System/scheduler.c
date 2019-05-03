@@ -22,6 +22,7 @@
  */
 static enum taskListTag
 {
+    task5msItem,
     task10msItem,
     task20msItem,
     task200msItem,
@@ -35,6 +36,11 @@ static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
+    taskList[task5msItem].functionPointer = task5ms;
+    taskList[task5msItem].taskState = INACTIVE;
+    taskList[task5msItem].cyclicity = 5000;
+    taskList[task5msItem].timeLeft = 5000;
+
     taskList[task10msItem].functionPointer = task10ms;
     taskList[task10msItem].taskState = INACTIVE;
     taskList[task10msItem].cyclicity = 10000;
@@ -82,6 +88,11 @@ void runTask(void (*functionPTR)())
 /*
  * Tasks definition
  */
+void task5ms(void)
+{
+    printCurrentsUART();
+}
+
 void task10ms(void)
 {
     ServiceDog();
@@ -94,6 +105,7 @@ void task20ms(void)
     readLowPrioritySignals();
     handlePushbuttons();
     handleReferences();
+    printUART();
 }
 
 void task200ms(void)
@@ -183,4 +195,23 @@ void handleSystemClock(void)
 Uint32 getSystemClock(void)
 {
     return sysClock;
+}
+
+void printUART(void)
+{
+//    Print stuff with UART here�!
+//    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
+//    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
+//    UARTIntPrint("T ", (int)getThermometer1Measurement());
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
+}
+
+void printCurrentsUART(void)
+{
+//    float currentsToPrint[3];
+//
+//    getCurrentMeasurements(&currentsToPrint[0]);
+//    UARTIntPrint("a ", (int)currentsToPrint[0]);
+//    UARTIntPrint("b ", (int)currentsToPrint[1]);
+//    UARTIntPrint("c ", (int)currentsToPrint[2]);
 }

@@ -84,11 +84,11 @@ void sciConfiguration(void)
 
 //  Baudrate select desired speed. @LSPCLK = 22.5 MHz
     //38400 baud/s
-    SciaRegs.SCIHBAUD = 0;
-    SciaRegs.SCILBAUD = 0x48;
+//    SciaRegs.SCIHBAUD = 0;
+//    SciaRegs.SCILBAUD = 0x48;
 //    //115200 baud/s
-//    SciaRegs.SCIHBAUD = 0x00;
-//    SciaRegs.SCILBAUD = 0x17;
+    SciaRegs.SCIHBAUD = 0x00;
+    SciaRegs.SCILBAUD = 0x17;
 
 
 
