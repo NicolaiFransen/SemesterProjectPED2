@@ -25,8 +25,11 @@ typedef enum
 //
 // Function prototyping
 //
-void monitorErrorSources(void);
-void performErrorMonitoring(void);
+void monitorHighPriorityErrorSources(void);
+void performHighPriorityErrorMonitoring(void);
+void monitorLowPriorityErrorSources(void);
+void performLowPriorityErrorMonitoring(void);
+
 void performSafetyReactions(void);
 void resetSafetyReactions(void);
 void disableDrivers(void);

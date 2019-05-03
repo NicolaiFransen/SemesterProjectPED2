@@ -105,7 +105,7 @@ void calculateFilteredValue(void *signal, int size)
  * The function returns a '0' in the position of the signal
  * if the measurement is outside the threshold values
  */
-Uint16 getAnalogErrorStatus(void)
+Uint16 getHighPriorityErrorStatus(void)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = &CurrentSignalList.currentMeasA;
@@ -113,6 +113,7 @@ Uint16 getAnalogErrorStatus(void)
 
     Uint16 errorStatus = 0;
     int i = 0;
+
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
         if (structPointer->filteredValue < structPointer->threshold[0] || structPointer->filteredValue > structPointer->threshold[1])
@@ -121,8 +122,17 @@ Uint16 getAnalogErrorStatus(void)
         i++;
     }
 
-    initialMemoryPosition = &AnalogSignalList.voltageMeas24;
-    finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
+    return errorStatus;
+}
+
+Uint16 getLowPriorityErrorStatus(void)
+{
+    AnalogSignal *structPointer;
+    AnalogSignal *initialMemoryPosition = &AnalogSignalList.voltageMeas24;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
+
+    Uint16 errorStatus = 0;
+    int i = 3;
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
     {
@@ -320,7 +330,7 @@ void createAnalogSignals(void)
 {
     // Definition of filter parameters
     char filterType = 'L';
-    int filterOrder = 1, filterFreq = 50;
+    int filterOrder = 1, filterFreq = 500;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
@@ -337,7 +347,7 @@ void createAnalogSignals(void)
      */
     setCurrentThresholds(&currentThreshold[0], 250, -250);
     setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 45, 0);
-    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 15);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 15);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.

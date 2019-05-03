@@ -10,14 +10,6 @@
 
 #include "highPriorityTasks.h"
 
-void executeHighPriorityTasks(void)
-{
-    getRotorPosSpeedParameters();       // Update speed measurement
-    executeControl();                   // Executes the selected control type
-    performErrorMonitoring();           // Monitors the system for errors
-}
-
-
 
 /*
  * This interrupt is called every time the ADC registers have been updated.
@@ -26,10 +18,26 @@ __interrupt void adc_isr(void)
 {
     readHighPrioritySignals();
 
-    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;   // Acknowledge interrupt to PIE
+    acknowledgeAdcInterrupt();
 
     executeHighPriorityTasks();
 
     return;
 }
+
+void executeHighPriorityTasks(void)
+{
+    getRotorPosSpeedParameters();                   // Update speed measurement
+    executeControl();                               // Executes the selected control type
+    performHighPriorityErrorMonitoring();           // Monitors the system for errors
+}
+
+/*
+ * This will acknowledge the interrupt from the ADC, so the system is ready for a new interrupt
+ */
+void acknowledgeAdcInterrupt(void)
+{
+    AdcRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;         // Acknowledge interrupt to PIE
+}
+

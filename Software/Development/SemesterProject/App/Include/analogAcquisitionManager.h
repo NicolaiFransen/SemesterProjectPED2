@@ -63,7 +63,8 @@ void calculateFilteredValue(void *signal, int signalSize);
 /*
  * function to check for faulty reading
  */
-Uint16 getAnalogErrorStatus(void);
+Uint16 getHighPriorityErrorStatus(void);
+Uint16 getLowPriorityErrorStatus(void);
 
 /*
  * Functions to set threshold values

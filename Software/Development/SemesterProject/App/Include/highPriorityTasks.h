@@ -19,6 +19,7 @@
 __interrupt void adc_isr(void);
 
 void executeHighPriorityTasks(void);
+void acknowledgeAdcInterrupt(void);
 
 
 #endif /* APP_INCLUDE_HIGHPRIORITYTASKS_H_ */

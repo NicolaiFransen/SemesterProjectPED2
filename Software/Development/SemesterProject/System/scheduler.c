@@ -103,6 +103,7 @@ void task20ms(void)
     manageSystem();
     readDigitalInputs();
     readLowPrioritySignals();
+    performLowPriorityErrorMonitoring();
     handlePushbuttons();
     handleReferences();
     printUART();

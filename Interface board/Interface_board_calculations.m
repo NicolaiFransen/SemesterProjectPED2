@@ -47,6 +47,13 @@ plot(Iin, Vout)
 xlabel('Measured current')
 ylabel('Output voltage')
 
+%% Current sensor filtering
+
+c = 100e-9;
+R1 = 5e3;
+f = 1/(2*pi*R1*c)
+
+
 %% Voltage sensor Amplification
 clear
 close all
@@ -80,7 +87,7 @@ eq = V1 == (R1/(R+R1)) * Vdc;
 solve(eq, R)
 
 %% Voltage divider for 24V measuring
-Vin = 24; %24V
+Vin = 26; %24V
 Vout = 3.3;
 R2 = 1e3;
 
