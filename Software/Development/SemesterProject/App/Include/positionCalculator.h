@@ -10,7 +10,6 @@
 
 #include "DSP28x_Project.h"
 #include "Constants.h"
-#include "positionCalculator.h"
 #include "referenceHandler.h"
 
 
@@ -59,6 +58,8 @@ void rotorPosCalc(motorPosSpeed *);
 void rotorSpeedCalc(motorPosSpeed *);
 
 //Functions related to positionCalculator.c
+float readRotorFluxAngleRad(void);
+float readRotorFluxSpeedRadS(void);
 void calcSlipSpeed(motorPosSpeed *);
 void calcSlipAngle(motorPosSpeed *);
 

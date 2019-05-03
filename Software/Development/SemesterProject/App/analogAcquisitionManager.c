@@ -217,7 +217,6 @@ void setThermometerThresholds(float *thermometerThresholdArray,
     *thermometerThresholdArray = maximumTemperatureThreshold;
 }
 
-
 /*
  * Interface functions to return filtered measurements
  * It's used as followed:
@@ -526,4 +525,3 @@ void configureADCRegisters(void)
     AdcRegs.ADCSOC2CTL.bit.ACQPS        = SAMPLING_RATE;
     EDIS;
 }
-

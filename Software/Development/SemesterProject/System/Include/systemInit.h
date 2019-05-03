@@ -27,7 +27,6 @@
 #include "communicationManager.h"
 #include "UARTInterface.h"
 
-
 //
 // Function Prototypes statements for functions found within this file.
 //

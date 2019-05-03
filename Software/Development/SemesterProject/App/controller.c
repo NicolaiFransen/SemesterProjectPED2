@@ -29,7 +29,7 @@ void initPIControllers(void)
 /*
  * Interface functions to use PI controllers
  */
-float PiCalcualtionIQ(float reference, float measuredValue)
+float PiCalculationIQ(float reference, float measuredValue)
 {
     return PiCalculation(&PIControllerList.IqController, reference, measuredValue);
 }
@@ -39,13 +39,13 @@ float PiCalculationID(float reference, float measuredValue)
     return PiCalculation(&PIControllerList.IdController, reference, measuredValue);
 }
 
-float PiCalculationSpeed(float reference, float measuredValue)
+float PiCalculationSpeed(float reference, int16 measuredValue)
 {
-    return PiCalculation(&PIControllerList.SpeedController, reference, measuredValue);
+    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue);
 }
 
 
-float calculateIdReference(void)
+float getIdReference(void)
 {
     return D_CURRENT_REFERENCE;
 }

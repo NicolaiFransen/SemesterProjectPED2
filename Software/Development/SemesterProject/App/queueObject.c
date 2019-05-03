@@ -53,7 +53,7 @@ void enqueue(struct Queue* queue, char item)
 char dequeue(struct Queue* queue)
 {
     if (isEmpty(queue))
-        return CHAR_MIN;
+        return 38;
     char item = queue->array[queue->front];
     queue->front = (queue->front + 1)%queue->capacity;
     queue->size = queue->size - 1;
@@ -74,6 +74,12 @@ char rear(struct Queue* queue)
     if (isEmpty(queue))
         return CHAR_MIN;
     return queue->array[queue->rear];
+}
+
+// Function to get queue size
+int size(struct Queue* queue)
+{
+    return queue->size;
 }
 
 /*
@@ -126,7 +132,7 @@ void UARTIntPrint(char *variableName, int value)
     strASCII = intToAscii(value, str);
     UARTStringPrint(variableName);
     UARTStringPrint(strASCII);
-    UARTStringPrint(",\n\r");
+    UARTStringPrint("\n\r");
 }
 
 void UARTStringPrint(char *stringToPrint)
@@ -148,6 +154,11 @@ char getNextBufferValue(void)
 int isUARTBufferEmpty(void)
 {
     return isEmpty(queue);
+}
+
+int getUARTBufferSize(void)
+{
+    return size(queue);
 }
 
 

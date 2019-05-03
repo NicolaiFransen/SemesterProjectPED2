@@ -40,13 +40,16 @@ union INT16_DATA_PACKAGE receivedData, dataToSend;
  */
 interrupt void SCIA_TX_isr(void)
 {
-    SciaRegs.SCITXBUF = getNextBufferValue();
-    SciaRegs.SCITXBUF = getNextBufferValue();
-    SciaRegs.SCITXBUF = getNextBufferValue();
-    SciaRegs.SCITXBUF = getNextBufferValue();
+    if (getUARTBufferSize() >= 4)
+    {
+        SciaRegs.SCITXBUF = getNextBufferValue();
+        SciaRegs.SCITXBUF = getNextBufferValue();
+        SciaRegs.SCITXBUF = getNextBufferValue();
+        SciaRegs.SCITXBUF = getNextBufferValue();
 
-    // If the UART buffer is not empty then enable the interrupt so the transmission keeps going
-    if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+        // If the UART buffer is not empty then enable the interrupt so the transmission keeps going
+        if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+    }
 
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;
 }
@@ -79,9 +82,15 @@ void sciConfiguration(void)
     SciaRegs.SCICTL1.bit.TXWAKE = 0; //No wakeup mode
     SciaRegs.SCICTL1.bit.SWRESET = 0; //Enable SCI after reset
 
-//  Baudrate
-    SciaRegs.SCIHBAUD = 0x00; // 115200 baud @LSPCLK = 22.5 MHz
-    SciaRegs.SCILBAUD = 0x17;
+//  Baudrate select desired speed. @LSPCLK = 22.5 MHz
+    //38400 baud/s
+    SciaRegs.SCIHBAUD = 0;
+    SciaRegs.SCILBAUD = 0x48;
+//    //115200 baud/s
+//    SciaRegs.SCIHBAUD = 0x00;
+//    SciaRegs.SCILBAUD = 0x17;
+
+
 
 //  SCICTL2
     SciaRegs.SCICTL2.bit.TXINTENA = 0;//ENable transmit interrupt
