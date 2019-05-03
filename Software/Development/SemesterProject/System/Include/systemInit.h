@@ -17,6 +17,7 @@
 #include "../../App/Include/analogAcquisitionManager.h"
 #include "../../App/Include/dutyCycle.h"
 #include "../../App/Include/openLoopControlManager.h"
+#include "../../App/Include/highPriorityTasks.h"
 #include "string.h"
 #include "digitalInputManager.h"
 #include "errorManager.h"

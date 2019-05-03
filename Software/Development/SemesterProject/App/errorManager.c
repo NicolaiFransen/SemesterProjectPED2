@@ -78,7 +78,7 @@ void monitorErrorSources(void)
 
 void performErrorMonitoring(void)
 {
-    if (isErrorMonitorSwitchEnabled())
+    if (isErrorMonitorSwitchEnabled() && filtersHaveSettled())
         monitorErrorSources();
     else
         resetSafetyReactions();
@@ -129,6 +129,20 @@ void turnOnErrorLED(void)
 void turnOffErrorLED(void)
 {
     setErrorLED(OFF);
+}
+
+/*
+ * This function returns a '1' when the system clock counter has reached 25,
+ * equal to 25*200ms = 5s.
+ * This is used to let the filters settle during system startup, so startup
+ * errors will not be generated.
+ */
+int filtersHaveSettled(void)
+{
+    if(getSystemClock() > 25)
+        return 1;
+    else
+        return 0;
 }
 
 /*
@@ -296,7 +310,7 @@ errorStatus getBrakeReferencePedalErrorStatus(void)
 /*
  * This function will return the overall error status of the system.
  */
-errorStatus getSystemErrorStatus(void)
+errorStatus getErrorManagerStatus(void)
 {
     return systemErrorStatus;
 }
@@ -346,6 +360,14 @@ void resetErrorStatus(void)
     systemErrorStatus = NO_ERROR;
 }
 
+
+/*
+ * Function to force the system in error state
+ */
+void forceSystemError(void)
+{
+    performSafetyReactions();
+}
 
 /*
  * Function to initialize the watchdog.
