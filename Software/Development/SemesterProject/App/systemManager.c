@@ -29,7 +29,7 @@ static SysMgrState systemState = STARTUP;
 void manageSystem(void)
 {
     // Switch LEDs off
-    setLED18(OFF);
+    setRunningLED(OFF);
 
     switch (systemState)
     {
@@ -42,14 +42,15 @@ void manageSystem(void)
         case STANDBY:
         {
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
+            if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             resetIntegrators();
         }break;
 
         case RUNNING:
         {
             if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
-            if(getSystemErrorStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
-            setLED18(ON); // System is in running state LED
+            if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
+            setRunningLED(ON); // System is in running state LED
             enableDrivers();
 
         }break;
@@ -63,6 +64,9 @@ void manageSystem(void)
                 systemState = STANDBY;
             }
         }break;
+        default: forceSystemError();
+        break;
+
     }
 }
 

@@ -18,21 +18,10 @@
 #include "Include/scheduler.h"
 
 /*
- * testing includes
- */
-#include "referenceFrameConversion.h"
-
-/*
- *
- */
-
-/*
  * Quasi-global variable definition
  */
 static enum taskListTag
 {
-    task50usItem,
-    task100usItem,
     task5msItem,
     task10msItem,
     task20msItem,
@@ -47,16 +36,6 @@ static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
-    taskList[task50usItem].functionPointer = task50us;
-    taskList[task50usItem].taskState = INACTIVE;
-    taskList[task50usItem].cyclicity = 50;
-    taskList[task50usItem].timeLeft = 50;
-
-    taskList[task100usItem].functionPointer = task100us;
-    taskList[task100usItem].taskState = INACTIVE;
-    taskList[task100usItem].cyclicity = 100;
-    taskList[task100usItem].timeLeft = 100;
-
     taskList[task5msItem].functionPointer = task5ms;
     taskList[task5msItem].taskState = INACTIVE;
     taskList[task5msItem].cyclicity = 5000;
@@ -109,16 +88,6 @@ void runTask(void (*functionPTR)())
 /*
  * Tasks definition
  */
-void task100us(void)
-{//running at switching 10kHz (update with switching frequency);
-}
-
-void task50us(void)
-{
-    executeControl();
-    performErrorMonitoring();
-}
-
 void task5ms(void)
 {
     printCurrentsUART();
@@ -218,7 +187,7 @@ void deactivateTask(int taskListIndex)
 void handleSystemClock(void)
 {
     sysClock++;
-    if (sysClock >= INT_MAX)    sysClock = 0;
+    if (sysClock >= UINT_MAX)    sysClock = 0;
 
     UARTIntPrint("TS ", (int)sysClock);
 }
@@ -230,11 +199,11 @@ Uint32 getSystemClock(void)
 
 void printUART(void)
 {
-//    Print stuff with UART here¡!
-    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
-    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
-    UARTIntPrint("T ", (int)getThermometer1Measurement());
-    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    Print stuff with UART hereï¿½!
+//    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
+//    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
+//    UARTIntPrint("T ", (int)getThermometer1Measurement());
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
 }
 
 void printCurrentsUART(void)

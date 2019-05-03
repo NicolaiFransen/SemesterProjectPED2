@@ -46,8 +46,6 @@ void taskListInitialization(void);
 void scheduleTasks(void);
 void runTask(void (*functionPTR)());
 
-void task50us(void);
-void task100us(void);
 void task5ms(void);
 void task10ms(void);
 void task20ms(void);
