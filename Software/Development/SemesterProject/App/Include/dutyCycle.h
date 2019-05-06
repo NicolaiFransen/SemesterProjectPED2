@@ -17,9 +17,12 @@
 //
 // Definitions
 //
-#define MIN_DUTY_VALUE  0.0
-#define MAX_DUTY_VALUE  100.0
+#define MIN_DUTY_VALUE      0.0
+#define MAX_DUTY_VALUE      100.0
+#define MAX_DUTY_VALUE_INV  0.01
 #define MIN_DUTY_COMPARE    0
+
+
 //Counter compare module (CMPA) uses the time counter variable to compare in order to set the
 //correct PWM duty cycle, for this, it is important to know how many counts there are in a cycle.
 //In the PWMConfig.c file, the period of the duty cycle is set by assigning the number of clk of a
@@ -34,29 +37,16 @@
 //
 typedef struct DutyCycleTag
 {
-    float dutyValue;
-    Uint16 dutyCompare;
-} DutyCycle;
+    float dutyA;
+    float dutyB;
+    float dutyC;
+} DutyCycles;
 
-
-typedef struct DutyCycleListTag
-{
-    DutyCycle legA;
-    DutyCycle legB;
-    DutyCycle legC;
-
-    float minDutyValue;
-    float maxDutyValue;
-
-    Uint16 minDutyCompare;
-    Uint16 maxDutyCompare;
-} DutyCycleListType;
 
 
 //
 // Function prototyping
 //
-void initPWM();
 void setDutyA(float);
 void setDutyB(float);
 void setDutyC(float);
@@ -64,6 +54,5 @@ void setAllDuties(float);
 float readDutyA();
 float readDutyB();
 float readDutyC();
-float readMaxDuty();
 
 #endif /* APP_DUTYCYCLE_H_ */
