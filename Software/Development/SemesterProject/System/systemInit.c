@@ -154,7 +154,6 @@ void systemInit(void)
     //  App structures initialization
     //
     initDigitalInputs();
-    initPWM();
     initAnalogSignals();      // Initialize the analog signals and their ADC channels
     initializeGUIPushbuttonsStructure();
     initDigitalOutputs();
