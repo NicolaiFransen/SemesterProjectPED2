@@ -79,4 +79,6 @@ void resetIqIntegrator(void)
 void resetSpeedIntegrator(void)
 {
     PIControllerList.SpeedController.integrationOfError = 0;
+    PIControllerList.SpeedController.previousOutput = 0;
+    PIControllerList.SpeedController.previousLimitedOutput = 0;
 }

@@ -64,10 +64,13 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
     // If the wanted output is outside saturation limits, then limit the output
     if (isOutputSaturatedPositive(PIcontroller, PIoutput))
+    {
         PIoutput = PIcontroller->saturationLimit;
-
+    }
     else if (isOutputSaturatedNegative(PIcontroller, PIoutput))
+    {
         PIoutput = -(PIcontroller->saturationLimit);
+    }
 
     return PIoutput;
 }

@@ -18,6 +18,7 @@
 #include "../../App/Include/dutyCycle.h"
 #include "../../App/Include/openLoopControlManager.h"
 #include "../../App/Include/highPriorityTasks.h"
+#include "controller.h"
 #include "string.h"
 #include "digitalInputManager.h"
 #include "errorManager.h"

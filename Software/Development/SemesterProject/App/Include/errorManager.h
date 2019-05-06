@@ -20,6 +20,8 @@ typedef enum
 #include "digitalOutput.h"
 #include "digitalOutputManager.h"
 #include "digitalInputManager.h"
+#include "Constants.h"
+#include "positionCalculator.h"
 #include "../scheduler.h"
 
 //

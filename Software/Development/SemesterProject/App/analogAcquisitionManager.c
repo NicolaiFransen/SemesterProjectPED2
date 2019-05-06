@@ -330,7 +330,8 @@ void createAnalogSignals(void)
 {
     // Definition of filter parameters
     char filterType = 'L';
-    int filterOrder = 1, filterFreq = 500;
+    int filterOrder = 1;
+    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 100;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
@@ -346,26 +347,26 @@ void createAnalogSignals(void)
      * Then pass the maximum and then the minimum value of the threshold you want to set.
      */
     setCurrentThresholds(&currentThreshold[0], 250, -250);
-    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 45, 0);
-    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 15);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 25);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.
     Uint16 currentMeasAChannel = IA;
     Signal_Constructor(&CurrentSignalList.currentMeasA, filterType, filterOrder,
-                       filterFreq, currentMeasAChannel, currentThreshold, HIGH);
+                       currentFilterFreq, currentMeasAChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current B measurement.
     Uint16 currentMeasBChannel = IB;
     Signal_Constructor(&CurrentSignalList.currentMeasB, filterType, filterOrder,
-                       filterFreq, currentMeasBChannel, currentThreshold, HIGH);
+                       currentFilterFreq, currentMeasBChannel, currentThreshold, HIGH);
 
 
     // Create signal for Current C measurement.
     Uint16 currentMeasCChannel = IC;
     Signal_Constructor(&CurrentSignalList.currentMeasC, filterType, filterOrder,
-                       filterFreq, currentMeasCChannel, currentThreshold, HIGH);
+                       currentFilterFreq, currentMeasCChannel, currentThreshold, HIGH);
 
 
     // Create signal for 24V measurement
@@ -397,13 +398,13 @@ void createAnalogSignals(void)
     // Create signal for Left slider Potentiometer
     Uint16 leftSliderPotChannel = P1;
     Signal_Constructor(&AnalogSignalList.sliderPotLeft, filterType, filterOrder,
-                       filterFreq, leftSliderPotChannel, sliderPotThreshold, LOW);
+                       potFilterFreq, leftSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for Right slider potentiometer
     Uint16 rightSliderPotChannel = P2;
     Signal_Constructor(&AnalogSignalList.sliderPotRight, filterType, filterOrder,
-                       filterFreq, rightSliderPotChannel, sliderPotThreshold, LOW);
+                       potFilterFreq, rightSliderPotChannel, sliderPotThreshold, LOW);
 
 
     // Create signal for extra rotary potentiometer 1
@@ -456,9 +457,10 @@ void configureADCRegisters(void)
     EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
     EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
 
-    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
-    EPwm1Regs.ETSEL.bit.SOCASEL = 1;        // Select SOC from CMPA on upcount
-    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
+    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;            // Enable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;  // To trigger interrupt at PWM high
+//    EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_PRD;   // To trigger interrupt at PWM low
+    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;            // Generate pulse on 1st event
 
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;

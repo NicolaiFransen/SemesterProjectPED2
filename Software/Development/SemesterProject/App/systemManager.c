@@ -44,6 +44,7 @@ void manageSystem(void)
             if(isPowerSwitchEnabled() && userACKHasBeenPressed()) systemState = RUNNING;
             if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             resetIntegrators();
+            disableDrivers();
         }break;
 
         case RUNNING:
