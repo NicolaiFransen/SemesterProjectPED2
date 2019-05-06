@@ -69,10 +69,8 @@ void monitorHighPriorityErrorSources(void)
 
 void performHighPriorityErrorMonitoring(void)
 {
-    if (isErrorMonitorSwitchEnabled())
+    if (isErrorMonitorSwitchEnabled() && filtersHaveSettled())
         monitorHighPriorityErrorSources();
-    else
-        resetSafetyReactions();
 }
 
 void monitorLowPriorityErrorSources(void)
@@ -93,14 +91,17 @@ void monitorLowPriorityErrorSources(void)
         performSafetyReactions();
         updateAdcErrorStatus();
     }
+
+    if (readRotorRPM() > MAXIMUM_ROTOR_SPEED)
+    {
+        performSafetyReactions();
+    }
 }
 
 void performLowPriorityErrorMonitoring(void)
 {
-    if (isErrorMonitorSwitchEnabled())
+    if (isErrorMonitorSwitchEnabled() && filtersHaveSettled())
         monitorLowPriorityErrorSources();
-    else
-        resetSafetyReactions();
 }
 
 

@@ -22,7 +22,7 @@
 #include "errorManager.h"
 #include "Constants.h"
 
-#define TIMER_PERIOD_US       50
+#define TIMER_PERIOD_US       1000
 
 typedef enum
 {

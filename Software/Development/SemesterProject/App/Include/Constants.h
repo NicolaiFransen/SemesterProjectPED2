@@ -99,8 +99,9 @@
 #define KP_SPEED        (float)10
 #define KI_SPEED        (float)10
 
-#define CURRENT_LIMIT   200
-#define SPEED_LIMIT     1800
+#define CURRENT_LIMIT           100         // Maximum output for current PI's
+#define SPEED_LIMIT             800         // Maximum output for speed PI
+#define MAXIMUM_ROTOR_SPEED     1700        // Maximum rotor speed, for errorManager
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           9.1                 // Ohm

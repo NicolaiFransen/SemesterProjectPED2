@@ -23,10 +23,10 @@
 static enum taskListTag
 {
     task5msItem,
-    task10msItem,
     task20msItem,
     task200msItem,
     task1sItem,
+    task10msItem,
     numberOfTasks
 }taskListItems;
 
@@ -201,10 +201,10 @@ Uint32 getSystemClock(void)
 void printUART(void)
 {
 //    Print stuff with UART here�!
-//    UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
-//    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
-//    UARTIntPrint("T ", (int)getThermometer1Measurement());
-//    UARTIntPrint("RPM ", (int)readRotorRPM());
+    //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
+    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
+    UARTIntPrint("T ", (int)getThermometer1Measurement());
+    //UARTIntPrint("RPM ", (int)readRotorRPM());
 }
 
 void printCurrentsUART(void)

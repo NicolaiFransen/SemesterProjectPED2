@@ -96,10 +96,10 @@ void systemInit(void)
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
 
     //
-    // Configure CPU-Timer 0 to interrupt every 50 microseconds:
-    // 90MHz CPU Freq, 50 millisecond Period (in uSeconds)
+    // Configure CPU-Timer 0 to interrupt every 1000 microseconds:
+    // 90MHz CPU Freq
     //
-    ConfigCpuTimer(&CpuTimer0, 90, 50);
+    ConfigCpuTimer(&CpuTimer0, 90, 1000);
 
     //
     // To ensure precise timing, use write-only instructions to write to the
@@ -163,6 +163,7 @@ void systemInit(void)
     initUART();
     initEncoder();
     SVMInit();
+    initPIControllers();
 
 
     // Enable CPU INT1 which is connected to CPU-Timer 0, CPU int13
