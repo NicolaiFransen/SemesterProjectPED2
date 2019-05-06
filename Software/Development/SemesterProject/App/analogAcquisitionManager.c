@@ -457,10 +457,10 @@ void configureADCRegisters(void)
     EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
     EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;     // Select INT on Zero event
 
-    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;        // Enable SOC on A group
-//    EPwm1Regs.ETSEL.bit.SOCASEL = 1;        // To trigger interrupt at PWM high
-    EPwm1Regs.ETSEL.bit.SOCASEL = 2;        // To trigger interrupt at PWM low
-    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;        // Generate pulse on 1st event
+    EPwm1Regs.ETSEL.bit.SOCAEN  = 1;            // Enable SOC on A group
+    EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;  // To trigger interrupt at PWM high
+//    EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_PRD;   // To trigger interrupt at PWM low
+    EPwm1Regs.ETPS.bit.SOCAPRD  = 1;            // Generate pulse on 1st event
 
     // setup EOC1 to trigger ADCINT1 to fire
     AdcRegs.INTSEL1N2.bit.INT1SEL       = 1;
