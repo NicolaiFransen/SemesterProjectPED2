@@ -37,18 +37,11 @@
 //
 typedef struct DutyCycleTag
 {
-    float dutyValue;
-    Uint16 dutyCompare;
-} DutyCycle;
+    float dutyA;
+    float dutyB;
+    float dutyC;
+} DutyCycles;
 
-
-typedef struct DutyCycleListTag
-{
-    DutyCycle legA;
-    DutyCycle legB;
-    DutyCycle legC;
-
-} DutyCycleListType;
 
 
 //

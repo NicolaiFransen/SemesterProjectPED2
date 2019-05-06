@@ -21,7 +21,7 @@
 //
 // Quasi-global variables definition
 //
-DutyCycleListType DutyCycleList;
+DutyCycles DutyCycleList;
 
 
 /*
@@ -32,13 +32,10 @@ DutyCycleListType DutyCycleList;
 void setDutyA(float duty)
 {
     //Assign duty value to struct.
-    DutyCycleList.legA.dutyValue = duty;
+    DutyCycleList.dutyA = duty;
 
-    //Obtain comparator value.
-    DutyCycleList.legA.dutyCompare = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
-
-    //Assign comparator to PWM module.
-    EPwm1Regs.CMPA.half.CMPA = DutyCycleList.legA.dutyCompare;
+    //Calculate and assign comparator to PWM module.
+    EPwm1Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
 }
 
 
@@ -50,13 +47,10 @@ void setDutyA(float duty)
 void setDutyB(float duty)
 {
     //Assign duty value to struct.
-    DutyCycleList.legB.dutyValue = duty;
+    DutyCycleList.dutyB = duty;
 
-    //Obtain comparator value.
-    DutyCycleList.legB.dutyCompare = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
-
-    //Assign comparator to PWM module.
-    EPwm2Regs.CMPA.half.CMPA = DutyCycleList.legB.dutyCompare;
+    //Calculate and assign comparator to PWM module.
+    EPwm2Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
 }
 
 
@@ -68,13 +62,10 @@ void setDutyB(float duty)
 void setDutyC(float duty)
 {
     //Assign duty value to struct.
-    DutyCycleList.legC.dutyValue = duty;
+    DutyCycleList.dutyC = duty;
 
-    //Obtain comparator value.
-    DutyCycleList.legC.dutyCompare = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
-
-    //Assign comparator to PWM module.
-    EPwm3Regs.CMPA.half.CMPA = DutyCycleList.legC.dutyCompare;
+    //Calculate and assign comparator to PWM module.
+    EPwm3Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
 }
 
 
@@ -95,7 +86,7 @@ void setAllDuties(float duty)
  */
 float readDutyA()
 {
-    return DutyCycleList.legA.dutyValue;
+    return DutyCycleList.dutyA;
 }
 
 /*
@@ -104,7 +95,7 @@ float readDutyA()
  */
 float readDutyB()
 {
-    return DutyCycleList.legB.dutyValue;
+    return DutyCycleList.dutyB;
 }
 
 /*
@@ -113,5 +104,5 @@ float readDutyB()
  */
 float readDutyC()
 {
-    return DutyCycleList.legC.dutyValue;
+    return DutyCycleList.dutyC;
 }
