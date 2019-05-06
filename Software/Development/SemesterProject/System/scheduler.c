@@ -202,8 +202,8 @@ void printUART(void)
 {
 //    Print stuff with UART here�!
     //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
-    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
-    UARTIntPrint("T ", (int)getThermometer1Measurement());
+//    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
+//    UARTIntPrint("T ", (int)getThermometer1Measurement());
     //UARTIntPrint("RPM ", (int)readRotorRPM());
 }
 
