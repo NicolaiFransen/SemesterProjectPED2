@@ -70,6 +70,7 @@ void readLowPrioritySignals(void)
 {
     readAnalogSignals(&AnalogSignalList, sizeof(AnalogSignalList));
     calculateFilteredValue(&AnalogSignalList, sizeof(AnalogSignalList));
+    calculateInverseOfDcLinkMeas();
 }
 
 /*
@@ -80,7 +81,7 @@ void readAnalogSignals(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size * ANALOG_SIGNAL_SIZE_INVERSE;
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         readADCValue(structPointer);
@@ -94,11 +95,17 @@ void calculateFilteredValue(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size * ANALOG_SIGNAL_SIZE_INVERSE;
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         filterADCValue(structPointer);
 }
+
+void calculateInverseOfDcLinkMeas(void)
+{
+    AnalogSignalList.voltageMeas36.dcLinkInverse = 1 / getDCLinkMeasurement();
+}
+
 
 /*
  * Returns the error status of the analog measurements.
@@ -238,18 +245,15 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 void getCurrentMeasurements(float *currentMeasurement)
 {
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasA.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_A;
+            ((CurrentSignalList.currentMeasA.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_A;
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasB.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_B;
+            ((CurrentSignalList.currentMeasB.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_B;
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasC.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_C;
+            ((CurrentSignalList.currentMeasC.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_C;
 }
 
 float getDCLinkMeasurement(void)
@@ -312,6 +316,12 @@ float getMaxReferenceADC(void)
 {
     return MAX_VALUE_ADC;
 }
+
+float getInverseOfDcLinkMeasurement(void)
+{
+    return AnalogSignalList.voltageMeas36.dcLinkInverse;
+}
+
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
  */

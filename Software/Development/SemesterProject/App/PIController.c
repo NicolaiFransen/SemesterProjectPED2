@@ -22,6 +22,7 @@ void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI,
 {
     PIcontroller->KP = KP;
     PIcontroller->KI = KI;
+    PIcontroller->KPInverse = 1/KP;
     PIcontroller->saturationLimit = saturationThreshold;
 
     PIcontroller->integrationOfError = 0;
@@ -39,6 +40,7 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 {
     float KP = PIcontroller->KP;
     float KI = PIcontroller->KI;
+    float KPInverse = PIcontroller->KPInverse;
 
     float error, PIoutput, outputFeedback;
 
@@ -56,7 +58,7 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
         // Calculating the controller output
         PIoutput = KP * error +
-                  (KI * PIcontroller->integrationOfError - outputFeedback / KP);
+                  (KI * PIcontroller->integrationOfError - outputFeedback * KPInverse);
     }
     else
         // Calculating the controller output

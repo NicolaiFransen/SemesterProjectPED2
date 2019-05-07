@@ -45,11 +45,12 @@ void SVMInit(void)
  */
 void runSVM(alphaBetaObject voltageRef)
 {
-    float Vdc;
+    float Vdc, VdcInverse;
     int sector;
 
     Vdc = getDCLinkMeasurement();
-    voltageRef = limitVoltages(voltageRef, Vdc);
+    VdcInverse = getInverseOfDcLinkMeasurement();
+    voltageRef = limitVoltages(voltageRef, Vdc, VdcInverse);
     sector = findSector(voltageRef);
     t1t2Calculation[sector](voltageRef);
 }
@@ -57,7 +58,7 @@ void runSVM(alphaBetaObject voltageRef)
 /*
  * isqrt() is a function provided by fastRTS and approximates the inverse of the square root
  */
-alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc)
+alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc, float VdcInverse)
 {
     float weight = Vdc * ONE_DIV_SQRT3 * isqrt(voltageRef.alphaComponent * voltageRef.alphaComponent +
                                                voltageRef.betaComponent * voltageRef.betaComponent);
@@ -65,11 +66,11 @@ alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc)
 
     float qlimit = fabs(voltageRef.betaComponent * weight);
 
-    if (fabs(voltageRef.alphaComponent) > dlimit)  voltageRef.alphaComponent = 1.5 * signumf(voltageRef.alphaComponent) * dlimit / Vdc;
-    else    voltageRef.alphaComponent = 1.5 * voltageRef.alphaComponent / Vdc;
+    if (fabs(voltageRef.alphaComponent) > dlimit)  voltageRef.alphaComponent = 1.5 * signumf(voltageRef.alphaComponent) * dlimit * VdcInverse;
+    else    voltageRef.alphaComponent = 1.5 * voltageRef.alphaComponent * VdcInverse;
 
-    if (fabs(voltageRef.betaComponent) > qlimit)  voltageRef.betaComponent = 1.5 * signumf(voltageRef.betaComponent) * qlimit / Vdc;
-    else    voltageRef.betaComponent = 1.5 * voltageRef.betaComponent / Vdc;
+    if (fabs(voltageRef.betaComponent) > qlimit)  voltageRef.betaComponent = 1.5 * signumf(voltageRef.betaComponent) * qlimit * VdcInverse;
+    else    voltageRef.betaComponent = 1.5 * voltageRef.betaComponent * VdcInverse;
 
     return voltageRef;
 }

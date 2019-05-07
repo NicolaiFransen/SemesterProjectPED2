@@ -24,7 +24,7 @@ typedef struct
 
 void SVMInit(void);
 void runSVM(alphaBetaObject voltageRef);
-alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc);
+alphaBetaObject limitVoltages(alphaBetaObject voltageRef, float Vdc, float VdcInverse);
 int findSector(alphaBetaObject voltageRef);
 void sector0Calculation(alphaBetaObject voltageRef);
 void sector1Calculation(alphaBetaObject voltageRef);

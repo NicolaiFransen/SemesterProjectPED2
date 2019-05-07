@@ -6,6 +6,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include "analogSignal.h"
+
 
 //Processor related parameters
 #define CLOCK_FREQUENCY             ((float)150e6)          // 150 MHz clock frequency
@@ -80,8 +82,15 @@
 #define POLE_PAIRS            2                             //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE    ((float)0.5)                  //To be used instead of a division.
 
-#define TORQUE_TO_Q_CURRENT   1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
-#define D_CURRENT_REFERENCE   LAMDA_R/LM
+#define THETA_RAW_TO_THETA_ELEC     POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE
+#define THETA_RAW_TO_THETA_MECH     REV_TO_RAD * ENCODER_STEPS_INVERSE
+
+#define TORQUE_TO_Q_CURRENT         1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
+#define D_CURRENT_REFERENCE         LAMDA_R/LM
+
+#define MAX_ADC_STEPS               (float)4095.0
+#define MAX_ADC_REFERENCE           (float)3.3
+#define MAX_ADC_STEPS_INVERSE       1 / MAX_ADC_STEPS
 
 #define d_axis			0
 #define	q_axis			1
@@ -121,6 +130,10 @@
 #define DC_LINK_MEAS_TO_VOLTAGE         (R4_DCLINK_MEAS/R3_DCLINK_MEAS)*((R1_DCLINK_MEAS+R2_DCLINK_MEAS)/R2_DCLINK_MEAS)
 #define CONTROL_SUPPLY_MEAS_TO_VOLTAGE  ((R1_CONTROL_SUPPLY_MEAS+R2_CONTROL_SUPPLY_MEAS)/R2_CONTROL_SUPPLY_MEAS)
 
+// Defines of inverse current sensor transfer function
+#define OPAMP_OFFSET_CURRENT            (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP
+#define CURRENT_SENSOR_GAIN_INVERSE     CURRENT_SENSOR_GAIN / (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)
+
 // Sensor offsets
 #define CURRENT_SENSOR_OFFSET_A           9       // [A]
 #define CURRENT_SENSOR_OFFSET_B           9       // [A]
@@ -128,6 +141,9 @@
 #define CONTROL_SUPPLY_OFFSET             2       // [V]
 #define DC_LINK_OFFSET                    0       // [V]
 #define TEMP_SENSOR_OFFSET                0       // [deg C]
+
+// Defines of struct sizes
+#define ANALOG_SIGNAL_SIZE_INVERSE         1 / 24
 
 
 #endif  

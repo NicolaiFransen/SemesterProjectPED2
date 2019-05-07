@@ -42,6 +42,7 @@ typedef struct AnalogSignalTag
     Uint16 adcChannel;              // ADC channel for the signal
     float threshold[2];             // Maximum and minimum thresholds. Used for error handling.
     float maxValue;                 // Maximum ADC value for reference use
+    float dcLinkInverse;            // The inverse of the DC-Link measurement
     priorityObject priority;        // Priority of the signal (let's the filter calculator know how often it is executed)
 } AnalogSignal;
 

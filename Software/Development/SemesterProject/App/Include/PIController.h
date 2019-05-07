@@ -18,6 +18,7 @@ typedef struct PIobjectTag
 {
     float KP;
     float KI;
+    float KPInverse;
     float integrationOfError;
     float previousOutput;
     float previousLimitedOutput;
