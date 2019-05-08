@@ -214,7 +214,8 @@ void printUART(void)
     //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
 //    UARTIntPrint("T ", (int)getThermometer1Measurement());
-    //UARTIntPrint("RPM ", (int)readRotorRPM());
+    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("Pos ", (int)(readRotorMechAngleRad() * RAD_TO_DEG));
 }
 
 void printCurrentsUART(void)

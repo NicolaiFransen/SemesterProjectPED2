@@ -22,22 +22,20 @@ typedef struct PIobjectTag
     float integrationOfError;
     float previousOutput;
     float previousLimitedOutput;
-    float saturationLimit;
     int antiWindupFlag;
 } PIobject;
 
 /*
  * Initialization functions
  */
-void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI,
-                          float saturationLimit, int antiWindupFlag);
+void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag);
 
 float PiCalculation(PIobject *PIcontroller, float reference, float measurementValue);
 
 /*
  * Function to check saturation of output
  */
-int isOutputSaturatedPositive(PIobject *PIcontroller, float PIoutput);
-int isOutputSaturatedNegative(PIobject *PIcontroller, float PIoutput);
+int isOutputSaturatedPositive(float PIoutput);
+int isOutputSaturatedNegative(float PIoutput);
 
 #endif /* APP_INCLUDE_PICONTROLLER_H_ */

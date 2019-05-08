@@ -101,16 +101,15 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define KP_IQ           (float)2.58
-#define KI_IQ           (float)15.70
-#define KP_ID           (float)2.58
-#define KI_ID           (float)15.70
-#define KP_SPEED        (float)10
-#define KI_SPEED        (float)10
+#define KP_IQ           (float)2
+#define KI_IQ           (float)12.25
+#define KP_ID           (float)2
+#define KI_ID           (float)12.25
+#define KP_SPEED        (float)8.7
+#define KI_SPEED        (float)0.87
 
-#define CURRENT_LIMIT           100         // Maximum output for current PI's
-#define SPEED_LIMIT             800         // Maximum output for speed PI
-#define MAXIMUM_ROTOR_SPEED     1700        // Maximum rotor speed, for errorManager
+#define CURRENT_LIMIT           189 * SQRT_2    // Maximum output for current PI's
+#define MAXIMUM_ROTOR_SPEED     1700            // Maximum rotor speed, for errorManager
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           9.1                 // Ohm

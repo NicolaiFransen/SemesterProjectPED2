@@ -93,6 +93,16 @@ float getIqReference(float movementReference)
         iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
     }
 
+    // If the wanted output is outside saturation limits, then limit the output
+    if (isOutputSaturatedPositive(iqReference))
+    {
+        iqReference = CURRENT_LIMIT;
+    }
+    else if (isOutputSaturatedNegative(iqReference))
+    {
+        iqReference = -(CURRENT_LIMIT);
+    }
+
     return iqReference;
 }
 

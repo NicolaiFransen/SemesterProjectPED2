@@ -93,7 +93,9 @@ float obtainDeltaTheta(motorPosSpeed *motorPosSpeedObject)
 void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
 {
     //Check direction and calculate electrical frequency.
-    motorPosSpeedObject->rotorElecSpeedRadS = (motorPosSpeedObject->dir - 1) * deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount;
+    if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount;
+    else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount; //Going reverse direction.
+
 
     //Update other values.
     motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;

@@ -17,13 +17,11 @@
 #include "PIController.h"
 
 
-void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI,
-                          float saturationThreshold, int antiWindupFlag)
+void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag)
 {
     PIcontroller->KP = KP;
     PIcontroller->KI = KI;
     PIcontroller->KPInverse = 1/KP;
-    PIcontroller->saturationLimit = saturationThreshold;
 
     PIcontroller->integrationOfError = 0;
     PIcontroller->previousOutput = 0;
@@ -64,16 +62,6 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
         // Calculating the controller output
         PIoutput = KP * error + KI * PIcontroller->integrationOfError;
 
-    // If the wanted output is outside saturation limits, then limit the output
-    if (isOutputSaturatedPositive(PIcontroller, PIoutput))
-    {
-        PIoutput = PIcontroller->saturationLimit;
-    }
-    else if (isOutputSaturatedNegative(PIcontroller, PIoutput))
-    {
-        PIoutput = -(PIcontroller->saturationLimit);
-    }
-
     return PIoutput;
 }
 
@@ -81,14 +69,14 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 /*
  * Functions to check for saturation
  */
-int isOutputSaturatedPositive(PIobject *PIcontroller, float PIoutput)
+int isOutputSaturatedPositive(float PIoutput)
 {
-    return PIoutput > PIcontroller->saturationLimit;
+    return PIoutput > CURRENT_LIMIT;
 }
 
-int isOutputSaturatedNegative(PIobject * PIcontroller, float PIoutput)
+int isOutputSaturatedNegative(float PIoutput)
 {
-    return PIoutput < -(PIcontroller->saturationLimit);
+    return PIoutput < -(CURRENT_LIMIT);
 }
 
 

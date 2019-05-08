@@ -341,7 +341,7 @@ void createAnalogSignals(void)
     // Definition of filter parameters
     char filterType = 'L';
     int filterOrder = 1;
-    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 100;
+    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 50;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
@@ -357,8 +357,8 @@ void createAnalogSignals(void)
      * Then pass the maximum and then the minimum value of the threshold you want to set.
      */
     setCurrentThresholds(&currentThreshold[0], 250, -250);
-    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 25);
-    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 20);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 0);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.

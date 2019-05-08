@@ -21,9 +21,9 @@ static struct
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, CURRENT_LIMIT, 0);
-    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, CURRENT_LIMIT, 0);
-    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, SPEED_LIMIT, 1);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0);
+    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1);
 }
 
 /*
