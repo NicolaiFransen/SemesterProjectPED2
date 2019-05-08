@@ -54,6 +54,7 @@ void setThermometer2ErrorStatus(void);
 void setRotaryPot1ErrorStatus(void);
 void setRotaryPot2ErrorStatus(void);
 void setRotaryPot3ErrorStatus(void);
+void setForceSystemErrorStatus(void);
 
 errorStatus getCurrentAErrorStatus(void);
 errorStatus getCurrentBErrorStatus(void);

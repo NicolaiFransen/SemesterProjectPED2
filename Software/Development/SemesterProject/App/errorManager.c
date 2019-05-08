@@ -43,6 +43,7 @@ static struct
     errorStatus rotaryPot3ErrorStatus;
     errorStatus torqueReferencePedalErrorStatus;
     errorStatus brakeReferencePedalErrorStatus;
+    errorStatus forceSystemErrorStatus;
 } latchingErrorStatusList;
 
 static errorStatus systemErrorStatus = NO_ERROR;
@@ -252,6 +253,11 @@ void setBrakeReferencePedalErrorStatus(void)
         latchingErrorStatusList.brakeReferencePedalErrorStatus = ERROR_HAS_HAPPENED;
 }
 
+void setForceSystemErrorStatus(void)
+{
+    latchingErrorStatusList.forceSystemErrorStatus = ERROR_HAS_HAPPENED;
+}
+
 
 /*
  * Interface functions to get the error status of every single bit
@@ -388,6 +394,7 @@ void resetErrorStatus(void)
 void forceSystemError(void)
 {
     performSafetyReactions();
+    setForceSystemErrorStatus();
 }
 
 /*
