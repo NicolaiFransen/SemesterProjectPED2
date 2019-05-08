@@ -17,8 +17,8 @@
 #include "Constants.h"
 
 #define MAX_VALUE_ADC     3.3
-#define ANALOG_EXECUTION_FREQ_HIGH_PRIORITY     20000   //Hz
-#define ANALOG_EXECUTION_FREQ_LOW_PRIORITY      100     //Hz
+#define ANALOG_EXECUTION_FREQ_HIGH_PRIORITY     10000   //Hz
+#define ANALOG_EXECUTION_FREQ_LOW_PRIORITY      1000    //Hz
 
 //
 // Object declaration
