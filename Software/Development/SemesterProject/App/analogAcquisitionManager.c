@@ -81,7 +81,7 @@ void readAnalogSignals(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size * ANALOG_SIGNAL_SIZE_INVERSE;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size / sizeof(AnalogSignal);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         readADCValue(structPointer);
@@ -95,7 +95,7 @@ void calculateFilteredValue(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size * ANALOG_SIGNAL_SIZE_INVERSE;
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size / sizeof(AnalogSignal);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         filterADCValue(structPointer);
@@ -341,7 +341,7 @@ void createAnalogSignals(void)
     // Definition of filter parameters
     char filterType = 'L';
     int filterOrder = 1;
-    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 50;
+    int potFilterFreq = 100, currentFilterFreq = 1000, filterFreq = 50;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
@@ -356,7 +356,7 @@ void createAnalogSignals(void)
      * before using them.
      * Then pass the maximum and then the minimum value of the threshold you want to set.
      */
-    setCurrentThresholds(&currentThreshold[0], 250, -250);
+    setCurrentThresholds(&currentThreshold[0], 275, -275);
     setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 0);
     setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);

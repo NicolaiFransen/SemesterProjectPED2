@@ -40,20 +40,20 @@ void turnOnErrorLED(void);
 void turnOffErrorLED(void);
 int filtersHaveSettled(void);
 
-void setCurrentAErrorStatus(void);
-void setCurrentBErrorStatus(void);
-void setCurrentCErrorStatus(void);
-void setDCLinkBatteryErrorStatus(void);
-void setControlSupplyBatteryErrorStatus(void);
-void setTorqueReferenceSliderErrorStatus(void);
-void setSpeedReferenceSliderErrorStatus(void);
-void setTorqueReferencePedalErrorStatus(void);
-void setBrakeReferencePedalErrorStatus(void);
-void setThermometer1ErrorStatus(void);
-void setThermometer2ErrorStatus(void);
-void setRotaryPot1ErrorStatus(void);
-void setRotaryPot2ErrorStatus(void);
-void setRotaryPot3ErrorStatus(void);
+void setCurrentAErrorStatus(Uint16 errorStatus);
+void setCurrentBErrorStatus(Uint16 errorStatus);
+void setCurrentCErrorStatus(Uint16 errorStatus);
+void setDCLinkBatteryErrorStatus(Uint16 errorStatus);
+void setControlSupplyBatteryErrorStatus(Uint16 errorStatus);
+void setTorqueReferenceSliderErrorStatus(Uint16 errorStatus);
+void setSpeedReferenceSliderErrorStatus(Uint16 errorStatus);
+void setTorqueReferencePedalErrorStatus(Uint16 errorStatus);
+void setBrakeReferencePedalErrorStatus(Uint16 errorStatus);
+void setThermometer1ErrorStatus(Uint16 errorStatus);
+void setThermometer2ErrorStatus(Uint16 errorStatus);
+void setRotaryPot1ErrorStatus(Uint16 errorStatus);
+void setRotaryPot2ErrorStatus(Uint16 errorStatus);
+void setRotaryPot3ErrorStatus(Uint16 errorStatus);
 void setForceSystemErrorStatus(void);
 
 errorStatus getCurrentAErrorStatus(void);
@@ -73,9 +73,9 @@ errorStatus getRotaryPot3ErrorStatus(void);
 
 errorStatus getErrorManagerStatus(void);
 
-void updateCurrentErrorStatus(void);
-void updateVoltageErrorStatus(void);
-void updateAdcErrorStatus(void);
+void updateCurrentErrorStatus(Uint16 errorStatus);
+void updateVoltageErrorStatus(Uint16 errorStatus);
+void updateAdcErrorStatus(Uint16 errorStatus);
 
 void forceSystemError(void);
 void resetErrorStatus(void);

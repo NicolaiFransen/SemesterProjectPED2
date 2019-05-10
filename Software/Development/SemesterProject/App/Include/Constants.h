@@ -112,8 +112,8 @@
 #define MAXIMUM_ROTOR_SPEED     1700            // Maximum rotor speed, for errorManager
 
 // Constant component values from interface PCB
-#define R_IN_CURRENT_MEAS           9.1                 // Ohm
-#define BIAS_VOLTAGE_OPAMP          0.817               // V
+#define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm
+#define BIAS_VOLTAGE_OPAMP          (float)0.817               // V
 #define OPAMP_GAIN_CURRENT_MEAS     (float)-1           // []
 #define CURRENT_SENSOR_GAIN         (float)2000         // []
 #define R1_DCLINK_MEAS              (float)21500        // Ohm
@@ -122,7 +122,7 @@
 #define R4_DCLINK_MEAS              (float)10000        // Ohm
 #define R1_CONTROL_SUPPLY_MEAS      (float)8200         // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      (float)1000         // Ohm
-#define TEMP_SENSOR_GAIN            0.01                // 10mV/deg
+#define TEMP_SENSOR_GAIN            (float)0.01                // 10mV/deg
 #define MEAS_TO_TEMP                (float)100          // 100deg/V
 
 // Defines of inverse sensor gains
@@ -130,8 +130,8 @@
 #define CONTROL_SUPPLY_MEAS_TO_VOLTAGE  ((R1_CONTROL_SUPPLY_MEAS+R2_CONTROL_SUPPLY_MEAS)/R2_CONTROL_SUPPLY_MEAS)
 
 // Defines of inverse current sensor transfer function
-#define OPAMP_OFFSET_CURRENT            (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP
-#define CURRENT_SENSOR_GAIN_INVERSE     CURRENT_SENSOR_GAIN / (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)
+#define OPAMP_OFFSET_CURRENT            (float)((1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP)
+#define CURRENT_SENSOR_GAIN_INVERSE     (float)(CURRENT_SENSOR_GAIN / (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS))
 
 // Sensor offsets
 #define CURRENT_SENSOR_OFFSET_A           9       // [A]

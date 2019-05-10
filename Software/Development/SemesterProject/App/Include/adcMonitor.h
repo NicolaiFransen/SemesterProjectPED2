@@ -22,7 +22,7 @@ errorStatus areAdcMeasurementsWithinThresholds(Uint16 errorStatus);
 errorStatus areBatteryMeasurementsWithinThresholds(Uint16 errorStatus);
 errorStatus areCurrentMeasurementsWithinThresholds(Uint16 errorStatus);
 
-errorStatus getErrorStatusInBit(Uint16);
+errorStatus getErrorStatusInBit(Uint16 position, Uint16 errorStatus);
 
 
 #endif /* APP_INCLUDE_ADCMONITOR_H_ */

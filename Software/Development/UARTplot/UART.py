@@ -18,19 +18,21 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("Voltage_meas.txt", "r")
+fileUART = open("currents_v2.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
 for line in csvUARTlines:
-    splittedString = line.replace(",", "").replace("\n", "").split(' ')
-    if splittedString[0] in dataDictionary:
-        dataDictionary[splittedString[0]].append(float(splittedString[1]))
-    else:
-        dataDictionary[splittedString[0]] = []
-        dataDictionary[splittedString[0]].append(float(splittedString[1]))
-    #print max(line)
-
+    try:
+        splittedString = line.replace(",", "").replace("\n", "").split(' ')
+        if splittedString[0] in dataDictionary:
+            dataDictionary[splittedString[0]].append(float(splittedString[1]))
+        else:
+            dataDictionary[splittedString[0]] = []
+            dataDictionary[splittedString[0]].append(float(splittedString[1]))
+        #print max(line)
+    except:
+        pass
 #For every dictionary key (except TS) find maximum and minimum value, to size the plot
 
 #Close plots

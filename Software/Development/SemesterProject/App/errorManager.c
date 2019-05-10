@@ -64,7 +64,8 @@ void monitorHighPriorityErrorSources(void)
     if (errorStatusList.currentErrorStatus == ERROR_HAS_HAPPENED)
     {
         performSafetyReactions();
-        updateCurrentErrorStatus();
+        updateCurrentErrorStatus(errorStatus);
+//        printCurrentsUART();
     }
 }
 
@@ -84,13 +85,13 @@ void monitorLowPriorityErrorSources(void)
     if (errorStatusList.batteryErrorStatus == ERROR_HAS_HAPPENED)
     {
         performSafetyReactions();
-        updateVoltageErrorStatus();
+        updateVoltageErrorStatus(errorStatus);
     }
 
     if (errorStatusList.adcErrorStatus == ERROR_HAS_HAPPENED)
     {
         performSafetyReactions();
-        updateAdcErrorStatus();
+        updateAdcErrorStatus(errorStatus);
     }
 
     if (readRotorRPM() > MAXIMUM_ROTOR_SPEED)
@@ -172,84 +173,84 @@ int filtersHaveSettled(void)
  * This will latch the errors, so resetErrorStatus()
  * will have to be called to reset the errors.
  */
-void setCurrentAErrorStatus(void)
+void setCurrentAErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(0) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(0, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.currentAErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setCurrentBErrorStatus(void)
+void setCurrentBErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(1) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(1, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.currentBErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setCurrentCErrorStatus(void)
+void setCurrentCErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(2) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(2, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.currentCErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setControlSupplyBatteryErrorStatus(void)
+void setControlSupplyBatteryErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(3) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(3, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.voltage24ErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setDCLinkBatteryErrorStatus(void)
+void setDCLinkBatteryErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(4) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(4, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.voltage36ErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setThermometer1ErrorStatus(void)
+void setThermometer1ErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(5) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(5, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.thermometer1ErrorStatus = ERROR_HAS_HAPPENED;
 }
-void setThermometer2ErrorStatus(void)
+void setThermometer2ErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(6) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(6, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.thermometer2ErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setTorqueReferenceSliderErrorStatus(void)
+void setTorqueReferenceSliderErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(7) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(7, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.torqueReferenceSliderErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setSpeedReferenceSliderErrorStatus(void)
+void setSpeedReferenceSliderErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(8) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(8, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.speedReferenceSliderErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setRotaryPot1ErrorStatus(void)
+void setRotaryPot1ErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(9) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(9, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.rotaryPot1ErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setRotaryPot2ErrorStatus(void)
+void setRotaryPot2ErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(10) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(10, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.rotaryPot2ErrorStatus = ERROR_HAS_HAPPENED;
 }
-void setRotaryPot3ErrorStatus(void)
+void setRotaryPot3ErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(11) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(11, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.rotaryPot3ErrorStatus = ERROR_HAS_HAPPENED;
 }
 
-void setTorqueReferencePedalErrorStatus(void)
+void setTorqueReferencePedalErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(12) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(12, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.torqueReferencePedalErrorStatus = ERROR_HAS_HAPPENED;
 }
-void setBrakeReferencePedalErrorStatus(void)
+void setBrakeReferencePedalErrorStatus(Uint16 errorStatus)
 {
-    if (getErrorStatusInBit(13) == ERROR_HAS_HAPPENED)
+    if (getErrorStatusInBit(13, errorStatus) == ERROR_HAS_HAPPENED)
         latchingErrorStatusList.brakeReferencePedalErrorStatus = ERROR_HAS_HAPPENED;
 }
 
@@ -345,30 +346,30 @@ errorStatus getErrorManagerStatus(void)
 /*
  * Functions to update the error status of the signals in the three groups
  */
-void updateCurrentErrorStatus(void)
+void updateCurrentErrorStatus(Uint16 errorStatus)
 {
-    setCurrentAErrorStatus();
-    setCurrentBErrorStatus();
-    setCurrentCErrorStatus();
+    setCurrentAErrorStatus(errorStatus);
+    setCurrentBErrorStatus(errorStatus);
+    setCurrentCErrorStatus(errorStatus);
 }
 
-void updateVoltageErrorStatus(void)
+void updateVoltageErrorStatus(Uint16 errorStatus)
 {
-    setDCLinkBatteryErrorStatus();
-    setControlSupplyBatteryErrorStatus();
+    setDCLinkBatteryErrorStatus(errorStatus);
+    setControlSupplyBatteryErrorStatus(errorStatus);
 }
 
-void updateAdcErrorStatus(void)
+void updateAdcErrorStatus(Uint16 errorStatus)
 {
-    setTorqueReferenceSliderErrorStatus();
-    setSpeedReferenceSliderErrorStatus();
-    setTorqueReferencePedalErrorStatus();
-    setBrakeReferencePedalErrorStatus();
-    setThermometer1ErrorStatus();
-    setThermometer2ErrorStatus();
-    setRotaryPot1ErrorStatus();
-    setRotaryPot2ErrorStatus();
-    setRotaryPot3ErrorStatus();
+    setTorqueReferenceSliderErrorStatus(errorStatus);
+    setSpeedReferenceSliderErrorStatus(errorStatus);
+    setTorqueReferencePedalErrorStatus(errorStatus);
+    setBrakeReferencePedalErrorStatus(errorStatus);
+    setThermometer1ErrorStatus(errorStatus);
+    setThermometer2ErrorStatus(errorStatus);
+    setRotaryPot1ErrorStatus(errorStatus);
+    setRotaryPot2ErrorStatus(errorStatus);
+    setRotaryPot3ErrorStatus(errorStatus);
 }
 
 /*
