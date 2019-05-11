@@ -33,7 +33,7 @@ density = 1.225;                        %kg/m^3 air density
 Cd = 0.8;                               %Aerodynamic drag coefficient 
 Af = 0.5;                               %m^2 Kart's approx. front area assuming the kart is a prismatic body
 Mcar = 233;                             %kg Mass including motor, chasis and driver 
-Cr = 0.013;                             %Consider putting it as a function of speed                       
+%Cr = 0.013;                             %Consider putting it as a function of speed                       
                                         %Tire rolling resistance coefficient. http://eprints.lancs.ac.uk/84708/1/ISIE2016_KR_FInalSubmission_CJT_v3.pdf
 Gr = 1.6666;                            %Transmission gearbox ratio
 g=9.81;           
@@ -46,14 +46,22 @@ fs = 10000;
 Ts=1/fs;
 
 
-Kp_q= 2.5;  %2.5834;  
-Ki_q=  50;  %15.7; 
+Kp_q=  2.5834;  
+Ki_q=  50;   
  
-Kp_d= 2.5; 
+Kp_d= 2.5834; 
 Ki_d= 50; 
 
-Kp_speed = 0.8; 
-Ki_speed= 5;  
+Kp_speed = 0.8; %0.8; 
+Ki_speed= 5;   %5;  
+
+%Rotor flux calculation for id,ref
+landa_r = 0.0567;  
+ids=(1/Lm)*landa_r;
+
+%Limit iq,ref:
+iqmax = (2/3)*(Lr*T_rated)/(p*Lm*landa_r);
+
 
 G_p = 1/(Ls*s+Rs);  %Plant's transfer function
 figure(1)
@@ -67,6 +75,3 @@ margin(G_ol)
 
 sigma = 1-Lm^2/(Ls*Lr); %leakage factor
 
-%Rotor flux calculation for id,ref
-landa_r = 0.0567;  
-ids=(1/Lm)*landa_r;

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.85"
+    ComputedModelVersion    "1.86"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -62,7 +62,7 @@ Model {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[1]
+	Visible			[0]
       }
       Array {
 	Type			"Simulink.EditorInfo"
@@ -72,16 +72,16 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1875.0, 829.0]
+	  Extents		  [1875.0, 868.0]
 	  ZoomFactor		  [1.0]
-	  Offset		  [-73.297142857137032, 87.019593925974377]
+	  Offset		  [-73.297142857137032, 87.019593925974391]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "80"
-	  Extents		  [1875.0, 829.0]
+	  Extents		  [1920.0, 1036.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [58.619277867023357, 705.48865700284136]
 	}
@@ -119,9 +119,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "estef"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 27 23:56:38 2019"
-  RTWModifiedTimeStamp	  473212558
-  ModelVersionFormat	  "1.%<AutoIncrement:85>"
+  LastModifiedDate	  "Mon Apr 22 17:58:46 2019"
+  RTWModifiedTimeStamp	  477228579
+  ModelVersionFormat	  "1.%<AutoIncrement:86>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "none"
@@ -1011,6 +1011,17 @@ Model {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -1146,6 +1157,13 @@ Model {
       SampleTime	      "-1"
     }
     Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      MultiThreadCoSim	      "auto"
+    }
+    Block {
       BlockType		      Scope
       DefaultConfigurationName "Simulink.scopes.TimeScopeBlockCfg"
     }
@@ -1260,7 +1278,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "278"
+    SIDHighWatermark	    "295"
     Block {
       BlockType		      Gain
       Name		      "180/pi"
@@ -2618,7 +2636,7 @@ Model {
       SID		      "114"
       Position		      [415, 315, 445, 345]
       ZOrder		      -10
-      Time		      "0.25"
+      Time		      "0.3"
       After		      "T_rated"
       SampleTime	      "0"
     }
@@ -2628,7 +2646,6 @@ Model {
       SID		      "242"
       Position		      [495, 342, 525, 378]
       ZOrder		      14
-      CurrentSetting	      "0"
     }
     Block {
       BlockType		      Display
@@ -2658,6 +2675,17 @@ Model {
       Ports		      [2, 1]
       Position		      [785, 396, 790, 434]
       ZOrder		      34
+      ShowName		      off
+      Inputs		      "2"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      Mux
+      Name		      "Mux2"
+      SID		      "295"
+      Ports		      [2, 1]
+      Position		      [870, 661, 875, 699]
+      ZOrder		      4085
       ShowName		      off
       Inputs		      "2"
       DisplayOption	      "bar"
@@ -2819,6 +2847,186 @@ Model {
       "ersion','2018b','Position',[739.4 362.6 560 354.4])"
       NumInputPorts	      "1"
       Floating		      off
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Scope4"
+      SID		      "279"
+      Ports		      [3]
+      Position		      [1015, 383, 1045, 417]
+      ZOrder		      4084
+      BackgroundColor	      "paleyellow"
+      CopyFcn		      "plecs('sl', 303);"
+      DeleteFcn		      "plecs('sl', 305);"
+      UndoDeleteFcn	      "plecs('sl', 306);"
+      LoadFcn		      "plecs('sl', 300);"
+      PreSaveFcn	      "plecs('sl', 311);"
+      InitFcn		      "plecs('sl', 314);"
+      StartFcn		      "plecs('sl', 308);"
+      StopFcn		      "plecs('sl', 309);"
+      NameChangeFcn	      "plecs('sl', 310);"
+      DestroyFcn	      "plecs('sl', 307);"
+      OpenFcn		      "plecs('sl', 302);"
+      ErrorFcn		      "plerrorfcn"
+      RequestExecContextInheritance off
+      ContentPreviewEnabled   on
+      Object {
+	$PropName		"MaskObject"
+	$ObjectID		22
+	$ClassName		"Simulink.Mask"
+	Initialization		"plecs('sl', 315);"
+	Display			"plot([0.1 0.9 0.9 0.1 0.1], [0.9 0.9 0.5 0.5 0.9])"
+	IconUnits		"normalized"
+	Object {
+	  $PropName		  "Parameters"
+	  $ObjectID		  23
+	  $ClassName		  "Simulink.MaskParameter"
+	  Type			  "edit"
+	  Name			  "Settings"
+	  Prompt		  "Settings"
+	  Value			  ""
+	  Evaluate		  "off"
+	  Tunable		  "off"
+	  Visible		  "off"
+	}
+      }
+      System {
+	Name			"Scope4"
+	Location		[403, 291, 957, 775]
+	Open			off
+	PortBlocksUseCompactNotation off
+	SetExecutionDomain	off
+	ExecutionDomainType	"Deduce"
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "1"
+	  SID			  "287"
+	  Position		  [15, 15, 35, 35]
+	  ZOrder		  1
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "2"
+	  SID			  "280"
+	  Position		  [15, 50, 35, 70]
+	  ZOrder		  -1
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "3"
+	  SID			  "291"
+	  Position		  [15, 85, 35, 105]
+	  ZOrder		  5
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  " 1 "
+	  SID			  "292"
+	  Position		  [55, 15, 95, 35]
+	  ZOrder		  6
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  " 2 "
+	  SID			  "293"
+	  Position		  [55, 50, 95, 70]
+	  ZOrder		  7
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  " 3 "
+	  SID			  "294"
+	  Position		  [55, 85, 95, 105]
+	  ZOrder		  8
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  " InputMux "
+	  SID			  "288"
+	  Ports			  [3, 1]
+	  Position		  [170, 98, 190, 122]
+	  ZOrder		  2
+	  Inputs		  "3"
+	}
+	Block {
+	  BlockType		  S-Function
+	  Name			  " S-Function "
+	  SID			  "286"
+	  Ports			  [1]
+	  Position		  [225, 85, 275, 125]
+	  ZOrder		  -3
+	  FunctionName		  "plecs"
+	  SFunctionDeploymentMode off
+	  EnableBusSupport	  off
+	  SFcnIsStateOwnerBlock	  off
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  " InputMux "
+	  SrcPort		  1
+	  Points		  [0, -5]
+	  DstBlock		  " S-Function "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "1"
+	  SrcPort		  1
+	  DstBlock		  " 1 "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  8
+	  SrcBlock		  " 1 "
+	  SrcPort		  1
+	  DstBlock		  " InputMux "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  9
+	  SrcBlock		  "2"
+	  SrcPort		  1
+	  DstBlock		  " 2 "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  10
+	  SrcBlock		  " 2 "
+	  SrcPort		  1
+	  DstBlock		  " InputMux "
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  11
+	  SrcBlock		  "3"
+	  SrcPort		  1
+	  DstBlock		  " 3 "
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  12
+	  SrcBlock		  " 3 "
+	  SrcPort		  1
+	  DstBlock		  " InputMux "
+	  DstPort		  3
+	}
+      }
     }
     Block {
       BlockType		      Scope
@@ -3047,15 +3255,15 @@ Model {
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1','DataLoggingSaveFormat','StructureWithTime',"
       "'DataLoggingLimitDataPoints',true,'DataLoggingDecimation','1','DataLoggingDecimateData',true),extmgr.Configurati"
-      "on('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','1522.32922','MaxYLimReal','3699.0370"
-      "5','YLabelReal','','MinYLimMag','1522.32922','MaxYLimMag','3699.03705','LegendVisibility','off','XGrid',true,'YG"
+      "on('Visuals','Time Domain',true,'SerializedDisplays',{struct('MinYLimReal','1672.65227','MaxYLimReal','1747.4830"
+      "8','YLabelReal','','MinYLimMag','1672.65227','MaxYLimMag','1747.48308','LegendVisibility','off','XGrid',true,'YG"
       "rid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274"
       "509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.160"
       "78431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.05882"
       "35294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'Use"
       "rDefinedChannelNames',{{}},'NumLines',2,'LineNames',{{'rad->rpm','Gain2'}},'ShowContent',true,'Placement',1)},'D"
-      "isplayPropertyDefaults',struct('MinYLimReal','1522.32922','MaxYLimReal','3699.03705','YLabelReal','','MinYLimMag"
-      "','1522.32922','MaxYLimMag','3699.03705','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false"
+      "isplayPropertyDefaults',struct('MinYLimReal','1672.65227','MaxYLimReal','1747.48308','YLabelReal','','MinYLimMag"
+      "','1672.65227','MaxYLimMag','1747.48308','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false"
       ",'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0"
       ".0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 "
       "0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039"
@@ -3615,17 +3823,27 @@ Model {
       ZOrder		      33
       SrcBlock		      "dq 2 abc"
       SrcPort		      1
-      Points		      [60, 0; 0, -30]
+      Points		      [34, 0]
       Branch {
-	ZOrder			54
-	Points			[0, -35]
-	DstBlock		"Demux1"
-	DstPort			1
+	ZOrder			194
+	Points			[0, 170]
+	DstBlock		"Scope4"
+	DstPort			3
       }
       Branch {
-	ZOrder			34
-	DstBlock		"Scope7"
-	DstPort			1
+	ZOrder			193
+	Points			[26, 0; 0, -30]
+	Branch {
+	  ZOrder		  54
+	  Points		  [0, -35]
+	  DstBlock		  "Demux1"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  34
+	  DstBlock		  "Scope7"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -3686,9 +3904,18 @@ Model {
       Points		      [5, 0]
       Branch {
 	ZOrder			154
-	Points			[1, 0; 0, 335]
-	DstBlock		"Scope"
-	DstPort			2
+	Points			[1, 0; 0, 335; 204, 0]
+	Branch {
+	  ZOrder		  198
+	  Points		  [0, 23; 110, 0; 0, -28]
+	  DstBlock		  "Mux2"
+	  DstPort		  2
+	}
+	Branch {
+	  ZOrder		  197
+	  DstBlock		  "Scope"
+	  DstPort		  2
+	}
       }
       Branch {
 	ZOrder			112
@@ -3730,8 +3957,18 @@ Model {
       }
       Branch {
 	ZOrder			84
-	DstBlock		"Theta.el"
-	DstPort			1
+	Points			[16, 0]
+	Branch {
+	  ZOrder		  192
+	  Points		  [0, -30; 59, 0; 0, 15]
+	  DstBlock		  "Scope4"
+	  DstPort		  2
+	}
+	Branch {
+	  ZOrder		  191
+	  DstBlock		  "Theta.el"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -3741,9 +3978,19 @@ Model {
       Points		      [69, 0; 0, 215; 1, 0]
       Branch {
 	ZOrder			106
-	Points			[0, 100]
-	DstBlock		"Scope"
-	DstPort			1
+	Points			[0, 80]
+	Branch {
+	  ZOrder		  196
+	  Points		  [115, 0; 0, 10]
+	  DstBlock		  "Mux2"
+	  DstPort		  1
+	}
+	Branch {
+	  ZOrder		  195
+	  Points		  [0, 20]
+	  DstBlock		  "Scope"
+	  DstPort		  1
+	}
       }
       Branch {
 	ZOrder			105
@@ -3758,6 +4005,14 @@ Model {
       Points		      [5, 0; 0, -85]
       DstBlock		      "Manual Switch"
       DstPort		      2
+    }
+    Line {
+      ZOrder		      199
+      SrcBlock		      "Mux2"
+      SrcPort		      1
+      Points		      [90, 0; 0, -290]
+      DstBlock		      "Scope4"
+      DstPort		      1
     }
     Annotation {
       SID		      "163"
