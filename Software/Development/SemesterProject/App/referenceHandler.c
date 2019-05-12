@@ -66,6 +66,7 @@ void handleReferences(void)
         calculateReference();
         decideReferenceType();
     }
+    else    restartReferences();
 }
 
 /*
@@ -123,7 +124,7 @@ void decideReferenceType(void)
     {
         if (referenceTypeIsChanged())
         {
-            undampedSpeedReference = 1000;// THIS MUST BE ADDED WHEN THE INTERFACE FROM CONTROL IS CREATED getCurrentRotorSpeed();
+            undampedSpeedReference = readRotorRPM();
             referenceType = cruiseControl;
         }
     }break;
@@ -159,8 +160,7 @@ int referenceSourceIsChanged(void)
 {
     if (GUISignals.ReferenceSourcePushbutton || referenceSourceHasBeenPressed())
     {
-        torqueReference = 0;
-        speedReference = 0;
+        restartReferences();
         referenceType = torqueControl;
         if ((readSystemState() == RUNNING)) referenceSourceChanged = 1; //If the referenceSOurce is changed while in running, qualify the change so the system know it must go back to STANDBY
         return 1;
@@ -286,6 +286,12 @@ int calculateSaturatedSpeed(int speedReferenceBeforeSaturation)
 void restartSpeedReference(void)
 {
     undampedSpeedReference = 0;
+}
+
+void restartReferences(void)
+{
+    torqueReference = 0;
+    speedReference = 0;
 }
 
 /*
