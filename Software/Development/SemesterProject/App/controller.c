@@ -48,7 +48,6 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
 
 float getIdReference(void)
 {
-    float deltaIdReference = 5;
     if (idReference < D_CURRENT_REFERENCE)
     {
         idReference += deltaIdReference;

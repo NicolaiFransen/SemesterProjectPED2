@@ -103,7 +103,7 @@ void calculateFilteredValue(void *signal, int size)
 
 void calculateInverseOfDcLinkMeas(void)
 {
-    AnalogSignalList.voltageMeas36.dcLinkInverse = 1 / getDCLinkMeasurement();
+    AnalogSignalList.voltageMeas36.dcLinkInverse = (float)1.0 / getDCLinkMeasurement();
 }
 
 
