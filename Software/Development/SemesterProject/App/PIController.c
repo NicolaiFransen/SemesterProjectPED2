@@ -62,6 +62,14 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
         // Calculating the controller output
         PIoutput = KP * error + KI * PIcontroller->integrationOfError;
 
+    if (PIcontroller->antiWindupFlag == 0)
+    {
+        if (isOutputSaturatedPositive(PIoutput))
+            PIoutput = CURRENT_LIMIT;
+        else if (isOutputSaturatedNegative(PIoutput))
+            PIoutput = -CURRENT_LIMIT;
+    }
+
     return PIoutput;
 }
 
