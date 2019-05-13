@@ -30,6 +30,6 @@ void resetIdIntegrator(void);
 void resetIqIntegrator(void);
 void resetSpeedIntegrator(void);
 
-
+float readIdReference(void);
 
 #endif /* APP_INCLUDE_CONTROLLER_H_ */

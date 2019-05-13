@@ -52,7 +52,11 @@ void manageSystem(void)
 
         case RUNNING:
         {
-            if(!isPowerSwitchEnabled() || referenceSourceHasChanged()) systemState = STANDBY;
+            if(!isPowerSwitchEnabled() || referenceSourceHasChanged())
+                {
+                    disableDrivers();
+                    systemState = STANDBY;
+                }
             if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;
             setRunningLED(ON); // System is in running state LED
 

@@ -114,9 +114,9 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
 
     deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
-    //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 5000)
-        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
+    //Speed is only calculated every 30 degrees.
+    if (deltaTheta > DEG_30_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 15000)
+        //Enter here either if there have been more than 10º or if a time longer than 15ms has passed (for low speeds).
 
     {
         updateSpeed(motorPosSpeedObject, deltaTheta);

@@ -12,6 +12,7 @@
 
 // Quasi-global variables definition
 //
+float idReference = 0;
 static struct
 {
     PIobject IqController;
@@ -47,7 +48,11 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
 
 float getIdReference(void)
 {
-    return D_CURRENT_REFERENCE;
+    float deltaIdReference = 0.0001;
+    if (idReference < D_CURRENT_REFERENCE)
+        return (idReference + deltaIdReference);
+    else
+        return D_CURRENT_REFERENCE;
 }
 
 float calculateIqReference(float torqueReference)
@@ -81,4 +86,9 @@ void resetSpeedIntegrator(void)
     PIControllerList.SpeedController.integrationOfError = 0;
     PIControllerList.SpeedController.previousOutput = 0;
     PIControllerList.SpeedController.previousLimitedOutput = 0;
+}
+
+float readIdReference(void)
+{
+    return idReference;
 }

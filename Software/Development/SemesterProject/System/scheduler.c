@@ -102,11 +102,11 @@ void task1ms(void)
 
 void task5ms(void)
 {
-    printCurrentsUART();
 }
 
 void task10ms(void)
 {
+    printCurrentsUART();
     ServiceDog();
 }
 
@@ -200,7 +200,7 @@ void handleSystemClock(void)
     sysClock++;
     if (sysClock >= UINT_MAX)    sysClock = 0;
 
-    UARTIntPrint("TS ", (int)sysClock);
+//    UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
@@ -214,16 +214,28 @@ void printUART(void)
     //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
 //    UARTIntPrint("T ", (int)getThermometer1Measurement());
-    UARTIntPrint("RPM ", (int)readRotorRPM());
-//    UARTIntPrint("Pos ", (int)(readRotorMechAngleRad() * RAD_TO_DEG));
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("Pos ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
+//    UARTIntPrint("Te ", (int)getTorqueReference());
+//    UARTIntPrint("Iq ", (int)getIqReference(getMovementReference()));
+//    UARTIntPrint("Id ", (int)getIdReference());
+//    UARTIntPrint("R ", (int)(readRotorElecSpeedRadS() * RAD_TO_DEG));
 }
 
 void printCurrentsUART(void)
 {
 //    float currentsToPrint[3];
-//
+//    dqObject dqCurrents;
 //    getCurrentMeasurements(&currentsToPrint[0]);
+//    float theta = readRotorFluxAngleRad();
+//    dqCurrents = abc2dq(&currentsToPrint[0], theta);
+////
+    UARTIntPrint("Id ", (int)(readIdReference() * 1000));
+//    UARTIntPrint("Iq ", (int)dqCurrents.qComponent);
+//    UARTIntPrint("Id ", (int)dqCurrents.dComponent);
 //    UARTIntPrint("a ", (int)currentsToPrint[0]);
 //    UARTIntPrint("b ", (int)currentsToPrint[1]);
 //    UARTIntPrint("c ", (int)currentsToPrint[2]);
+//    UARTIntPrint("S ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
+
 }

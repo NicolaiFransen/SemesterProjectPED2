@@ -18,7 +18,7 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("currents_v2.txt", "r")
+fileUART = open("20190510_frequency_test_v2.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key

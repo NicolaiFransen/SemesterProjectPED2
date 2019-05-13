@@ -26,6 +26,8 @@ void executeControl(void)
             // Call closed-loop function
              runClosedLoopControl();
     }
+    else
+        setAllDuties(0);
 }
 
 /*
