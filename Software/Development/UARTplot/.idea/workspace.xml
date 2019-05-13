@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/startupTesVdRefOneEverytwo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTesVdRefOneEverytwo2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTesVqRefOneEverytwo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTesVqRefOneEverytwo2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTestIdMeasOneEverytwo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTestIdRefBeforeBugfixOneveryTwo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTestIqMeasOneEverytwo.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTestIqRefOneEverytwo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="399" />
     <option name="y" value="210" />
     <option name="width" value="2400" />
@@ -193,7 +175,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />

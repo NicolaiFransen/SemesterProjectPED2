@@ -245,15 +245,15 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 void getCurrentMeasurements(float *currentMeasurement)
 {
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasA.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_A);
+            -(((CurrentSignalList.currentMeasA.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_A);
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasB.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_B);
+            -(((CurrentSignalList.currentMeasB.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_B);
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasC.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_C);
+            -(((CurrentSignalList.currentMeasC.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_C);
 }
 
 float getDCLinkMeasurement(void)
