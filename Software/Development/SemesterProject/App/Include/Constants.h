@@ -142,8 +142,6 @@
 #define DC_LINK_OFFSET                    0       // [V]
 #define TEMP_SENSOR_OFFSET                0       // [deg C]
 
-// Defines of struct sizes
-#define ANALOG_SIGNAL_SIZE_INVERSE         1 / 24
 
 
 #endif  
