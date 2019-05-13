@@ -358,7 +358,7 @@ void createAnalogSignals(void)
      */
     setCurrentThresholds(&currentThreshold[0], 275, -275);
     setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 0);
-    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 20);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.

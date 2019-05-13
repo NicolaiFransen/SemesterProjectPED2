@@ -51,13 +51,6 @@ errorStatus areCurrentMeasurementsWithinThresholds(Uint16 errorStatus)
  */
 errorStatus getErrorStatusInBit(Uint16 position, Uint16 errorStatus)
 {
-//    Uint16 errorStatus;
-//
-//    if(position < 3)
-//        errorStatus = getHighPriorityErrorStatus();
-//    else
-//        errorStatus = getLowPriorityErrorStatus();
-
     if ((errorStatus & (1<<position)) >> position)
         return ERROR_HAS_HAPPENED;
     else
