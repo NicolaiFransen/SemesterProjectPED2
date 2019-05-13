@@ -116,7 +116,7 @@ Uint16 getHighPriorityErrorStatus(void)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = &CurrentSignalList.currentMeasA;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(CurrentSignalList)/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(CurrentSignalList) / sizeof(AnalogSignal);
 
     Uint16 errorStatus = 0;
     int i = 0;
@@ -136,7 +136,7 @@ Uint16 getLowPriorityErrorStatus(void)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = &AnalogSignalList.voltageMeas24;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList) / sizeof(AnalogSignal);
 
     Uint16 errorStatus = 0;
     int i = 3;
@@ -358,7 +358,7 @@ void createAnalogSignals(void)
      */
     setCurrentThresholds(&currentThreshold[0], 275, -275);
     setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 0);
-    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 30, 20);
+    setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 
     // Create signal for Current A measurement.
