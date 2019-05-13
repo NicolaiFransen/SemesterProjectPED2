@@ -101,10 +101,11 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define KP_IQ           (float)0.78
-#define KI_IQ           (float)4.3
-#define KP_ID           (float)0.78
-#define KI_ID           (float)4.3
+#define PI_Ratio        1
+#define KP_IQ           (float)0.78/PI_Ratio
+#define KI_IQ           (float)4.3/PI_Ratio
+#define KP_ID           (float)0.78/PI_Ratio
+#define KI_ID           (float)4.3/PI_Ratio
 #define KP_SPEED        (float)3.7
 #define KI_SPEED        (float)0.37
 

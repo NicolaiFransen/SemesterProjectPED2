@@ -48,7 +48,7 @@ interrupt void SCIA_TX_isr(void)
         SciaRegs.SCITXBUF = getNextBufferValue();
 
         // If the UART buffer is not empty then enable the interrupt so the transmission keeps going
-        if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+        //if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
     }
 
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;

@@ -108,6 +108,7 @@ void task10ms(void)
 {
     printCurrentsUART();
     ServiceDog();
+    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
 }
 
 void task20ms(void)
@@ -230,7 +231,7 @@ void printCurrentsUART(void)
 //    float theta = readRotorFluxAngleRad();
 //    dqCurrents = abc2dq(&currentsToPrint[0], theta);
 ////
-    UARTIntPrint("Id ", (int)(readIdReference() * 1000));
+    //UARTIntPrint("Id ", (int)(readIdReference() * 1000));
 //    UARTIntPrint("Iq ", (int)dqCurrents.qComponent);
 //    UARTIntPrint("Id ", (int)dqCurrents.dComponent);
 //    UARTIntPrint("a ", (int)currentsToPrint[0]);

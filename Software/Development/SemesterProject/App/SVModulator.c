@@ -48,8 +48,8 @@ void runSVM(alphaBetaObject voltageRef)
     float Vdc, VdcInverse;
     int sector;
 
-    Vdc = 100;   //getDCLinkMeasurement();
-    VdcInverse = 0.01;  //getInverseOfDcLinkMeasurement();
+    Vdc = getDCLinkMeasurement();
+    VdcInverse = getInverseOfDcLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc, VdcInverse);
     sector = findSector(voltageRef);
     t1t2Calculation[sector](voltageRef);

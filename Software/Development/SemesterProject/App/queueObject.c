@@ -143,7 +143,7 @@ void UARTStringPrint(char *stringToPrint)
             enqueue(queue, stringToPrint[stringIndex]);
         }
     //Send signal to SCI to send the data
-    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+    //SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
 }
 
 char getNextBufferValue(void)

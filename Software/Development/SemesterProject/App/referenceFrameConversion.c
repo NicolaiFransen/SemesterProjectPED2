@@ -38,18 +38,26 @@
 dqObject abc2dq(float *abcArray, float thetaRad)
 {
     dqObject dqStruct;
+    int dummyVar = 0;
 
     float aComponent = *abcArray;
     float bComponent = *(abcArray + 1);
     float cComponent = *(abcArray + 2);
 
     dqStruct.dComponent = TWO_DIV_3 * (aComponent * cos(thetaRad) +
-                                        bComponent * cos(thetaRad - TWO_PI_DIV_3) +
-                                        cComponent * cos(thetaRad - FOUR_PI_DIV_3));
+                                       bComponent * cos(thetaRad - TWO_PI_DIV_3) +
+                                       cComponent * cos(thetaRad - FOUR_PI_DIV_3));
 
     dqStruct.qComponent = -TWO_DIV_3 * (aComponent * sin(thetaRad) +
-                                         bComponent * sin(thetaRad - TWO_PI_DIV_3) +
-                                         cComponent * sin(thetaRad - FOUR_PI_DIV_3));
+                                        bComponent * sin(thetaRad - TWO_PI_DIV_3) +
+                                        cComponent * sin(thetaRad - FOUR_PI_DIV_3));
+
+//    if ((dummyVar++ % 4) == 0 )
+//    {
+//        UARTIntPrint("qm ", (int)(dqStruct.qComponent * 100));
+//        UARTIntPrint("dm ", (int)(dqStruct.dComponent * 100));
+//    }
+
     return dqStruct;
 }
 

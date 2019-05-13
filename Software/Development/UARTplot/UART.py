@@ -18,7 +18,7 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("20190510_frequency_test_v2.txt", "r")
+fileUART = open("startupTesVqRefOneEverytwo2.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
@@ -54,7 +54,7 @@ for key in dataDictionary:
         ax.yaxis.set_ticks((sorted(np.arange(starty, endy, (endy - starty)*0.1))))
     except:
         ax.yaxis.set_ticks([-1, 0, 1])
-    plt.xlabel("timestamp")
+    plt.xlabel("sampleNumber")
     plt.ylabel(key)
     index = index + 1
     #print key
