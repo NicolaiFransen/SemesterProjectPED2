@@ -108,7 +108,6 @@ void task10ms(void)
 {
     printCurrentsUART();
     ServiceDog();
-    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
 }
 
 void task20ms(void)
@@ -201,7 +200,7 @@ void handleSystemClock(void)
     sysClock++;
     if (sysClock >= UINT_MAX)    sysClock = 0;
 
-//    UARTIntPrint("TS ", (int)sysClock);
+    UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
@@ -225,6 +224,8 @@ void printUART(void)
 
 void printCurrentsUART(void)
 {
+    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+
 //    float currentsToPrint[3];
 //    dqObject dqCurrents;
 //    getCurrentMeasurements(&currentsToPrint[0]);

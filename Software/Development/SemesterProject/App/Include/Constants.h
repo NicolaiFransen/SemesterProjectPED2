@@ -90,7 +90,7 @@
 
 #define MAX_ADC_STEPS               (float)4095.0
 #define MAX_ADC_REFERENCE           (float)3.3
-#define MAX_ADC_STEPS_INVERSE       1 / MAX_ADC_STEPS
+#define MAX_ADC_STEPS_INVERSE       (float)1.0 / MAX_ADC_STEPS
 
 #define d_axis			0
 #define	q_axis			1

@@ -115,17 +115,15 @@ float getIqReference(float movementReference)
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents)
 {
     dqObject dqVoltages;
-    int dummyVar = 0;
 
     // Calculate voltage references from current PI-controllers
     dqVoltages.qComponent = PiCalculationIQ(currentReferences.qComponent, dqCurrents.qComponent);
     dqVoltages.dComponent = PiCalculationID(currentReferences.dComponent, dqCurrents.dComponent);
 
-//    if ((dummyVar++ % 4) == 0 )
-//    {
-        UARTIntPrint("qr ", (int)(dqVoltages.qComponent));
+
+//        UARTIntPrint("qr ", (int)(dqVoltages.qComponent));
 //        UARTIntPrint("dr ", (int)(dqVoltages.dComponent));
-//    }
+
     return dqVoltages;
 }
 
