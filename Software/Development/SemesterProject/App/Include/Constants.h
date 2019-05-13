@@ -108,6 +108,7 @@
 #define KI_ID           (float)6.81/PI_Ratio
 #define KP_SPEED        (float)3.7
 #define KI_SPEED        (float)0.37
+#define deltaIdReference    5
 
 #define CURRENT_LIMIT           100    //189 * SQRT_2    // Maximum output for current PI's
 #define MAXIMUM_ROTOR_SPEED     1700            // Maximum rotor speed, for errorManager

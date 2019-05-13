@@ -65,7 +65,6 @@ void monitorHighPriorityErrorSources(void)
     {
         performSafetyReactions();
         updateCurrentErrorStatus(errorStatus);
-//        printCurrentsUART();
     }
 }
 
