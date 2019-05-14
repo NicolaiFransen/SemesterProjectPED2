@@ -12,6 +12,7 @@
 
 // Quasi-global variables definition
 //
+float idReference = 0;
 static struct
 {
     PIobject IqController;
@@ -21,9 +22,9 @@ static struct
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, CURRENT_LIMIT, 0);
-    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, CURRENT_LIMIT, 0);
-    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, SPEED_LIMIT, 1);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1, 0);
 }
 
 /*
@@ -47,7 +48,13 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
 
 float getIdReference(void)
 {
-    return D_CURRENT_REFERENCE;
+    if (idReference < D_CURRENT_REFERENCE)
+    {
+        idReference += deltaIdReference;
+        return idReference;
+    }
+    else
+        return D_CURRENT_REFERENCE;
 }
 
 float calculateIqReference(float torqueReference)
@@ -69,11 +76,15 @@ void resetIntegrators(void)
 void resetIdIntegrator(void)
 {
     PIControllerList.IdController.integrationOfError = 0;
+    PIControllerList.IdController.previousOutput = 0;
+    PIControllerList.IdController.previousLimitedOutput = 0;
 }
 
 void resetIqIntegrator(void)
 {
     PIControllerList.IqController.integrationOfError = 0;
+    PIControllerList.IqController.previousOutput = 0;
+    PIControllerList.IqController.previousLimitedOutput = 0;
 }
 
 void resetSpeedIntegrator(void)
@@ -81,4 +92,9 @@ void resetSpeedIntegrator(void)
     PIControllerList.SpeedController.integrationOfError = 0;
     PIControllerList.SpeedController.previousOutput = 0;
     PIControllerList.SpeedController.previousLimitedOutput = 0;
+}
+
+float readIdReference(void)
+{
+    return idReference;
 }

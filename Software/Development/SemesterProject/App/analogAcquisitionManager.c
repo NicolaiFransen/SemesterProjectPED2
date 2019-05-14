@@ -70,6 +70,7 @@ void readLowPrioritySignals(void)
 {
     readAnalogSignals(&AnalogSignalList, sizeof(AnalogSignalList));
     calculateFilteredValue(&AnalogSignalList, sizeof(AnalogSignalList));
+    calculateInverseOfDcLinkMeas();
 }
 
 /*
@@ -80,7 +81,7 @@ void readAnalogSignals(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size / sizeof(AnalogSignal);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         readADCValue(structPointer);
@@ -94,11 +95,17 @@ void calculateFilteredValue(void *signal, int size)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = signal;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + size / sizeof(AnalogSignal);
 
     for (structPointer = initialMemoryPosition; structPointer < finalMemoryPosition; structPointer++)
         filterADCValue(structPointer);
 }
+
+void calculateInverseOfDcLinkMeas(void)
+{
+    AnalogSignalList.voltageMeas36.dcLinkInverse = (float)1.0 / getDCLinkMeasurement();
+}
+
 
 /*
  * Returns the error status of the analog measurements.
@@ -109,7 +116,7 @@ Uint16 getHighPriorityErrorStatus(void)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = &CurrentSignalList.currentMeasA;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(CurrentSignalList)/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(CurrentSignalList) / sizeof(AnalogSignal);
 
     Uint16 errorStatus = 0;
     int i = 0;
@@ -129,7 +136,7 @@ Uint16 getLowPriorityErrorStatus(void)
 {
     AnalogSignal *structPointer;
     AnalogSignal *initialMemoryPosition = &AnalogSignalList.voltageMeas24;
-    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList)/sizeof(AnalogSignal);
+    AnalogSignal *finalMemoryPosition = initialMemoryPosition + sizeof(AnalogSignalList) / sizeof(AnalogSignal);
 
     Uint16 errorStatus = 0;
     int i = 3;
@@ -238,18 +245,15 @@ void setThermometerThresholds(float *thermometerThresholdArray,
 void getCurrentMeasurements(float *currentMeasurement)
 {
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasA.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_A;
+            -(((CurrentSignalList.currentMeasA.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_A);
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasB.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_B;
+            -(((CurrentSignalList.currentMeasB.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_B);
 
     currentMeasurement++;
     *currentMeasurement =
-            (((CurrentSignalList.currentMeasC.filteredValue - (1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP) * CURRENT_SENSOR_GAIN) /
-            (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS)) - CURRENT_SENSOR_OFFSET_C;
+            -(((CurrentSignalList.currentMeasC.filteredValue - OPAMP_OFFSET_CURRENT) * CURRENT_SENSOR_GAIN_INVERSE) - CURRENT_SENSOR_OFFSET_C);
 }
 
 float getDCLinkMeasurement(void)
@@ -312,6 +316,12 @@ float getMaxReferenceADC(void)
 {
     return MAX_VALUE_ADC;
 }
+
+float getInverseOfDcLinkMeasurement(void)
+{
+    return AnalogSignalList.voltageMeas36.dcLinkInverse;
+}
+
 /*
  * Calls all relevant methods to configure the analog signals and ADCs
  */
@@ -331,7 +341,7 @@ void createAnalogSignals(void)
     // Definition of filter parameters
     char filterType = 'L';
     int filterOrder = 1;
-    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 100;
+    int potFilterFreq = 100, currentFilterFreq = 10000, filterFreq = 1;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
@@ -346,8 +356,8 @@ void createAnalogSignals(void)
      * before using them.
      * Then pass the maximum and then the minimum value of the threshold you want to set.
      */
-    setCurrentThresholds(&currentThreshold[0], 250, -250);
-    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 25);
+    setCurrentThresholds(&currentThreshold[0], 275, -275);
+    setDCLinkVoltageThresholds(&DCLinkVoltageThreshold[0], 42, 10);
     setControlSupplyVoltageThresholds(&controlVoltageThreshold[0], 28, 20);
     setThermometerThresholds(&thermalThreshold[0], 200, 10);
 

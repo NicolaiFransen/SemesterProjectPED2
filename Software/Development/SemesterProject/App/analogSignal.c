@@ -82,7 +82,7 @@ void readADCValue(AnalogSignal *analogSignal)
 
 void filterADCValue(AnalogSignal *analogSignal)
 {
-    float ADCVoltage = analogSignal->ADCValue / (4095.0) * 3.3;
+    float ADCVoltage = analogSignal->ADCValue * MAX_ADC_STEPS_INVERSE * MAX_ADC_REFERENCE;
 
     // Applying the filter (y_n = x_n*a_0 + y_n-1*b_1)
     float ADCReadingFiltered = ADCVoltage*analogSignal->filterParamA + analogSignal->previousValue*analogSignal->filterParamB;

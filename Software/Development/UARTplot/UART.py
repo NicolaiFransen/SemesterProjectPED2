@@ -78,4 +78,3 @@ for key in dataDictionary:
     #print key
 
 plt.show()
-
