@@ -50,6 +50,8 @@ dqObject abc2dq(float *abcArray, float thetaRad)
     dqStruct.qComponent = -TWO_DIV_3 * (aComponent * sin(thetaRad) +
                                          bComponent * sin(thetaRad - TWO_PI_DIV_3) +
                                          cComponent * sin(thetaRad - FOUR_PI_DIV_3));
+
+
     return dqStruct;
 }
 
