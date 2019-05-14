@@ -17,7 +17,7 @@
 #include "PIController.h"
 
 
-void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag)
+void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag, int saturationBlockFlag)
 {
     PIcontroller->KP = KP;
     PIcontroller->KI = KI;
@@ -28,6 +28,7 @@ void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWi
     PIcontroller->previousLimitedOutput = 0;
 
     PIcontroller->antiWindupFlag = antiWindupFlag;
+    PIcontroller->includeSaturationBlock = saturationBlockFlag;
 }
 
 /*
@@ -62,12 +63,12 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
         // Calculating the controller output
         PIoutput = KP * error + KI * PIcontroller->integrationOfError;
 
-    if (PIcontroller->antiWindupFlag == 0)
+    if (PIcontroller->includeSaturationBlock)
     {
         if (isOutputSaturatedPositive(PIoutput))
-            PIoutput = CURRENT_LIMIT;
+            PIoutput = VOLTAGE_LIMIT;
         else if (isOutputSaturatedNegative(PIoutput))
-            PIoutput = -CURRENT_LIMIT;
+            PIoutput = -VOLTAGE_LIMIT;
     }
 
     return PIoutput;

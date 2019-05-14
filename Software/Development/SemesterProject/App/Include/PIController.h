@@ -23,12 +23,13 @@ typedef struct PIobjectTag
     float previousOutput;
     float previousLimitedOutput;
     int antiWindupFlag;
+    int includeSaturationBlock;
 } PIobject;
 
 /*
  * Initialization functions
  */
-void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag);
+void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag, int saturationBlock);
 
 float PiCalculation(PIobject *PIcontroller, float reference, float measurementValue);
 
