@@ -17,8 +17,8 @@
 #include "Constants.h"
 
 #define MAX_VALUE_ADC     3.3
-#define ANALOG_EXECUTION_FREQ_HIGH_PRIORITY     20000   //Hz
-#define ANALOG_EXECUTION_FREQ_LOW_PRIORITY      100     //Hz
+#define ANALOG_EXECUTION_FREQ_HIGH_PRIORITY     10000   //Hz
+#define ANALOG_EXECUTION_FREQ_LOW_PRIORITY      1000    //Hz
 
 //
 // Object declaration
@@ -42,6 +42,7 @@ typedef struct AnalogSignalTag
     Uint16 adcChannel;              // ADC channel for the signal
     float threshold[2];             // Maximum and minimum thresholds. Used for error handling.
     float maxValue;                 // Maximum ADC value for reference use
+    float dcLinkInverse;            // The inverse of the DC-Link measurement
     priorityObject priority;        // Priority of the signal (let's the filter calculator know how often it is executed)
 } AnalogSignal;
 

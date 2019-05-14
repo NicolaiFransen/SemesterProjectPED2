@@ -48,7 +48,7 @@ interrupt void SCIA_TX_isr(void)
         SciaRegs.SCITXBUF = getNextBufferValue();
 
         // If the UART buffer is not empty then enable the interrupt so the transmission keeps going
-        if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+        //if (!isUARTBufferEmpty())    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
     }
 
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP9;
@@ -116,6 +116,30 @@ void sciConfiguration(void)
 
 }
 
+/*
+ * External interface
+ */
+
+/*
+ * UART Counter for several UART prints in the high speed loop.
+ *
+ * To be used as follows:
+ * The system will print UART_AMOUNT_OF_VARIABLES + 2 different variables.
+ *
+ *     if (getUartCounter() == 0) UARTIntPrint("var1_name ", var1);
+ *     if (getUartCounter() == 1) UARTIntPrint("var2_name ", var2);
+ *     if (getUartCounter() == 2) UARTIntPrint("var3_name ", var3);
+ *     if (getUartCounter() == 3) UARTIntPrint("var4_name ", var4);
+ *
+ * Then the variables will be plotted once every 4 loops, which should
+ * at least provide an improvement in debugging capabilities.
+ */
+int getUartCounter(void)
+{
+    static int UARTCounter = 0;
+    if (UARTCounter++ > UART_AMOUNT_OF_VARIABLES)  UARTCounter = 0;
+    return UARTCounter;
+}
 
 
 

@@ -29,6 +29,7 @@ void runClosedLoopControl(void)
     float movementReference = 0;
     float abcCurrents[3];
     float theta = 0;
+
     dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
 
@@ -40,6 +41,7 @@ void runClosedLoopControl(void)
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
+
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
@@ -116,6 +118,16 @@ float getIqReference(float movementReference)
         iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
     }
 
+    // If the wanted output is outside saturation limits, then limit the output
+    if (isOutputSaturatedPositive(iqReference))
+    {
+        iqReference = CURRENT_LIMIT;
+    }
+    else if (isOutputSaturatedNegative(iqReference))
+    {
+        iqReference = -(CURRENT_LIMIT);
+    }
+
     return iqReference;
 }
 
@@ -126,9 +138,14 @@ float getIqReference(float movementReference)
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents)
 {
     dqObject dqVoltages;
+
     // Calculate voltage references from current PI-controllers
     dqVoltages.qComponent = PiCalculationIQ(currentReferences.qComponent, dqCurrents.qComponent);
     dqVoltages.dComponent = PiCalculationID(currentReferences.dComponent, dqCurrents.dComponent);
+
+
+//        UARTIntPrint("qr ", (int)(dqVoltages.qComponent));
+//        UARTIntPrint("dr ", (int)(dqVoltages.dComponent));
 
     return dqVoltages;
 }

@@ -28,6 +28,8 @@ void executeControl(void)
              runStartUpControl();
          }
     }
+    else
+        setAllDuties(0);
 }
 
 /*

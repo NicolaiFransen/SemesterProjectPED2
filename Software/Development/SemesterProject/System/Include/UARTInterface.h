@@ -10,6 +10,8 @@
 
 #include "queueObject.h"
 
+#define UART_AMOUNT_OF_VARIABLES 2
+
 void initUART(void);
 void UARTComms(void);
 void scia_fifo_init(void);

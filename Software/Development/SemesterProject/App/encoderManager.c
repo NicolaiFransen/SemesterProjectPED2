@@ -96,6 +96,7 @@ void updateSpeed(motorPosSpeed *motorPosSpeedObject, float deltaTheta)
     if (motorPosSpeedObject->dir == 0) motorPosSpeedObject->rotorElecSpeedRadS = - deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount;
     else motorPosSpeedObject->rotorElecSpeedRadS = deltaTheta * 1000000 / motorPosSpeedObject->rotorSpeedTimeCount; //Going reverse direction.
 
+
     //Update other values.
     motorPosSpeedObject->rotorThetaElecOld = motorPosSpeedObject->rotorThetaElec;
     motorPosSpeedObject->rotorSpeedTimeCount = 0;
@@ -113,9 +114,9 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
 
     deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
-    //Speed is only calculated every 10 degrees.
-    if (deltaTheta > DEG_10_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 5000)
-        //Enter here either if there have been more than 10º or if a time longer than 5ms has passed (for low speeds).
+    //Speed is only calculated every 30 degrees.
+    if (deltaTheta > DEG_30_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 15000)
+        //Enter here either if there have been more than 10º or if a time longer than 15ms has passed (for low speeds).
 
     {
         updateSpeed(motorPosSpeedObject, deltaTheta);
@@ -134,9 +135,9 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
     //Update raw angle with counter, remember that QPOSCNT already takes into account direction.
     motorPosSpeedObject->rotorThetaRaw = EQep1Regs.QPOSCNT;
     //Transform into electrical angle [rad]
-    motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * THETA_RAW_TO_THETA_ELEC;
     if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
-    motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * REV_TO_RAD * ENCODER_STEPS_INVERSE;
+    motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * THETA_RAW_TO_THETA_MECH;
 
     motorPosSpeedObject->rotorSpeedTimeCount += SW_PERIOD_US;
 }

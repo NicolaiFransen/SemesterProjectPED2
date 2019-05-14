@@ -22,6 +22,7 @@
  */
 static enum taskListTag
 {
+    task1msItem,
     task5msItem,
     task20msItem,
     task200msItem,
@@ -36,6 +37,11 @@ static Uint32 sysClock = 0;
 
 void taskListInitialization(void)
 {
+    taskList[task1msItem].functionPointer = task1ms;
+    taskList[task1msItem].taskState = INACTIVE;
+    taskList[task1msItem].cyclicity = 1000;
+    taskList[task1msItem].timeLeft = 1000;
+
     taskList[task5msItem].functionPointer = task5ms;
     taskList[task5msItem].taskState = INACTIVE;
     taskList[task5msItem].cyclicity = 5000;
@@ -88,13 +94,19 @@ void runTask(void (*functionPTR)())
 /*
  * Tasks definition
  */
+void task1ms(void)
+{
+    readLowPrioritySignals();
+    performLowPriorityErrorMonitoring();
+}
+
 void task5ms(void)
 {
-    printCurrentsUART();
 }
 
 void task10ms(void)
 {
+    printCurrentsUART();
     ServiceDog();
 }
 
@@ -102,8 +114,6 @@ void task20ms(void)
 {
     manageSystem();
     readDigitalInputs();
-    readLowPrioritySignals();
-    performLowPriorityErrorMonitoring();
     handlePushbuttons();
     handleReferences();
     printUART();
@@ -204,15 +214,30 @@ void printUART(void)
     //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
 //    UARTIntPrint("T ", (int)getThermometer1Measurement());
-    //UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("Pos ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
+//    UARTIntPrint("Te ", (int)getTorqueReference());
+//    UARTIntPrint("Iq ", (int)getIqReference(getMovementReference()));
+//    UARTIntPrint("Id ", (int)getIdReference());
+//    UARTIntPrint("R ", (int)(readRotorElecSpeedRadS() * RAD_TO_DEG));
 }
 
 void printCurrentsUART(void)
 {
+    SciaRegs.SCIFFTX.bit.TXFFINTCLR = 1;
+
 //    float currentsToPrint[3];
-//
+//    dqObject dqCurrents;
 //    getCurrentMeasurements(&currentsToPrint[0]);
+//    float theta = readRotorFluxAngleRad();
+//    dqCurrents = abc2dq(&currentsToPrint[0], theta);
+////
+    //UARTIntPrint("Id ", (int)(readIdReference() * 1000));
+//    UARTIntPrint("Iq ", (int)dqCurrents.qComponent);
+//    UARTIntPrint("Id ", (int)dqCurrents.dComponent);
 //    UARTIntPrint("a ", (int)currentsToPrint[0]);
 //    UARTIntPrint("b ", (int)currentsToPrint[1]);
 //    UARTIntPrint("c ", (int)currentsToPrint[2]);
+//    UARTIntPrint("S ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
+
 }
