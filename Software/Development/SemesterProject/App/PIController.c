@@ -63,6 +63,8 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
         // Calculating the controller output
         PIoutput = KP * error + KI * PIcontroller->integrationOfError;
 
+    PIcontroller->previousOutput = PIoutput;
+
     if (PIcontroller->includeSaturationBlock)
     {
         if (isOutputSaturatedPositive(PIoutput))
@@ -71,6 +73,7 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
             PIoutput = -VOLTAGE_LIMIT;
     }
 
+    PIcontroller->previousLimitedOutput = PIoutput;
     return PIoutput;
 }
 

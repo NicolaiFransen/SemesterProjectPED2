@@ -76,11 +76,15 @@ void resetIntegrators(void)
 void resetIdIntegrator(void)
 {
     PIControllerList.IdController.integrationOfError = 0;
+    PIControllerList.IdController.previousOutput = 0;
+    PIControllerList.IdController.previousLimitedOutput = 0;
 }
 
 void resetIqIntegrator(void)
 {
     PIControllerList.IqController.integrationOfError = 0;
+    PIControllerList.IqController.previousOutput = 0;
+    PIControllerList.IqController.previousLimitedOutput = 0;
 }
 
 void resetSpeedIntegrator(void)
