@@ -22,9 +22,9 @@ static struct
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0);
-    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0);
-    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1, 0);
 }
 
 /*
@@ -76,11 +76,15 @@ void resetIntegrators(void)
 void resetIdIntegrator(void)
 {
     PIControllerList.IdController.integrationOfError = 0;
+    PIControllerList.IdController.previousOutput = 0;
+    PIControllerList.IdController.previousLimitedOutput = 0;
 }
 
 void resetIqIntegrator(void)
 {
     PIControllerList.IqController.integrationOfError = 0;
+    PIControllerList.IqController.previousOutput = 0;
+    PIControllerList.IqController.previousLimitedOutput = 0;
 }
 
 void resetSpeedIntegrator(void)
