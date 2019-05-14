@@ -23,8 +23,10 @@ void executeControl(void)
         }
 
          else
+         {
             // Call closed-loop function
-             runClosedLoopControl();
+             runStartUpControl();
+         }
     }
     else
         setAllDuties(0);

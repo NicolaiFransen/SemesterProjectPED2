@@ -110,10 +110,13 @@
 #define KI_SPEED        (float)0.37
 #define deltaIdReference    5
 
-#define INCLUDE_SATURATION      1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
-#define CURRENT_LIMIT           100    //189 * SQRT_2    // Maximum output for current PI's
-#define VOLTAGE_LIMIT           100
-#define MAXIMUM_ROTOR_SPEED     1700            // Maximum rotor speed, for errorManager
+
+#define INCLUDE_SATURATION                1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
+#define CURRENT_LIMIT                     100    //189 * SQRT_2    // Maximum output for current PI's
+#define VOLTAGE_LIMIT                     100
+#define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
+#define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
+
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm

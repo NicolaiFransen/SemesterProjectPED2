@@ -22,6 +22,9 @@
 // Functions
 void runClosedLoopControl(void);
 
+void runStartUpControl(void);
+int isControlInStartUp(void);
+
 float getMovementReference(void);
 float getIqReference(float movementReference);
 dqObject getCurrentReferences(float movementReference);
