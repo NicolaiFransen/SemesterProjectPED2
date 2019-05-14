@@ -21,7 +21,7 @@
 
 #include "closedLoopControlManager.h"
 
-int startUpFlag = 1;
+static int systemIsInStartup = 1;
 
 
 void runClosedLoopControl(void)
@@ -64,9 +64,9 @@ dqObject getCurrentReferences(float movementReference)
 void runStartUpControl(void)
 {
     if (!isControlInStartUp())
-        startUpFlag = 0;
+        systemIsInStartup = 0;
 
-    if (startUpFlag)
+    if (systemIsInStartup)
         openLoopVFControl();
     else
         runClosedLoopControl();
@@ -75,7 +75,7 @@ void runStartUpControl(void)
 
 int isControlInStartUp(void)
 {
-    if (readRotorRPM() > STARTUP_SPEED)
+    if (readRotorRPM() > STARTUP_SPEED_THRESHOLD)
         return 0;
     else
         return 1;

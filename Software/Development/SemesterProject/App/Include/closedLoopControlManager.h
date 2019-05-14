@@ -22,7 +22,7 @@
 // Functions
 void runClosedLoopControl(void);
 
-void runstartUpControl(void);
+void runStartUpControl(void);
 int isControlInStartUp(void);
 
 float getMovementReference(void);
