@@ -49,15 +49,8 @@ errorStatus areCurrentMeasurementsWithinThresholds(Uint16 errorStatus)
  * If the position is less than 3, meaning one of the currents, high priority errors
  * are read.
  */
-errorStatus getErrorStatusInBit(Uint16 position)
+errorStatus getErrorStatusInBit(Uint16 position, Uint16 errorStatus)
 {
-    Uint16 errorStatus;
-
-    if(position < 3)
-        errorStatus = getHighPriorityErrorStatus();
-    else
-        errorStatus = getLowPriorityErrorStatus();
-
     if ((errorStatus & (1<<position)) >> position)
         return ERROR_HAS_HAPPENED;
     else

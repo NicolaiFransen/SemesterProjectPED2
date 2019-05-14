@@ -6,6 +6,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include "analogSignal.h"
+
 
 //Processor related parameters
 #define CLOCK_FREQUENCY             ((float)150e6)          // 150 MHz clock frequency
@@ -80,8 +82,15 @@
 #define POLE_PAIRS            2                             //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE    ((float)0.5)                  //To be used instead of a division.
 
-#define TORQUE_TO_Q_CURRENT   1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
-#define D_CURRENT_REFERENCE   LAMDA_R/LM
+#define THETA_RAW_TO_THETA_ELEC     POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE
+#define THETA_RAW_TO_THETA_MECH     REV_TO_RAD * ENCODER_STEPS_INVERSE
+
+#define TORQUE_TO_Q_CURRENT         1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
+#define D_CURRENT_REFERENCE         LAMDA_R/LM
+
+#define MAX_ADC_STEPS               (float)4095.0
+#define MAX_ADC_REFERENCE           (float)3.3
+#define MAX_ADC_STEPS_INVERSE       (float)1.0 / MAX_ADC_STEPS
 
 #define d_axis			0
 #define	q_axis			1
@@ -92,20 +101,23 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define KP_IQ           (float)2.58
-#define KI_IQ           (float)15.70
-#define KP_ID           (float)2.58
-#define KI_ID           (float)15.70
-#define KP_SPEED        (float)10
-#define KI_SPEED        (float)10
+#define PI_Ratio        1
+#define KP_IQ           (float)1.12/PI_Ratio
+#define KI_IQ           (float)6.81/PI_Ratio
+#define KP_ID           (float)1.12/PI_Ratio
+#define KI_ID           (float)6.81/PI_Ratio
+#define KP_SPEED        (float)3.7
+#define KI_SPEED        (float)0.37
+#define deltaIdReference    5
 
-#define CURRENT_LIMIT           100         // Maximum output for current PI's
-#define SPEED_LIMIT             800         // Maximum output for speed PI
-#define MAXIMUM_ROTOR_SPEED     1700        // Maximum rotor speed, for errorManager
+#define INCLUDE_SATURATION      1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
+#define CURRENT_LIMIT           100    //189 * SQRT_2    // Maximum output for current PI's
+#define VOLTAGE_LIMIT           100
+#define MAXIMUM_ROTOR_SPEED     1700            // Maximum rotor speed, for errorManager
 
 // Constant component values from interface PCB
-#define R_IN_CURRENT_MEAS           9.1                 // Ohm
-#define BIAS_VOLTAGE_OPAMP          0.817               // V
+#define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm
+#define BIAS_VOLTAGE_OPAMP          (float)0.817               // V
 #define OPAMP_GAIN_CURRENT_MEAS     (float)-1           // []
 #define CURRENT_SENSOR_GAIN         (float)2000         // []
 #define R1_DCLINK_MEAS              (float)21500        // Ohm
@@ -114,12 +126,16 @@
 #define R4_DCLINK_MEAS              (float)10000        // Ohm
 #define R1_CONTROL_SUPPLY_MEAS      (float)8200         // Ohm
 #define R2_CONTROL_SUPPLY_MEAS      (float)1000         // Ohm
-#define TEMP_SENSOR_GAIN            0.01                // 10mV/deg
+#define TEMP_SENSOR_GAIN            (float)0.01                // 10mV/deg
 #define MEAS_TO_TEMP                (float)100          // 100deg/V
 
 // Defines of inverse sensor gains
 #define DC_LINK_MEAS_TO_VOLTAGE         (R4_DCLINK_MEAS/R3_DCLINK_MEAS)*((R1_DCLINK_MEAS+R2_DCLINK_MEAS)/R2_DCLINK_MEAS)
 #define CONTROL_SUPPLY_MEAS_TO_VOLTAGE  ((R1_CONTROL_SUPPLY_MEAS+R2_CONTROL_SUPPLY_MEAS)/R2_CONTROL_SUPPLY_MEAS)
+
+// Defines of inverse current sensor transfer function
+#define OPAMP_OFFSET_CURRENT            (float)((1 - OPAMP_GAIN_CURRENT_MEAS) * BIAS_VOLTAGE_OPAMP)
+#define CURRENT_SENSOR_GAIN_INVERSE     (float)(CURRENT_SENSOR_GAIN / (OPAMP_GAIN_CURRENT_MEAS * R_IN_CURRENT_MEAS))
 
 // Sensor offsets
 #define CURRENT_SENSOR_OFFSET_A           9       // [A]
@@ -128,6 +144,7 @@
 #define CONTROL_SUPPLY_OFFSET             2       // [V]
 #define DC_LINK_OFFSET                    0       // [V]
 #define TEMP_SENSOR_OFFSET                0       // [deg C]
+
 
 
 #endif  

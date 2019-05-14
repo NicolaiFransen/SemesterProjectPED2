@@ -59,6 +59,8 @@ void readHighPrioritySignals(void);
 void readLowPrioritySignals(void);
 void readAnalogSignals(void *signal, int signalSize);
 void calculateFilteredValue(void *signal, int signalSize);
+void calculateInverseOfDcLinkMeas(void);
+
 
 /*
  * function to check for faulty reading
@@ -95,6 +97,7 @@ float getRotaryPot2Measurement(void);
 float getRotaryPot3Measurement(void);
 
 float getMaxReferenceADC(void);
+float getInverseOfDcLinkMeasurement(void);
 
 
 #endif /* APP_INCLUDE_ANALOGACQUISITIONMANAGER_H_ */
