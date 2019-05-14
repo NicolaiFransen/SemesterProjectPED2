@@ -20,5 +20,8 @@ void scia_echoback_init();
 void scia_xmit(int a);
 void scia_msg(char * msg);
 
+int getUartCounter(void);
+void increaseUARTCounter(void);
+
 
 #endif /* SYSTEM_INCLUDE_UARTINTERFACE_H_ */

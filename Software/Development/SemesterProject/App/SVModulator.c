@@ -52,6 +52,7 @@ void runSVM(alphaBetaObject voltageRef)
     VdcInverse = getInverseOfDcLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc, VdcInverse);
     sector = findSector(voltageRef);
+//    if (getUartCounter() == 2)      UARTIntPrint("s ", sector);
     t1t2Calculation[sector](voltageRef);
 }
 

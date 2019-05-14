@@ -12,6 +12,7 @@
 // Includes
 //
 #include "Constants.h"
+#include "../../System/Include/UARTInterface.h"
 
 
 typedef struct PIobjectTag
@@ -31,8 +32,7 @@ typedef struct PIobjectTag
  */
 void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag, int saturationBlock);
 
-float PiCalculation(PIobject *PIcontroller, float reference, float measurementValue);
-
+float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PIIsIqController);
 /*
  * Function to check saturation of output
  */

@@ -101,7 +101,7 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define PI_Ratio        1
+#define PI_Ratio        100
 #define KP_IQ           (float)1.12/PI_Ratio
 #define KI_IQ           (float)6.81/PI_Ratio
 #define KP_ID           (float)1.12/PI_Ratio
@@ -113,7 +113,7 @@
 
 #define INCLUDE_SATURATION                1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
 #define CURRENT_LIMIT                     100    //189 * SQRT_2    // Maximum output for current PI's
-#define VOLTAGE_LIMIT                     100
+#define VOLTAGE_LIMIT                     50
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
 #define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
 

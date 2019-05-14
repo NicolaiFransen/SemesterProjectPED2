@@ -52,7 +52,7 @@ dqObject abc2dq(float *abcArray, float thetaRad)
                                         cComponent * sin(thetaRad - FOUR_PI_DIV_3));
 
 
-//        UARTIntPrint("qm ", (int)(dqStruct.qComponent * 100));
+    if (getUartCounter() == 1) UARTIntPrint("qm ", (int)(dqStruct.qComponent));
 //        UARTIntPrint("dm ", (int)(dqStruct.dComponent * 100));
 
     return dqStruct;
@@ -78,6 +78,7 @@ alphaBetaObject dq2alphabeta(dqObject *dqStruct, float thetaRad)
 
     alphaBetaStruct.betaComponent =     dqStruct->dComponent * sin(thetaRad) +
                                         dqStruct->qComponent * cos(thetaRad);
+
 
     return alphaBetaStruct;
 }

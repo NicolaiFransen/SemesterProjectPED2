@@ -30,6 +30,7 @@ union INT16_DATA_PACKAGE
 
 union INT16_DATA_PACKAGE receivedData, dataToSend;
 
+static int UARTCounter = 0;
 
 /*
  * When FIFO mode is enabled for SCI, characters written to
@@ -136,9 +137,12 @@ void sciConfiguration(void)
  */
 int getUartCounter(void)
 {
-    static int UARTCounter = 0;
-    if (UARTCounter++ > UART_AMOUNT_OF_VARIABLES)  UARTCounter = 0;
     return UARTCounter;
+}
+
+void increaseUARTCounter(void)
+{
+    if (UARTCounter++ > UART_AMOUNT_OF_VARIABLES)  UARTCounter = 0;
 }
 
 

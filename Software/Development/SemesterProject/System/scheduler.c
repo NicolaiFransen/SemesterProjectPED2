@@ -116,7 +116,6 @@ void task20ms(void)
     readDigitalInputs();
     handlePushbuttons();
     handleReferences();
-    printUART();
 }
 
 void task200ms(void)
@@ -129,6 +128,8 @@ void task1s(void)
 {
     restartPushbuttonsState();
     calculateTemperature();
+    printUART();
+
 }
 
 //
@@ -214,7 +215,7 @@ void printUART(void)
     //UARTIntPrint("Vc ", (int)getControlsupplyMeasurement() * 100);
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
 //    UARTIntPrint("T ", (int)getThermometer1Measurement());
-//    UARTIntPrint("RPM ", (int)readRotorRPM());
+    UARTIntPrint("RPM ", (int)readRotorRPM());
 //    UARTIntPrint("Pos ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
 //    UARTIntPrint("Te ", (int)getTorqueReference());
 //    UARTIntPrint("Iq ", (int)getIqReference(getMovementReference()));

@@ -2,10 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/vdRef_startupTest3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/highPriorityTasks.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/highPriorityTasks.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hehehe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/referenceErrorMeas.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sectorAnalysis.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
@@ -17,34 +36,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vdRef_startupTest3.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2414">
-              <caret line="142" selection-start-line="142" selection-end-line="142" />
+            <state relative-caret-position="64">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/snippet.py">
+        <entry file="file://$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-              <folding>
-                <element signature="e#44#75#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="223" column="6" lean-forward="true" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -60,6 +102,8 @@
     <findStrings>
       <find>-33</find>
       <find>336</find>
+      <find>print</find>
+      <find>-50</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -77,8 +121,9 @@
         <option value="$PROJECT_DIR$/startupTesVdRefOneEverytwo.txt" />
         <option value="$PROJECT_DIR$/startupTesVqRefOneEverytwo.txt" />
         <option value="$PROJECT_DIR$/vdRef_startupTest3.txt" />
-        <option value="$PROJECT_DIR$/UART.py" />
         <option value="$PROJECT_DIR$/vdRef_startupTest3.txt" />
+        <option value="$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt" />
+        <option value="$PROJECT_DIR$/UART.py" />
       </list>
     </option>
   </component>
@@ -204,7 +249,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -268,18 +312,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UART.py">
+    <entry file="file://$PROJECT_DIR$/vdRef_startupTest3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hehehe.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+        <state relative-caret-position="-1866">
+          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vdRef_startupTest3.txt">
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2414">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-
+        <state relative-caret-position="51">
+          <caret line="223" column="6" lean-forward="true" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/referenceErrorMeas.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UART.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
         </state>
       </provider>
     </entry>

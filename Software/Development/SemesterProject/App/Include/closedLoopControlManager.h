@@ -16,6 +16,7 @@
 #include "positionCalculator.h"
 #include "analogAcquisitionManager.h"
 #include "DSP28x_Project.h"
+#include "../../System/Include/UARTInterface.h"
 
 
 

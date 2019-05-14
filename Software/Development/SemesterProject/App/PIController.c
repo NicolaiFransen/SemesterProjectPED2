@@ -35,7 +35,7 @@ void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWi
  * PI controller calculations.
  * Depending on the value of the windup flag, this part will be used or not.
  */
-float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue)
+float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PIIsIqController)
 {
     float KP = PIcontroller->KP;
     float KI = PIcontroller->KI;
@@ -45,6 +45,11 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
     // Calculating the difference between the reference and the measured
     error = reference - measuredValue;
+    if (PIIsIqController)
+        {
+        if (getUartCounter() == 0)  UARTIntPrint("er ", (int)(error));
+        }
+
 
     // Calculating the integral part from the error
     PIcontroller->integrationOfError = PIcontroller->integrationOfError + error;
@@ -53,7 +58,7 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
     {
         // Calculating the difference between the wanted output and the actual output
         // To be used in the anti-windup of the integrator
-        outputFeedback = PIcontroller->previousOutput - PIcontroller->previousLimitedOutput;
+        outputFeedback = fabs(PIcontroller->previousOutput) - fabs(PIcontroller->previousLimitedOutput);
 
         // Calculating the controller output
         PIoutput = KP * error +

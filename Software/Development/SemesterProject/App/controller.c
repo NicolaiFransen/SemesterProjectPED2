@@ -22,8 +22,8 @@ static struct
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0, INCLUDE_SATURATION);
-    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 1, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 1, INCLUDE_SATURATION);
     PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1, 0);
 }
 
@@ -32,17 +32,17 @@ void initPIControllers(void)
  */
 float PiCalculationIQ(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IqController, reference, measuredValue);
+    return PiCalculation(&PIControllerList.IqController, reference, measuredValue, 1);
 }
 
 float PiCalculationID(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IdController, reference, measuredValue);
+    return PiCalculation(&PIControllerList.IdController, reference, measuredValue, 0);
 }
 
 float PiCalculationSpeed(float reference, int16 measuredValue)
 {
-    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue);
+    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue, 0);
 }
 
 
