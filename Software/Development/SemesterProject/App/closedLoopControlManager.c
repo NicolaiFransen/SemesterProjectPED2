@@ -66,7 +66,7 @@ void runStartUpControl(void)
     if (!isControlInStartUp())
         startUpFlag = 0;
 
-    if (readRotorRPM() < STARTUP_SPEED && startUpFlag)
+    if (startUpFlag)
         openLoopVFControl();
     else
         runClosedLoopControl();
