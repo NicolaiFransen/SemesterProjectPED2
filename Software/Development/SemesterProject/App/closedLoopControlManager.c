@@ -21,6 +21,9 @@
 
 #include "closedLoopControlManager.h"
 
+int startUpFlag = 1;
+
+
 void runClosedLoopControl(void)
 {
     float movementReference = 0;
@@ -57,6 +60,26 @@ dqObject getCurrentReferences(float movementReference)
     return currentReferences;
 }
 
+
+void runStartUpControl(void)
+{
+    if (!isControlInStartUp())
+        startUpFlag = 0;
+
+    if (readRotorRPM() < STARTUP_SPEED && startUpFlag)
+        openLoopVFControl();
+    else
+        runClosedLoopControl();
+}
+
+
+int isControlInStartUp(void)
+{
+    if (readRotorRPM() > STARTUP_SPEED)
+        return 0;
+    else
+        return 1;
+}
 
 /*
  * Function to determine what kind of control is wanted,
@@ -109,5 +132,7 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
 
     return dqVoltages;
 }
+
+
 
 
