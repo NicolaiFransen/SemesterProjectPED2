@@ -13,6 +13,7 @@
 #include "AnalogSignal.h"
 #include "pushButtonManager.h"
 #include "systemManager.h"
+#include "positionCalculator.h"
 
 #define MAX_TORQUE_REF_NM           30
 #define MAXIMUM_SPEED_REF_RPM       1685
@@ -59,6 +60,8 @@ void calculateSpeedReference(void);
     int speedRefDecreased(int speedReferenceBeforeLimit);
     int calculateSaturatedSpeed(int speedReferenceBeforeSaturation);
     void restartSpeedReference(void);
+void restartReferences(void);
+
 
 /*
  * External Interfaces
