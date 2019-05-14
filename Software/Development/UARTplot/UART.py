@@ -1,3 +1,23 @@
+'''
+UART plot
+
+This script plots the .txt file specified in line 27.
+
+fileUART = open("abc2dqTestingSerialCom6.txt", "r")
+
+The file opens the file structured as follows:
+
+TS 536,
+PhaseA 39,
+PhaseB 13,
+PhaseC 98,
+D 0,
+
+And creates an array with all the values for every different tag (TS, PhaseA,...)
+Finally plots all the points for a different tag in a single window.
+
+'''
+
 import pip
 
 def install(package):
@@ -23,18 +43,13 @@ csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
 for line in csvUARTlines:
-    if len(line) > 4 and len(line) < 10:
-        try:
-            splittedString = line.lstrip().replace(",", "").replace("\n", "").split(' ')
-            if splittedString[0] in dataDictionary:
-                print splittedString
-                dataDictionary[splittedString[0]].append(float(splittedString[1]))
-            else:
-                dataDictionary[splittedString[0]] = []
-                dataDictionary[splittedString[0]].append(float(splittedString[1]))
-            # print max(line)
-        except:
-            pass
+    splittedString = line.replace(",", "").replace("\n", "").split(' ')
+    if splittedString[0] in dataDictionary:
+        dataDictionary[splittedString[0]].append(float(splittedString[1]))
+    else:
+        dataDictionary[splittedString[0]] = []
+        dataDictionary[splittedString[0]].append(float(splittedString[1]))
+    #print max(line)
 
 #For every dictionary key (except TS) find maximum and minimum value, to size the plot
 
@@ -46,7 +61,7 @@ index = 1
 for key in dataDictionary:
     plt.figure(index)
     fig, ax = plt.subplots()
-    plt.plot(np.linspace(0, len(dataDictionary[key]), len(dataDictionary[key])), dataDictionary[key], label=key)
+    plt.plot(dataDictionary["TS"], dataDictionary[key], label=key)
     plt.legend()
     start, end = ax.get_xlim()
     starty = min(dataDictionary[key])
@@ -57,10 +72,9 @@ for key in dataDictionary:
         ax.yaxis.set_ticks((sorted(np.arange(starty, endy, (endy - starty)*0.1))))
     except:
         ax.yaxis.set_ticks([-1, 0, 1])
-    plt.xlabel("sampleNumber")
+    plt.xlabel("timestamp")
     plt.ylabel(key)
     index = index + 1
     #print key
 
 plt.show()
-
