@@ -42,13 +42,16 @@ void runClosedLoopControl(void)
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
+//    if (getUartCounter() == 2)    UARTIntPrint("th ", (int)(theta*100));
+
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
     dqVoltages = calculateVoltageReferences(currentReferences, dqCurrents);
 
     abVoltages = dq2alphabeta(&dqVoltages, theta);              // dq->alpha/beta transformation
 
-    runSVM(abVoltages);
+    runSVM(abVoltages);                 //  Self developed SVM
+    //runSVM_DMC(abVoltages);           //SVM from TI's Digital Motor Control
 }
 
 dqObject getCurrentReferences(float movementReference)
@@ -57,7 +60,8 @@ dqObject getCurrentReferences(float movementReference)
 
     currentReferences.qComponent = getIqReference(movementReference);
     currentReferences.dComponent = getIdReference();
-    if (getUartCounter() == 3) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
+//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+//    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
 }

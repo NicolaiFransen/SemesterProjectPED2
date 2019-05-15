@@ -18,12 +18,12 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("referenceErrorMeas1.txt", "r")
+fileUART = open("variableMaxDuty5.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
 for line in csvUARTlines:
-    if len(line) > 2 and len(line) < 10:
+    if len(line) > 4 and len(line) < 10:
         try:
             splittedString = line.lstrip().replace(",", "").replace("\n", "").split(' ')
             if splittedString[0] in dataDictionary:

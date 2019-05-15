@@ -33,6 +33,7 @@ void sector3Calculation(alphaBetaObject voltageRef);
 void sector4Calculation(alphaBetaObject voltageRef);
 void sector5Calculation(alphaBetaObject voltageRef);
 int signumf(float variable);
+void handleMaxDuty(void);
 
 
 #endif /* APP_INCLUDE_SVMODULATOR_H_ */

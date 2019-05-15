@@ -11,6 +11,7 @@
 // Includes
 #include "controller.h"
 #include "SVModulator.h"
+#include "SVM_DMC.h"
 #include "referenceFrameConversion.h"
 #include "referenceHandler.h"
 #include "positionCalculator.h"

@@ -35,7 +35,7 @@ void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWi
  * PI controller calculations.
  * Depending on the value of the windup flag, this part will be used or not.
  */
-float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PIIsIqController)
+float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PIToBePrinted)
 {
     float KP = PIcontroller->KP;
     float KI = PIcontroller->KI;
@@ -45,7 +45,7 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
     // Calculating the difference between the reference and the measured
     error = reference - measuredValue;
-    if (PIIsIqController)
+    if (PIToBePrinted)
         {
         if (getUartCounter() == 0)  UARTIntPrint("er ", (int)(error));
         }

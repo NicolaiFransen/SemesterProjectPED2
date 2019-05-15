@@ -2,29 +2,57 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hehehe.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/referenceErrorMeas.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sectorAnalysis.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dmc_svm.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited20.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited20_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited20_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited20_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_11.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_8.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited25_9.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dutyLimited30.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startVf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startVf_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startVf_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startVf_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startupTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/torqueCOmingFromRefHdlr.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/torqueCOmingFromRefHdlr_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variableMaxDuty.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variableMaxDuty1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variableMaxDuty3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variableMaxDuty4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/variableMaxDuty5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ç.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/.cproject" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/.cproject" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/SVModulator.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/SVModulator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.m" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/Debug/SVModulator.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controlTask.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controlTask.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/UARTInterface.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/systemInit.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/systemInit.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/systemInit.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/systemInit.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
@@ -40,52 +68,57 @@
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="64">
-              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt">
+        <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
+        <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
+        <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variableMaxDuty1.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/variableMaxDuty.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/startVf_3.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="223" column="6" lean-forward="true" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
+            <state>
+              <caret selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
+        <entry file="file://$PROJECT_DIR$/startVf_2.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
+        <entry file="file://$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
+        <entry file="file://$PROJECT_DIR$/startVf_1.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -123,14 +156,18 @@
         <option value="$PROJECT_DIR$/vdRef_startupTest3.txt" />
         <option value="$PROJECT_DIR$/vdRef_startupTest3.txt" />
         <option value="$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt" />
+        <option value="$PROJECT_DIR$/dutyLimited25.txt" />
+        <option value="$PROJECT_DIR$/dutyLimited25_2.txt" />
+        <option value="$PROJECT_DIR$/dutyLimited25_4.txt" />
+        <option value="$PROJECT_DIR$/dutyLimited25_10.txt" />
         <option value="$PROJECT_DIR$/UART.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1944" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -141,6 +178,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,7 +195,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,6 +286,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -270,16 +308,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="1908" column="6" selection-start-line="1908" selection-start-column="3" selection-end-line="1908" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom3.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
@@ -325,41 +353,172 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="223" column="6" lean-forward="true" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
+    <entry file="file://$PROJECT_DIR$/referenceErrorMeas.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/referenceErrorMeas.txt">
+    <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3791">
+          <caret line="223" column="6" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startupTest.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="154" selection-start-line="154" selection-end-line="154" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="891" selection-start-line="891" selection-end-line="891" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1571">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14042" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited20.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ç.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited20_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/torqueCOmingFromRefHdlr.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited20_2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/torqueCOmingFromRefHdlr_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited20_3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited30.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_7.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_8.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_9.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_11.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="150" column="6" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dutyLimited25_12.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dmc_svm.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startVf.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startVf_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startVf_2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startVf_3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/UART.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
         </state>
       </provider>
     </entry>
