@@ -121,9 +121,9 @@ void sector0Calculation(alphaBetaObject voltageRef)
     float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyC = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 void sector1Calculation(alphaBetaObject voltageRef)
@@ -138,9 +138,9 @@ void sector1Calculation(alphaBetaObject voltageRef)
     float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyC = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 void sector2Calculation(alphaBetaObject voltageRef)
@@ -155,9 +155,9 @@ void sector2Calculation(alphaBetaObject voltageRef)
     float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyA = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 void sector3Calculation(alphaBetaObject voltageRef)
@@ -172,9 +172,9 @@ void sector3Calculation(alphaBetaObject voltageRef)
     float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyA = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 void sector4Calculation(alphaBetaObject voltageRef)
@@ -189,9 +189,9 @@ void sector4Calculation(alphaBetaObject voltageRef)
     float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyB = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 void sector5Calculation(alphaBetaObject voltageRef)
@@ -206,9 +206,9 @@ void sector5Calculation(alphaBetaObject voltageRef)
     float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyB = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY_CYCLE);
+    setDutyB(dutyB * MAX_DUTY_CYCLE);
+    setDutyC(dutyC * MAX_DUTY_CYCLE);
 }
 
 /*

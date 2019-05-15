@@ -116,6 +116,7 @@
 #define VOLTAGE_LIMIT                     50
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
 #define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
+#define MAX_DUTY_CYCLE                    100
 
 
 // Constant component values from interface PCB
