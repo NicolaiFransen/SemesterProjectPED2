@@ -43,8 +43,11 @@ void rotorPosSpeedConstructor(void)
     motorPosSpeedObject.rotorThetaElecOld = 0;
     motorPosSpeedObject.rotorSpeedTimeCount = 0;
     motorPosSpeedObject.rotorElecSpeedRadS = 0;
+    motorPosSpeedObject.slipAngleRad = 0;
+    motorPosSpeedObject.rotorFluxPosRad = 0;
+    motorPosSpeedObject.slipSpeedRadS = 0;
+    motorPosSpeedObject.rotorFluxSpeedRadS = 0;
 }
-
 
 /*
  * Obtain position and speed of the rotor.

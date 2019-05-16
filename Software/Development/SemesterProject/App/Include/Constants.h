@@ -113,10 +113,10 @@
 
 #define INCLUDE_SATURATION                1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
 #define CURRENT_LIMIT                     190    //190 as simulink  // Maximum output for current PI's
-#define VOLTAGE_LIMIT                     15
+#define VOLTAGE_LIMIT                     25
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
 #define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
-#define MAX_DUTY_CYCLE                    20
+#define MAX_DUTY_CYCLE                    30
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm

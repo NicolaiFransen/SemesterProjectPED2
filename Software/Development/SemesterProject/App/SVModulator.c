@@ -49,7 +49,7 @@ void runSVM(alphaBetaObject voltageRef)
     float Vdc, VdcInverse;
     int sector;
     handleMaxDuty();
-//    if (getUartCounter() == 2) UARTIntPrint("md ", (int)(MAX_DUTY));
+    if (getUartCounter() == 2) UARTIntPrint("md ", (int)(MAX_DUTY));
     Vdc = getDCLinkMeasurement();
     VdcInverse = getInverseOfDcLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc, VdcInverse);
