@@ -32,17 +32,17 @@ void initPIControllers(void)
  */
 float PiCalculationIQ(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IqController, reference, measuredValue, 0);
+    return PiCalculation(&PIControllerList.IqController, reference, measuredValue, DO_NOT_PRINT_PI_DATA);
 }
 
 float PiCalculationID(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IdController, reference, measuredValue, 1);
+    return PiCalculation(&PIControllerList.IdController, reference, measuredValue, PRINT_PI_DATA);
 }
 
 float PiCalculationSpeed(float reference, int16 measuredValue)
 {
-    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue, 0);
+    return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue, DO_NOT_PRINT_PI_DATA);
 }
 
 

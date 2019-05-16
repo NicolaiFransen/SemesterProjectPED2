@@ -14,6 +14,8 @@
 #include "Constants.h"
 #include "../../System/Include/UARTInterface.h"
 
+#define PRINT_PI_DATA           1
+#define DO_NOT_PRINT_PI_DATA    0
 
 typedef struct PIobjectTag
 {
@@ -32,7 +34,7 @@ typedef struct PIobjectTag
  */
 void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag, int saturationBlock);
 
-float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PIIsIqController);
+float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PItoBePrinted);
 /*
  * Function to check saturation of output
  */

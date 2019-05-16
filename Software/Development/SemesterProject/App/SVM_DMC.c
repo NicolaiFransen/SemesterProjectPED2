@@ -13,6 +13,10 @@
 
 static SVGENDQ svgen_dq;
 
+static _iq Va,Vb,Vc,t1,t2,temp_sv1,temp_sv2;
+static unsigned short Sector = 0;  // Sector is treated as Q0 - independently with global Q
+
+
 void SVMInit_DMC(void)
 {
     svgen_dq.Ta = 0;

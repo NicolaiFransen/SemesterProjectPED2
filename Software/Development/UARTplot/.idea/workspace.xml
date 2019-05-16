@@ -1,61 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dmc_svm.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited10.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited20.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited20_1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited20_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited20_3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_10.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_11.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_12.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_6.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_7.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_8.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited25_9.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dutyLimited30.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startVf.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startVf_1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startVf_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startVf_3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/startupTest.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/torqueCOmingFromRefHdlr.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/torqueCOmingFromRefHdlr_1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variableMaxDuty.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variableMaxDuty1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variableMaxDuty3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variableMaxDuty4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/variableMaxDuty5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ç.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/.cproject" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/.cproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/SVModulator.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/SVModulator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/closedLoopControlManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.m" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/Debug/SVModulator.m" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/analogAcquisitionManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controlTask.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controlTask.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/systemInit.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/systemInit.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/systemInit.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/systemInit.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
-    </list>
+    <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +239,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

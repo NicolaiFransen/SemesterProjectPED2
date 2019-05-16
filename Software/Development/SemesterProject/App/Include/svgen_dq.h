@@ -34,8 +34,6 @@ Default initalizer for the SVGENDQ object.
 ------------------------------------------------------------------------------*/
 
 
-static _iq Va,Vb,Vc,t1,t2,temp_sv1,temp_sv2;
-static unsigned short Sector = 0;  // Sector is treated as Q0 - independently with global Q
 
 #define SVGEN_MACRO(v)															\
 																				\
@@ -108,9 +106,10 @@ switch(Sector)																	\
 	break;																		\
 }																				\
 /*  Convert the unsigned GLOBAL_Q format (ranged (0,1)) ->.. */					\
-/* 	..signed GLOBAL_Q format (ranged (-1,1))*/									\
-v.Ta = _IQmpy2(v.Ta-_IQ(0.5));													\
-v.Tb = _IQmpy2(v.Tb-_IQ(0.5));													\
-v.Tc = _IQmpy2(v.Tc-_IQ(0.5));													\
+/* 	..signed GLOBAL_Q format (ranged (-1,1))*/
+// tHIS SCALE CHANGE IS REMOVED AS WE USE THE RANGE FROM 0 TO 1\
+//v.Ta = _IQmpy2(v.Ta-_IQ(0.5));													\
+//v.Tb = _IQmpy2(v.Tb-_IQ(0.5));													\
+//v.Tc = _IQmpy2(v.Tc-_IQ(0.5));													\
 
 #endif // __SVGEN_DQ_H__
