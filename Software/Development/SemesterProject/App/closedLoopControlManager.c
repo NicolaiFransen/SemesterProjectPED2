@@ -32,7 +32,7 @@ void runClosedLoopControl(void)
 
     dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
-
+    increaseUARTCounter();
     // Checks if the system is in cruise or torque control, and returns
     // the reference corresponding to that control type.
     // Then calculates the current references from that.
@@ -42,6 +42,7 @@ void runClosedLoopControl(void)
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
+//    if (getUartCounter() == 2)    UARTIntPrint("th ", (int)(theta*100));
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
@@ -49,7 +50,8 @@ void runClosedLoopControl(void)
 
     abVoltages = dq2alphabeta(&dqVoltages, theta);              // dq->alpha/beta transformation
 
-    runSVM(abVoltages);
+    runSVM(abVoltages);                 //  Self developed SVM
+    //runSVM_DMC(abVoltages);           //SVM from TI's Digital Motor Control
 }
 
 dqObject getCurrentReferences(float movementReference)
@@ -58,6 +60,8 @@ dqObject getCurrentReferences(float movementReference)
 
     currentReferences.qComponent = getIqReference(movementReference);
     currentReferences.dComponent = getIdReference();
+//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+//    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
 }
@@ -69,15 +73,21 @@ void runStartUpControl(void)
         systemIsInStartup = 0;
 
     if (systemIsInStartup)
+    {
         openLoopVFControl();
+        setLED19(OFF);
+    }
     else
+    {
         runClosedLoopControl();
+        setLED19(ON);
+    }
 }
 
 
 int isControlInStartUp(void)
 {
-    if (readRotorRPM() > STARTUP_SPEED_THRESHOLD)
+    if (abs(readRotorRPM()) > STARTUP_SPEED_THRESHOLD)
         return 0;
     else
         return 1;
@@ -144,8 +154,6 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
     dqVoltages.dComponent = PiCalculationID(currentReferences.dComponent, dqCurrents.dComponent);
 
 
-//        UARTIntPrint("qr ", (int)(dqVoltages.qComponent));
-//        UARTIntPrint("dr ", (int)(dqVoltages.dComponent));
 
     return dqVoltages;
 }

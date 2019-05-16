@@ -25,7 +25,8 @@ void executeControl(void)
          else
          {
             // Call closed-loop function
-             runStartUpControl();
+//             runStartUpControl();
+             runClosedLoopControl();
          }
     }
     else

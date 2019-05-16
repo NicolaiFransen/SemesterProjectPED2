@@ -18,7 +18,7 @@
 #include "Constants.h"
 #include "referenceFrameConversion.h"
 #include "queueObject.h"
-
+#include "../System/Include/UARTInterface.h"
 /*
  * This function performs the calculation of the dq components.
  * It uses theta in radians, provided by the controlTask
@@ -52,8 +52,8 @@ dqObject abc2dq(float *abcArray, float thetaRad)
                                         cComponent * sin(thetaRad - FOUR_PI_DIV_3));
 
 
-//        UARTIntPrint("qm ", (int)(dqStruct.qComponent * 100));
-//        UARTIntPrint("dm ", (int)(dqStruct.dComponent * 100));
+//    if (getUartCounter() == 1)    UARTIntPrint("qm ", (int)(dqStruct.qComponent));
+//      if (getUartCounter() == 1)    UARTIntPrint("dm ", (int)(dqStruct.dComponent));
 
     return dqStruct;
 }
@@ -78,6 +78,7 @@ alphaBetaObject dq2alphabeta(dqObject *dqStruct, float thetaRad)
 
     alphaBetaStruct.betaComponent =     dqStruct->dComponent * sin(thetaRad) +
                                         dqStruct->qComponent * cos(thetaRad);
+
 
     return alphaBetaStruct;
 }

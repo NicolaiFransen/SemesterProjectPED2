@@ -98,6 +98,7 @@ void task1ms(void)
 {
     readLowPrioritySignals();
     performLowPriorityErrorMonitoring();
+    handleReferences();
 }
 
 void task5ms(void)
@@ -115,8 +116,8 @@ void task20ms(void)
     manageSystem();
     readDigitalInputs();
     handlePushbuttons();
-    handleReferences();
-    printUART();
+//    handleReferences(); moved to high priority
+
 }
 
 void task200ms(void)
@@ -129,6 +130,8 @@ void task1s(void)
 {
     restartPushbuttonsState();
     calculateTemperature();
+    printUART();
+
 }
 
 //
@@ -200,7 +203,7 @@ void handleSystemClock(void)
     sysClock++;
     if (sysClock >= UINT_MAX)    sysClock = 0;
 
-    UARTIntPrint("TS ", (int)sysClock);
+//    UARTIntPrint("TS ", (int)sysClock);
 }
 
 Uint32 getSystemClock(void)
@@ -215,6 +218,8 @@ void printUART(void)
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
 //    UARTIntPrint("T ", (int)getThermometer1Measurement());
 //    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("K ", (int)(TORQUE_TO_Q_CURRENT*10));
+
 //    UARTIntPrint("Pos ", (int)(readRotorFluxAngleRad() * RAD_TO_DEG));
 //    UARTIntPrint("Te ", (int)getTorqueReference());
 //    UARTIntPrint("Iq ", (int)getIqReference(getMovementReference()));

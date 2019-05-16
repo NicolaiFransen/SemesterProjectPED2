@@ -11,11 +11,13 @@
 // Includes
 #include "controller.h"
 #include "SVModulator.h"
+#include "SVM_DMC.h"
 #include "referenceFrameConversion.h"
 #include "referenceHandler.h"
 #include "positionCalculator.h"
 #include "analogAcquisitionManager.h"
 #include "DSP28x_Project.h"
+#include "../../System/Include/UARTInterface.h"
 
 
 

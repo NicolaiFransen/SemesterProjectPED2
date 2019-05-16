@@ -24,9 +24,9 @@
 #define P4              0       // ADCINA0      Extra rotary potentiometer 2
 #define P2              1       // ADCINA1      Brake reference (Right slider)
 #define J4              2       // ADCINA2      Brake reference (External connector)
-#define IA              3       // ADCINA3      Current phase A
+#define IC              3       // ADCINA3      Current phase C
 // #define              4       // ADCINA4   -- FREE PIN
-#define IC              5       // ADCINA5      Current phase C
+#define IA              5       // ADCINA5      Current phase A
 #define J1              6       // ADCINA6      Thermometer 1
 #define J2              7       // ADCINA7      Thermometer 2
 #define P5              8       // ADCINB0      Extra rotary potentiometer 3

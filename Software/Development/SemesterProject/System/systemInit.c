@@ -162,6 +162,7 @@ void systemInit(void)
     initUART();
     initEncoder();
     SVMInit();
+//    SVMInit_DMC();
     initPIControllers();
 
 

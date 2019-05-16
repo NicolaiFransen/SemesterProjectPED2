@@ -11,6 +11,8 @@
 #include "DSP28x_Project.h"
 #include "Constants.h"
 #include "referenceHandler.h"
+#include "controller.h"
+
 
 
 typedef struct

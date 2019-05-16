@@ -79,13 +79,13 @@
 #define ENCODER_STEPS       8192
 
 #define ENCODER_STEPS_INVERSE ((float)(1.0 / ENCODER_STEPS))
-#define POLE_PAIRS            2                             //Number of pole pairs of the motor.
+#define POLE_PAIRS            2.0                             //Number of pole pairs of the motor.
 #define POLE_PAIRS_INVERSE    ((float)0.5)                  //To be used instead of a division.
 
 #define THETA_RAW_TO_THETA_ELEC     POLE_PAIRS * REV_TO_RAD * ENCODER_STEPS_INVERSE
 #define THETA_RAW_TO_THETA_MECH     REV_TO_RAD * ENCODER_STEPS_INVERSE
 
-#define TORQUE_TO_Q_CURRENT         1/(TWO_DIV_3 * POLE_PAIRS * (LM/LR) * LAMDA_R)
+#define TORQUE_TO_Q_CURRENT         (float)(1.0/(1.5 * POLE_PAIRS * (LM/LR) * LAMDA_R))
 #define D_CURRENT_REFERENCE         LAMDA_R/LM
 
 #define MAX_ADC_STEPS               (float)4095.0
@@ -101,21 +101,22 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define PI_Ratio        1
+#define PI_Ratio        10
 #define KP_IQ           (float)1.12/PI_Ratio
 #define KI_IQ           (float)6.81/PI_Ratio
 #define KP_ID           (float)1.12/PI_Ratio
 #define KI_ID           (float)6.81/PI_Ratio
 #define KP_SPEED        (float)3.7
 #define KI_SPEED        (float)0.37
-#define deltaIdReference    5
+#define deltaIdReference    1
 
 
 #define INCLUDE_SATURATION                1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
-#define CURRENT_LIMIT                     100    //189 * SQRT_2    // Maximum output for current PI's
-#define VOLTAGE_LIMIT                     100
+#define CURRENT_LIMIT                     190    //190 as simulink  // Maximum output for current PI's
+#define VOLTAGE_LIMIT                     25
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
 #define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
+#define MAX_DUTY_CYCLE                    75
 
 
 // Constant component values from interface PCB

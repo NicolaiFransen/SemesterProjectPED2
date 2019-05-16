@@ -26,6 +26,7 @@
 #include "SVModulator.h"
 
 static void (*t1t2Calculation[6]) (alphaBetaObject voltageRef);
+static float MAX_DUTY = 10;
 
 void SVMInit(void)
 {
@@ -47,11 +48,13 @@ void runSVM(alphaBetaObject voltageRef)
 {
     float Vdc, VdcInverse;
     int sector;
-
+    handleMaxDuty();
+//    if (getUartCounter() == 2) UARTIntPrint("md ", (int)(MAX_DUTY));
     Vdc = getDCLinkMeasurement();
     VdcInverse = getInverseOfDcLinkMeasurement();
     voltageRef = limitVoltages(voltageRef, Vdc, VdcInverse);
     sector = findSector(voltageRef);
+//    if (getUartCounter() == 2)      UARTIntPrint("s ", sector);
     t1t2Calculation[sector](voltageRef);
 }
 
@@ -120,9 +123,9 @@ void sector0Calculation(alphaBetaObject voltageRef)
     float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyC = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 void sector1Calculation(alphaBetaObject voltageRef)
@@ -137,9 +140,9 @@ void sector1Calculation(alphaBetaObject voltageRef)
     float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyC = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 void sector2Calculation(alphaBetaObject voltageRef)
@@ -154,9 +157,9 @@ void sector2Calculation(alphaBetaObject voltageRef)
     float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyA = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 void sector3Calculation(alphaBetaObject voltageRef)
@@ -171,9 +174,9 @@ void sector3Calculation(alphaBetaObject voltageRef)
     float dutyB = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyA = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 void sector4Calculation(alphaBetaObject voltageRef)
@@ -188,9 +191,9 @@ void sector4Calculation(alphaBetaObject voltageRef)
     float dutyA = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyB = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 void sector5Calculation(alphaBetaObject voltageRef)
@@ -205,9 +208,9 @@ void sector5Calculation(alphaBetaObject voltageRef)
     float dutyC = 1 - (temp + 2 * t1t2Struct.t1);
     float dutyB = temp;
 
-    setDutyA(dutyA * 100);
-    setDutyB(dutyB * 100);
-    setDutyC(dutyC * 100);
+    setDutyA(dutyA * MAX_DUTY);
+    setDutyB(dutyB * MAX_DUTY);
+    setDutyC(dutyC * MAX_DUTY);
 }
 
 /*
@@ -218,5 +221,11 @@ int signumf(float variable)
     if      (variable > 0)  return 1;
     else if (variable < 0)  return -1;
     else                    return 0;
+}
+
+void handleMaxDuty(void)
+{
+    if (MAX_DUTY < MAX_DUTY_CYCLE) MAX_DUTY += 0.1;
+    else MAX_DUTY = MAX_DUTY_CYCLE;
 }
 

@@ -47,7 +47,7 @@
  */
 static GUISignalsTag GUISignals;
 static float speedReference, torqueReference;
-static float deltaSpeed = 1, deltaTorque = 0.1;
+static float deltaSpeed = 0.05, deltaTorque = 0.005; //This values are set for execution at 1 kHz, original values were 1 and 0.1
 static int undampedSpeedReference = 0;
 static int referenceSourceChanged = 0;
 
