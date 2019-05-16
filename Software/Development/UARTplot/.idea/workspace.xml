@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="" />
+    <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thetaAnalysis.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,23 +23,23 @@
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="64">
-              <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_1.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
+        <entry file="file://$PROJECT_DIR$/thetaAnalysis.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -124,7 +133,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -141,6 +149,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,7 +248,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -254,25 +263,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="2013" column="8" selection-start-line="2013" selection-start-column="8" selection-end-line="2013" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="2010" column="6" selection-start-line="2010" selection-start-column="3" selection-end-line="2010" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/abc2dqTestingSerialCom6.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -430,13 +420,19 @@
     <entry file="file://$PROJECT_DIR$/startVf.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/startVf_1.txt">
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt">
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/startVf_2.txt">
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/variableMaxDuty.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/startVf_3.txt">
@@ -446,25 +442,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty.txt">
+    <entry file="file://$PROJECT_DIR$/startVf_2.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty1.txt">
+    <entry file="file://$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
+    <entry file="file://$PROJECT_DIR$/startVf_1.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
+    <entry file="file://$PROJECT_DIR$/thetaAnalysis.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_1.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/UART.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
         </state>
       </provider>
     </entry>

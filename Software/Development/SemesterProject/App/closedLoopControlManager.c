@@ -58,9 +58,11 @@ dqObject getCurrentReferences(float movementReference)
 {
     dqObject currentReferences;
 
+//    currentReferences.qComponent = 50;
+//    currentReferences.dComponent = 50;
     currentReferences.qComponent = getIqReference(movementReference);
     currentReferences.dComponent = getIdReference();
-//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
 //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
