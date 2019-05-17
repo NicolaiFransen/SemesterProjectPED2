@@ -101,7 +101,7 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define PI_Ratio        100
+#define PI_Ratio        50
 #define KP_IQ           (float)1.12/PI_Ratio
 #define KI_IQ           (float)6.81/PI_Ratio
 #define KP_ID           (float)1.12/PI_Ratio

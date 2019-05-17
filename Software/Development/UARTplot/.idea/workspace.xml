@@ -2,14 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thetaAnalysis1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_11.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_8.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dcurrentanalysis_9.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qcurrentanalysis.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qcurrentanalysis_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_10.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_11.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_12.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_13.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_14.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_15.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_6.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_7.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_8.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rotorFluxAngleAnalysis_9.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/positionCalculator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/queueObject.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/queueObject.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/SVModulator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/queueObject.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
@@ -24,54 +53,54 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
+            <state relative-caret-position="340">
               <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_4.txt">
+        <entry file="file://$PROJECT_DIR$/qcurrentanalysis_1.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_3.txt">
+        <entry file="file://$PROJECT_DIR$/qcurrentanalysis.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thetaAnalysis1.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_12.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_2.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_11.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_1.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_10.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_9.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thetaAnalysis.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_8.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FOCfromStartDuty35PiR100.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_7.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/startVf_1.txt">
+        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_6.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -117,7 +146,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-24" />
     <option name="y" value="199" />
     <option name="width" value="1944" />
@@ -246,7 +275,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -261,112 +290,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1866">
-          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/referenceErrorMeas.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alphabetavoltagesreferencesAnalysis.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sectorAnalysis.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest7.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3791">
-          <caret line="223" column="6" selection-start-line="223" selection-start-column="6" selection-end-line="223" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/startupTest.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="891" selection-start-line="891" selection-end-line="891" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1571">
-          <caret line="191" selection-start-line="191" selection-end-line="191" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited10.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14042" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited20.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ç.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited20_1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/torqueCOmingFromRefHdlr.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited20_2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1224" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/torqueCOmingFromRefHdlr_1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited20_3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited30.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_6.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/dutyLimited25_7.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -451,9 +374,87 @@
     <entry file="file://$PROJECT_DIR$/dcurrentanalysis_4.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_7.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_8.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_9.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_10.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_11.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_12.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_13.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_14.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_15.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_7.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_8.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_9.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_10.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_11.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_12.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qcurrentanalysis.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qcurrentanalysis_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/UART.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
+        <state relative-caret-position="340">
           <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
         </state>
       </provider>

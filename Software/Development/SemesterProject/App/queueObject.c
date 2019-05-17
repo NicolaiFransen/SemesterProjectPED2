@@ -31,7 +31,8 @@ struct Queue* createQueue(unsigned capacity)
 
 // Queue is full when size becomes equal to the capacity
 int isFull(struct Queue* queue)
-{  return (queue->size == queue->capacity);  }
+{  return (queue->size >= queue->capacity);
+}
 
 // Queue is empty when size is 0
 int isEmpty(struct Queue* queue)
@@ -129,10 +130,14 @@ void UARTIntPrint(char *variableName, int value)
 {
     char str[10];
     char *strASCII;
-    strASCII = intToAscii(value, str);
-    UARTStringPrint(variableName);
-    UARTStringPrint(strASCII);
-    UARTStringPrint("\n\r");
+    if (!isUARTBufferFull())
+    {
+        strASCII = intToAscii(value, str);
+        UARTStringPrint(variableName);
+        UARTStringPrint(strASCII);
+        UARTStringPrint("\n\r");
+    }
+
 }
 
 void UARTStringPrint(char *stringToPrint)
@@ -155,6 +160,11 @@ char getNextBufferValue(void)
 int isUARTBufferEmpty(void)
 {
     return isEmpty(queue);
+}
+
+int isUARTBufferFull(void)
+{
+    return isFull(queue);
 }
 
 int getUARTBufferSize(void)

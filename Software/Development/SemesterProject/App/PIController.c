@@ -45,10 +45,10 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
     // Calculating the difference between the reference and the measured
     error = reference - measuredValue;
-    if (PIToBePrinted)
-        {
-        if (getUartCounter() == 0)  UARTIntPrint("er ", (int)(error));
-        }
+//    if (PIToBePrinted)
+//        {
+//        if (getUartCounter() == 0)  UARTIntPrint("er ", (int)(error));
+//        }
 
 
     // Calculating the integral part from the error

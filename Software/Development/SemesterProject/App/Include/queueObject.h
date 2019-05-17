@@ -46,6 +46,7 @@ void UARTIntPrint(char *variableName, int value);
 void UARTStringPrint(char *stringToPrint);
 char getNextBufferValue(void);
 int isUARTBufferEmpty(void);
+int isUARTBufferFull(void);
 int getUARTBufferSize(void);
 
 #endif /* APP_INCLUDE_QUEUEOBJECT_H_ */

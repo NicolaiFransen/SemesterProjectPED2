@@ -10,7 +10,7 @@
 
 #include "queueObject.h"
 
-#define UART_AMOUNT_OF_VARIABLES 2
+#define UART_AMOUNT_OF_VARIABLES 100
 
 void initUART(void);
 void UARTComms(void);

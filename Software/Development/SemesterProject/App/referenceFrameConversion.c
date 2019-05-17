@@ -53,7 +53,7 @@ dqObject abc2dq(float *abcArray, float thetaRad)
 
 
 //    if (getUartCounter() == 1)    UARTIntPrint("qm ", (int)(dqStruct.qComponent));
-      if (getUartCounter() == 1)    UARTIntPrint("dm ", (int)(dqStruct.dComponent));
+//      if (getUartCounter() == 3)    UARTIntPrint("dm ", (int)(dqStruct.dComponent));
 
     return dqStruct;
 }

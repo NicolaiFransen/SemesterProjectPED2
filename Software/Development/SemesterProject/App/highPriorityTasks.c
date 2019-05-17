@@ -16,6 +16,8 @@
  */
 __interrupt void adc_isr(void)
 {
+    increaseUARTCounter();
+
     readHighPrioritySignals();
 
     acknowledgeAdcInterrupt();
