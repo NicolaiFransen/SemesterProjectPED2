@@ -63,6 +63,7 @@
       </COMP>
       <COMP relation="Product">
         <COMPID name="semesterproject Class diagram" mc="Standard.ClassDiagram" uid="25b8655f-52b2-4808-b579-2d2b0b116dd0"/>
+        <COMPID name="System class diagram" mc="Standard.ClassDiagram" uid="5875692f-b61a-48fb-a650-937031b90293"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>
