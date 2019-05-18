@@ -17,7 +17,7 @@
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="init" mc="Standard.Operation" uid="f48f8d4d-c647-47cd-97e9-21f7ff465245"/>
+          <ID name="initWatchdog" mc="Standard.Operation" uid="f48f8d4d-c647-47cd-97e9-21f7ff465245"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -25,13 +25,13 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[init]]></ATT>
+            <ATT name="Name"><![CDATA[initWatchdog]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="periodicFunction" mc="Standard.Operation" uid="ed64f352-3e39-4a3c-b990-bf75c229f7fb"/>
+          <ID name="serviceDog" mc="Standard.Operation" uid="ed64f352-3e39-4a3c-b990-bf75c229f7fb"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -39,7 +39,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[periodicFunction]]></ATT>
+            <ATT name="Name"><![CDATA[serviceDog]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES></DEPENDENCIES>

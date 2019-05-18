@@ -11,6 +11,7 @@
     <DEPENDENCIES>
       <COMP relation="Model">
         <COMPID name="semesterproject" mc="Standard.Package" uid="0750eda1-df0a-40db-8a05-9e550f893325"/>
+        <COMPID name="Model" mc="Standard.Package" uid="74fe5fd8-c939-4f0a-8516-92dbb6ec0082"/>
       </COMP>
       <COMP relation="DiagramRoot">
         <COMPID name="SemesterProject" mc="Infrastructure.DiagramSet" uid="f6b71513-f91c-429f-86d8-b2b95dbc59e4"/>
