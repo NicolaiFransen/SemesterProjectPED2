@@ -171,15 +171,15 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
  */
 void handleControlParameters(void)
 {
-    float magicNumber = 0;
+    float rotorSpeedRatio = 0;
     int16 rotorSpeed = readRotorRPM();
 
-    if (rotorSpeed > STARTUP_SPEED_THRESHOLD)   magicNumber = 1;
-    else    magicNumber = rotorSpeed * STARTUP_SPEED_THRESHOLD_INV;
-    if (magicNumber < MINIMUM_MAGIC_NUMBER) magicNumber = MINIMUM_MAGIC_NUMBER;
+    if (rotorSpeed > STARTUP_SPEED_THRESHOLD)   rotorSpeedRatio = 1;
+    else    rotorSpeedRatio = rotorSpeed * STARTUP_SPEED_THRESHOLD_INV;
+    if (rotorSpeedRatio < MINIMUM_ROTOR_SPEED_RATIO) rotorSpeedRatio = MINIMUM_ROTOR_SPEED_RATIO;
 
-    maxDuty = magicNumber * MAX_DUTY_CYCLE;
-    updatePIRatio(magicNumber);
+    maxDuty = rotorSpeedRatio * MAX_DUTY_CYCLE;
+    updatePIRatio(rotorSpeedRatio);
 }
 
 int16 getMaxDuty(void)
