@@ -86,7 +86,7 @@
 #define THETA_RAW_TO_THETA_MECH     REV_TO_RAD * ENCODER_STEPS_INVERSE
 
 #define TORQUE_TO_Q_CURRENT         (float)(1.0/(1.5 * POLE_PAIRS * (LM/LR) * LAMDA_R))
-#define D_CURRENT_REFERENCE         100//LAMDA_R/LM
+#define D_CURRENT_REFERENCE_MAX        LAMDA_R/LM
 
 #define MAX_ADC_STEPS               (float)4095.0
 #define MAX_ADC_REFERENCE           (float)3.3
@@ -101,11 +101,12 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define PI_Ratio        50
-#define KP_IQ           (float)1.12/PI_Ratio
-#define KI_IQ           (float)6.81/PI_Ratio
-#define KP_ID           (float)1.12/PI_Ratio
-#define KI_ID           (float)6.81/PI_Ratio
+#define MINIMUM_MAGIC_NUMBER    0.1
+#define PI_RATIO        0.02
+#define KP_IQ           (float)1.12*PI_RATIO
+#define KI_IQ           (float)6.81*PI_RATIO
+#define KP_ID           (float)1.12*PI_RATIO
+#define KI_ID           (float)6.81*PI_RATIO
 #define KP_SPEED        (float)3.7
 #define KI_SPEED        (float)0.37
 #define deltaIdReference    1
@@ -115,8 +116,9 @@
 #define CURRENT_LIMIT                     190    //190 as simulink  // Maximum output for current PI's
 #define VOLTAGE_LIMIT                     25
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
-#define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
-#define MAX_DUTY_CYCLE                    30
+#define STARTUP_SPEED_THRESHOLD           200         // Speed to change control type
+#define STARTUP_SPEED_THRESHOLD_INV       1/STARTUP_SPEED_THRESHOLD         // Speed to change control type - Inverse
+#define MAX_DUTY_CYCLE                    100
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm

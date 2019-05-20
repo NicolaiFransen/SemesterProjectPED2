@@ -22,6 +22,7 @@
 #include "closedLoopControlManager.h"
 
 static int systemIsInStartup = 1;
+static int16 maxDuty = 10;
 
 
 void runClosedLoopControl(void)
@@ -29,12 +30,10 @@ void runClosedLoopControl(void)
     float movementReference = 0;
     float abcCurrents[3];
     float theta = 0;
-
     dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
-    // Checks if the system is in cruise or torque control, and returns
-    // the reference corresponding to that control type.
-    // Then calculates the current references from that.
+
+    handleControlParameters();
     movementReference = getMovementReference();
     currentReferences = getCurrentReferences(movementReference);
 
@@ -98,6 +97,8 @@ int isControlInStartUp(void)
 /*
  * Function to determine what kind of control is wanted,
  * and returns the proper reference
+ * Checks if the system is in cruise or torque control, and returns
+ * the reference corresponding to that control type.
  */
 float getMovementReference(void)
 {
@@ -160,6 +161,31 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
     return dqVoltages;
 }
 
+/*
+ * This function performs a controlled increase of the control parameters
+ * in order to have a smooth startup. The parameters are:
+ *  +   PI_Ratio
+ *  +   MAX_DUTY_CYCLE
+ *  The increase is proportional to the rotor speed: when the speed is 0
+ *  the parameters will provide the most dampened response.
+ */
+void handleControlParameters(void)
+{
+    float magicNumber = 0;
+    int16 rotorSpeed = readRotorRPM();
+
+    if (rotorSpeed > STARTUP_SPEED_THRESHOLD)   magicNumber = 1;
+    else    magicNumber = rotorSpeed * STARTUP_SPEED_THRESHOLD_INV;
+    if (magicNumber < MINIMUM_MAGIC_NUMBER) magicNumber = MINIMUM_MAGIC_NUMBER;
+
+    maxDuty = magicNumber * MAX_DUTY_CYCLE;
+    updatePIRatio(magicNumber);
+}
+
+int16 getMaxDuty(void)
+{
+    return maxDuty;
+}
 
 
 

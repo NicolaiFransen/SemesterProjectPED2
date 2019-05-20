@@ -32,6 +32,21 @@ void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWi
 }
 
 /*
+ * This function updates the PI parameters by multiplying by PIRatio
+ *
+ * The ratio is a number between 0 and 1 and is calculated simply by
+ * dividing the current speed by 100. Then when the rotor speed is 100,
+ * the parameters will be at its maximum value.
+ */
+void PIObjectUdatePIRatio(PIobject *PIcontroller, float KP, float KI, float PIRatio)
+{
+    PIcontroller->KP = KP * PIRatio;
+    PIcontroller->KPInverse = 1 / PIcontroller->KP;
+    PIcontroller->KI = KI * PIRatio;
+}
+
+
+/*
  * PI controller calculations.
  * Depending on the value of the windup flag, this part will be used or not.
  */

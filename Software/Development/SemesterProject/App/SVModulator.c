@@ -48,7 +48,7 @@ void runSVM(alphaBetaObject voltageRef)
 {
     float Vdc, VdcInverse;
     int sector;
-    handleMaxDuty();
+    MAX_DUTY = getMaxDuty();
 //    if (getUartCounter() == 2) UARTIntPrint("md ", (int)(MAX_DUTY));
     Vdc = getDCLinkMeasurement();
     VdcInverse = getInverseOfDcLinkMeasurement();
@@ -222,10 +222,3 @@ int signumf(float variable)
     else if (variable < 0)  return -1;
     else                    return 0;
 }
-
-void handleMaxDuty(void)
-{
-    if (MAX_DUTY < MAX_DUTY_CYCLE) MAX_DUTY += 0.01;
-    else MAX_DUTY = MAX_DUTY_CYCLE;
-}
-

@@ -32,6 +32,9 @@ float getIqReference(float movementReference);
 dqObject getCurrentReferences(float movementReference);
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents);
 
+void handleControlParameters(void);
+int16 getMaxDuty(void);
+
 void resetControlVariables(void);
 
 #endif /* APP_INCLUDE_CLOSEDLOOPCONTROLMANAGER_H_ */

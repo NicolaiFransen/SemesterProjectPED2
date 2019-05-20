@@ -22,6 +22,7 @@ float calculateIqReference(float torqueReference);
  * PI controllers
  */
 void initPIControllers(void);
+void updatePIRatio(float PIRatio);
 float PiCalculationIQ(float reference, float measuredValue);
 float PiCalculationID(float reference, float measuredValue);
 float PiCalculationSpeed(float reference, int16 measuredValue);

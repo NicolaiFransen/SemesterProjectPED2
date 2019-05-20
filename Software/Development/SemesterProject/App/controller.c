@@ -28,6 +28,16 @@ void initPIControllers(void)
 }
 
 /*
+ * Update PI parameters with updated PIRatio
+ */
+void updatePIRatio(float PIRatio)
+{
+    PIObjectUdatePIRatio(&PIControllerList.IdController, KP_ID, KI_ID, PIRatio);
+    PIObjectUdatePIRatio(&PIControllerList.IqController, KP_IQ, KI_IQ, PIRatio);
+    PIObjectUdatePIRatio(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, PIRatio);
+}
+
+/*
  * Interface functions to use PI controllers
  */
 float PiCalculationIQ(float reference, float measuredValue)
@@ -48,13 +58,13 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
 
 float getIdReference(void)
 {
-    if (idReference < D_CURRENT_REFERENCE)
+    if (idReference < D_CURRENT_REFERENCE_MAX)
     {
         idReference += deltaIdReference;
         return idReference;
     }
     else
-        return D_CURRENT_REFERENCE;
+        return D_CURRENT_REFERENCE_MAX;
 }
 
 float calculateIqReference(float torqueReference)
