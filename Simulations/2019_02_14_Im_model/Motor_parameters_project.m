@@ -1,8 +1,6 @@
 % Motor Parameters
 % Sauer-Danfoss TSA170-210-038
 
-clear
-
 s = tf('s');
 
 % % Induction motor constant parameters
@@ -33,34 +31,3 @@ Udc=36;          % DC-link voltage
 fs = 10000;
 Ts=1/fs;
 
-% PI current controllers id, iq 
-% Kp_q= 2.5834;
-% Ki_q= 15.708;
-%  
-% Kp_d= 2.5834; 
-% Ki_d= 15.708;  
-% 
-Kp_q= 2.5;  %2.5834;  
-Ki_q=  50;  %15.7; 
- 
-Kp_d= 2.5; 
-Ki_d= 50; 
-
-Kp_speed = 0.8;  %4.2; 
-Ki_speed= 5;  %30; 
-
-G_p = 1/(Ls*s+Rs);  %Plant's transfer function
-figure(1)
-margin(G_p)
-
-G_PI= Kp_d + Ki_d/s
-
-G_ol= G_PI*G_p
-figure(2)
-margin(G_ol)
-
-sigma = 1-Lm^2/(Ls*Lr); %leakage factor
-
-%Rotor flux calculation for id,ref
-landa_r = 0.0567;  
-ids=(1/Lm)*landa_r;
