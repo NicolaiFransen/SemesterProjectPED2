@@ -1,30 +1,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % * Thermal considerations for inverter design
 % * Project Go-Kart
-% * Description:
+% * Description: 1
 %       This script calculates the Mosfet losses in the inverter.
 %       The antiparallel diode conduction losses are neglected
 %       It is possible to change the Mosfet parameters, and the number of
 %       devices in parallel
 %
 % * Calculations are based on:
-%       Application Note, V 1. 1 , July 2006
+%       Application Note, V 1. 1 , July 2006Infi
 %       MOSFET Power Losses - Calculation Using the DataSheet Parameters 
-%       by Dr. Dušan Graovac, Marco Pürschel, Andreas Kiep
+%       by Dr. Duï¿½an Graovac, Marco Pï¿½rschel, Andreas Kiep
 %       Infinion, Automotive power 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 clc, clear, close all
 format shortEng
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           Script input parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inverter input parameters
-    VDC   = 36;
-    I_rms = 263;%251;
-    I_pk  = 371;%355.75;
+    VDC   = 38;
+    I_rms = 180;%150%89.8;%175;%89.8;%%%263;%251
+    I_pk  = 200;%165%92.4;%180;%92.4;%%%371;%355.75;92.4;
     PF    = 0.76;
     phi   = acos(PF);
-    fs    = 20000;
+    fs    = 10000;
 
 % Mosfet Parameters
     n_parallel    = 2;              % Select number of Fets in parallel
@@ -90,7 +91,7 @@ format shortEng
         %Dividing by 2 as the average power conduction loss is per leg!
         %As the two switches in the leg are on half the time during a cycle
     P.con_Total       = P.con_device_avg*n_parallel*6;
-    Conduction_losses = struct2dataset(P); %Display nicely in Cmd Window
+%    Conduction_losses = struct2dataset(P); %Display nicely in Cmd Window
 
 % Switching losses
     %2.2.1 Switch-on transient
@@ -105,7 +106,7 @@ format shortEng
         tfu2   = (VDC-R_DS_ON*I_Don).*C_GD2./I_Gon;
         tfu    = (tfu1+tfu2)/2;
     
-    %2.2.2 Switch-on transient
+    %2.2.2 Switch-off transient
         I_Goff = (V_dr.off-V_plateau)./R_G_tot;
         
         tru1   = (VDC-R_DS_ON*I_Don).*C_GD1./I_Goff;
@@ -186,13 +187,13 @@ P
     %Thermal resistance for the heatsink selection of IPOT012N08N
     Tj = 100;
     Ta = 25;
-    R_thJC = 0.4
+    R_thJC = 0.2;
     R_thCS = t.sol/(A*K.sol);
     R_thSC = t.cu/(A*K.cu);
     R_thCI = t.ins/(A*K.ins);
     R_thIA = t.Al/(A*K.Al);
     R_thAP = t.TP/(A*K.TP);
-    Ploss = 9.1546
+    Ploss = 9.1546;                  %where did this number come from????
     Rthsa = (((Tj-Ta)/Ploss)-R_thJC-R_thCS-R_thSC-R_thCI-R_thIA-R_thAP);
   %Since we have 12 mosfet in the Inverter:
   Heatsink =  Rthsa/12
@@ -220,8 +221,8 @@ end
 subplot(plot_row,plot_col,2)
 y_values = [Tsink*ones(1,length(Mosfet_name));dTAl;dTins;dTcu;dTsol;dTj];
 bar(y_values','stacked')
-title('Layer structure temperature (Assuming T_{sink}=50°C)')
-ylabel('Temperature [°C]')
+title('Layer structure temperature (Assuming T_{sink}=50â„ƒ)')
+ylabel('Temperature [â„ƒ]')
 set(gca,'xticklabel',Mosfet_name,'XTickLabelRotation',20,'TickDir','out')
 y_lim = ylim;
 ylim([45 y_lim(2)+15])
@@ -229,7 +230,7 @@ ylim([45 y_lim(2)+15])
 legend('Heat sink','Aluminium','Insulator','Copper','Solder','Mosfet')
 legend('Location','eastoutside');
 for b = 1:length(TJ)
-    text(b,TJ(b)+2,['T_J=',sprintf('%0.0f',TJ(b)),'°C'],...
+    text(b,TJ(b)+2,['T_J=',sprintf('%0.0f',TJ(b)),'â„ƒ'],...
         'VerticalAlignment','bottom','HorizontalAlignment','center')
 end
 
@@ -285,7 +286,7 @@ end
 y_values = [Tsink*ones(1,n);dTAl;dTins;dTcu;dTsol;dTj];
 barh(y_values','stacked')
 title('Layer temperature')
-xlabel('Temperature [°C]')
+xlabel('Temperature [ï¿½C]')
 set(gca,'yticklabel',Mosfet_name,'TickDir','out','YDir','reverse')
 x_lim = xlim;
 xlim([45 x_lim(2)+(x_lim(2)-45)*0.30])
@@ -295,7 +296,7 @@ legend('Heat sink','Aluminium','Insulator','Copper','Solder','Mosfet')
 a = legend('Location','best','Orientation','horizontal');
 for b = 1:length(TJ)
     text(TJ(b)+(max(x_lim)-min(x_lim))*0.03,b,...
-        ['T_J=',sprintf('%0.0f',TJ(b)),'°C'],...
+        ['T_J=',sprintf('%0.0f',TJ(b)),'ï¿½C'],...
         'VerticalAlignment','middle','HorizontalAlignment','left')
 end
 
@@ -328,3 +329,12 @@ end
     P_track = I_pk.^2*R_track
     dTcu    = P_track*t.cu/(A*K.cu)
     T_track = Tsink+dTAl+dTins+dTcu
+    
+    
+    
+    
+  Diode_loss = (0.7*I_rms/n_parallel)+(2.12E-3*(I_rms/n_parallel)^2);
+  Switch_loss = P.con_Total(3)/12+P.sw_Device(3)+P.dr_Total(3)/12
+  JT = ((R_thJC+0.08333+740*10^-6+277*10^-3+52.74*10^-3+41.6*10^-3+0.84)*Switch_loss)+25
+  CT = JT - (Switch_loss*R_thJC)
+  
