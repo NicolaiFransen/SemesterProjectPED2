@@ -101,7 +101,7 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define MINIMUM_ROTOR_SPEED_RATIO    0.1
+#define MINIMUM_ROTOR_SPEED_RATIO    0.15
 #define PI_RATIO        0.02
 #define KP_IQ           (float)1.12*PI_RATIO
 #define KI_IQ           (float)6.81*PI_RATIO

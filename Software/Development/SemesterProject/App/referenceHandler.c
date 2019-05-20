@@ -303,6 +303,11 @@ float getTorqueReference(void)
     return torqueReference;
 }
 
+float getIqReferenceTorqueControl(void)
+{
+    return torqueReference * TORQUE_TO_Q_CURRENT;
+}
+
 float getSpeedReference(void)
 {
     return speedReference;

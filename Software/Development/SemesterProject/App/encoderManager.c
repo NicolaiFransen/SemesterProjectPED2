@@ -114,6 +114,8 @@ void rotorSpeedCalc(motorPosSpeed *motorPosSpeedObject)
 
     deltaTheta = obtainDeltaTheta(motorPosSpeedObject);
 
+//    if ((getUartCounter() == 3)) UARTIntPrint("dt ", (int)((deltaTheta) * 10000));
+
     //Speed is only calculated every 30 degrees.
     if (deltaTheta > DEG_30_TO_RAD || motorPosSpeedObject->rotorSpeedTimeCount > 15000)
         //Enter here either if there have been more than 10º or if a time longer than 15ms has passed (for low speeds).
@@ -144,6 +146,7 @@ void rotorPosCalc(motorPosSpeed *motorPosSpeedObject)
     //Transform into electrical angle [rad]
     motorPosSpeedObject->rotorThetaElec = motorPosSpeedObject->rotorThetaRaw * THETA_RAW_TO_THETA_ELEC;
     if (motorPosSpeedObject->rotorThetaElec >= TWO_PI) motorPosSpeedObject->rotorThetaElec -= TWO_PI;
+    if (motorPosSpeedObject->rotorThetaElec < 0) motorPosSpeedObject->rotorThetaElec += TWO_PI;
     motorPosSpeedObject->rotorThetaMech = motorPosSpeedObject->rotorThetaRaw * THETA_RAW_TO_THETA_MECH;
 
 //    if (getUartCounter() == 3) UARTIntPrint("th ", (int)(motorPosSpeedObject->rotorThetaElec));

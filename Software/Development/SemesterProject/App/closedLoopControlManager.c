@@ -38,9 +38,11 @@ void runClosedLoopControl(void)
     currentReferences = getCurrentReferences(movementReference);
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
+//    if (getUartCounter() == 1)    UARTIntPrint("a ", (int)(abcCurrents[0]));
+
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
-//    if (getUartCounter() == 2)    UARTIntPrint("th ", (int)(theta*100));
+    if (getUartCounter() == 2)    UARTIntPrint("t ", (int)(theta*100));
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
@@ -56,9 +58,9 @@ dqObject getCurrentReferences(float movementReference)
 {
     dqObject currentReferences;
 
-//    currentReferences.qComponent = 120;
-//    currentReferences.dComponent = 120;
-    currentReferences.qComponent = getIqReference(movementReference);
+//    currentReferences.qComponent = 50;
+//    currentReferences.dComponent = 50;
+    currentReferences.qComponent = getIqReferenceTorqueControl();
     currentReferences.dComponent = getIdReference();
     //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
 //        if (getUartCounter() == 3) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
@@ -120,7 +122,7 @@ float getIqReference(float movementReference)
     float iqReference = 0;
 
     if (torqueControlIsEnabled())
-        iqReference = calculateIqReference(movementReference);
+        iqReference = getIqReferenceTorqueControl();
 
     else
     {
