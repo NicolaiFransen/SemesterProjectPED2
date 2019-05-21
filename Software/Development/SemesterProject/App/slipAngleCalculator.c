@@ -37,16 +37,8 @@ void calcSlipAngle(motorPosSpeed *motorPosSpeedObject)
     static float previousRotorTethaElec = 0;
 
     motorPosSpeedObject->slipAngleRad = motorPosSpeedObject->slipSpeedRadS * SW_PERIOD_S;
-//    if (motorPosSpeedObject->slipAngleRad >= TWO_PI) motorPosSpeedObject->slipAngleRad -= TWO_PI;
-//    if (motorPosSpeedObject->slipAngleRad < 0) motorPosSpeedObject->slipAngleRad += TWO_PI;
 
-    //    motorPosSpeedObject->rotorFluxPosRad += (motorPosSpeedObject->rotorFluxSpeedRadS * SW_PERIOD_S);
-//    motorPosSpeedObject->rotorFluxPosRad = sign(motorPosSpeedObject->dir)*motorPosSpeedObject->slipAngleRad + motorPosSpeedObject->rotorThetaElec;//motorPosSpeedObject->rotorThetaElec;
-
-
-//    motorPosSpeedObject->slipAngleRad = motorPosSpeedObject->slipSpeedRadS * SW_PERIOD_S;
-//
-    motorPosSpeedObject->rotorFluxPosRad += sign(motorPosSpeedObject->dir)*motorPosSpeedObject->slipAngleRad + (motorPosSpeedObject->rotorThetaElec - previousRotorTethaElec);//motorPosSpeedObject->rotorThetaElec;
+    motorPosSpeedObject->rotorFluxPosRad += sign(motorPosSpeedObject->dir)*motorPosSpeedObject->slipAngleRad + (motorPosSpeedObject->rotorThetaElec - previousRotorTethaElec);
 
     //Consider flux limits and correct
     if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
