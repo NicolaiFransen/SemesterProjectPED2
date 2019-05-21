@@ -24,7 +24,6 @@ void calcSlipSpeed(motorPosSpeed *motorPosSpeedObject)
     motorPosSpeedObject->rotorFluxSpeedRadS = readRotorElecSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
 //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(idsRef));
 //    if (getUartCounter() == 2) UARTIntPrint("qr ", (int)(iqsRef));
-
 }
 
 
@@ -37,15 +36,19 @@ void calcSlipAngle(motorPosSpeed *motorPosSpeedObject)
     static float previousRotorTethaElec = 0;
 
     motorPosSpeedObject->slipAngleRad = motorPosSpeedObject->slipSpeedRadS * SW_PERIOD_S;
-
-    motorPosSpeedObject->rotorFluxPosRad += sign(motorPosSpeedObject->dir)*motorPosSpeedObject->slipAngleRad + (motorPosSpeedObject->rotorThetaElec - previousRotorTethaElec);
+//    sign(motorPosSpeedObject->dir)*
+    motorPosSpeedObject->rotorFluxPosRad += -motorPosSpeedObject->slipAngleRad + (motorPosSpeedObject->rotorThetaElec - previousRotorTethaElec);
 
     //Consider flux limits and correct
     if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
     if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
     if (motorPosSpeedObject->rotorFluxPosRad < 0) motorPosSpeedObject->rotorFluxPosRad += TWO_PI;
     if (motorPosSpeedObject->rotorFluxPosRad < 0) motorPosSpeedObject->rotorFluxPosRad += TWO_PI;
-    if ((getUartCounter() == 3)) UARTIntPrint("rf ", (int)(motorPosSpeedObject->rotorFluxPosRad*100));
+
+//        if ((getUartCounter() == 3)) UARTIntPrint("d ", (int)(motorPosSpeedObject->dir));
+    //    if ((getUartCounter() == 3)) UARTIntPrint("s ", (int)(motorPosSpeedObject->rotorFluxPosRad*100));
+//    if ((getUartCounter() == 3)) UARTIntPrint("re ", (int)(motorPosSpeedObject->rotorThetaElec * 100));
+//    if ((getUartCounter() == 4)) UARTIntPrint("rf ", (int)(motorPosSpeedObject->rotorFluxPosRad * 100));
 
 
     previousRotorTethaElec = motorPosSpeedObject->rotorThetaElec;

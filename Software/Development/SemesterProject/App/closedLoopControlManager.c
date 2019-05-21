@@ -42,7 +42,7 @@ void runClosedLoopControl(void)
 
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
-    if (getUartCounter() == 2)    UARTIntPrint("t ", (int)(theta*100));
+//    if (getUartCounter() == 2)    UARTIntPrint("t ", (int)(theta*100));
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
 
@@ -181,7 +181,7 @@ void handleControlParameters(void)
     if (rotorSpeedRatio < MINIMUM_ROTOR_SPEED_RATIO) rotorSpeedRatio = MINIMUM_ROTOR_SPEED_RATIO;
 
     maxDuty = rotorSpeedRatio * MAX_DUTY_CYCLE;
-    updatePIRatio(rotorSpeedRatio);
+//    updatePIRatio(rotorSpeedRatio);
 }
 
 int16 getMaxDuty(void)

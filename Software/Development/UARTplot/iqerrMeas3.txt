@@ -1,0 +1,1254 @@
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+
+Welcome to the excellent Go-Kart controller, by PED-841.
+RPM 0
+RPM 0
+RPM 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+RPM 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 2
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 4
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -2
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+RPM 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 2
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 5
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+RPM 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -2
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -2
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m -1
+RPM 0
+r 0
+m 0
+r 0
+m -1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 0
+r 0
+m 1
+r 0
+m 0
+r 0
+m 0
+r 1
+m 2
+r 1
+m 1
+r 1
+m 1
+r 1
+m 1
+r 1
+m 2
+r 1
+m 0
+r 1
+m 1
+r 1
+m 0
+r 1
+m 1
+r 1
+m 1
+r 1
+m 1
+r 1
+m 1
+r 1
+m 2
+r 1
+m 0
+r 1
+m 0
+r 1
+m 1
+r 1
+m 2
+r 1
+m 2
+r 1
+m 2
+r 1
+m 1
+r 1
+m 1
+r 1
+m 0
+RPM 0
+r 2
+m 2
+r 2
+m 1
+r 2
+m 3
+r 2
+m 2
+r 2
+m 1
+r 2
+m 2
+r 2
+m 2
+r 2
+m 3
+r 2
+m 1
+r 3
+m 3
+r 3
+m 3
+r 3
+m 4
+r 3
+m 3
+r 3
+m 3
+r 3
+m 3
+r 3
+m 3
+r 3
+m 2
+r 3
+m 3
+r 3
+m 4
+r 3
+m 4
+r 3
+m 3
+r 3
+m 3
+r 3
+m 3
+r 4
+m 4
+r 4
+m 4
+r 4
+m 4
+r 4
+m 4
+r 4
+m 3
+r 4
+m 4
+r 4
+m 5
+r 4
+m 4
+r 4
+m 3
+r 4
+m 4
+r 5
+m 4
+r 5
+m 4
+r 5
+m 5
+r 5
+m 5
+r 5
+m 5
+r 5
+m 4
+r 5
+m 4
+r 5
+m 5
+r 5
+m 6
+r 5
+m 6
+r 5
+m 6
+r 5
+m 6
+r 5
+m 6
+r 5
+m 4
+r 5
+m 6
+r 5
+m 5
+r 5
+m 5
+RPM -5
+r 5
+m 4
+r 5
+m 6
+r 5
+m 6
+r 5
+m 6
+r 5
+m 5
+r 5
+m 5
+r 5
+m 4
+r 5
+m 4
+r 6
+m 6
+r 6
+m 6
+r 6
+m 5
+r 6
+m 5
+r 6
+m 5
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 2
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 6
+m 6
+r 6
+m 7
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 5
+r 6
+m 7
+r 6
+m 5
+r 6
+m 6
+r 6
+m 7
+r 6
+m 6
+r 6
+m 6
+r 6
+m 8
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 6
+m 7
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+RPM -21
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 5
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 6
+m 7
+r 6
+m 5
+r 6
+m 7
+r 6
+m 7
+r 6
+m 6
+r 6
+m 4
+r 6
+m 7
+r 6
+m 5
+r 6
+m 6
+r 6
+m 6
+r 6
+m 5
+r 6
+m 5
+r 6
+m 5
+r 6
+m 4
+r 6
+m 5
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 6
+r 6
+m 9
+r 6
+m -4
+r 6
+m 4
+r 6
+m 5
+r 6
+m 6
+r 6
+m 4
+r 6
+m 1
+r 6
+m 7
+r 6
+m 11
+r 6
+m 9
+r 6
+m 10
+r 6
+m 6
+r 6
+m 5
+r 6
+m 0
+r 6
+m 9
+r 6
+m 2
+r 6
+m 5
+RPM -85
+r 6
+m 0
+r 6
+m 7
+r 6
+m 5
+r 6
+m 7
+r 6
+m 2
+r 6
+m 7
+r 6
+m 7
+r 6
+m 16
+r 6
+m 8
+r 6
+m 5
+r 6
+m 6
+r 6
+m 7
+r 6
+m 20
+r 6
+m 16
+r 6
+m -1
+r 6
+m 5
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 6
+m 6
+r 6
+m 6
+r 6
+m 7
+r 7
+m 6
+r 7
+m 10
+r 7
+m 7
+r 7
+m 7
+r 7
+m 7
+r 7
+m 6
+r 7
+m 8
+r 7
+m 7
+r 7
+m 5
+r 7
+m 7
+r 7
+m 7
+r 7
+m 6
+r 7
+m 8
+r 7
+m 7
+r 7
+m 8
+r 7
+m 7
+r 7
+m 7
+r 7
+m 7
+r 7
+m 6
+r 7
+m 8
+r 7
+m 7
+r 7
+m 8
+r 7
+m 6
+r 7
+m 8
+r 7
+m 7
+r 7
+m 7
+r 7
+m 7
+r 7
+m 7
+RPM -32
+r 7
+m 10
+r 7
+m 6
+r 7
+m 7
+r 7
+m 8
+r 7
+m 7
+r 7
+m 6
+r 7
+m 7
+r 7
+m 6
+r 7
+m 8
+r 7
+m 7
+r 7
+m 7
+r 7
+m 7
+r 7
+m 8
+r 7
+m 7
+r 7
+m 8
+r 7
+m 7
+r 7
+m 8
+r 7
+m 6
+r 7
+m 7
+r 7
+m 9
+r 7
+m 7
+r 7
+m 7
+r 8
+m 8
+r 8
+m 8
+r 8
+m 8
+r 8
+m 8
+r 8
+m 7
+r 8
+m 8
+r 8
+m 8
+r 8
+m 7
+r 8
+m 7
+r 8
+m 7
+r 8
+m 8
+r 8
+m 7
+r 8
+m 3
+r 8
+m 8
+r 8
+m 8
+r 8
+m 9
+r 8
+m 8
+r 8
+m 7
+r 8
+m 8
+r 8
+m 8
+r 8
+m 8
+r 8
+m 9
+r 8
+m 8
+r 8
+m 9
+r 8
+m 7
+r 8
+m 8r 8
+m 1RPM r 8
+          m 7
+             r 8
+m 1r 8
+m 9r 9
+m 9r 9
+m 1r 9
+m 9r 9
+m 8r 9
+m 8r 9
+m 9r 9
+m 1r 9
+m 7r 9
+m 1r 9
+m 9r 9
+m 1r 9
+m 8r 9
+m 7r 9
+m 1r 10
+m r 10
+m r 9
+m 8r 9
+m 9r 9
+m 1r 9
+m 8r 9
+m 8r 9
+m 8r 9
+m 1r 9
+m 9r 9
+m 8r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m 10
+r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 10
+m r 11
+m r 11
+m r 11
+m r 11
+m r 11
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 12
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 13
+m r 14
+m r 14
+m r 14
+m r 14
+m r 14
+m r 14
+m RPM -61
+         r 15
+m r 15
+m 13
+r 16
+m r 16
+m r 16
+m r 16
+m r 16
+m r 16
+m r 16
+m r 16
+m r 16
+m r 17
+m r 17
+m r 17
+m r 17
+m r 17
+m r 17
+m r 17
+m r 17
+m r 17
+m r 18
+m r 19
+m r 19
+m r 19
+m r 20
+m r 20
+m r 20
+m r 20
+m r 20
+m r 20
+m r 21
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 22
+m r 23
+m r 23
+m r 23
+m r 23
+m r 23
+m r 24
+m r 24
+m r 24
+m r 24
+m r 24
+m r 25
+m 27
+r 25
+m r 25
+m r 25
+m r 26
+m r 26
+m r 26
+m r 26
+m r 26
+m r 27
+m r 27
+m r 28
+m r 27
+m r 27
+m r 27
+m r 28
+m r 28
+m r 28
+m r 28
+m r 29
+m r 29
+m r 29
+m r 29
+m r 29
+m r 29
+m r 30
+m r 30
+m r 30
+m r 31
+m r 31
+m r 31
+m r 31
+m r 32
+m r 32
+m r 31
+m r 31
+m r 31
+m r 32
+m r 31
+m r 32
+m r 34
+m r 38
+m r 44
+m r 49
+m r 54
+m r 56
+m RPM r 58r 58
+m r 58
+m r 57
+m 59
+r 57
+m r 58
+m r 58
+m r 58
+m r 56
+m r 50
+m r 40
+m r 28
+m r 15
+m r 8
+m 9RPM 15
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0
+RPM 0

@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/currentTheta.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currentTheta_1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iqSlider.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iqerrMeas.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iqerrMeas2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iqerrMeas3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iqerrMeas4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rfre.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rfre2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/analogAcquisitionManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
@@ -27,49 +30,55 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="136">
+              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/currentTheta_1.txt">
+        <entry file="file://$PROJECT_DIR$/iqSlider.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/currentTheta.txt">
+        <entry file="file://$PROJECT_DIR$/iqerrMeas4.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_12.txt">
+        <entry file="file://$PROJECT_DIR$/iqerrMeas3.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_11.txt">
+        <entry file="file://$PROJECT_DIR$/iqerrMeas2.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-204" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/iqerrMeas.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_10.txt">
+        <entry file="file://$PROJECT_DIR$/rfre2.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_9.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/startupTest.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="189" column="5" selection-start-line="171" selection-start-column="1" selection-end-line="189" selection-end-column="5" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_8.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dcurrentanalysis_7.txt">
+        <entry file="file://$PROJECT_DIR$/rfre.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -249,7 +258,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -264,47 +273,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_9.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_11.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="150" column="6" selection-start-line="150" selection-start-column="3" selection-end-line="150" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_10.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dutyLimited25_12.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dmc_svm.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/startVf.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/variableMaxDuty.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/startVf_3.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -399,13 +367,32 @@
     <entry file="file://$PROJECT_DIR$/qcurrentanalysis.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/currentTheta_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/currentTheta.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/dcurrentanalysis_12.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_11.txt">
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_10.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_10.txt">
+    <entry file="file://$PROJECT_DIR$/4_variables_alreadySpinningTest6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startupTesVqRefOneEverytwo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1894" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startupTesVdRefOneEverytwo2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1496" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_11.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/dcurrentanalysis_9.txt">
@@ -420,16 +407,40 @@
     <entry file="file://$PROJECT_DIR$/dcurrentanalysis_6.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/currentTheta.txt">
+    <entry file="file://$PROJECT_DIR$/startupTest.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="189" column="5" selection-start-line="171" selection-start-column="1" selection-end-line="189" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfre.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/currentTheta_1.txt">
+    <entry file="file://$PROJECT_DIR$/rfre2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iqerrMeas.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iqerrMeas2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iqerrMeas3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iqerrMeas4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iqSlider.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/UART.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        <state relative-caret-position="136">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
         </state>
       </provider>
     </entry>

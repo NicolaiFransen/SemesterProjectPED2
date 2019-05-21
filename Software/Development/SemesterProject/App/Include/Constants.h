@@ -102,7 +102,7 @@
 #define ZERO_SEQ		2
 
 #define MINIMUM_ROTOR_SPEED_RATIO    0.15
-#define PI_RATIO        0.02
+#define PI_RATIO        0.02 * MINIMUM_ROTOR_SPEED_RATIO
 #define KP_IQ           (float)1.12*PI_RATIO
 #define KI_IQ           (float)6.81*PI_RATIO
 #define KP_ID           (float)1.12*PI_RATIO
@@ -116,7 +116,7 @@
 #define CURRENT_LIMIT                     190    //190 as simulink  // Maximum output for current PI's
 #define VOLTAGE_LIMIT                     25
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
-#define STARTUP_SPEED_THRESHOLD           200         // Speed to change control type
+#define STARTUP_SPEED_THRESHOLD           150         // Speed to change control type
 #define STARTUP_SPEED_THRESHOLD_INV       1/STARTUP_SPEED_THRESHOLD         // Speed to change control type - Inverse
 #define MAX_DUTY_CYCLE                    100
 

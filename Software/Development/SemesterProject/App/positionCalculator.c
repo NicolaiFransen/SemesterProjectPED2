@@ -37,7 +37,7 @@ void getRotorPosSpeedParameters()
  */
 void rotorPosSpeedConstructor(void)
 {
-    motorPosSpeedObject.dir = 1; //Initialized to 1 because then the Space Vector rotates in the desired direction at start
+    motorPosSpeedObject.dir = 0; //Initialized to 0 because then the Space Vector rotates in the desired direction at start
     motorPosSpeedObject.rotorThetaMech = 0;
     motorPosSpeedObject.rotorThetaElec = 0;
     motorPosSpeedObject.rotorThetaElecOld = 0;

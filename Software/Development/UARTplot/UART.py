@@ -18,12 +18,12 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("currentTheta_1.txt", "r")
+fileUART = open("iqSlider.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
 for line in csvUARTlines:
-    if len(line) > 4 and len(line) < 10:
+    if len(line) > 3 and len(line) < 10:
         try:
             splittedString = line.lstrip().replace(",", "").replace("\n", "").split(' ')
             if splittedString[0] in dataDictionary:
@@ -58,7 +58,7 @@ for key in dataDictionary:
     except:
         ax.yaxis.set_ticks([-1, 0, 1])
     plt.xlabel("sampleNumber")
-    plt.ylabel(key)
+    plt.ylabel(key + "(A)")
     index = index + 1
     #print key
 

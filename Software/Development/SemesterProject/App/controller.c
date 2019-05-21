@@ -22,8 +22,8 @@ static struct
 
 void initPIControllers(void)
 {
-    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 1, INCLUDE_SATURATION);
-    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 1, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IdController, KP_ID, KI_ID, 0, INCLUDE_SATURATION);
+    PIObject_Constructor(&PIControllerList.IqController, KP_IQ, KI_IQ, 0, INCLUDE_SATURATION);
     PIObject_Constructor(&PIControllerList.SpeedController, KP_SPEED, KI_SPEED, 1, 0);
 }
 
@@ -42,12 +42,12 @@ void updatePIRatio(float PIRatio)
  */
 float PiCalculationIQ(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IqController, reference, measuredValue, DO_NOT_PRINT_PI_DATA);
+    return PiCalculation(&PIControllerList.IqController, reference, measuredValue, PRINT_PI_DATA);
 }
 
 float PiCalculationID(float reference, float measuredValue)
 {
-    return PiCalculation(&PIControllerList.IdController, reference, measuredValue, PRINT_PI_DATA);
+    return PiCalculation(&PIControllerList.IdController, reference, measuredValue, DO_NOT_PRINT_PI_DATA);
 }
 
 float PiCalculationSpeed(float reference, int16 measuredValue)
