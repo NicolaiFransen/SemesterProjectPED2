@@ -90,8 +90,8 @@ sol_phi = solve(eqn, phi)
 % Kp_speed = 0.94; %0.8;  %4.2; 
 % Ki_speed= 0.094; %5;  %30; 
 
-Kp_w = 3.7; %8.7; 
-Ki_w = 0.37; %0.87;
+Kp_w = 3.55; %8.7; 
+Ki_w = 0.355; %0.87;
 k = (3/2)*p*(Lm/Lr)*landa_r;
 B= 0.00151; %0.00151; %B/J = 0.1 (to be checked) 
 Tc = 1.27e-3; %150.25e-6; %time constant current controller
