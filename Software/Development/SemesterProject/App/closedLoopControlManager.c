@@ -45,6 +45,7 @@ void runClosedLoopControl(void)
 //    if (getUartCounter() == 2)    UARTIntPrint("t ", (int)(theta*100));
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
+    sendCurrentMeasurementsToGUI(dqCurrents.dComponent, dqCurrents.qComponent);
 
     dqVoltages = calculateVoltageReferences(currentReferences, dqCurrents);
 
@@ -164,7 +165,6 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
  */
 void handleControlParameters(void)
 {
-    float rotorSpeedRatio = 0;
     int16 rotorSpeed = abs(readRotorRPM());
 
     maxDuty = getDutyRatio(rotorSpeed) * MAX_DUTY_CYCLE;
