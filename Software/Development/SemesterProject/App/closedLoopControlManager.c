@@ -63,8 +63,8 @@ dqObject getCurrentReferences(float movementReference)
     //    currentReferences.dComponent = 50;
     currentReferences.qComponent = getIqReferenceTorqueControl();
     currentReferences.dComponent = getIdReference();
-    //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
-    //        if (getUartCounter() == 3) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
+    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
     //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;

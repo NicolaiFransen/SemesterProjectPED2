@@ -218,7 +218,7 @@ void printUART(void)
 //    UARTIntPrint("DC ", (int)(getDCLinkMeasurement() * 100));
     //    UARTIntPrint("T ", (int)getThermometer1Measurement());
 //        UARTIntPrint("vs ", (int)(getTorqueReferenceSliderMeasurement()*10));
-    UARTIntPrint("RPM ", (int)readRotorRPM());
+//    UARTIntPrint("RPM ", (int)readRotorRPM());
 //    UARTIntPrint("es ", (int)readRotorElecSpeedRadS());
 
 //    UARTIntPrint("K ", (int)(TORQUE_TO_Q_CURRENT*10));

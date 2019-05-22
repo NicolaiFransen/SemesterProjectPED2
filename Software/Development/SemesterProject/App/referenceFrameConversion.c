@@ -52,8 +52,8 @@ dqObject abc2dq(float *abcArray, float thetaRad)
                                         cComponent * sin(thetaRad - FOUR_PI_DIV_3));
 
 
-//    if (getUartCounter() == 1)    UARTIntPrint("qm ", (int)(dqStruct.qComponent));
-//      if (getUartCounter() == 3)    UARTIntPrint("dm ", (int)(dqStruct.dComponent));
+    if (getUartCounter() == 1)    UARTIntPrint("qm ", (int)(dqStruct.qComponent));
+    if (getUartCounter() == 2)    UARTIntPrint("dm ", (int)(dqStruct.dComponent));
 
     return dqStruct;
 }

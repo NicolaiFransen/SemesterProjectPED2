@@ -18,7 +18,7 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("iqSlider.txt", "r")
+fileUART = open("iqr_iqm_idr_idm_3.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key
