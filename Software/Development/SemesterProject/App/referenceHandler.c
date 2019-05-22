@@ -124,7 +124,7 @@ void decideReferenceType(void)
     {
         if (referenceTypeIsChanged())
         {
-            undampedSpeedReference = readRotorRPM();
+            undampedSpeedReference = abs(readRotorRPM());
             referenceType = cruiseControl;
         }
     }break;

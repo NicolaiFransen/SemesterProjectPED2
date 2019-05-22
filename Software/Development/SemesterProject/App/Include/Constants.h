@@ -110,8 +110,8 @@
 #define KI_IQ           (float)6.81*PI_RATIO
 #define KP_ID           (float)1.12*PI_RATIO
 #define KI_ID           (float)6.81*PI_RATIO
-#define KP_SPEED        (float)3.7*PI_RATIO
-#define KI_SPEED        (float)0.37*PI_RATIO
+#define KP_SPEED        (float)3.7*0.02*0.05
+#define KI_SPEED        (float)0.37*0.02*0.05
 #define deltaIdReference    1
 
 /*

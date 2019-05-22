@@ -61,10 +61,10 @@ dqObject getCurrentReferences(float movementReference)
 
     //    currentReferences.qComponent = 50;
     //    currentReferences.dComponent = 50;
-    currentReferences.qComponent = getIqReferenceTorqueControl();
+    currentReferences.qComponent = getIqReference(movementReference);
     currentReferences.dComponent = getIdReference();
-    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
-    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
+//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+//    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
     //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
@@ -119,7 +119,10 @@ float getIqReference(float movementReference)
     else
     {
         // get measured speed
-        int16 speedMeasurement = readRotorRPM();
+        int16 speedMeasurement = abs(readRotorRPM());
+
+        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(movementReference));
+        if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
 
         // Calculate iq reference from speed controller
         iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
