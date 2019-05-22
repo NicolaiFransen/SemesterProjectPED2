@@ -33,6 +33,9 @@ dqObject getCurrentReferences(float movementReference);
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents);
 
 void handleControlParameters(void);
+
+float getPIRatio(int16 rotorSpeed);
+float getDutyRatio(int16 rotorSpeed);
 int16 getMaxDuty(void);
 
 void resetControlVariables(void);

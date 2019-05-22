@@ -61,9 +61,9 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
     // Calculating the difference between the reference and the measured
     error = reference - measuredValue;
 
-    if (0)
+    if (PIToBePrinted)
         {
-        if (getUartCounter() == 2) UARTIntPrint("r ", (int)(reference));
+//        if (getUartCounter() == 2) UARTIntPrint("r ", (int)(reference));
 //        if (getUartCounter() == 3) UARTIntPrint("m ", (int)(measuredValue));
 
         }

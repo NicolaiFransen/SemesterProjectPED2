@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/iqSlider.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iqerrMeas.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iqerrMeas2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iqerrMeas3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iqerrMeas4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rfre.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rfre2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/PIController.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/controller.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/controller.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/positionCalculator.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/slipAngleCalculator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/Include/UARTInterface.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/System/scheduler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -258,7 +246,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

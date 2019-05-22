@@ -72,7 +72,7 @@ dqObject getCurrentReferences(float movementReference)
 
 void runStartUpControl(void)
 {
-    if (!isControlInStartUp())
+    if (!1)
         systemIsInStartup = 0;
 
     if (systemIsInStartup)
@@ -85,15 +85,6 @@ void runStartUpControl(void)
         runClosedLoopControl();
         setLED19(ON);
     }
-}
-
-
-int isControlInStartUp(void)
-{
-    if (abs(readRotorRPM()) > STARTUP_SPEED_THRESHOLD)
-        return 0;
-    else
-        return 1;
 }
 
 /*
@@ -174,17 +165,57 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
 void handleControlParameters(void)
 {
     float rotorSpeedRatio = 0;
-    int16 rotorSpeed = readRotorRPM();
+    int16 rotorSpeed = abs(readRotorRPM());
 
-    if (rotorSpeed > STARTUP_SPEED_THRESHOLD)   rotorSpeedRatio = 1;
-    else    rotorSpeedRatio = rotorSpeed * STARTUP_SPEED_THRESHOLD_INV;
-    if (rotorSpeedRatio < MINIMUM_ROTOR_SPEED_RATIO) rotorSpeedRatio = MINIMUM_ROTOR_SPEED_RATIO;
-
-    maxDuty = rotorSpeedRatio * MAX_DUTY_CYCLE;
-//    updatePIRatio(rotorSpeedRatio);
+    maxDuty = getDutyRatio(rotorSpeed) * MAX_DUTY_CYCLE;
+    updatePIRatio(getPIRatio(rotorSpeed));
 }
+
+
+float getDutyRatio(int16 rotorSpeed)
+{
+    float dutyRatio = 0;
+    dutyRatio = (float)(rotorSpeed - SPEED_DUTY_MIN_DUTY) * FITTING_FUNCTION_SLOPE_DUTY + MIN_DUTY;
+
+    if (dutyRatio > MAX_DUTY)   dutyRatio = MAX_DUTY;
+    if (dutyRatio < MIN_DUTY) dutyRatio = MIN_DUTY;
+
+    return dutyRatio;
+}
+
+float getPIRatio(int16 rotorSpeed)
+{
+    float PIRatio = 0;
+    PIRatio = (float)(rotorSpeed - SPEED_DUTY_MIN_PI) * FITTING_FUNCTION_SLOPE_PI + MIN_DUTY;
+    if (PIRatio > MAX_DUTY)   PIRatio = MAX_DUTY;
+    if (PIRatio < MIN_DUTY) PIRatio = MIN_DUTY;
+
+    return PIRatio;
+}
+
+//float getDutyRatio(int16 rotorSpeed)
+//{
+//    float dutyRatio = 0;
+//    if (rotorSpeed > STARTUP_SPEED_THRESHOLD_DUTY)   dutyRatio = 1;
+//    else    dutyRatio = (float)rotorSpeed * STARTUP_SPEED_THRESHOLD_INV_DUTY + 0.1;
+//    if (dutyRatio < MINIMUM_ROTOR_SPEED_RATIO) dutyRatio = MINIMUM_ROTOR_SPEED_RATIO;
+//
+//    return dutyRatio;
+//}
+//
+//float getPIRatio(int16 rotorSpeed)
+//{
+//    float PIRatio = 0;
+//    if (rotorSpeed > STARTUP_SPEED_THRESHOLD_PI)   PIRatio = 1;
+//    else    PIRatio = (float)rotorSpeed * STARTUP_SPEED_THRESHOLD_INV_PI + 0.125;
+//    if (PIRatio < MINIMUM_ROTOR_SPEED_RATIO) PIRatio = MINIMUM_ROTOR_SPEED_RATIO;
+//
+//    return PIRatio;
+//}
 
 int16 getMaxDuty(void)
 {
+//    if (getUartCounter() == 25)
+//    UARTIntPrint("D ", (int)(maxDuty));
     return maxDuty;
 }
