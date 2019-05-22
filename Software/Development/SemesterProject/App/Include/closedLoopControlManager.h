@@ -28,8 +28,8 @@ void runStartUpControl(void);
 int isControlInStartUp(void);
 
 float getMovementReference(void);
-float getIqReference(float movementReference);
-dqObject getCurrentReferences(float movementReference);
+float getIqReference(void);
+dqObject getCurrentReferences(void);
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents);
 
 void handleControlParameters(void);

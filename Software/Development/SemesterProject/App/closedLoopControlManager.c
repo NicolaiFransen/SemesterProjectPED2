@@ -27,15 +27,13 @@ static int16 maxDuty = 10;
 
 void runClosedLoopControl(void)
 {
-    float movementReference = 0;
     float abcCurrents[3];
     float theta = 0;
     dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
 
     handleControlParameters();
-    movementReference = getMovementReference();
-    currentReferences = getCurrentReferences(movementReference);
+    currentReferences = getCurrentReferences();
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
 //    if (getUartCounter() == 1)    UARTIntPrint("a ", (int)(abcCurrents[0]));
@@ -55,13 +53,11 @@ void runClosedLoopControl(void)
     //runSVM_DMC(abVoltages);           //SVM from TI's Digital Motor Control
 }
 
-dqObject getCurrentReferences(float movementReference)
+dqObject getCurrentReferences(void)
 {
     dqObject currentReferences;
 
-    //    currentReferences.qComponent = 50;
-    //    currentReferences.dComponent = 50;
-    currentReferences.qComponent = getIqReference(movementReference);
+    currentReferences.qComponent = getIqReference();
     currentReferences.dComponent = getIdReference();
 //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
 //    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
@@ -109,7 +105,7 @@ float getMovementReference(void)
  * Function to calculate the iq reference according to
  * the selected reference type.
  */
-float getIqReference(float movementReference)
+float getIqReference(void)
 {
     float iqReference = 0;
 
@@ -120,12 +116,13 @@ float getIqReference(float movementReference)
     {
         // get measured speed
         int16 speedMeasurement = abs(readRotorRPM());
+        int16 speedReference = abs(getSpeedReference());
 
-        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(movementReference));
+        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(speedReference));
         if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
 
         // Calculate iq reference from speed controller
-        iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
+        iqReference = PiCalculationSpeed(speedReference, speedMeasurement);
     }
 
     // If the wanted output is outside saturation limits, then limit the output
