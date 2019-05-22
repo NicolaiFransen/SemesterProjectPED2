@@ -17,7 +17,7 @@
     <DEPENDENCIES>
       <COMP relation="OwnedOperation">
         <OBJECT>
-          <ID name="areAdcMeasurementsWithinThresholds" mc="Standard.Operation" uid="43e28c1e-ee6a-48ec-bf16-c647f3b78b22"/>
+          <ID name="areAdcsWithinThresholds" mc="Standard.Operation" uid="43e28c1e-ee6a-48ec-bf16-c647f3b78b22"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -25,7 +25,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[areAdcMeasurementsWithinThresholds]]></ATT>
+            <ATT name="Name"><![CDATA[areAdcsWithinThresholds]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -70,7 +70,7 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <LINK relation="Type">
-                    <FOREIGNID name="string" mc="Standard.DataType" uid="00000004-0000-000d-0000-000000000000"/>
+                    <ID name="errorEnum" mc="Standard.Class" uid="b01e70d7-c574-4606-8bd3-7dafc25b2f9f"/>
                   </LINK>
                 </DEPENDENCIES>
               </OBJECT>
@@ -78,7 +78,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="areBatteryMeasurementsWithinThresholds" mc="Standard.Operation" uid="9307aeb1-7013-4ad7-a068-b271eda191aa"/>
+          <ID name="areBatteriesWithinThresholds" mc="Standard.Operation" uid="9307aeb1-7013-4ad7-a068-b271eda191aa"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -86,7 +86,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[areBatteryMeasurementsWithinThresholds]]></ATT>
+            <ATT name="Name"><![CDATA[areBatteriesWithinThresholds]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -139,7 +139,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="areCurrentMeasurementsWithinThresholds" mc="Standard.Operation" uid="ebcbd1f2-bc6b-4b82-a933-033f82180808"/>
+          <ID name="areCurrentsWithinThresholds" mc="Standard.Operation" uid="ebcbd1f2-bc6b-4b82-a933-033f82180808"/>
           <ATTRIBUTES>
             <ATT name="Concurrency">false</ATT>
             <ATT name="Final">false</ATT>
@@ -147,7 +147,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[areCurrentMeasurementsWithinThresholds]]></ATT>
+            <ATT name="Name"><![CDATA[areCurrentsWithinThresholds]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
