@@ -106,11 +106,6 @@ syms phi_w
 eqn_w = (1/(2*phi_w*Tc))*sqrt((1-2*phi_w^2)+sqrt(4*phi_w^4-4*phi_w^2+2)) == 2*pi*50;
 sol_phi_w = solve(eqn_w, phi_w)
 
-alldatacursors = findall(gcf,'type','hggroup')
-set(alldatacursors,'FontSize',12)
-set(alldatacursors,'FontName','Times')
-set(alldatacursors, 'FontWeight', 'bold')
-
 figure(2)
 margin(G_s)
 
