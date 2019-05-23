@@ -106,7 +106,7 @@
  */
 #define MINIMUM_ROTOR_SPEED_RATIO    0.15
 #define PI_RATIO_CURRENT        0.02 * 0.15
-#define PI_RATIO_SPEED        0.02 * 0.05
+#define PI_RATIO_SPEED        0.02 * 0.01
 #define KP_IQ           (float)1.12*PI_RATIO_CURRENT
 #define KI_IQ           (float)6.81*PI_RATIO_CURRENT
 #define KP_ID           (float)1.12*PI_RATIO_CURRENT

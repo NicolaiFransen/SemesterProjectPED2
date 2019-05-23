@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/speedMeasRef.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/speedMeasRef2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/speedMeasRef3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,61 +21,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+            <state relative-caret-position="109">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CruiseControlTest_1.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CruiseControlTest.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/torqueLoadIncrease_iqrm_idrm.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/torqueReferenceStep_iqrm_idrm.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="319" column="6" lean-forward="true" selection-start-line="297" selection-end-line="319" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SteadyStateiqr_iqm_idr_idm_1.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SteadyStateiqr_iqm_idr_idm.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iqr_iqm_idr_idm_3.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iqr_iqm_idr_idm_2.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iqr_iqm_idr_idm_1.txt">
+        <entry file="file://$PROJECT_DIR$/speedMeasRef3.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -108,6 +73,7 @@
         <option value="$PROJECT_DIR$/dutyLimited25_2.txt" />
         <option value="$PROJECT_DIR$/dutyLimited25_4.txt" />
         <option value="$PROJECT_DIR$/dutyLimited25_10.txt" />
+        <option value="$PROJECT_DIR$/speedMeasRef2.txt" />
         <option value="$PROJECT_DIR$/UART.py" />
       </list>
     </option>
@@ -126,6 +92,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,7 +109,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,15 +199,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34554973" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34554973" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -256,15 +221,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dcurrentanalysis_5.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_1.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -387,17 +343,7 @@
     <entry file="file://$PROJECT_DIR$/iqr_iqm_idr_idm.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/UART.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CruiseControlTest_1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CruiseControlTest.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/torqueLoadIncrease_iqrm_idrm.txt">
@@ -421,7 +367,30 @@
     <entry file="file://$PROJECT_DIR$/torqueReferenceStep_iqrm_idrm.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
-          <caret line="319" column="6" lean-forward="true" selection-start-line="297" selection-end-line="319" selection-end-column="6" />
+          <caret line="319" column="6" selection-start-line="297" selection-end-line="319" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speedMeasRef.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CruiseControlTest.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speedMeasRef2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="663" column="3" selection-start-line="663" selection-start-column="3" selection-end-line="663" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speedMeasRef3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UART.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
         </state>
       </provider>
     </entry>

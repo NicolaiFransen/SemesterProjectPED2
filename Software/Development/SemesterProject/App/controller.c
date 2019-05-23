@@ -12,7 +12,7 @@
 
 // Quasi-global variables definition
 //
-float idReference = 0;
+static float iqReference = 0;
 static struct
 {
     PIobject IqController;
@@ -55,21 +55,42 @@ float PiCalculationSpeed(float reference, int16 measuredValue)
     return PiCalculation(&PIControllerList.SpeedController, reference, (float)measuredValue, DO_NOT_PRINT_PI_DATA);
 }
 
-
-float getIdReference(void)
+/*
+ * Function to calculate the iq reference according to
+ * the selected reference type.
+ */
+void calcIqReference(void)
 {
-    if (idReference < D_CURRENT_REFERENCE_MAX)
-    {
-        idReference += deltaIdReference;
-        return idReference;
-    }
+    if (torqueControlIsEnabled())
+        iqReference = getIqReferenceTorqueControl();
+
     else
-        return D_CURRENT_REFERENCE_MAX;
+    {
+        // get measured speed
+        int16 speedMeasurement = abs(readRotorRPM());
+        int16 speedReference = abs(getSpeedReference());
+
+//        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(speedReference));
+//        if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
+
+        // Calculate iq reference from speed controller
+        iqReference = PiCalculationSpeed(speedReference, speedMeasurement);
+    }
+
+    // If the wanted output is outside saturation limits, then limit the output
+    if (isOutputSaturatedPositive(iqReference))
+    {
+        iqReference = CURRENT_LIMIT;
+    }
+    else if (isOutputSaturatedNegative(iqReference))
+    {
+        iqReference = -(CURRENT_LIMIT);
+    }
 }
 
-float calculateIqReference(float torqueReference)
+float getIqReference(void)
 {
-    return torqueReference * TORQUE_TO_Q_CURRENT;
+    return iqReference;
 }
 
 /*
@@ -102,9 +123,4 @@ void resetSpeedIntegrator(void)
     PIControllerList.SpeedController.integrationOfError = 0;
     PIControllerList.SpeedController.previousOutput = 0;
     PIControllerList.SpeedController.previousLimitedOutput = 0;
-}
-
-float readIdReference(void)
-{
-    return idReference;
 }

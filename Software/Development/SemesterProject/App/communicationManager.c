@@ -104,7 +104,7 @@ void manageCommunications(void)
 
 void getClosedLoopControlSignals(void)
 {
-    COMMS_idReference = getIdReference();
+    COMMS_idReference = D_CURRENT_REFERENCE_MAX;
     COMMS_estimatedTorque = COMMS_iqMeasured / TORQUE_TO_Q_CURRENT;
 }
 

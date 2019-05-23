@@ -17,7 +17,7 @@
 void calcSlipSpeed(motorPosSpeed *motorPosSpeedObject)
 {
     float iqsRef = getIqReference();
-    float idsRef = readIdReference();
+    float idsRef = D_CURRENT_REFERENCE_MAX;
     if (fabs(idsRef) > 1) motorPosSpeedObject->slipSpeedRadS = TR_INVERSE * iqsRef / idsRef;
     motorPosSpeedObject->rotorFluxSpeedRadS = readRotorElecSpeedRadS() + motorPosSpeedObject->slipSpeedRadS;
 //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(idsRef));

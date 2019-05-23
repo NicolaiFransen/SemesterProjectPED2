@@ -14,13 +14,16 @@
 #include "pushButtonManager.h"
 #include "systemManager.h"
 #include "positionCalculator.h"
+#include "controller.h"
 
 #define MAX_TORQUE_REF_NM           30
 #define MAXIMUM_SPEED_REF_RPM       1685
 #define SPEED_STEP_FROM_BUTTON_KPH  5
 #define GEAR_RATIO                  1.66
 #define RADIUS_WHEELS               0.137
-#define referenceHandlerPeriodicity 0.02    //seconds
+#define referenceHandlerPeriodicity 0.001    //seconds
+
+
 
 
 typedef enum
