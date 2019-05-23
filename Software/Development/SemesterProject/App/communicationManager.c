@@ -22,8 +22,8 @@
  *          **SystemMgr
  *          **DigitalInputMgr
  *          **ReferenceHandlerMgr
- *          ++closed loop control ----> To be developed
- *          ++ErrorMgr            ----> To be developed
+ *          **closed loop control
+ *          **ErrorMgr
  *      *Get the values from GUI and allow the read from other software components
  *          **struct GUISignalsTag getGUISignals(void)
  */
@@ -36,8 +36,8 @@
  */
 //Variables provided by other software components
     //Analog Manager
-volatile float COMMS_DClinkVoltage, COMMS_ControlSupplyVoltage, COMMS_PCBTorqueReference;
-volatile float COMMS_PCBBrakeReference, COMMS_PedalTorqueReference, COMMS_PedalBrakeReference;
+volatile float COMMS_DClinkVoltage = 0, COMMS_ControlSupplyVoltage = 0, COMMS_PCBTorqueReference = 0;
+volatile float COMMS_PCBBrakeReference = 0, COMMS_PedalTorqueReference = 0, COMMS_PedalBrakeReference = 0;
 volatile float COMMS_Thermometer1, COMMS_Thermometer2;
     //System Manager
 volatile SysMgrState COMMS_SysMgrState;
@@ -45,11 +45,14 @@ volatile SysMgrState COMMS_SysMgrState;
 volatile int COMMS_PowerEnabledSwitch;
     //Reference Handler
 volatile int COMMS_ReferenceSource;
-volatile float COMMS_OpenLoopReference, COMMS_speedReference, COMMS_torqueReference;
+volatile float COMMS_OpenLoopReference = 0, COMMS_speedReference = 0, COMMS_torqueReference = 0, COMMS_iqReference = 0;
     //Encoder
 volatile int COMMS_RotorSpeed = 0;
     //Error Manager
 volatile errorStatus COMMS_ErrorCurrentA = NO_ERROR, COMMS_ErrorCurrentB = NO_ERROR, COMMS_ErrorCurrentC = NO_ERROR, COMMS_ErrorDCLink = NO_ERROR, COMMS_ErrorControlSupply = NO_ERROR, COMMS_ErrorTorqueReferenceSlider = NO_ERROR, COMMS_ErrorSpeedReferenceSlider = NO_ERROR, COMMS_ErrorTorqueReferencePedal = NO_ERROR, COMMS_ErrorBrakeReferencePedal = NO_ERROR, COMMS_ErrorThermometer1 = NO_ERROR, COMMS_ErrorThermometer2 = NO_ERROR, COMMS_ErrorRotaryPot1 = NO_ERROR, COMMS_ErrorRotaryPot2 = NO_ERROR, COMMS_ErrorRotaryPot3 = NO_ERROR;
+    //Closed loop control
+volatile float COMMS_idReference = 0, COMMS_estimatedTorque = 0, COMMS_idMeasured = 0, COMMS_iqMeasured = 0;
+
 
 //Variables updated by GUI
 volatile float COMMS_GUITorqueRef = 0.0, COMMS_GUISpeedRef = 0.0, COMMS_GUIBrakeRef = 0.0;
@@ -95,13 +98,19 @@ void manageCommunications(void)
     getDigitalSignals();
     getErrorSignals();
     getReferenceHandlerSignals();
-//    getClosedLoopControlSignals();    todo
+    getClosedLoopControlSignals();
     getEncoderSignals();
+}
+
+void getClosedLoopControlSignals(void)
+{
+    COMMS_idReference = getIdReference();
+    COMMS_estimatedTorque = COMMS_iqMeasured / TORQUE_TO_Q_CURRENT;
 }
 
 void getEncoderSignals(void)
 {
-    COMMS_RotorSpeed = readRotorRPM();
+    COMMS_RotorSpeed = abs(readRotorRPM());
 }
 
 void getSystemManagerSignals(void)
@@ -133,6 +142,7 @@ void getReferenceHandlerSignals(void)
     COMMS_OpenLoopReference = getOpenLoopReference();
     COMMS_speedReference = getSpeedReference();
     COMMS_torqueReference = getTorqueReference();
+    COMMS_iqReference = getIqReferenceTorqueControl();
 }
 
 void getAnalogSignals(void)
@@ -216,5 +226,11 @@ void restartPushbuttonsValue(void)
     {
         structIterator->pushbuttonHasBeenPressed = 0;
     }
+}
+
+void sendCurrentMeasurementsToGUI(float idMeas, float iqMeas)
+{
+    COMMS_idMeasured = idMeas;
+    COMMS_iqMeasured = iqMeas;
 }
 

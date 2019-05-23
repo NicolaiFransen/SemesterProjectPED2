@@ -37,14 +37,17 @@ void getRotorPosSpeedParameters()
  */
 void rotorPosSpeedConstructor(void)
 {
-    motorPosSpeedObject.dir = 0;
+    motorPosSpeedObject.dir = 0; //Initialized to 0 because then the Space Vector rotates in the desired direction at start
     motorPosSpeedObject.rotorThetaMech = 0;
     motorPosSpeedObject.rotorThetaElec = 0;
     motorPosSpeedObject.rotorThetaElecOld = 0;
     motorPosSpeedObject.rotorSpeedTimeCount = 0;
     motorPosSpeedObject.rotorElecSpeedRadS = 0;
+    motorPosSpeedObject.slipAngleRad = 0;
+    motorPosSpeedObject.rotorFluxPosRad = 0;
+    motorPosSpeedObject.slipSpeedRadS = 0;
+    motorPosSpeedObject.rotorFluxSpeedRadS = 0;
 }
-
 
 /*
  * Obtain position and speed of the rotor.

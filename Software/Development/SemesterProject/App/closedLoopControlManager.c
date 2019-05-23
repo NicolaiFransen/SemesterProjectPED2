@@ -21,30 +21,28 @@
 
 #include "closedLoopControlManager.h"
 
-static int systemIsInStartup = 1;
+static int16 maxDuty = 10;
 
 
 void runClosedLoopControl(void)
 {
-    float movementReference = 0;
     float abcCurrents[3];
     float theta = 0;
-
     dqObject dqCurrents, currentReferences, dqVoltages;
     alphaBetaObject abVoltages;
-    increaseUARTCounter();
-    // Checks if the system is in cruise or torque control, and returns
-    // the reference corresponding to that control type.
-    // Then calculates the current references from that.
-    movementReference = getMovementReference();
-    currentReferences = getCurrentReferences(movementReference);
+
+    handleControlParameters();
+    currentReferences = getCurrentReferences();
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
+//    if (getUartCounter() == 1)    UARTIntPrint("a ", (int)(abcCurrents[0]));
+
     theta = readRotorFluxAngleRad();                            // Reads flux position angle in radians
 
-//    if (getUartCounter() == 2)    UARTIntPrint("th ", (int)(theta*100));
+//    if (getUartCounter() == 2)    UARTIntPrint("t ", (int)(theta*100));
 
     dqCurrents = abc2dq(&abcCurrents[0], theta);                // Transform current measurements from abc->dq
+    sendCurrentMeasurementsToGUI(dqCurrents.dComponent, dqCurrents.qComponent);
 
     dqVoltages = calculateVoltageReferences(currentReferences, dqCurrents);
 
@@ -54,48 +52,25 @@ void runClosedLoopControl(void)
     //runSVM_DMC(abVoltages);           //SVM from TI's Digital Motor Control
 }
 
-dqObject getCurrentReferences(float movementReference)
+dqObject getCurrentReferences(void)
 {
     dqObject currentReferences;
 
-    currentReferences.qComponent = getIqReference(movementReference);
+    currentReferences.qComponent = getIqReference();
     currentReferences.dComponent = getIdReference();
 //    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
-//    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
+//    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
+    //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
 }
 
 
-void runStartUpControl(void)
-{
-    if (!isControlInStartUp())
-        systemIsInStartup = 0;
-
-    if (systemIsInStartup)
-    {
-        openLoopVFControl();
-        setLED19(OFF);
-    }
-    else
-    {
-        runClosedLoopControl();
-        setLED19(ON);
-    }
-}
-
-
-int isControlInStartUp(void)
-{
-    if (abs(readRotorRPM()) > STARTUP_SPEED_THRESHOLD)
-        return 0;
-    else
-        return 1;
-}
-
 /*
  * Function to determine what kind of control is wanted,
  * and returns the proper reference
+ * Checks if the system is in cruise or torque control, and returns
+ * the reference corresponding to that control type.
  */
 float getMovementReference(void)
 {
@@ -112,20 +87,24 @@ float getMovementReference(void)
  * Function to calculate the iq reference according to
  * the selected reference type.
  */
-float getIqReference(float movementReference)
+float getIqReference(void)
 {
     float iqReference = 0;
 
     if (torqueControlIsEnabled())
-        iqReference = calculateIqReference(movementReference);
+        iqReference = getIqReferenceTorqueControl();
 
     else
     {
         // get measured speed
-        int16 speedMeasurement = readRotorRPM();
+        int16 speedMeasurement = abs(readRotorRPM());
+        int16 speedReference = abs(getSpeedReference());
+
+//        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(speedReference));
+//        if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
 
         // Calculate iq reference from speed controller
-        iqReference = PiCalculationSpeed(movementReference, speedMeasurement);
+        iqReference = PiCalculationSpeed(speedReference, speedMeasurement);
     }
 
     // If the wanted output is outside saturation limits, then limit the output
@@ -158,6 +137,47 @@ dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurre
     return dqVoltages;
 }
 
+/*
+ * This function performs a controlled increase of the control parameters
+ * in order to have a smooth startup. The parameters are:
+ *  +   PI_Ratio
+ *  +   MAX_DUTY_CYCLE
+ *  The increase is proportional to the rotor speed: when the speed is 0
+ *  the parameters will provide the most dampened response.
+ */
+void handleControlParameters(void)
+{
+    int16 rotorSpeed = abs(readRotorRPM());
+
+    maxDuty = getDutyRatio(rotorSpeed) * MAX_DUTY_CYCLE;
+    updatePIRatio(getPIRatio(rotorSpeed));
+}
 
 
+float getDutyRatio(int16 rotorSpeed)
+{
+    float dutyRatio = 0;
+    dutyRatio = (float)(rotorSpeed - SPEED_DUTY_MIN_DUTY) * FITTING_FUNCTION_SLOPE_DUTY + MIN_DUTY;
 
+    if (dutyRatio > MAX_DUTY)   dutyRatio = MAX_DUTY;
+    if (dutyRatio < MIN_DUTY) dutyRatio = MIN_DUTY;
+
+    return dutyRatio;
+}
+
+float getPIRatio(int16 rotorSpeed)
+{
+    float PIRatio = 0;
+    PIRatio = (float)(rotorSpeed - SPEED_DUTY_MIN_PI) * FITTING_FUNCTION_SLOPE_PI + MIN_PI;
+    if (PIRatio > MAX_PI)   PIRatio = MAX_PI;
+    if (PIRatio < MIN_PI) PIRatio = MIN_PI;
+
+    return PIRatio;
+}
+
+int16 getMaxDuty(void)
+{
+//    if (getUartCounter() == 25)
+//    UARTIntPrint("D ", (int)(maxDuty));
+    return maxDuty;
+}

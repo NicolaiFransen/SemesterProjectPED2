@@ -86,7 +86,7 @@
 #define THETA_RAW_TO_THETA_MECH     REV_TO_RAD * ENCODER_STEPS_INVERSE
 
 #define TORQUE_TO_Q_CURRENT         (float)(1.0/(1.5 * POLE_PAIRS * (LM/LR) * LAMDA_R))
-#define D_CURRENT_REFERENCE         LAMDA_R/LM
+#define D_CURRENT_REFERENCE_MAX        LAMDA_R/LM
 
 #define MAX_ADC_STEPS               (float)4095.0
 #define MAX_ADC_REFERENCE           (float)3.3
@@ -101,23 +101,54 @@
 #define BETA_AX			1
 #define ZERO_SEQ		2
 
-#define PI_Ratio        10
-#define KP_IQ           (float)1.12/PI_Ratio
-#define KI_IQ           (float)6.81/PI_Ratio
-#define KP_ID           (float)1.12/PI_Ratio
-#define KI_ID           (float)6.81/PI_Ratio
-#define KP_SPEED        (float)3.7
-#define KI_SPEED        (float)0.37
+/*
+ * PI Parameters
+ */
+#define MINIMUM_ROTOR_SPEED_RATIO    0.15
+#define PI_RATIO_CURRENT        0.02 * 0.15
+#define PI_RATIO_SPEED        0.02 * 0.05
+#define KP_IQ           (float)1.12*PI_RATIO_CURRENT
+#define KI_IQ           (float)6.81*PI_RATIO_CURRENT
+#define KP_ID           (float)1.12*PI_RATIO_CURRENT
+#define KI_ID           (float)6.81*PI_RATIO_CURRENT
+#define KP_SPEED        (float)3.7*PI_RATIO_SPEED
+#define KI_SPEED        (float)0.37*PI_RATIO_SPEED
 #define deltaIdReference    1
 
-
+/*
+ * PI Output limits
+ */
 #define INCLUDE_SATURATION                1               // Flag to include saturation block on the output of current PI's. Set equal 1 to include
 #define CURRENT_LIMIT                     190    //190 as simulink  // Maximum output for current PI's
 #define VOLTAGE_LIMIT                     25
 #define MAXIMUM_ROTOR_SPEED               1700            // Maximum rotor speed, for errorManager
-#define STARTUP_SPEED_THRESHOLD           100         // Speed to change control type
-#define MAX_DUTY_CYCLE                    75
 
+/*
+ * Startup Module constants
+ *
+ * For tuning, SPEED_DUTY_MAX_DUTY and SPEED_DUTY_MIN_DUTY will be changed and then the slope
+ * of the fitting curve will change accordingly
+ */
+
+
+// Duty ratio increase parameters
+#define MIN_DUTY            0.15
+#define MAX_DUTY            1
+#define DELTA_DUTY  MAX_DUTY - MIN_DUTY
+#define SPEED_DUTY_MAX_DUTY                     1200
+#define SPEED_DUTY_MIN_DUTY                     20
+#define SPEED_DELTA_INV_DUTY    1.0/(float)(SPEED_DUTY_MAX_DUTY - SPEED_DUTY_MIN_DUTY)
+#define FITTING_FUNCTION_SLOPE_DUTY  (DELTA_DUTY) * SPEED_DELTA_INV_DUTY
+//PI ratio increase parameters
+#define MIN_PI              0.15
+#define MAX_PI              1
+#define DELTA_PI            MAX_PI - MIN_PI
+#define SPEED_DUTY_MAX_PI                     2000
+#define SPEED_DUTY_MIN_PI                     20
+#define SPEED_DELTA_INV_PI    1.0/(float)(SPEED_DUTY_MAX_PI - SPEED_DUTY_MIN_PI)
+#define FITTING_FUNCTION_SLOPE_PI  (DELTA_PI) * SPEED_DELTA_INV_PI
+
+#define MAX_DUTY_CYCLE                          100
 
 // Constant component values from interface PCB
 #define R_IN_CURRENT_MEAS           (float)9.1                 // Ohm

@@ -34,6 +34,7 @@ typedef struct PIobjectTag
  */
 void PIObject_Constructor(PIobject *PIcontroller, float KP, float KI, int antiWindupFlag, int saturationBlock);
 
+void PIObjectUdatePIRatio(PIobject *PIcontroller, float KP, float KI, float PIRatio);
 float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue, int PItoBePrinted);
 /*
  * Function to check saturation of output

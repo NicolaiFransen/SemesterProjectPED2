@@ -15,6 +15,9 @@
 #include "PIController.h"
 #include "DSP28x_Project.h"
 
+#define ANTI_WINDUP_ENABLED     1
+#define ANTI_WINDUP_DISABLED    0
+
 float getIdReference(void);
 float calculateIqReference(float torqueReference);
 
@@ -22,6 +25,7 @@ float calculateIqReference(float torqueReference);
  * PI controllers
  */
 void initPIControllers(void);
+void updatePIRatio(float PIRatio);
 float PiCalculationIQ(float reference, float measuredValue);
 float PiCalculationID(float reference, float measuredValue);
 float PiCalculationSpeed(float reference, int16 measuredValue);

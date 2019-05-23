@@ -47,7 +47,7 @@
  */
 static GUISignalsTag GUISignals;
 static float speedReference, torqueReference;
-static float deltaSpeed = 0.05, deltaTorque = 0.005; //This values are set for execution at 1 kHz, original values were 1 and 0.1
+static float deltaSpeed = 0.05, deltaTorque = 0.01; //This values are set for execution at 1 kHz, original values were 1 and 0.1
 static int undampedSpeedReference = 0;
 static int referenceSourceChanged = 0;
 
@@ -124,7 +124,7 @@ void decideReferenceType(void)
     {
         if (referenceTypeIsChanged())
         {
-            undampedSpeedReference = readRotorRPM();
+            undampedSpeedReference = abs(readRotorRPM());
             referenceType = cruiseControl;
         }
     }break;
@@ -301,6 +301,11 @@ void restartReferences(void)
 float getTorqueReference(void)
 {
     return torqueReference;
+}
+
+float getIqReferenceTorqueControl(void)
+{
+    return torqueReference * TORQUE_TO_Q_CURRENT;
 }
 
 float getSpeedReference(void)

@@ -64,6 +64,6 @@ float readRotorFluxAngleRad(void);
 float readRotorFluxSpeedRadS(void);
 void calcSlipSpeed(motorPosSpeed *);
 void calcSlipAngle(motorPosSpeed *);
-
+int sign(float variable);
 
 #endif /* APP_INCLUDE_POSITIONCALCULATOR_H_ */

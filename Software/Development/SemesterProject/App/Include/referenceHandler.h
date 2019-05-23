@@ -67,6 +67,7 @@ void restartReferences(void);
  * External Interfaces
  */
 float getTorqueReference(void);
+float getIqReferenceTorqueControl(void);
 float getSpeedReference(void);
 float getOpenLoopReference(void);
 int torqueControlIsEnabled(void);

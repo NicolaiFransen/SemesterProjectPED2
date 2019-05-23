@@ -17,6 +17,8 @@
 #include "adcMonitor.h"
 #include "errorManager.h"
 #include "Constants.h"
+#include "controller.h"
+
 
 
 typedef struct
@@ -48,6 +50,7 @@ typedef struct
 GUISignalsTag getGUISignals(void);
 void manageCommunications(void);
 void getSystemManagerSignals(void);
+void getClosedLoopControlSignals(void);
 void getEncoderSignals(void);
 void getErrorSignals(void);
 void getReferenceHandlerSignals(void);
@@ -59,6 +62,7 @@ void handleGUIPushbuttons(void);
 void updatePushButtonList(void);
 void handlePushbuttonsPress(void);
 void restartPushbuttonsValue(void);
+void sendCurrentMeasurementsToGUI(float idMeas, float iqMeas);
 void initializeGUIPushbuttonsStructure(void);
 
 

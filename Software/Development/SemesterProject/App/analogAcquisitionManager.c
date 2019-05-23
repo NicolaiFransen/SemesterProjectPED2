@@ -341,7 +341,7 @@ void createAnalogSignals(void)
     // Definition of filter parameters
     char filterType = 'L';
     int filterOrder = 1;
-    int potFilterFreq = 100, currentFilterFreq = 1000, filterFreq = 1;
+    int potFilterFreq = 100, currentFilterFreq = 5000, filterFreq = 1;
 
     // Definition of thresholds
     float currentThreshold[2], thermalThreshold[2];
