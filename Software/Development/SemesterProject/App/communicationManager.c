@@ -22,7 +22,7 @@
  *          **SystemMgr
  *          **DigitalInputMgr
  *          **ReferenceHandlerMgr
- *          ++closed loop control ----> To be developed
+ *          **closed loop control
  *          **ErrorMgr
  *      *Get the values from GUI and allow the read from other software components
  *          **struct GUISignalsTag getGUISignals(void)

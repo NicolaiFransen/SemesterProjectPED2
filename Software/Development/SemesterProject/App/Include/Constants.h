@@ -105,13 +105,14 @@
  * PI Parameters
  */
 #define MINIMUM_ROTOR_SPEED_RATIO    0.15
-#define PI_RATIO        0.02 * 0.15
-#define KP_IQ           (float)1.12*PI_RATIO
-#define KI_IQ           (float)6.81*PI_RATIO
-#define KP_ID           (float)1.12*PI_RATIO
-#define KI_ID           (float)6.81*PI_RATIO
-#define KP_SPEED        (float)3.7*0.02*0.05
-#define KI_SPEED        (float)0.37*0.02*0.05
+#define PI_RATIO_CURRENT        0.02 * 0.15
+#define PI_RATIO_SPEED        0.02 * 0.05
+#define KP_IQ           (float)1.12*PI_RATIO_CURRENT
+#define KI_IQ           (float)6.81*PI_RATIO_CURRENT
+#define KP_ID           (float)1.12*PI_RATIO_CURRENT
+#define KI_ID           (float)6.81*PI_RATIO_CURRENT
+#define KP_SPEED        (float)3.7*PI_RATIO_SPEED
+#define KI_SPEED        (float)0.37*PI_RATIO_SPEED
 #define deltaIdReference    1
 
 /*
@@ -128,24 +129,25 @@
  * For tuning, SPEED_DUTY_MAX_DUTY and SPEED_DUTY_MIN_DUTY will be changed and then the slope
  * of the fitting curve will change accordingly
  */
+
+
+// Duty ratio increase parameters
 #define MIN_DUTY            0.15
 #define MAX_DUTY            1
 #define DELTA_DUTY  MAX_DUTY - MIN_DUTY
-// Duty ratio increase parameters
 #define SPEED_DUTY_MAX_DUTY                     1200
 #define SPEED_DUTY_MIN_DUTY                     20
 #define SPEED_DELTA_INV_DUTY    1.0/(float)(SPEED_DUTY_MAX_DUTY - SPEED_DUTY_MIN_DUTY)
 #define FITTING_FUNCTION_SLOPE_DUTY  (DELTA_DUTY) * SPEED_DELTA_INV_DUTY
 //PI ratio increase parameters
+#define MIN_PI              0.15
+#define MAX_PI              1
+#define DELTA_PI            MAX_PI - MIN_PI
 #define SPEED_DUTY_MAX_PI                     2000
 #define SPEED_DUTY_MIN_PI                     20
 #define SPEED_DELTA_INV_PI    1.0/(float)(SPEED_DUTY_MAX_PI - SPEED_DUTY_MIN_PI)
-#define FITTING_FUNCTION_SLOPE_PI  (DELTA_DUTY) * SPEED_DELTA_INV_PI
+#define FITTING_FUNCTION_SLOPE_PI  (DELTA_PI) * SPEED_DELTA_INV_PI
 
-#define STARTUP_SPEED_THRESHOLD_DUTY            750         // Speed to change control type
-#define STARTUP_SPEED_THRESHOLD_PI              1500
-#define STARTUP_SPEED_THRESHOLD_INV_DUTY        1/STARTUP_SPEED_THRESHOLD_DUTY         // Speed to change control type - Inverse
-#define STARTUP_SPEED_THRESHOLD_INV_PI          1/STARTUP_SPEED_THRESHOLD_PI         // Speed to change control type - Inverse
 #define MAX_DUTY_CYCLE                          100
 
 // Constant component values from interface PCB

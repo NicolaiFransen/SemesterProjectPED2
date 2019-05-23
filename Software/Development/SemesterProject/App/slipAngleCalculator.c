@@ -38,8 +38,6 @@ void calcSlipAngle(motorPosSpeed *motorPosSpeedObject)
 
     //Consider flux limits and correct
     if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
-    if (motorPosSpeedObject->rotorFluxPosRad >= TWO_PI) motorPosSpeedObject->rotorFluxPosRad -= TWO_PI;
-    if (motorPosSpeedObject->rotorFluxPosRad < 0) motorPosSpeedObject->rotorFluxPosRad += TWO_PI;
     if (motorPosSpeedObject->rotorFluxPosRad < 0) motorPosSpeedObject->rotorFluxPosRad += TWO_PI;
 
 //    if ((getUartCounter() == 3)) UARTIntPrint("d ", (int)(motorPosSpeedObject->dir));

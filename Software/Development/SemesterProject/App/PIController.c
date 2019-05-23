@@ -90,14 +90,8 @@ float PiCalculation(PIobject *PIcontroller, float reference, float measuredValue
 
     if (PIcontroller->includeSaturationBlock)
     {
-        if (isOutputSaturatedPositive(PIoutput))
-        {
-            PIoutput = VOLTAGE_LIMIT;
-        }
-        else if (isOutputSaturatedNegative(PIoutput))
-        {
-            PIoutput = -VOLTAGE_LIMIT;
-        }
+        if (isOutputSaturatedPositive(PIoutput))        PIoutput = VOLTAGE_LIMIT;
+        else if (isOutputSaturatedNegative(PIoutput))   PIoutput = -VOLTAGE_LIMIT;
 
     }
 

@@ -15,6 +15,9 @@
 #include "PIController.h"
 #include "DSP28x_Project.h"
 
+#define ANTI_WINDUP_ENABLED     1
+#define ANTI_WINDUP_DISABLED    0
+
 float getIdReference(void);
 float calculateIqReference(float torqueReference);
 
