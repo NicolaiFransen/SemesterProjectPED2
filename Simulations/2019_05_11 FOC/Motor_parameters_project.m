@@ -1,6 +1,8 @@
 % Motor Parameters
 % Sauer-Danfoss TSA170-210-038
 
+plecsclear
+
 s = tf('s');
 
 % % Induction motor constant parameters
@@ -50,8 +52,6 @@ ids=(1/Lm)*landa_r;
 
 
 %PI current controllers id, iq  
-
-R = 0.02*0.15;
 Kp_q= 1.12; %0.7088; %1.12; %  %0.26;
 Ki_q= 6.81; %4.31; %  %15.7;
  
@@ -90,11 +90,11 @@ sol_phi = solve(eqn, phi)
 % Kp_speed = 0.94; %0.8;  %4.2; 
 % Ki_speed= 0.094; %5;  %30; 
 
-Kp_w = 3.5002; %8.7; 
-Ki_w = 0.35002; %0.87;
+Kp_w = 3.55; %8.7; 
+Ki_w = 0.355; %0.87;
 k = (3/2)*p*(Lm/Lr)*landa_r;
 B= 0.00151; %0.00151; %B/J = 0.1 (to be checked) 
-Tc = 1.4e-3; %150.25e-6; %time constant current controller
+Tc = 1.27e-3; %150.25e-6; %time constant current controller
 
 G_s = (1/(Tc*s+1))*(1/(J*s+B))
 
