@@ -44,7 +44,7 @@ plot(t, Id_ref, 'b', 'Linewidth', 1.5)
 hold on
 plot(t, Id_meas, 'r', 'Linewidth', 1.5)
 ylim([100, 200]);
-xlim([12,31]);
+xlim([14,25]);
 
 set(gca,'FontSize',14)
 xlabel('Time[s]', 'fontsize',14);
@@ -56,8 +56,8 @@ subplot(2,1,2);
 plot(t, Iq_ref, 'b', 'Linewidth', 1.5)
 hold on
 plot(t, Iq_meas, 'r', 'Linewidth', 1.5)
-ylim([0, 80]);
-xlim([12,31]);
+ylim([0, 100]);
+xlim([14,25]);
 
 set(gca,'FontSize',14)
 xlabel('Time[s]', 'fontsize',14);
@@ -83,7 +83,7 @@ figure(3)
 subplot(2,1,1);
 plot(t, Torque, 'b', 'Linewidth', 1.5)
 ylim([0,15]);
-xlim([12,31]);
+xlim([14,25]);
 
 set(gca,'FontSize',14)
 xlabel('Time[s]','FontSize',14);
@@ -91,7 +91,7 @@ ylabel('Torque[Nm]','FontSize',14);
 
 subplot(2,1,2);
 plot(t, Speed, 'b', 'Linewidth', 1.5)
-xlim([12,31]);
+xlim([14,25]);
 ylim([0,200]);
 
 set(gca,'FontSize',14)
