@@ -1,7 +1,6 @@
 % Motor Parameters
 % Sauer-Danfoss TSA170-210-038
 
-plecsclear
 
 s = tf('s');
 
