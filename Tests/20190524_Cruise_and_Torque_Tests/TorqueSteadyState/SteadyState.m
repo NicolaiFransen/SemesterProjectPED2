@@ -49,7 +49,7 @@ xlim([30,60]);
 set(gca,'FontSize',14)
 xlabel('Time[s]', 'fontsize',14);
 ylabel('Current[A]', 'fontsize',14);
-legend('Id_ref','Id_meas', 'fontsize',14);
+legend('Id_{ref}','Id_{meas}', 'fontsize',14);
 
 
 subplot(2,1,2);
@@ -62,7 +62,7 @@ xlim([30,60]);
 set(gca,'FontSize',14)
 xlabel('Time[s]', 'fontsize',14);
 ylabel('Current[A]', 'fontsize',14);
-legend('Iq_ref','Iq_meas', 'fontsize',14);
+legend('Iq_{ref}','Iq_{meas}', 'fontsize',14);
 
 %% Inverter test
 %#,Torque(N·m),Speed(1/min),Power(kW);
