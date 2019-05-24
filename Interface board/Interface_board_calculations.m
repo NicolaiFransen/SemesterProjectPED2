@@ -70,6 +70,11 @@ c = 10e-9;
 R1 = 21.5e3;
 f = 1/(2*pi*R1*c)
 
+%% Current sensor filtering
+
+c = 100e-9;
+R1 = 330;
+f = 1/(2*pi*R1*c)
 
 %%
 V1 = 2;
