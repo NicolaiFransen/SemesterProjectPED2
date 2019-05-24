@@ -59,7 +59,7 @@ dqObject getCurrentReferences(void)
 
     currentReferences.qComponent = getIqReference();
     currentReferences.dComponent = D_CURRENT_REFERENCE_MAX;
-//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
     if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
     //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 

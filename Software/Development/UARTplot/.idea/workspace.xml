@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d38a9fc-023a-4acb-9951-39ad54de768f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/speedMeasRef.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/speedMeasRef2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/speedMeasRef3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startup.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/steadyState.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/Constants.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/Include/referenceHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/closedLoopControlManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/encoderManager.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceHandler.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../SemesterProject/App/referenceFrameConversion.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UART.py" beforeDir="false" afterPath="$PROJECT_DIR$/UART.py" afterDir="false" />
     </list>
@@ -25,9 +22,19 @@
         <entry file="file://$PROJECT_DIR$/UART.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="109">
-              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+              <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/steadyState.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/startup.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -78,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-24" />
     <option name="y" value="198" />
     <option name="width" value="1944" />
@@ -200,6 +207,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24305004" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -221,12 +229,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/rotorFluxAngleAnalysis_3.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -387,10 +389,16 @@
     <entry file="file://$PROJECT_DIR$/speedMeasRef3.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/startup.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/steadyState.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/UART.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="109">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
         </state>
       </provider>
     </entry>

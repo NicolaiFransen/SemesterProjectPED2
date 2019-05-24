@@ -70,8 +70,8 @@ void calcIqReference(void)
         int16 speedMeasurement = abs(readRotorRPM());
         int16 speedReference = abs(getSpeedReference());
 
-//        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(speedReference));
-//        if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
+        if (getUartCounter() == 5) UARTIntPrint("r ", (int)(speedReference));
+        if (getUartCounter() == 6) UARTIntPrint("m ", (int)(speedMeasurement));
 
         // Calculate iq reference from speed controller
         iqReference = PiCalculationSpeed(speedReference, speedMeasurement);
