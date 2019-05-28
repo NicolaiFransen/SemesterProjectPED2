@@ -21,8 +21,8 @@ format shortEng
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Inverter input parameters
     VDC   = 38;
-    I_rms = 180;%150%89.8;%175;%89.8;%%%263;%251
-    I_pk  = 200;%165%92.4;%180;%92.4;%%%371;%355.75;92.4;
+    I_rms = 190;%150%89.8;%175;%89.8;%%%263;%251
+    I_pk  = 210;%165%92.4;%180;%92.4;%%%371;%355.75;92.4;
     PF    = 0.76;
     phi   = acos(PF);
     fs    = 10000;
@@ -187,7 +187,7 @@ P
     %Thermal resistance for the heatsink selection of IPOT012N08N
     Tj = 100;
     Ta = 25;
-    R_thJC = 0.2;
+    R_thJC = 0.4;
     R_thCS = t.sol/(A*K.sol);
     R_thSC = t.cu/(A*K.cu);
     R_thCI = t.ins/(A*K.ins);
@@ -337,4 +337,6 @@ end
   Switch_loss = P.con_Total(3)/12+P.sw_Device(3)+P.dr_Total(3)/12
   JT = ((R_thJC+0.08333+740*10^-6+277*10^-3+52.74*10^-3+41.6*10^-3+0.84)*Switch_loss)+25
   CT = JT - (Switch_loss*R_thJC)
+  JT = Switch_loss*R_thJC+50.5
+  Switch_loss
   
