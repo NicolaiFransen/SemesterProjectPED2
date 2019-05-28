@@ -1,0 +1,98 @@
+% Motor Parameters
+% Sauer-Danfoss TSA170-210-038
+
+
+s = tf('s');
+
+% % Induction motor constant parameters
+% 
+Lm = 0.38e-3;                           % magnetizing inductivity [H]%
+Lds = 31.16e-6;                         % stator leakage inductivity [H]%
+Ldr = 31.16e-6;                         % rotor leakage inductivity [H]%
+Ls = Lm + Lds;                          % stator total inductivity [H]%
+Lr = Lm + Ldr;                          % rotor total inductivity [H]%
+Rs = 2.5e-3;                            % stator resistance [ohms]%
+Rr = 2.69e-3;                           % rotor resistance [ohms]%
+p = 2.0;                                % number of pole-pairs %
+J=0.0151;                               % rotor inertia moment [Nm^2]
+
+% Induction motor nameplate
+Pn = 5300;                              % nominal power [W]
+Un = 24/sqrt(3);                        % nominal phase voltage RMS[V]
+In = 189;                               % nominal current RMS[A]
+fn = 58;                                % nominal frequency [Hz]
+PF = 0.76;                              % nominal power factor [pu]
+nn = 1685;                              % nominal shaft speed
+Omegae = 2*pi*fn;                       % nominal electrical angular speed [rad]
+T_rated = Pn/(2*pi*nn/60);              % nominal Torque [Nm]
+
+% ____________________________________________________________________________________________
+
+Udc=36;          % DC-link voltage
+fs = 10000;
+Ts=1/fs;
+
+landa_r = 0.0567;  %Rotor flux position determination
+ids=(1/Lm)*landa_r;
+
+%Parameters for mechanical model: (values from report 2017)
+Rw = 0.1375;                            %meters Radius of the wheel 
+density = 1.2041;                       %kg/m^3 air density
+Cd = 0.804;                             %Aerodynamic drag coefficient 
+Af = 0.5784;                            %m^2 Kart's approx. front area assuming the kart is a prismatic body
+Mcar = 233;                             %kg Mass including motor, chasis and driver                        
+Gr = 1.6666;                            %Transmission gearbox ratio
+g=9.81;                                 %gravity
+Mw =  20;                               %Mass of the 4 wheels in Kg
+Jw = 0.5*(Rw/Gr)^2*Mw;                  %Moment of inertia corresponding to the 4 wheels
+
+
+%PI current controllers without time delay. BW=500Hz
+Kp_q= 1.12; 
+Ki_q= 6.81; 
+ 
+Kp_d= 1.12; 
+Ki_d= 6.81; 
+
+G_p = 1/(Ls*s+Rs);  %Electrical plant's TF
+G_PI= Kp_d + Ki_d/s;
+G_ol= G_PI*G_p;
+G_cl = G_ol/(1+G_ol);
+
+figure(1)
+bode(G_cl)
+
+%PI current controller including time delay:
+Td = 0.5*Ts;
+Gp = (1/(Ls*s+Rs))*(1/(Td*s+1));
+GPI = Kp_d + Ki_d/s;
+Gol = GPI*Gp;
+Gcl = Gol/(1+Gol);
+
+figure(2)
+bode(Gcl)
+
+% Equation for damping ratio current controller.
+syms phi 
+eqn = (1/(2*phi*Td))*sqrt((1-2*phi^2)+sqrt(4*phi^4-4*phi^2+2)) == 2*pi*500;
+sol_phi = solve(eqn, phi)
+
+%Speed controller: 
+Kp_w = 3.55; 
+Ki_w = 0.355; 
+k = (3/2)*p*(Lm/Lr)*landa_r;
+B= 0.00151;   %Assumed to be 0.1*J
+Tc = 1.27e-3; %time constant current controller
+
+G_w = (1/(Tc*s+1))*(1/(J*s+B))
+Gol_w = (Kp_w + Ki_w/s)*(1/(Tc*s+1))*(1/(J*s+B))
+Gcl_w = Gol_w/(1 + Gol_w)
+
+figure(3)
+margin(Gcl_w)
+
+% Equation for damping ratio speed controller.
+syms phi_w 
+eqn_w = (1/(2*phi_w*Tc))*sqrt((1-2*phi_w^2)+sqrt(4*phi_w^4-4*phi_w^2+2)) == 2*pi*50;
+sol_phi_w = solve(eqn_w, phi_w)
+
