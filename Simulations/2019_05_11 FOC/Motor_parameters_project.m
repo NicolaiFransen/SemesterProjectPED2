@@ -46,7 +46,7 @@ Mw =  20;                               %Mass of the 4 wheels (to be weighted)
 Jw = 0.5*(Rw/Gr)^2*Mw;                  %Moment of inertia corresponding to the 4 wheels
 
 %Rotor flux position determination
-landa_r = 0.0567;  
+landa_r = 0.0567; %0.047; %0.0567;  
 ids=(1/Lm)*landa_r;
 
 
