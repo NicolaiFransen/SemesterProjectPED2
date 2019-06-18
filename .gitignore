@@ -4,6 +4,9 @@
 *.asv
 *.Zip
 
+Exam/Presentation/Timing.txt
+
+
 #Avoid PLECS autosave
 *.autosave
 
