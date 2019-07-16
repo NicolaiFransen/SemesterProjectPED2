@@ -14,12 +14,11 @@
 #include "Constants.h"
 #include "PIController.h"
 #include "DSP28x_Project.h"
+#include "referenceHandler.h"
+
 
 #define ANTI_WINDUP_ENABLED     1
 #define ANTI_WINDUP_DISABLED    0
-
-float getIdReference(void);
-float calculateIqReference(float torqueReference);
 
 /*
  * PI controllers
@@ -33,7 +32,5 @@ void resetIntegrators(void);
 void resetIdIntegrator(void);
 void resetIqIntegrator(void);
 void resetSpeedIntegrator(void);
-
-float readIdReference(void);
 
 #endif /* APP_INCLUDE_CONTROLLER_H_ */

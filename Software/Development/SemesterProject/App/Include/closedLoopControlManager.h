@@ -26,6 +26,7 @@ void runClosedLoopControl(void);
 
 
 float getMovementReference(void);
+void calcIqReference(void);
 float getIqReference(void);
 dqObject getCurrentReferences(void);
 dqObject calculateVoltageReferences(dqObject currentReferences, dqObject dqCurrents);

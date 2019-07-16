@@ -83,3 +83,7 @@ SysMgrState readSystemState(void)
     return systemState;
 }
 
+int systemIsInError(void)
+{
+    return systemState == ERROR;
+}

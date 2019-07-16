@@ -32,6 +32,7 @@ void runClosedLoopControl(void)
     alphaBetaObject abVoltages;
 
     handleControlParameters();
+    calcIqReference();
     currentReferences = getCurrentReferences();
 
     getCurrentMeasurements(&abcCurrents[0]);                    // Reads current measurements
@@ -57,9 +58,9 @@ dqObject getCurrentReferences(void)
     dqObject currentReferences;
 
     currentReferences.qComponent = getIqReference();
-    currentReferences.dComponent = getIdReference();
-//    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
-//    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
+    currentReferences.dComponent = D_CURRENT_REFERENCE_MAX;
+    if (getUartCounter() == 3) UARTIntPrint("dr ", (int)(currentReferences.dComponent));
+    if (getUartCounter() == 4) UARTIntPrint("qr ", (int)(currentReferences.qComponent));
     //    if (getUartCounter() == 3) UARTIntPrint("tr ", (int)(movementReference * 10));
 
     return currentReferences;
@@ -81,43 +82,6 @@ float getMovementReference(void)
         movementReference = getSpeedReference();
 
     return movementReference;
-}
-
-/*
- * Function to calculate the iq reference according to
- * the selected reference type.
- */
-float getIqReference(void)
-{
-    float iqReference = 0;
-
-    if (torqueControlIsEnabled())
-        iqReference = getIqReferenceTorqueControl();
-
-    else
-    {
-        // get measured speed
-        int16 speedMeasurement = abs(readRotorRPM());
-        int16 speedReference = abs(getSpeedReference());
-
-//        if (getUartCounter() == 3) UARTIntPrint("r ", (int)(speedReference));
-//        if (getUartCounter() == 4) UARTIntPrint("m ", (int)(speedMeasurement));
-
-        // Calculate iq reference from speed controller
-        iqReference = PiCalculationSpeed(speedReference, speedMeasurement);
-    }
-
-    // If the wanted output is outside saturation limits, then limit the output
-    if (isOutputSaturatedPositive(iqReference))
-    {
-        iqReference = CURRENT_LIMIT;
-    }
-    else if (isOutputSaturatedNegative(iqReference))
-    {
-        iqReference = -(CURRENT_LIMIT);
-    }
-
-    return iqReference;
 }
 
 /*

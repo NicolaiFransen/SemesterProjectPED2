@@ -70,10 +70,10 @@
 #define LR                  ((float)411.16e-6)              // 'Rotor total inductance --> H'
 #define TR                  ((float)0.1528475836)           // 'Lr/Rr --> H/Ohm'
 #define TR_INVERSE          ((float)6.54246522)             // 'Rr/Lr --> Ohm/H'
-#define LAMDA_R             ((float)0.0567)
-#define LAMDA_R_INVERSE     ((float)17.6366843)
-#define ID_RATED            ((float)149.2287)               // 'Id rated current --> A'
-#define ID_RATED_INVERSE    ((float)0.006701123845)         // 'Id rated current inverse --> A^-1'
+#define LAMDA_R             ((float)0.04693)
+#define LAMDA_R_INVERSE     ((float)1.0/LAMDA_R)
+#define ID_RATED            ((float)123.51)               // 'Id rated current --> A'
+#define ID_RATED_INVERSE    ((float)1.0/ID_RATED)         // 'Id rated current inverse --> A^-1'
 
 #define MAX_STATOR_FREQ     58 //Hz used for VF control
 #define ENCODER_STEPS       8192
@@ -105,8 +105,8 @@
  * PI Parameters
  */
 #define MINIMUM_ROTOR_SPEED_RATIO    0.15
-#define PI_RATIO_CURRENT        0.02 * 0.15
-#define PI_RATIO_SPEED        0.02 * 0.05
+#define PI_RATIO_CURRENT        0.02 * 0.15 * 0.75
+#define PI_RATIO_SPEED        0.02 * 0.01 * 0.1
 #define KP_IQ           (float)1.12*PI_RATIO_CURRENT
 #define KI_IQ           (float)6.81*PI_RATIO_CURRENT
 #define KP_ID           (float)1.12*PI_RATIO_CURRENT

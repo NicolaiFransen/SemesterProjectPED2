@@ -18,7 +18,7 @@ except:
 dataDictionary = {}
 
 #opening the file
-fileUART = open("torqueReferenceStep_iqrm_idrm.txt", "r")
+fileUART = open("steadyState.txt", "r")
 csvUARTlines = fileUART.readlines()
 
 #Parsing the file: for every line, is the key is not saved create it, else save the new value in that key

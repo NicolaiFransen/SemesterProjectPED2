@@ -49,6 +49,7 @@ volatile float COMMS_OpenLoopReference = 0, COMMS_speedReference = 0, COMMS_torq
     //Encoder
 volatile int COMMS_RotorSpeed = 0;
     //Error Manager
+volatile int COMMS_GeneralError = 0;
 volatile errorStatus COMMS_ErrorCurrentA = NO_ERROR, COMMS_ErrorCurrentB = NO_ERROR, COMMS_ErrorCurrentC = NO_ERROR, COMMS_ErrorDCLink = NO_ERROR, COMMS_ErrorControlSupply = NO_ERROR, COMMS_ErrorTorqueReferenceSlider = NO_ERROR, COMMS_ErrorSpeedReferenceSlider = NO_ERROR, COMMS_ErrorTorqueReferencePedal = NO_ERROR, COMMS_ErrorBrakeReferencePedal = NO_ERROR, COMMS_ErrorThermometer1 = NO_ERROR, COMMS_ErrorThermometer2 = NO_ERROR, COMMS_ErrorRotaryPot1 = NO_ERROR, COMMS_ErrorRotaryPot2 = NO_ERROR, COMMS_ErrorRotaryPot3 = NO_ERROR;
     //Closed loop control
 volatile float COMMS_idReference = 0, COMMS_estimatedTorque = 0, COMMS_idMeasured = 0, COMMS_iqMeasured = 0;
@@ -104,7 +105,7 @@ void manageCommunications(void)
 
 void getClosedLoopControlSignals(void)
 {
-    COMMS_idReference = getIdReference();
+    COMMS_idReference = D_CURRENT_REFERENCE_MAX;
     COMMS_estimatedTorque = COMMS_iqMeasured / TORQUE_TO_Q_CURRENT;
 }
 
@@ -116,6 +117,7 @@ void getEncoderSignals(void)
 void getSystemManagerSignals(void)
 {   //Using System Manager Interface
     COMMS_SysMgrState = readSystemState();
+    COMMS_GeneralError = systemIsInError();
 }
 
 void getErrorSignals(void)

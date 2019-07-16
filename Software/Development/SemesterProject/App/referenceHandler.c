@@ -54,17 +54,19 @@ static int referenceSourceChanged = 0;
 
 static referenceSourceTag referenceSource = interfacePCB;
 static enum referenceTypeTag referenceType = torqueControl;
-const int SPEED_STEP_FROM_BUTTON_RPM = 60 * SPEED_STEP_FROM_BUTTON_KPH / 3.6 * GEAR_RATIO / RADIUS_WHEELS;
+const int SPEED_STEP_FROM_BUTTON_RPM = 25;//60 * SPEED_STEP_FROM_BUTTON_KPH / 3.6 * GEAR_RATIO / RADIUS_WHEELS;
+const int SPEED_STEP_FROM_BUTTON_RPM_REFERRED_TO_CAR = SPEED_STEP_FROM_BUTTON_KPH * GEAR_RATIO / (RADIUS_WHEELS * 3.6 * 60) ;
+
 
 
 void handleReferences(void)
 {
     GUISignals = getGUISignals();
     decideReferenceSource();
+    decideReferenceType();
     if (readSystemState() == RUNNING)
     {
         calculateReference();
-        decideReferenceType();
     }
     else    restartReferences();
 }
@@ -134,6 +136,7 @@ void decideReferenceType(void)
         {
             referenceType = torqueControl;
             restartSpeedReference();
+            resetSpeedIntegrator();
         }
         setCruiseControlLED(ON);
     }break;
@@ -239,6 +242,7 @@ int getSpeedReferenceValue(void)
 {
     if (speedMustBeIncreased())     undampedSpeedReference += SPEED_STEP_FROM_BUTTON_RPM;
     if (speedMustBeDecreased())     undampedSpeedReference -= SPEED_STEP_FROM_BUTTON_RPM;
+    if (undampedSpeedReference < 1) undampedSpeedReference = 0;
 
     return undampedSpeedReference;
 }
