@@ -1,4 +1,4 @@
-##Void .raw files from LTspice simulation
+##Void .raw files from LTspice simulatio
 *.raw
 *.net
 *.asv
