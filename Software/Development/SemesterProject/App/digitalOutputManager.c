@@ -56,7 +56,7 @@ void initDigitalOutputs(void)
     digitalOutput_Constructor(&digitalOutputList.torqueReferenceUARTLED, DS11);
     digitalOutput_Constructor(&digitalOutputList.LED9, DS9);
     digitalOutput_Constructor(&digitalOutputList.LED10, DS10);
-    digitalOutput_Constructor(&digitalOutputList.errorLED, DS17);
+    //digitalOutput_Constructor(&digitalOutputList.errorLED, DS17);
     digitalOutput_Constructor(&digitalOutputList.runningLED, DS18);
     digitalOutput_Constructor(&digitalOutputList.LED19, DS19);
     digitalOutput_Constructor(&digitalOutputList.LED20, DS20);

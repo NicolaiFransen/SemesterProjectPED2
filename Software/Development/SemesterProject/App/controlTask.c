@@ -19,7 +19,10 @@ void executeControl(void)
         if (isOpenLoopControlSelected())
         {
             // Call open-loop function
-            openLoopVFControl();
+            //openLoopVFControl();
+            setDutyA(10);
+            setDutyB(10);
+            setDutyC(10);
         }
 
          else
@@ -38,6 +41,6 @@ void executeControl(void)
  */
 int isOpenLoopControlSelected(void)
 {
-    return isOpenClosedLoopSelectionSwitchEnabled();
+    return 1;              //isOpenClosedLoopSelectionSwitchEnabled();
 }
 

@@ -38,14 +38,16 @@ void configurePWM(void)
     EALLOW;
 
     //  Configure EPWMA1
-    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;    // Select ePWMA1 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;     // Select ePWMA1 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;     // Select ePWMB1 from MUX
 
     //  Configure EPWMA2
-    GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;    // Select ePWMA2 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;     // Select ePWMA2 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;     // Select ePWMB2 from MUX
 
     //  Configure EPWMA3
-    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;    // Select ePWMA3 from MUX
-
+    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;     // Select ePWMA3 from MUX
+    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;     // Select ePWMB3 from MUX
 
 
     //
@@ -153,8 +155,25 @@ void configurePWM(void)
 
     //DEADBAND register configuration
     //Since the deadband is performed in the inverter circuit, it must be bypassed here.
-    EPwm1Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
-    EPwm2Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
-    EPwm3Regs.DBCTL.bit.OUT_MODE = DB_DISABLE;
+    // Dead band is determined by using table 3.15 page 288 in datasheet
+    EPwm1Regs.DBRED = 2;        // Sets rising edge Dead band in PWM1 to 0.01us
+    EPwm1Regs.DBFED = 2;        // Sets falling edge Dead band in PWM1 to 0.01us
+
+    EPwm2Regs.DBRED = 2;        // Sets rising edge Dead band in PWM2 to 0.01us
+    EPwm2Regs.DBFED = 2;        // Sets falling edge Dead band in PWM2 to 0.01us
+
+    EPwm3Regs.DBRED = 2;        // Sets rising edge Dead band in PWM3 to 0.01us
+    EPwm3Regs.DBFED = 2;        // Sets falling edge Dead band in PWM3 to 0.01us
+
+    // Enables the Dead band generation
+    EPwm1Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+    EPwm2Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+    EPwm3Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+
+    // Sets the complementary (Channel B) as active HI
+    EPwm1Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+    EPwm2Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+    EPwm3Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+
     EDIS;
 }

@@ -47,8 +47,8 @@ void initDigitalInputs(void)
 {
     digitalInput_Constructor(&digitalInputList.referenceTypePushbutton, B2);
     digitalInput_Constructor(&digitalInputList.referenceSourcePushbutton, B1);
-    digitalInput_Constructor(&digitalInputList.openClosedLoopSelectionSwitch, S2);
-    digitalInput_Constructor(&digitalInputList.powerSwitch, S1);
+    //digitalInput_Constructor(&digitalInputList.openClosedLoopSelectionSwitch, S2);
+    //digitalInput_Constructor(&digitalInputList.powerSwitch, S1);
     digitalInput_Constructor(&digitalInputList.speedIncreasePushbutton, J10);
     digitalInput_Constructor(&digitalInputList.speedDecreasePushbutton, J9);
     digitalInput_Constructor(&digitalInputList.userACKPushbutton, J12);
@@ -101,7 +101,7 @@ int isPowerSwitchEnabled(void)
 
 int isErrorMonitorSwitchEnabled(void)
 {
-    return digitalInputList.errorMonitoringEnable.state;
+    return 1;                 //digitalInputList.errorMonitoringEnable.state;
 }
 
 int isSpeedIncreasePushbuttonEnabled(void)

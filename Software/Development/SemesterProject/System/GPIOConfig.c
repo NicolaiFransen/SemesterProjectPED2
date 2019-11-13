@@ -42,8 +42,8 @@ void configureGPIO(void)
     /*
      * Output pins configuration
      */
-    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO5 = 1;
+//    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;
+//    GpioCtrlRegs.GPADIR.bit.GPIO5 = 1;
 
     GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;
     GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;
@@ -106,17 +106,17 @@ void configureGPIO(void)
     GpioCtrlRegs.GPBCTRL.bit.QUALPRD2 = 0xFF; //(GPIO50-55)
 
     //  Configure GPIO 1 (Power Enable switch) as input
-    GpioCtrlRegs.GPAPUD.bit.GPIO1= 1; //Disable pull-up resistor
+/*    GpioCtrlRegs.GPAPUD.bit.GPIO1= 1; //Disable pull-up resistor
     GpioCtrlRegs.GPAQSEL1.bit.GPIO1 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;    // Select GPIO from MUX
     GpioCtrlRegs.GPADIR.bit.GPIO1 = 0;     // Select digital input
-
+*/
     //  Configure GPIO 3 (Open or closed loop selection switch) as input
-    GpioCtrlRegs.GPAPUD.bit.GPIO3 = 1; //Disable pull-up resistor
+/*    GpioCtrlRegs.GPAPUD.bit.GPIO3 = 1; //Disable pull-up resistor
     GpioCtrlRegs.GPAQSEL1.bit.GPIO3 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0;    // Select GPIO from MUX
     GpioCtrlRegs.GPADIR.bit.GPIO3 = 0;     // Select digital input
-
+*/
     //  Configure GPIO 14 (cruise control pushbutton) as input
     GpioCtrlRegs.GPAPUD.bit.GPIO14 = 1; //Disable pull-up resistor
     GpioCtrlRegs.GPAQSEL1.bit.GPIO14 = 0; //Select amount of samples for qualifying, 0 = 1 sample.
