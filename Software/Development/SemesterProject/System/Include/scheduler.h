@@ -20,6 +20,7 @@
 #include "queueObject.h"
 #include "temperatureManager.h"
 #include "errorManager.h"
+#include "BatteryMonitor.h"
 #include "Constants.h"
 
 #define TIMER_PERIOD_US       1000

@@ -27,6 +27,8 @@ void checkForResetAndEnableMainSwitch(void);
 //Defines and type definition
 #define OVERVOLTAGE_THRESHOLD 3.9
 #define UNDERVOLTAGE_THRESHOLD 2.9
+#define GAIN_BOTTOM_CELL 2
+#define GAIN_TOP_CELL 2.65
 
 typedef enum VoltageErrorTag
 {
@@ -43,8 +45,8 @@ typedef struct CellTag
 
 typedef struct CellsObjectTag
 {
-    Cell Cell1;
-    Cell Cell2;
+    Cell TopCell;
+    Cell BottomCell;
 } CellsObject;
 
 

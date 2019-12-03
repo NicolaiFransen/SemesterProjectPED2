@@ -28,6 +28,8 @@
 #include "communicationManager.h"
 #include "UARTInterface.h"
 #include "SVM_DMC.h"
+#include "BatteryMonitor.h"
+
 
 //
 // Function Prototypes statements for functions found within this file.

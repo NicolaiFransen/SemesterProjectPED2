@@ -99,6 +99,7 @@ void task1ms(void)
     readLowPrioritySignals();
     performLowPriorityErrorMonitoring();
     handleReferences();
+    MonitorBattery();
 }
 
 void task5ms(void)
