@@ -258,12 +258,12 @@ void getCurrentMeasurements(float *currentMeasurement)
 
 float getDCLinkMeasurement(void)
 {
-    return (AnalogSignalList.voltageMeas36.filteredValue * DC_LINK_MEAS_TO_VOLTAGE) - DC_LINK_OFFSET;
+    return (AnalogSignalList.voltageMeas36.filteredValue);
 }
 
 float getControlsupplyMeasurement(void)
 {
-    return (AnalogSignalList.voltageMeas24.filteredValue * CONTROL_SUPPLY_MEAS_TO_VOLTAGE) - CONTROL_SUPPLY_OFFSET;
+    return (AnalogSignalList.voltageMeas24.filteredValue);
 }
 
 float getTorqueReferenceSliderMeasurement(void)

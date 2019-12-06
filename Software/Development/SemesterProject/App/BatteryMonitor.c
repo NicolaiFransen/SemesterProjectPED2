@@ -21,6 +21,8 @@
  *      In order to reset the safety, a pushbutton must be added to the system. To manage that
  *      input, userACKHasBeenPressed() function from pushbuttonManager is used. That
  *      function analyses the pushbutton connected to GPIO25, (Launchpad J6, pin 54).
+ *
+ *      For the GND connection pin 62 in J/ can be used.
  */
 
 
@@ -68,5 +70,11 @@ void safetyReaction(void)
 
 void checkForResetAndEnableMainSwitch(void)
 {
-    if (userACKHasBeenPressed()) setLED10(OFF);
+    if (userACKHasBeenPressed())
+        {
+        setLED10(OFF);
+        Supply8V.BottomCell.status = NO_ERROR_BMS;
+        Supply8V.TopCell.status = NO_ERROR_BMS;
+        }
+
 }
