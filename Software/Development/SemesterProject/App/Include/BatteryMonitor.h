@@ -25,7 +25,7 @@ void safetyReaction(void);
 void checkForResetAndEnableMainSwitch(void);
 
 //Defines and type definition
-#define OVERVOLTAGE_THRESHOLD 3.9
+#define OVERVOLTAGE_THRESHOLD 4.08
 #define UNDERVOLTAGE_THRESHOLD 2.9
 #define GAIN_BOTTOM_CELL 2
 #define GAIN_TOP_CELL 2.65
