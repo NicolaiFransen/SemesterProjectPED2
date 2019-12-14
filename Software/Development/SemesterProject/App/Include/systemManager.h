@@ -17,6 +17,7 @@
 #include "errorManager.h"
 #include "adcMonitor.h"
 #include "controller.h"
+#include "dutyCycle.h"
 
 //
 // Objects declaration

@@ -21,8 +21,8 @@ void executeControl(void)
             // Call open-loop function
             //openLoopVFControl();
             setDutyA(10);
-            setDutyB(10);
-            setDutyC(10);
+            setDutyB(20);
+            setDutyC(35);
         }
 
          else

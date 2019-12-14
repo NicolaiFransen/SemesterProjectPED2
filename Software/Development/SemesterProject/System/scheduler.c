@@ -96,9 +96,9 @@ void runTask(void (*functionPTR)())
  */
 void task1ms(void)
 {
-    readLowPrioritySignals();
-    performLowPriorityErrorMonitoring();
-    handleReferences();
+    //readLowPrioritySignals();
+    //performLowPriorityErrorMonitoring();
+    //handleReferences();
 }
 
 void task5ms(void)
@@ -129,8 +129,8 @@ void task200ms(void)
 void task1s(void)
 {
     restartPushbuttonsState();
-    calculateTemperature();
-    printUART();
+    //calculateTemperature();
+    //printUART();
 
 }
 

@@ -57,9 +57,9 @@ void configurePWM(void)
     //Configure PWM period. (Page 336)
     //PWM PERIOD is configured according to the switching frequency found in PWMConfig.h
     // Period: For up-down-count mode, period is calculated as 2*TBPRD*T_tbclk
-    EPwm1Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);
-    EPwm2Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);
-    EPwm3Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);
+    EPwm1Regs.TBPRD = (Uint16)(INTERNAL_FREQ/(2*SW_FREQ));
+    EPwm2Regs.TBPRD = (Uint16)(INTERNAL_FREQ/(2*SW_FREQ));
+    EPwm3Regs.TBPRD = (Uint16)(INTERNAL_FREQ/(2*SW_FREQ));
 
     //Clear TB counter register. (Page 338) Set the current time-base counter to zero.
     EPwm1Regs.TBCTR = 0;
@@ -156,14 +156,14 @@ void configurePWM(void)
     //DEADBAND register configuration
     //Since the deadband is performed in the inverter circuit, it must be bypassed here.
     // Dead band is determined by using table 3.15 page 288 in datasheet
-    EPwm1Regs.DBRED = 2;        // Sets rising edge Dead band in PWM1 to 0.01us
-    EPwm1Regs.DBFED = 2;        // Sets falling edge Dead band in PWM1 to 0.01us
+    EPwm1Regs.DBRED = DEAD_TIME;        // Sets rising edge Dead band in PWM1 to 0.01us
+    EPwm1Regs.DBFED = DEAD_TIME;        // Sets falling edge Dead band in PWM1 to 0.01us
 
-    EPwm2Regs.DBRED = 2;        // Sets rising edge Dead band in PWM2 to 0.01us
-    EPwm2Regs.DBFED = 2;        // Sets falling edge Dead band in PWM2 to 0.01us
+    EPwm2Regs.DBRED = DEAD_TIME;        // Sets rising edge Dead band in PWM2 to 0.01us
+    EPwm2Regs.DBFED = DEAD_TIME;        // Sets falling edge Dead band in PWM2 to 0.01us
 
-    EPwm3Regs.DBRED = 2;        // Sets rising edge Dead band in PWM3 to 0.01us
-    EPwm3Regs.DBFED = 2;        // Sets falling edge Dead band in PWM3 to 0.01us
+    EPwm3Regs.DBRED = DEAD_TIME;        // Sets rising edge Dead band in PWM3 to 0.01us
+    EPwm3Regs.DBFED = DEAD_TIME;        // Sets falling edge Dead band in PWM3 to 0.01us
 
     // Enables the Dead band generation
     EPwm1Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;

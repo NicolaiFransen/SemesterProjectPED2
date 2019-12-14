@@ -29,7 +29,7 @@
 //a period, this is done in the command 'EPwm1Regs.TBPRD = INTERNAL_FREQ/(2*SW_FREQ);'
 //Since the configured carrier is a symmetrical triangular, the real period is actually twice as
 //much but the counter will reach maximum that value.
-#define MAX_DUTY_COMPARE    INTERNAL_FREQ/(2*SW_FREQ)
+#define MAX_DUTY_COMPARE (Uint16)(INTERNAL_FREQ/(2*SW_FREQ))
 
 
 //

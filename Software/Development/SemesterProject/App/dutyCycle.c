@@ -35,7 +35,7 @@ void setDutyA(float duty)
     DutyCycleList.dutyA = duty;
 
     //Calculate and assign comparator to PWM module.
-    EPwm1Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
+    EPwm1Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty / 100);
 }
 
 
@@ -50,7 +50,7 @@ void setDutyB(float duty)
     DutyCycleList.dutyB = duty;
 
     //Calculate and assign comparator to PWM module.
-    EPwm2Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
+    EPwm2Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty / 100);
 }
 
 
@@ -65,7 +65,7 @@ void setDutyC(float duty)
     DutyCycleList.dutyC = duty;
 
     //Calculate and assign comparator to PWM module.
-    EPwm3Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty * MAX_DUTY_VALUE_INV);
+    EPwm3Regs.CMPA.half.CMPA = (Uint16)(MAX_DUTY_COMPARE * duty / 100);
 }
 
 

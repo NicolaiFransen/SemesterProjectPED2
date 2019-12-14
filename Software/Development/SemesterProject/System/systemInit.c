@@ -158,7 +158,7 @@ void systemInit(void)
     initializeGUIPushbuttonsStructure();
     initDigitalOutputs();
     initPushbuttons();
-    initWatchdog();
+    //initWatchdog();
     initUART();
     initEncoder();
     SVMInit();

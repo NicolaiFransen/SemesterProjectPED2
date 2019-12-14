@@ -12,14 +12,16 @@
 //Processor related parameters
 #define CLOCK_FREQUENCY             ((float)150e6)          // 150 MHz clock frequency
 #define CLOCK_PERIOD                ((float)6.667e-9)       // 1/CLOCK_FREQUENCY clock period
-#define SW_FREQ                     10000                   //Switching frequency [10kHz].
+#define SW_FREQ                     (long)250000                   //Switching frequency [10kHz].
 #define SW_PERIOD_US                100                     //Period of the PWM.
 #define SW_PERIOD_S                 ((float)100e-6)         //PWM period in s.
-#define INTERNAL_FREQ               90000000                //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
+#define INTERNAL_FREQ               (long)90000000                //Internal frequency of the device [90MHz]. Configured in InitSysCtrl().
 
 #define MinPulseWidth	            ((float)2e-6)           //minimum pulse width in s
 #define MinPulseWidthCNT	        ((unsigned short)300)   //MinPulseWidth/CLOCK_PERIOD (2us)
 #define Half_MinPulseWidthCNT	    ((unsigned short)150)	//half MinPulseWidth/CLOCK_PERIOD (1us)
+
+#define DEAD_TIME                   5                       // See table 3-15 on page 288 for value meaning
 
 //Mathematical Constants
 #define PI      		    ((float)(3.141592653589793))    // pi

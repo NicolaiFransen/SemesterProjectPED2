@@ -41,8 +41,9 @@ void manageSystem(void)
 
         case STANDBY:
         {
+            enableDrivers();
 
-                    enableDrivers();
+
                     systemState = RUNNING;
 
             if(getErrorManagerStatus() == ERROR_HAS_HAPPENED) systemState = ERROR;

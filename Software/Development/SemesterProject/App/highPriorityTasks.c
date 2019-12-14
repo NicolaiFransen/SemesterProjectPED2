@@ -16,9 +16,9 @@
  */
 __interrupt void adc_isr(void)
 {
-    increaseUARTCounter();
+    //increaseUARTCounter();
 
-    readHighPrioritySignals();
+    //readHighPrioritySignals();
 
     acknowledgeAdcInterrupt();
 
@@ -29,9 +29,9 @@ __interrupt void adc_isr(void)
 
 void executeHighPriorityTasks(void)
 {
-    getRotorPosSpeedParameters();                   // Update speed measurement
+    //getRotorPosSpeedParameters();                   // Update speed measurement
     executeControl();                               // Executes the selected control type
-    performHighPriorityErrorMonitoring();           // Monitors the system for errors
+    //performHighPriorityErrorMonitoring();           // Monitors the system for errors
 }
 
 /*
